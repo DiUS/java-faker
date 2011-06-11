@@ -1,16 +1,13 @@
 package javafaker;
 
-import static javafaker.Faker.fetch;
-import static javafaker.Faker.numerify;
-
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.ho.yaml.Yaml;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Provides utility methods for generating fake strings, such as names, phone
@@ -21,6 +18,7 @@ import org.ho.yaml.Yaml;
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class Faker {
+    private static final Logger logger = LoggerFactory.getLogger(Faker.class);
     public static final Locale LOCALE = Locale.ENGLISH;
 
     private static Map<String, Object> fakeValuesMap;
@@ -30,50 +28,6 @@ public class Faker {
         Map valuesMap = (Map) Yaml.load(ClassLoader.getSystemResourceAsStream(languageCode + ".yml"));
         valuesMap = (Map) valuesMap.get(languageCode);
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
-    }
-
-    private static final char[] METHOD_NAME_DELIMITERS = { '_' };
-
-    public static String name() {
-        List<String> nameFormat = (List<String>) fetch("name.formats");
-
-        String[] nameParts = new String[nameFormat.size()];
-        for (int i = 0; i < nameParts.length; i++) {
-            // remove leading colon
-            String methodName = nameFormat.get(i).substring(1);
-            // convert to camel case
-            methodName = WordUtils.capitalizeFully(methodName, METHOD_NAME_DELIMITERS).replaceAll("_", "");
-            methodName = methodName.substring(0, 1).toLowerCase() + methodName.substring(1);
-
-            try {
-                nameParts[i] = (String) Faker.class.getDeclaredMethod(methodName, (Class[]) null).invoke(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-        }
-
-        return StringUtils.join(nameParts, " ");
-    }
-
-    public static String firstName() {
-        return (String) fetch("name.first_name");
-    }
-
-    public static String lastName() {
-        return (String) fetch("name.last_name");
-    }
-
-    public static String prefix() {
-        return (String) fetch("name.prefix");
-    }
-
-    public static String suffix() {
-        return (String) fetch("name.suffix");
-    }
-
-    public static String phoneNumber() {
-        return numerify((String) fetch("phone_number.formats"));
     }
 
     public static String numerify(String numberString) {
@@ -89,13 +43,48 @@ public class Faker {
         return sb.toString();
     }
 
+    public static String letterify(String letterString) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < letterString.length(); i++) {
+            if (letterString.charAt(i) == '?') {
+                sb.append((char) (97 + RandomUtils.nextInt(26))); // a-z
+            } else {
+                sb.append(letterString.charAt(i));
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static String bothify(String string) {
+        return letterify(numerify(string));
+    }
+
+    /**
+     * Fetch a random value from an array item specified by the key
+     *
+     * @param key
+     * @return
+     */
     public static Object fetch(String key) {
+        List valuesArray = (List) fetchObject(key);
+        return valuesArray.get(RandomUtils.nextInt(valuesArray.size()));
+    }
+
+    /**
+     * Return the object selected by the key from yaml file.
+     *
+     * @param key
+     *            key contains path to an object. Path segment is separated by
+     *            dot. E.g. name.first_name
+     * @return
+     */
+    public static Object fetchObject(String key) {
         String[] path = key.split("\\.");
         Object currentValue = fakeValuesMap;
         for (String pathSection : path) {
             currentValue = ((Map<String, Object>) currentValue).get(pathSection);
         }
-        List valuesArray = (List) currentValue;
-        return valuesArray.get(RandomUtils.nextInt(valuesArray.size()));
+        return currentValue;
     }
 }

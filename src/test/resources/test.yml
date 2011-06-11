@@ -1,0 +1,4 @@
+en:
+  faker:
+    abc:
+	  def: [x, y, z]
