@@ -6,14 +6,13 @@ import org.junit.Test;
 public class FakerTest {
     @Test
     public void shouldFetchCorrectValue() {
-        Faker faker = new Faker();
-        String firstName = faker.firstName();
+        String firstName = Faker.firstName();
         Assert.assertNotNull(firstName);
-        String lastName = faker.lastName();
+        String lastName = Faker.lastName();
         Assert.assertNotNull(lastName);
-        String prefix = faker.prefix();
+        String prefix = Faker.prefix();
         Assert.assertNotNull(prefix);
-        String phoneNumber = faker.phoneNumber();
+        String phoneNumber = Faker.phoneNumber();
         Assert.assertNotNull(phoneNumber);
     }
 }

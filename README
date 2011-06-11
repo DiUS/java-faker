@@ -1,0 +1,4 @@
+How to build
+
+1. Make sure Apache Maven 3 is installed. ($ mvn --version)
+2. $ mvn package
