@@ -4,12 +4,12 @@ This gem is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker lib
 
 Usage
 -----
-Faker faker = new Faker();
-String name = faker.name(); // Miss Samanta Schmidt
-String firstName = faker.firstName(); // Emory
-String lastName = faker.firstName(); // Barton
+Faker faker = new Faker(); 
+String name = faker.name(); // Miss Samanta Schmidt 
+String firstName = faker.firstName(); // Emory 
+String lastName = faker.firstName(); // Barton 
 
-String streetAddress = faker.streetAddress(); // 60018 Sawayn Brooks Suite 449
+String streetAddress = faker.streetAddress(); // 60018 Sawayn Brooks Suite 449 
 
 
 How to build
