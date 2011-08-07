@@ -5,7 +5,7 @@
     <packaging>jar</packaging>
     <version>0.2</version>
     <name>java-faker</name>
-    <url>http://maven.apache.org</url>
+    <url>http://github.com/DiUS/java-faker</url>
     <dependencies>
         <dependency>
             <groupId>commons-lang</groupId>
