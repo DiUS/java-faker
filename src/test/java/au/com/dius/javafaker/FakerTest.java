@@ -1,4 +1,4 @@
-package javafaker;
+package au.com.dius.javafaker;
 
 import java.util.List;
 

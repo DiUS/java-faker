@@ -1,11 +1,34 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>java-faker</groupId>
+    <groupId>au.com.dius</groupId>
     <artifactId>java-faker</artifactId>
     <packaging>jar</packaging>
     <version>0.2</version>
-    <name>java-faker</name>
+    <name>Java Faker</name>
+    <description>
+    	This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
+        It's useful when you're developing a new project and need some pretty data for showcase.
+    </description>
     <url>http://github.com/DiUS/java-faker</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>git://github.com/DiUS/java-faker.git</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>renshao</id>
+            <name>Ren Shao</name>
+            <email>renshao@gmail.com</email>
+        </developer>
+    </developers>
+
     <dependencies>
         <dependency>
             <groupId>commons-lang</groupId>
