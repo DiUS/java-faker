@@ -1,4 +1,4 @@
-package au.com.dius.javafaker;
+package com.github.javafaker;
 
 import static org.apache.commons.lang.StringUtils.capitalize;
 import static org.apache.commons.lang.StringUtils.join;
