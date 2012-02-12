@@ -4,7 +4,7 @@
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
     <packaging>jar</packaging>
-    <version>0.2</version>
+    <version>0.2-SNAPSHOT</version>
     <name>Java Faker</name>
     <description>
     	This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
@@ -19,6 +19,8 @@
         </license>
     </licenses>
     <scm>
+        <connection>scm:git:git://github.com/DiUS/java-faker.git</connection>
+        <developerConnection>scm:git:git://github.com/DiUS/java-faker.git</developerConnection>
         <url>git://github.com/DiUS/java-faker.git</url>
     </scm>
     <developers>
@@ -28,6 +30,12 @@
             <email>renshao@gmail.com</email>
         </developer>
     </developers>
+    
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>    
 
     <dependencies>
         <dependency>
