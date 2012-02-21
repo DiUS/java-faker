@@ -6,6 +6,7 @@ It's useful when you're developing a new project and need some pretty data for s
 Usage
 -----
 In pom.xml, add following between `<dependencies> ... </dependencies>`
+
 ```xml
 <dependency>
     <groupId>com.github.javafaker</groupId>
@@ -15,6 +16,7 @@ In pom.xml, add following between `<dependencies> ... </dependencies>`
 ```
 
 In your Java code
+
 ```java
 Faker faker = new Faker();
 
