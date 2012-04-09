@@ -1,14 +1,14 @@
 package com.github.javafaker;
 
-import static org.apache.commons.lang.StringUtils.capitalize;
-import static org.apache.commons.lang.StringUtils.join;
-import static org.apache.commons.lang.math.RandomUtils.nextInt;
+import static org.apache.commons.lang.StringUtils.*;
+import static org.apache.commons.lang.math.RandomUtils.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
@@ -31,23 +31,34 @@ public class Faker {
 
     private Map<String, Object> fakeValuesMap;
 
+    private final Random random;
+    
     public Faker() {
         this(Locale.ENGLISH);
     }
 
+    public Faker(Random random) {
+        this(Locale.ENGLISH, random);
+    }
+
     public Faker(Locale locale) {
+        this(locale, new Random());
+    }
+    public Faker(Locale locale, Random random) {
         logger.info("Using default locale " + locale);
         String languageCode = locale.getLanguage();
         Map valuesMap = (Map) Yaml.load(ClassLoader.getSystemResourceAsStream(languageCode + ".yml"));
         valuesMap = (Map) valuesMap.get(languageCode);
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
+        
+        this.random = random;
     }
 
     public String numerify(String numberString) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < numberString.length(); i++) {
             if (numberString.charAt(i) == '#') {
-                sb.append(RandomUtils.nextInt(10));
+                sb.append(RandomUtils.nextInt(random, 10));
             } else {
                 sb.append(numberString.charAt(i));
             }
@@ -60,7 +71,7 @@ public class Faker {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < letterString.length(); i++) {
             if (letterString.charAt(i) == '?') {
-                sb.append((char) (97 + RandomUtils.nextInt(26))); // a-z
+                sb.append((char) (97 + RandomUtils.nextInt(random, 26))); // a-z
             } else {
                 sb.append(letterString.charAt(i));
             }
@@ -81,7 +92,7 @@ public class Faker {
      */
     public Object fetch(String key) {
         List valuesArray = (List) fetchObject(key);
-        return valuesArray.get(RandomUtils.nextInt(valuesArray.size()));
+        return valuesArray.get(RandomUtils.nextInt(random, valuesArray.size()));
     }
 
     public String fetchString(String key) {
@@ -151,7 +162,7 @@ public class Faker {
     // lorem
     public List<String> words(int num) {
         List<String> words = (List<String>) fetchObject("lorem.words");
-        Collections.shuffle(words);
+        Collections.shuffle(words, random);
         return words.subList(0, num);
     }
 
@@ -160,7 +171,7 @@ public class Faker {
     }
 
     public String sentence(int wordCount) {
-        return capitalize(join(words(wordCount + RandomUtils.nextInt(6)), " ") + ".");
+        return capitalize(join(words(wordCount + RandomUtils.nextInt(random, 6)), " ") + ".");
     }
 
     public String sentence() {
@@ -176,7 +187,7 @@ public class Faker {
     }
 
     public String paragraph(int sentenceCount) {
-        return join(sentences(sentenceCount + nextInt(3)), " ");
+        return join(sentences(sentenceCount + nextInt(random, 3)), " ");
     }
 
     public String paragraph() {
@@ -197,7 +208,7 @@ public class Faker {
         List<String> possibleStreetNames = new ArrayList<String>();
         possibleStreetNames.add(join(new Object[] { lastName(), streetSuffix() }, " "));
         possibleStreetNames.add(join(new Object[] { firstName(), streetSuffix() }, " "));
-        return possibleStreetNames.get(nextInt(possibleStreetNames.size()));
+        return possibleStreetNames.get(nextInt(random, possibleStreetNames.size()));
     }
 
     public String streetAddress(boolean includeSecondary) {
