@@ -38,7 +38,7 @@ public class Faker {
     public Faker(Locale locale) {
         logger.info("Using default locale " + locale);
         String languageCode = locale.getLanguage();
-        Map valuesMap = (Map) Yaml.load(ClassLoader.getSystemResourceAsStream(languageCode + ".yml"));
+        Map valuesMap = (Map) Yaml.load(getClass().getClassLoader().getResourceAsStream(languageCode + ".yml"));
         valuesMap = (Map) valuesMap.get(languageCode);
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
     }
