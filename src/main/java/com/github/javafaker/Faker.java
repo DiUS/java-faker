@@ -104,7 +104,15 @@ public class Faker {
         }
         return currentValue;
     }
-
+    
+    public String email() {
+    	return String.format("%s.%s@%s.%s", firstName().toLowerCase(), lastName().toLowerCase(), company().toLowerCase(), fetch("internet.domain_suffix"));
+    }
+    	
+    public String company() {
+    	return fetchString("company.name");
+    }
+    
     public String name() {
         List<String> nameFormat = (List<String>) fetch("name.formats");
 
