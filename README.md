@@ -22,7 +22,7 @@ Faker faker = new Faker();
 
 String name = faker.name(); // Miss Samanta Schmidt
 String firstName = faker.firstName(); // Emory
-String lastName = faker.firstName(); // Barton
+String lastName = faker.lastName(); // Barton
 
 String streetAddress = faker.streetAddress(); // 60018 Sawayn Brooks Suite 449
 ```
