@@ -270,7 +270,7 @@ public class Faker {
                 char c = source.charAt(i);
                 for (CharacterTransformer t : transformers) {
                     if (t.triggerCharacter() == c) {
-                        sb.append((char) (97 + RandomUtils.nextInt(26))); // a-z
+                        sb.append(t.transform(c));
                         break charLoop;
                     }
                 }
