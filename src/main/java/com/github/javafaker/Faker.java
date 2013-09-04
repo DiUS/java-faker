@@ -24,12 +24,15 @@ import org.slf4j.LoggerFactory;
  * @author ren
  *
  */
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class Faker {
-    private static final Logger logger = LoggerFactory.getLogger(Faker.class);
-    private static final char[] METHOD_NAME_DELIMITERS = { '_' };
 
+    private static final Logger logger = LoggerFactory.getLogger(Faker.class);
+    private static final char[] METHOD_NAME_DELIMITERS = {'_'};
     private Map<String, Object> fakeValuesMap;
+    private static final Transformer letterTransformer = new Transformer(new LetterTransformer());
+    private static final Transformer numberTransformer = new Transformer(new NumberTransformer());
+    private static final Transformer letterNumberTransformer = new Transformer(new LetterTransformer(), new NumberTransformer());
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -43,34 +46,43 @@ public class Faker {
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
     }
 
+    /**
+     * Converts a formatted string containing {@code #} characters to random 0-9
+     * characters.
+     *
+     * All other characters will remain unmodified.
+     *
+     * @param numberString
+     * @return
+     */
     public String numerify(String numberString) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < numberString.length(); i++) {
-            if (numberString.charAt(i) == '#') {
-                sb.append(RandomUtils.nextInt(10));
-            } else {
-                sb.append(numberString.charAt(i));
-            }
-        }
-
-        return sb.toString();
+        return numberTransformer.transform(numberString);
     }
 
+    /**
+     * Converts a formatted string containing {@code ?} characters to random a-z
+     * characters.
+     *
+     * All other characters will remain unmodified.
+     *
+     * @param letterString
+     * @return
+     */
     public String letterify(String letterString) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < letterString.length(); i++) {
-            if (letterString.charAt(i) == '?') {
-                sb.append((char) (97 + RandomUtils.nextInt(26))); // a-z
-            } else {
-                sb.append(letterString.charAt(i));
-            }
-        }
-
-        return sb.toString();
+        return letterTransformer.transform(letterString);
     }
 
+    /**
+     * Converts a formatted string containing either {@code #} or {@code ?},
+     * changing the characters into 0-9 or a-z, respectively.
+     *
+     * All other characters will remain unmodified.
+     *
+     * @param string
+     * @return
+     */
     public String bothify(String string) {
-        return letterify(numerify(string));
+        return letterNumberTransformer.transform(string);
     }
 
     /**
@@ -91,9 +103,8 @@ public class Faker {
     /**
      * Return the object selected by the key from yaml file.
      *
-     * @param key
-     *            key contains path to an object. Path segment is separated by
-     *            dot. E.g. name.first_name
+     * @param key key contains path to an object. Path segment is separated by
+     * dot. E.g. name.first_name
      * @return
      */
     public Object fetchObject(String key) {
@@ -192,11 +203,10 @@ public class Faker {
     }
 
     // address
-
     public String streetName() {
         List<String> possibleStreetNames = new ArrayList<String>();
-        possibleStreetNames.add(join(new Object[] { lastName(), streetSuffix() }, " "));
-        possibleStreetNames.add(join(new Object[] { firstName(), streetSuffix() }, " "));
+        possibleStreetNames.add(join(new Object[]{lastName(), streetSuffix()}, " "));
+        possibleStreetNames.add(join(new Object[]{firstName(), streetSuffix()}, " "));
         return possibleStreetNames.get(nextInt(possibleStreetNames.size()));
     }
 
@@ -234,5 +244,70 @@ public class Faker {
 
     public String country() {
         return fetchString("address.country");
+    }
+
+    private static class Transformer {
+
+        private final CharacterTransformer[] transformers;
+
+        public Transformer(CharacterTransformer... transformers) {
+            this.transformers = transformers;
+        }
+
+        /**
+         * Transforms the source string into a new string, using the
+         * transformers with which this instance was initialized
+         *
+         * This method is tread safe
+         *
+         * @param source
+         * @return
+         */
+        public String transform(String source) {
+            StringBuilder sb = new StringBuilder();
+            charLoop:
+            for (int i = 0; i < source.length(); i++) {
+                char c = source.charAt(i);
+                for (CharacterTransformer t : transformers) {
+                    if (t.triggerCharacter() == c) {
+                        sb.append((char) (97 + RandomUtils.nextInt(26))); // a-z
+                        break charLoop;
+                    }
+                }
+                //if we're here, the char didn't match any transformer
+                sb.append(source.charAt(i));
+            }
+
+            return sb.toString();
+        }
+    }
+
+    private static interface CharacterTransformer {
+
+        char triggerCharacter();
+
+        char transform(char source);
+    }
+
+    private static class LetterTransformer implements CharacterTransformer {
+
+        public char triggerCharacter() {
+            return '?';
+        }
+
+        public char transform(char source) {
+            return (char) (97 + RandomUtils.nextInt(26)); // a-z
+        }
+    }
+
+    private static class NumberTransformer implements CharacterTransformer {
+
+        public char triggerCharacter() {
+            return '#';
+        }
+
+        public char transform(char source) {
+            return (char) RandomUtils.nextInt(10);
+        }
     }
 }
