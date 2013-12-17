@@ -1,19 +1,36 @@
 package com.github.javafaker;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.Assert.*;
+import static org.junit.runners.Parameterized.*;
 
+@RunWith(value = Parameterized.class)
 public class FakerTest {
     private static final Logger logger = LoggerFactory.getLogger(FakerTest.class);
-    private Faker faker = new Faker();
+    private Faker faker;
+
+    public FakerTest(Locale locale) {
+        faker = new Faker(locale);
+    }
+
+    @Parameters(name = "testing locale {0}")
+    public static Collection<Object[]> data() {
+        Object[][] data = new Object[][]{{Locale.ENGLISH}, {Locale.FRENCH}};
+        return Arrays.asList(data);
+    }
 
     @Test
-    public void shouldFetchNames() {
+    public void testNames() {
         String firstName = faker.firstName();
         logger.info("Test first name: " + firstName);
         assertNotNull(firstName);
@@ -44,33 +61,32 @@ public class FakerTest {
 
 
     @Test
-    public void shouldReturnSpecifiedNumOfWords() {
+    public void testSpecifiedNumOfWords() {
         List<String> words = faker.words(4);
         logger.info("Test words: " + words.toString());
         assertEquals(4, words.size());
     }
 
     @Test
-    public void printFakeSentence() {
+    public void testSentence() {
         String sentence = faker.sentence(7);
         logger.info("Test sentence: " + sentence);
         assertNotNull(sentence);
     }
 
     @Test
-    public void printFakeSentences() {
+    public void testSentences() {
         List<String> sentences = faker.sentences(3);
         logger.info("Test sentences: " + sentences);
         assertEquals(3, sentences.size());
     }
 
     @Test
-    public void printFakeParagraph() {
+    public void testSpecifiedNumOfParagraphs() {
         String paragraph = faker.paragraph(5);
         logger.info("Test paragraph: " + paragraph);
         assertNotNull(paragraph);
     }
-
 
     @Test
     public void testStreetName() {
