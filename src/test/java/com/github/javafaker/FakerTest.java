@@ -134,4 +134,19 @@ public class FakerTest {
         logger.info("Country: " + country);
         assertNotNull(country);
     }
+
+    @Test
+    public void testParagraph() {
+        String paragraph = faker.paragraph();
+        logger.info("Paragraph: " + paragraph);
+        assertNotNull(paragraph);
+    }
+
+    @Test
+    public void testParagraphs() {
+        final int paragraphCount = 10;
+        List<String> paragraphs = faker.paragraphs(paragraphCount);
+        logger.info("Paragraphs: " + paragraphs);
+        assertEquals(paragraphCount, paragraphs.size());
+    }
 }
