@@ -152,7 +152,7 @@ public class Faker {
     public List<String> words(int num) {
         List<String> words = (List<String>) fetchObject("lorem.words");
         List<String> returnList = new ArrayList();
-        for (int i=0; i< num;i++) {
+        for (int i = 0; i < num; i++) {
             returnList.add(words.get(nextInt(words.size())));
         }
         return returnList;
