@@ -4,6 +4,7 @@ import static org.apache.commons.lang.StringUtils.capitalize;
 import static org.apache.commons.lang.StringUtils.join;
 import static org.apache.commons.lang.math.RandomUtils.nextInt;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,9 +39,16 @@ public class Faker {
     public Faker(Locale locale) {
         logger.info("Using default locale " + locale);
         String languageCode = locale.getLanguage();
-        Map valuesMap = (Map) Yaml.load(getClass().getClassLoader().getResourceAsStream(languageCode + ".yml"));
+        Map valuesMap = (Map) Yaml.load(findStream(languageCode + ".yml"));
         valuesMap = (Map) valuesMap.get(languageCode);
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
+    }
+
+    private InputStream findStream(String filename) {
+      InputStream streamOnClass = getClass().getResourceAsStream(filename);
+      if(streamOnClass!=null)
+        return streamOnClass;
+      return getClass().getClassLoader().getResourceAsStream(filename);
     }
 
     public String numerify(String numberString) {
