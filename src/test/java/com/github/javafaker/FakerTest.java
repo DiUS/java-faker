@@ -41,7 +41,13 @@ public class FakerTest {
         Assert.assertNotNull(phoneNumber);
     }
 
-
+    @Test
+    public void shouldCreateFixedLenghtString() {
+        Assert.assertEquals(10, faker.letters(10).length());
+        Assert.assertEquals(50, faker.letters(50).length());
+        Assert.assertEquals(0, faker.letters(0).length());
+        Assert.assertEquals(0, faker.letters(-1).length());
+    }
 
     @Test
     public void shouldReturnSpecifiedNumOfWords() {

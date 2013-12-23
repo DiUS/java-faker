@@ -238,4 +238,19 @@ public class Faker {
     public String country() {
         return fetchString("address.country");
     }
+
+    /**
+     * Create a string with a fixed size. Can be usefull for testing
+     * validator based on length string for example
+     *
+     * @param countOfLetters size of the expected String
+     * @return a string with a fixed size
+     */
+    public String letters(int countOfLetters) {
+        StringBuilder builder = new StringBuilder();
+        while (builder.length() < countOfLetters) {
+            builder.append(sentence());
+        }
+        return StringUtils.substring(builder.toString(), 0, countOfLetters);
+    }
 }
