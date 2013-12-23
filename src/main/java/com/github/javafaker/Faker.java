@@ -46,8 +46,9 @@ public class Faker {
 
     private InputStream findStream(String filename) {
       InputStream streamOnClass = getClass().getResourceAsStream(filename);
-      if(streamOnClass!=null)
-        return streamOnClass;
+      if (streamOnClass != null) {
+          return streamOnClass;
+      }
       return getClass().getClassLoader().getResourceAsStream(filename);
     }
 
