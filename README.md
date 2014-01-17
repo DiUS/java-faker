@@ -14,7 +14,7 @@ In pom.xml, add following between `<dependencies> ... </dependencies>`
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
 </dependency>
 ```
 
