@@ -4,13 +4,11 @@ import static org.apache.commons.lang.StringUtils.capitalize;
 import static org.apache.commons.lang.StringUtils.join;
 import static org.apache.commons.lang.math.RandomUtils.nextInt;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+import com.sun.deploy.uitoolkit.impl.fx.Utils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.apache.commons.lang.math.RandomUtils;
@@ -50,6 +48,66 @@ public class Faker {
           return streamOnClass;
       }
       return getClass().getClassLoader().getResourceAsStream(filename);
+    }
+
+    private List<String> getRandomTextLines(int numberOfLines, int approxLineLength){
+        List<String> lines = new ArrayList<String>();
+        for (int i = 0; i < numberOfLines; i++){
+            lines.add(getRandomTextLine(approxLineLength));
+        }
+        return lines;
+    }
+
+    private String getRandomTextLine(int approxLength){  // approxLength = approximate number of characters
+        StringBuilder builder = new StringBuilder();
+        int currentLineLength = 0;
+        while (currentLineLength < approxLength){
+            String word = fetchString("lorem.words");
+            builder.append(word);
+            currentLineLength += word.length() + 1;
+            if (currentLineLength < approxLength){
+                builder.append(' ');
+            }
+        }
+        return builder.toString();
+    }
+
+    private void writeLinesToFile(String filePath, List<String> lines, boolean append){
+        FileWriter textFileWriter = null;
+        PrintWriter pw = null;
+        try {
+            File file = new File(filePath);
+            // if file doesnt exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            textFileWriter = new FileWriter(filePath, append);
+            pw = new PrintWriter(textFileWriter);
+
+            for (String line:lines){
+                pw.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (textFileWriter != null){
+                    textFileWriter.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void file(String filePath, int linesNumber) {
+        List<String> lines = getRandomTextLines(linesNumber, 80);
+        writeLinesToFile(filePath, lines, false);
+    }
+
+    public void file(String filePath) {
+        List<String> lines = getRandomTextLines(10000, 80);
+        writeLinesToFile(filePath, lines, false);
     }
 
     public String numerify(String numberString) {
@@ -157,6 +215,10 @@ public class Faker {
         return numerify(fetchString("phone_number.formats"));
     }
 
+    public String eMail() {
+        return bothify(firstName()+"####"+lastName()+"@"+fetchString("internet.free_email"));
+    }
+
     // lorem
     public List<String> words(int num) {
         List<String> words = (List<String>) fetchObject("lorem.words");
@@ -166,6 +228,40 @@ public class Faker {
         }
         return returnList;
     }
+
+    public int number(int min, int max) {
+        Random rand = new Random();
+        return rand.nextInt(max-min) + min;
+    }
+
+    public int number() {
+        return number(0, 1000);
+    }
+
+    public String date(){
+        return date(0, "yyyy-MM-dd HH:mm:ss");
+    }
+
+    public String date(int days){
+      return date(days, "yyyy-MM-dd HH:mm:ss");
+    }
+
+    public String date(int days, String format) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        String dateResult = "";
+        if (days == 0){
+            Date myDate = new Date();
+            dateResult = dateFormat.format(myDate);
+        } else {
+            Date myDate = new Date(System.currentTimeMillis());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(myDate);
+            cal.add(Calendar.DAY_OF_MONTH,days);
+            dateResult = dateFormat.format(cal.getTime());
+        }
+        return dateResult;
+    }
+
 
     public List<String> words() {
         return words(3);
