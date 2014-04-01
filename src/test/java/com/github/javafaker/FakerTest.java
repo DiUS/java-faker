@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 import static org.junit.runners.Parameterized.*;
@@ -165,4 +166,21 @@ public class FakerTest {
         logger.info("Paragraphs: " + paragraphs);
         assertEquals(paragraphCount, paragraphs.size());
     }
+
+    @Test
+    public void testControllingRandomNumber() {
+        Random random = new Random();
+        random.setSeed(0L);
+        faker.setRandom(random);
+
+        final int paragraphCount = 10;
+        List<String> paragraphs = faker.paragraphs(paragraphCount);
+
+        random.setSeed(0L); // Reset stream
+        List<String> paragraphs2 = faker.paragraphs(paragraphCount);
+
+        // Using the same seed should create the same output.
+        assertEquals(paragraphs, paragraphs2);
+    }
+
 }
