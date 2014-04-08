@@ -25,7 +25,7 @@ public class FakerTest {
 
     @Parameters(name = "testing locale {0}")
     public static Collection<Object[]> data() {
-        Object[][] data = new Object[][]{{Locale.ENGLISH}, {Locale.FRENCH}, {Locale.forLanguageTag("fi")}};
+        Object[][] data = new Object[][]{{Locale.ENGLISH}, {Locale.FRENCH}, {new Locale("fi", "FI")}};
         return Arrays.asList(data);
     }
 
