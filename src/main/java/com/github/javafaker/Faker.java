@@ -114,27 +114,31 @@ public class Faker {
         return currentValue;
     }
 
-    public String name() {
-        List<String> nameFormat = (List<String>) fetch("name.formats");
+    public String composite(String formatKey, String joiner) {
+        List<String> format = (List<String>) fetch(formatKey);
 
-        String[] nameParts = new String[nameFormat.size()];
-        for (int i = 0; i < nameParts.length; i++) {
+        String[] parts = new String[format.size()];
+        for (int i = 0; i < parts.length; i++) {
             // remove leading colon
-            String methodName = nameFormat.get(i).substring(1);
+            String methodName = format.get(i).substring(1);
             // convert to camel case
             methodName = WordUtils.capitalizeFully(methodName, METHOD_NAME_DELIMITERS).replaceAll("_", "");
             methodName = methodName.substring(0, 1).toLowerCase() + methodName.substring(1);
 
             try {
-                nameParts[i] = (String) Faker.class.getDeclaredMethod(methodName, (Class[]) null).invoke(this);
+                parts[i] = (String) Faker.class.getDeclaredMethod(methodName, (Class[]) null).invoke(this);
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
 
-        String name = StringUtils.join(nameParts, " ");
-        return name;
+        String result = StringUtils.join(parts, joiner);
+        return result;
+    }
+    
+    public String name() {
+      return composite("name.formats", " ");
     }
 
     public String firstName() {
@@ -206,14 +210,15 @@ public class Faker {
     // address
 
     public String streetName() {
-        List<String> possibleStreetNames = new ArrayList<String>();
-        possibleStreetNames.add(join(new Object[] { lastName(), streetSuffix() }, " "));
-        possibleStreetNames.add(join(new Object[] { firstName(), streetSuffix() }, " "));
-        return possibleStreetNames.get(nextInt(possibleStreetNames.size()));
+        return composite("address.street_name_formats", (String)fetchObject("address.street_name_joiner"));
+    }
+    
+    public String streetAddressNumber() {
+      return fetchString("address.street_address");
     }
 
     public String streetAddress(boolean includeSecondary) {
-        String streetAddress = fetchString("address.street_address") + " " + streetName();
+        String streetAddress = composite("address.street_formats", " ");
         if (includeSecondary) {
             streetAddress = streetAddress + " " + secondaryAddress();
         }

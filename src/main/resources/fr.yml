@@ -9,6 +9,18 @@ fr:
       secondary_address: ['Apt. ###', '# étage']
       postcode: ['#####']
       state: ['Alsace', 'Aquitaine', 'Auvergne', 'Basse-Normandie', 'Bourgogne', 'Bretagne', 'Centre', 'Champagne-Ardenne', 'Corse', 'Franche-Comté', 'Haute-Normandie', 'Île-de-France', 'Languedoc-Roussillon', 'Limousin', 'Lorraine', 'Midi-Pyrénées', 'Nord-Pas-de-Calais', 'Pays de la Loire', 'Picardie', 'Poitou-Charentes', "Provence-Alpes-Côte d'Azur", 'Rhône-Alpes']
+      street_name_formats:
+          -
+            - :first_name
+            - :street_suffix
+          -
+            - :last_name
+            - :street_suffix
+      street_name_joiner: " "
+      street_formats:
+          -
+            - :street_address_number
+            - :street_name
       state_abbr: [AL, AQ, AU, BN, BO, BR, CE, CH]
     company:
       suffix: [SARL, SA, EURL, SAS, SEM, SCOP, GIE, EI]
