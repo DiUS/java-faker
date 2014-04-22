@@ -153,6 +153,14 @@ public class Faker {
         return fetchString("name.suffix");
     }
 
+    public String emailAddress() { return join(new Object[] {
+            firstName().toLowerCase(),
+            ".",
+            lastName().toLowerCase(),
+            "@",
+            fetchString("internet.free_email")
+    }); }
+
     public String phoneNumber() {
         return numerify(fetchString("phone_number.formats"));
     }
