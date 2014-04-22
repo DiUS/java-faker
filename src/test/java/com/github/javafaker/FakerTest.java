@@ -53,6 +53,13 @@ public class FakerTest {
     }
 
     @Test
+    public void testEmailAddress() {
+        String emailAddress = faker.emailAddress();
+        logger.info("Test email address: " + emailAddress);
+        assertNotNull(emailAddress);
+    }
+
+    @Test
     public void testPhoneNumber() {
         String phoneNumber = faker.phoneNumber();
         logger.info("Phone number: " + phoneNumber);
