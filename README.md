@@ -34,3 +34,8 @@ How to build
 ------------
 1. Make sure Apache Maven 3 is installed. ($ mvn --version)
 2. $ mvn package
+
+
+LICENSE
+-------
+Copyright (c) 2011-2014 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations (MIT).
