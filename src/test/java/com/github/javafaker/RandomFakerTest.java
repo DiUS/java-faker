@@ -50,6 +50,16 @@ public class RandomFakerTest {
         assertThat(firstInvocation, is(secondInvocation));
     }
 
+    @Test
+    public void testEmailRandomnessCanBeControlled() {
+        resetRandomSeed();
+        final String firstInvocation = faker.internet().emailAddress();
+
+        resetRandomSeed();
+        final String secondInvocation = faker.internet().emailAddress();
+        assertThat(firstInvocation, is(secondInvocation));
+    }
+
     private void resetRandomSeed() {
         random.setSeed(CONSTANT_SEED_VALUE);
     }
