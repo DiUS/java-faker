@@ -43,10 +43,10 @@ public class RandomFakerTest {
     @Test
     public void testNameRandomnessCanBeControlled() {
         resetRandomSeed();
-        final String firstInvocation = faker.name();
+        final String firstInvocation = faker.name().name();
 
         resetRandomSeed();
-        final String secondInvocation = faker.name();
+        final String secondInvocation = faker.name().name();
         assertThat(firstInvocation, is(secondInvocation));
     }
 

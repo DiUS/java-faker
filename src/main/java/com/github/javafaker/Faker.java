@@ -1,34 +1,23 @@
 package com.github.javafaker;
 
-import static org.apache.commons.lang.StringUtils.capitalize;
-import static org.apache.commons.lang.StringUtils.join;
-
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Random;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
-import org.ho.yaml.Yaml;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Provides utility methods for generating fake strings, such as names, phone
  * numbers, addresses. generate random strings with given patterns
  *
  * @author ren
- *
  */
-@SuppressWarnings({ "unchecked", "rawtypes" })
 public class Faker {
-    private static final Logger logger = LoggerFactory.getLogger(Faker.class);
-    private static final char[] METHOD_NAME_DELIMITERS = { '_' };
     private final RandomService randomService;
-    private Map<String, Object> fakeValuesMap;
+    private final FakeValuesService fakeValuesService;
+    private final Lorem lorem;
+    private final Name name;
+    private final Internet internet;
+    private final PhoneNumber phoneNumber;
+    private final Address address;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -43,231 +32,146 @@ public class Faker {
     }
 
     public Faker(Locale locale, Random random) {
-        logger.info("Using default locale " + locale);
-        String languageCode = locale.getLanguage();
-        Map valuesMap = (Map) Yaml.load(findStream(languageCode + ".yml"));
-        valuesMap = (Map) valuesMap.get(languageCode);
-        fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
         this.randomService = new RandomService(random);
-    }
-
-    private InputStream findStream(String filename) {
-      InputStream streamOnClass = getClass().getResourceAsStream(filename);
-      if (streamOnClass != null) {
-          return streamOnClass;
-      }
-      return getClass().getClassLoader().getResourceAsStream(filename);
+        this.fakeValuesService = new FakeValuesService(locale, randomService);
+        this.lorem = new Lorem(fakeValuesService, randomService);
+        this.name = new Name(fakeValuesService);
+        this.internet = new Internet(name, fakeValuesService);
+        this.phoneNumber = new PhoneNumber(fakeValuesService);
+        this.address = new Address(name, fakeValuesService);
     }
 
     public String numerify(String numberString) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < numberString.length(); i++) {
-            if (numberString.charAt(i) == '#') {
-                sb.append(nextInt(10));
-            } else {
-                sb.append(numberString.charAt(i));
-            }
-        }
-
-        return sb.toString();
+        return fakeValuesService.numerify(numberString);
     }
 
     public String letterify(String letterString) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < letterString.length(); i++) {
-            if (letterString.charAt(i) == '?') {
-                sb.append((char) (97 + nextInt(26))); // a-z
-            } else {
-                sb.append(letterString.charAt(i));
-            }
-        }
-
-        return sb.toString();
+        return fakeValuesService.letterify(letterString);
     }
 
     public String bothify(String string) {
-        return letterify(numerify(string));
+        return fakeValuesService.bothify(string);
     }
 
-    /**
-     * Fetch a random value from an array item specified by the key
-     *
-     * @param key
-     * @return
-     */
-    public Object fetch(String key) {
-        List valuesArray = (List) fetchObject(key);
-        return valuesArray.get(nextInt(valuesArray.size()));
-    }
+    // name
 
-    public String fetchString(String key) {
-        return (String) fetch(key);
-    }
-
-    /**
-     * Return the object selected by the key from yaml file.
-     *
-     * @param key
-     *            key contains path to an object. Path segment is separated by
-     *            dot. E.g. name.first_name
-     * @return
-     */
-    public Object fetchObject(String key) {
-        String[] path = key.split("\\.");
-        Object currentValue = fakeValuesMap;
-        for (String pathSection : path) {
-            currentValue = ((Map<String, Object>) currentValue).get(pathSection);
-        }
-        return currentValue;
-    }
-
-    public String composite(String formatKey, String joiner) {
-        List<String> format = (List<String>) fetch(formatKey);
-
-        String[] parts = new String[format.size()];
-        for (int i = 0; i < parts.length; i++) {
-            // remove leading colon
-            String methodName = format.get(i).substring(1);
-            // convert to camel case
-            methodName = WordUtils.capitalizeFully(methodName, METHOD_NAME_DELIMITERS).replaceAll("_", "");
-            methodName = methodName.substring(0, 1).toLowerCase() + methodName.substring(1);
-
-            try {
-                parts[i] = (String) Faker.class.getDeclaredMethod(methodName, (Class[]) null).invoke(this);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        return StringUtils.join(parts, joiner);
-    }
-    
-    public String name() {
-      return composite("name.formats", " ");
+    public Name name() {
+        return name;
     }
 
     public String firstName() {
-        return fetchString("name.first_name");
+        return name.firstName();
     }
 
     public String lastName() {
-        return fetchString("name.last_name");
+        return name.lastName();
     }
 
     public String prefix() {
-        return fetchString("name.prefix");
+        return name.prefix();
     }
 
     public String suffix() {
-        return fetchString("name.suffix");
+        return name.suffix();
+    }
+
+    // internet
+
+    public Internet internet() {
+        return internet;
     }
 
     public String emailAddress() {
-        return join(new Object[]{
-            firstName().toLowerCase(),
-            ".",
-            lastName().toLowerCase(),
-            "@",
-            fetchString("internet.free_email")
-        });
+        return internet.emailAddress();
     }
 
-    public String phoneNumber() {
-        return numerify(fetchString("phone_number.formats"));
+    // phone number
+
+    public PhoneNumber phoneNumber() {
+        return phoneNumber;
+    }
+
+    // lorem
+
+    public Lorem lorem() {
+        return lorem;
     }
 
     public List<String> words(int num) {
-        List<String> words = (List<String>) fetchObject("lorem.words");
-        List<String> returnList = new ArrayList();
-        for (int i = 0; i < num; i++) {
-            returnList.add(words.get(nextInt(words.size())));
-        }
-        return returnList;
+        return lorem.words(num);
     }
 
     public List<String> words() {
-        return words(3);
+        return lorem.words();
     }
 
     public String sentence(int wordCount) {
-        return capitalize(join(words(wordCount + nextInt(6)), " ") + ".");
+        return lorem.sentence(wordCount);
     }
 
     public String sentence() {
-        return sentence(3);
+        return lorem.sentence();
     }
 
     public List<String> sentences(int sentenceCount) {
-        List<String> sentences = new ArrayList<String>(sentenceCount);
-        for (int i = 0; i < sentenceCount; i++) {
-            sentences.add(sentence());
-        }
-        return sentences;
+        return lorem.sentences(sentenceCount);
     }
 
     public String paragraph(int sentenceCount) {
-        return join(sentences(sentenceCount + nextInt(3)), " ");
+        return lorem.paragraph(sentenceCount);
     }
 
     public String paragraph() {
-        return paragraph(3);
+        return lorem.paragraph();
     }
 
     public List<String> paragraphs(int paragraphCount) {
-        List<String> paragraphs = new ArrayList<String>(paragraphCount);
-        for (int i = 0; i < paragraphCount; i++) {
-            paragraphs.add(paragraph());
-        }
-        return paragraphs;
+        return lorem.paragraphs(paragraphCount);
     }
 
     // address
 
-    public String streetName() {
-        return composite("address.street_name_formats", (String)fetchObject("address.street_name_joiner"));
+    public Address address() {
+        return address;
     }
-    
+
+    public String streetName() {
+        return address.streetName();
+    }
+
     public String streetAddressNumber() {
-      return fetchString("address.street_address");
+        return address.streetAddressNumber();
     }
 
     public String streetAddress(boolean includeSecondary) {
-        String streetAddress = composite("address.street_formats", " ");
-        if (includeSecondary) {
-            streetAddress = streetAddress + " " + secondaryAddress();
-        }
-        return numerify(streetAddress);
+        return address.streetAddress(includeSecondary);
     }
 
     public String secondaryAddress() {
-        return numerify(fetchString("address.secondary_address"));
+        return address.secondaryAddress();
     }
 
     public String zipCode() {
-        return bothify(fetchString("address.postcode"));
+        return address.zipCode();
     }
 
     public String streetSuffix() {
-        return fetchString("address.street_suffix");
+        return address.streetSuffix();
     }
 
     public String citySuffix() {
-        return fetchString("address.city_suffix");
+        return address.citySuffix();
     }
 
     public String cityPrefix() {
-        return fetchString("address.city_prefix");
+        return address.cityPrefix();
     }
 
     public String stateAbbr() {
-        return fetchString("address.state_abbr");
+        return address.stateAbbr();
     }
 
     public String country() {
-        return fetchString("address.country");
-    }
-
-    private int nextInt(int n) {
-        return randomService.nextInt(n);
+        return address.country();
     }
 }
