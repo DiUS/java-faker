@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 import static org.junit.runners.Parameterized.*;
@@ -19,13 +20,27 @@ public class FakerTest {
     private static final Logger logger = LoggerFactory.getLogger(FakerTest.class);
     private Faker faker;
 
-    public FakerTest(Locale locale) {
-        faker = new Faker(locale);
+    public FakerTest(Locale locale, Random random) {
+        if (locale != null && random != null) {
+            faker = new Faker(locale, random);
+        } else if (locale != null) {
+            faker = new Faker(locale);
+        } else if (random != null) {
+            faker = new Faker(random);
+        } else {
+            faker = new Faker();
+        }
     }
 
-    @Parameters(name = "testing locale {0}")
+    @Parameters(name = "testing locale {0} and random {1}")
     public static Collection<Object[]> data() {
-        Object[][] data = new Object[][]{{Locale.ENGLISH}, {Locale.FRENCH}, {new Locale("fi", "FI")}};
+        Object[][] data = new Object[][]{
+                {Locale.ENGLISH, null},
+                {Locale.FRENCH, null},
+                {new Locale("fi", "FI"), null},
+                {Locale.ENGLISH, new Random()},
+                {null, new Random()},
+                {null, null}};
         return Arrays.asList(data);
     }
 

@@ -2,18 +2,16 @@ package com.github.javafaker;
 
 import static org.apache.commons.lang.StringUtils.capitalize;
 import static org.apache.commons.lang.StringUtils.join;
-import static org.apache.commons.lang.math.RandomUtils.nextInt;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
-import org.apache.commons.lang.math.RandomUtils;
 import org.ho.yaml.Yaml;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +27,7 @@ import org.slf4j.LoggerFactory;
 public class Faker {
     private static final Logger logger = LoggerFactory.getLogger(Faker.class);
     private static final char[] METHOD_NAME_DELIMITERS = { '_' };
-
+    private final RandomService randomService;
     private Map<String, Object> fakeValuesMap;
 
     public Faker() {
@@ -37,11 +35,20 @@ public class Faker {
     }
 
     public Faker(Locale locale) {
+        this(locale, null);
+    }
+
+    public Faker(Random random) {
+        this(Locale.ENGLISH, random);
+    }
+
+    public Faker(Locale locale, Random random) {
         logger.info("Using default locale " + locale);
         String languageCode = locale.getLanguage();
         Map valuesMap = (Map) Yaml.load(findStream(languageCode + ".yml"));
         valuesMap = (Map) valuesMap.get(languageCode);
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
+        this.randomService = new RandomService(random);
     }
 
     private InputStream findStream(String filename) {
@@ -56,7 +63,7 @@ public class Faker {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < numberString.length(); i++) {
             if (numberString.charAt(i) == '#') {
-                sb.append(RandomUtils.nextInt(10));
+                sb.append(nextInt(10));
             } else {
                 sb.append(numberString.charAt(i));
             }
@@ -69,7 +76,7 @@ public class Faker {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < letterString.length(); i++) {
             if (letterString.charAt(i) == '?') {
-                sb.append((char) (97 + RandomUtils.nextInt(26))); // a-z
+                sb.append((char) (97 + nextInt(26))); // a-z
             } else {
                 sb.append(letterString.charAt(i));
             }
@@ -90,7 +97,7 @@ public class Faker {
      */
     public Object fetch(String key) {
         List valuesArray = (List) fetchObject(key);
-        return valuesArray.get(RandomUtils.nextInt(valuesArray.size()));
+        return valuesArray.get(nextInt(valuesArray.size()));
     }
 
     public String fetchString(String key) {
@@ -183,7 +190,7 @@ public class Faker {
     }
 
     public String sentence(int wordCount) {
-        return capitalize(join(words(wordCount + RandomUtils.nextInt(6)), " ") + ".");
+        return capitalize(join(words(wordCount + nextInt(6)), " ") + ".");
     }
 
     public String sentence() {
@@ -258,5 +265,9 @@ public class Faker {
 
     public String country() {
         return fetchString("address.country");
+    }
+
+    private int nextInt(int n) {
+        return randomService.nextInt(n);
     }
 }
