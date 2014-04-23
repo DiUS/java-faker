@@ -128,13 +128,11 @@ public class Faker {
             try {
                 parts[i] = (String) Faker.class.getDeclaredMethod(methodName, (Class[]) null).invoke(this);
             } catch (Exception e) {
-                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
 
-        String result = StringUtils.join(parts, joiner);
-        return result;
+        return StringUtils.join(parts, joiner);
     }
     
     public String name() {
@@ -157,19 +155,20 @@ public class Faker {
         return fetchString("name.suffix");
     }
 
-    public String emailAddress() { return join(new Object[] {
+    public String emailAddress() {
+        return join(new Object[]{
             firstName().toLowerCase(),
             ".",
             lastName().toLowerCase(),
             "@",
             fetchString("internet.free_email")
-    }); }
+        });
+    }
 
     public String phoneNumber() {
         return numerify(fetchString("phone_number.formats"));
     }
 
-    // lorem
     public List<String> words(int num) {
         List<String> words = (List<String>) fetchObject("lorem.words");
         List<String> returnList = new ArrayList();
