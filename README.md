@@ -3,6 +3,8 @@ Java Faker
 
 [![Build Status](https://travis-ci.org/DiUS/java-faker.png?branch=master)](https://travis-ci.org/DiUS/java-faker)
 
+[![Coverage Status](https://coveralls.io/repos/DiUS/java-faker/badge.png)](https://coveralls.io/r/DiUS/java-faker)
+
 This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
 It's useful when you're developing a new project and need some pretty data for showcase.
 
