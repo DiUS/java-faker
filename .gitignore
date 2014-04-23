@@ -4,3 +4,4 @@ target
 .settings
 .idea/
 *.iml
+.java-version
