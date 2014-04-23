@@ -38,4 +38,4 @@ How to build
 
 LICENSE
 -------
-Copyright (c) 2011-2014 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations (MIT).
+Copyright (c) 2014 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.
