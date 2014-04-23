@@ -14,6 +14,10 @@ public class NameTest extends AbstractFakerTest {
 
     @Test
     public void testNames() {
+        String fullName = faker.name().fullName();
+        logger.info("Test full name: " + fullName);
+        assertNotNull(fullName);
+
         String firstName = faker.firstName();
         logger.info("Test first name: " + firstName);
         assertNotNull(firstName);

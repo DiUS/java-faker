@@ -11,6 +11,10 @@ public class Name {
         return fakeValuesService.composite("name.formats", " ", this);
     }
 
+    public String fullName() {
+        return name();
+    }
+
     public String firstName() {
         return fakeValuesService.fetchString("name.first_name");
     }
