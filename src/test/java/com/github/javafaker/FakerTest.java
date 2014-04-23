@@ -172,4 +172,11 @@ public class FakerTest {
         logger.info("Paragraphs: " + paragraphs);
         assertEquals(paragraphCount, paragraphs.size());
     }
+
+    @Test
+    public void testStreetAddressNumber() {
+        final String streetAddressNumber = faker.streetAddressNumber();
+        logger.info("Street Address Number: " + streetAddressNumber);
+        assertNotNull(streetAddressNumber);
+    }
 }
