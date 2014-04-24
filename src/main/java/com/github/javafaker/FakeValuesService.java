@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class FakeValuesService {
     private static final char[] METHOD_NAME_DELIMITERS = {'_'};
     private static final Logger logger = LoggerFactory.getLogger(FakeValuesService.class);
     private final Map<String, Object> fakeValuesMap;
     private final RandomService randomService;
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public FakeValuesService(Locale locale, RandomService randomService) {
         logger.info("Using locale " + locale);
 
@@ -60,6 +60,7 @@ public class FakeValuesService {
      *            dot. E.g. name.first_name
      * @return
      */
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Object fetchObject(String key) {
         String[] path = key.split("\\.");
         Object currentValue = fakeValuesMap;
@@ -69,6 +70,7 @@ public class FakeValuesService {
         return currentValue;
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public String composite(String formatKey, String joiner, Object objectToInvokeMethodOn) {
         List<String> format = (List<String>) fetch(formatKey);
 

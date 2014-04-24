@@ -6,7 +6,6 @@ import java.util.List;
 import static org.apache.commons.lang.StringUtils.capitalize;
 import static org.apache.commons.lang.StringUtils.join;
 
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class Lorem {
 
     private final FakeValuesService fakeValuesService;
@@ -17,6 +16,7 @@ public class Lorem {
         this.randomService = randomService;
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public List<String> words(int num) {
         List<String> words = (List<String>) fakeValuesService.fetchObject("lorem.words");
         List<String> returnList = new ArrayList();
