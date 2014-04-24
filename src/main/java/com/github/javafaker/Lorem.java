@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,5 +62,20 @@ public class Lorem {
             paragraphs.add(paragraph());
         }
         return paragraphs;
+    }
+
+    /**
+     * Create a string with a fixed size. Can be useful for testing
+     * validator based on length string for example
+     *
+     * @param numberOfLetters size of the expected String
+     * @return a string with a fixed size
+     */
+    public String fixedString(int numberOfLetters) {
+        StringBuilder builder = new StringBuilder();
+        while (builder.length() < numberOfLetters) {
+            builder.append(sentence());
+        }
+        return StringUtils.substring(builder.toString(), 0, numberOfLetters);
     }
 }

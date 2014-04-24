@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
@@ -81,4 +82,13 @@ public class LoremTest extends AbstractFakerTest {
         logger.info("Paragraphs: " + paragraphs);
         assertEquals(paragraphCount, paragraphs.size());
     }
+
+    @Test
+    public void shouldCreateFixedLengthString() {
+        assertEquals(10, faker.lorem().fixedString(10).length());
+        assertEquals(50, faker.lorem().fixedString(50).length());
+        assertEquals(0, faker.lorem().fixedString(0).length());
+        assertEquals(0, faker.lorem().fixedString(-1).length());
+    }
+
 }
