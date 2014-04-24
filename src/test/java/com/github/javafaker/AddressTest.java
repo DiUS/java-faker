@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.Random;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(value = Parameterized.class)
 public class AddressTest extends AbstractFakerTest {
@@ -121,9 +122,12 @@ public class AddressTest extends AbstractFakerTest {
         String streetAddressNumber = faker.streetAddressNumber();
         logger.info("Street Address Number: " + streetAddressNumber);
         assertNotNull(streetAddressNumber);
+        assertTrue("street address is not a number " + streetAddressNumber, streetAddressNumber.matches("\\d+"));
 
-        streetAddressNumber = faker.streetAddressNumber();
+
+        streetAddressNumber = faker.address().streetAddressNumber();
         logger.info("Street Address Number: " + streetAddressNumber);
         assertNotNull(streetAddressNumber);
+        assertTrue("street address is not a number " + streetAddressNumber, streetAddressNumber.matches("\\d+"));
     }
 }

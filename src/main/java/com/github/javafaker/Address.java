@@ -17,7 +17,7 @@ public class Address {
     }
 
     public String streetAddressNumber() {
-        return fakeValuesService.fetchString("address.street_address");
+        return fakeValuesService.numerify(fakeValuesService.fetchString("address.street_address"));
     }
 
     public String streetAddress(boolean includeSecondary) {
