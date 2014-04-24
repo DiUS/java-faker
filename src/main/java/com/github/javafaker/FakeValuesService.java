@@ -2,9 +2,9 @@ package com.github.javafaker;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
-import org.ho.yaml.Yaml;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.util.List;
@@ -22,7 +22,7 @@ public class FakeValuesService {
         logger.info("Using locale " + locale);
 
         String languageCode = locale.getLanguage();
-        Map valuesMap = (Map) Yaml.load(findStream(languageCode + ".yml"));
+        Map valuesMap = (Map) new Yaml().load(findStream(languageCode + ".yml"));
         valuesMap = (Map) valuesMap.get(languageCode);
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
         this.randomService = randomService;
