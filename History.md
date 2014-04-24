@@ -43,3 +43,12 @@ of the methods on the helper classes.
 ```
 new Faker(random);
 ```
+
+* Credit card faker data added
+
+```
+new Faker().business().creditCardNumber();
+```
+
+* Migrated over to using SnakeYAML instead of JYaml as the latter is no longer being maintained
+* Bit of an internal refactor
