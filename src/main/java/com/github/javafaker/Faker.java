@@ -18,6 +18,7 @@ public class Faker {
     private final Internet internet;
     private final PhoneNumber phoneNumber;
     private final Address address;
+    private final Business business;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -39,6 +40,7 @@ public class Faker {
         this.internet = new Internet(name, fakeValuesService);
         this.phoneNumber = new PhoneNumber(fakeValuesService);
         this.address = new Address(name, fakeValuesService);
+        this.business = new Business(fakeValuesService);
     }
 
     public String numerify(String numberString) {
@@ -173,5 +175,9 @@ public class Faker {
 
     public String country() {
         return address.country();
+    }
+
+    public Business business() {
+        return business;
     }
 }
