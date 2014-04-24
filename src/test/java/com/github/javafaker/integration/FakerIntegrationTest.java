@@ -107,6 +107,9 @@ public class FakerIntegrationTest {
         assertThat(faker.streetAddress(true), is(notNullValue()));
         assertThat(faker.address().streetAddress(true), is(notNullValue()));
 
+        assertThat(faker.words(), is(notNullValue()));
+        assertThat(faker.lorem().words(), is(notNullValue()));
+
         assertThat(faker.words(1), is(notNullValue()));
         assertThat(faker.lorem().words(1), is(notNullValue()));
     }
