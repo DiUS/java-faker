@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.Random;
 
@@ -17,15 +19,38 @@ public class AddressTest extends AbstractFakerTest {
         super(locale, random);
     }
 
-    @Test
-    public void testStreetName() {
-        String streetName = faker.streetName();
-        logger.info("Street name: " + streetName);
-        assertNotNull(streetName);
 
-        streetName = faker.address().streetName();
-        logger.info("Street name: " + streetName);
-        assertNotNull(streetName);
+    private static final String[] METHODS = new String[]{"streetName",
+            "secondaryAddress",
+            "zipCode",
+            "streetSuffix",
+            "citySuffix",
+            "cityPrefix",
+            "stateAbbr",
+            "zipCode",
+            "country",
+            "streetAddressNumber"};
+
+    @Test
+    public void testDataReturnedIsNotNull() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        for (String methodName : METHODS) {
+            final Method method = faker.getClass().getMethod(methodName);
+            Object value = method.invoke(faker);
+
+            logger.info(String.format("%s invoked returns %s", methodName, value));
+            assertNotNull(String.format("faker.%s returned null", methodName), value);
+        }
+    }
+
+    @Test
+    public void testDataFromAddressIsNotNull() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        for (String methodName : METHODS) {
+            final Method method = faker.address().getClass().getMethod(methodName);
+            Object value = method.invoke(faker.address());
+
+            logger.info(String.format("%s invoked returns %s", methodName, value));
+            assertNotNull(String.format("faker.address().%s returned null", methodName), value);
+        }
     }
 
     @Test
@@ -39,95 +64,16 @@ public class AddressTest extends AbstractFakerTest {
         assertNotNull(streetAddress);
     }
 
-    @Test
-    public void testSecondaryAddress() {
-        String secondaryAddress = faker.secondaryAddress();
-        logger.info("Secondary address: " + secondaryAddress);
-        assertNotNull(secondaryAddress);
-
-        secondaryAddress = faker.address().secondaryAddress();
-        logger.info("Secondary address: " + secondaryAddress);
-        assertNotNull(secondaryAddress);
-    }
-
-    @Test
-    public void testZipCode() {
-        String zip = faker.zipCode();
-        logger.info("Address zip code: " + zip);
-        assertNotNull(zip);
-
-        zip = faker.address().zipCode();
-        logger.info("Address zip code: " + zip);
-        assertNotNull(zip);
-    }
-
-    @Test
-    public void testStreetSuffix() {
-        String streetSuffix = faker.streetSuffix();
-        logger.info("Street suffix: " + streetSuffix);
-        assertNotNull(streetSuffix);
-
-        streetSuffix = faker.address().streetSuffix();
-        logger.info("Street suffix: " + streetSuffix);
-        assertNotNull(streetSuffix);
-    }
-
-    @Test
-    public void testCitySuffix() {
-        String citySuffix = faker.citySuffix();
-        logger.info("City suffix: " + citySuffix);
-        assertNotNull(citySuffix);
-
-        citySuffix = faker.address().citySuffix();
-        logger.info("City suffix: " + citySuffix);
-        assertNotNull(citySuffix);
-    }
-
-    @Test
-    public void testCityPrefix() {
-        String cityPrefix = faker.cityPrefix();
-        logger.info("City prefix: " + cityPrefix);
-        assertNotNull(cityPrefix);
-
-        cityPrefix = faker.address().cityPrefix();
-        logger.info("City prefix: " + cityPrefix);
-        assertNotNull(cityPrefix);
-    }
-
-    @Test
-    public void testStateAbbr() {
-        String stateAbbr = faker.stateAbbr();
-        logger.info("State abbr: " + stateAbbr);
-        assertNotNull(stateAbbr);
-
-        stateAbbr = faker.address().stateAbbr();
-        logger.info("State abbr: " + stateAbbr);
-        assertNotNull(stateAbbr);
-    }
-
-    @Test
-    public void testCountry() {
-        String country = faker.country();
-        logger.info("Country: " + country);
-        assertNotNull(country);
-
-        country = faker.address().country();
-        logger.info("Country: " + country);
-        assertNotNull(country);
-    }
-
 
     @Test
     public void testStreetAddressNumber() {
         String streetAddressNumber = faker.streetAddressNumber();
         logger.info("Street Address Number: " + streetAddressNumber);
-        assertNotNull(streetAddressNumber);
         assertTrue("street address is not a number " + streetAddressNumber, streetAddressNumber.matches("\\d+"));
 
 
         streetAddressNumber = faker.address().streetAddressNumber();
         logger.info("Street Address Number: " + streetAddressNumber);
-        assertNotNull(streetAddressNumber);
         assertTrue("street address is not a number " + streetAddressNumber, streetAddressNumber.matches("\\d+"));
     }
 }
