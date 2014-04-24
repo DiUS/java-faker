@@ -13,7 +13,7 @@ import java.util.Random;
 @RunWith(value = Parameterized.class)
 public abstract class AbstractFakerTest {
 
-    private static final Locale FINISH_LOCALE = new Locale("fi", "FI");
+    private static final Locale FINNISH_LOCALE = new Locale("fi", "FI");
     protected static final Logger logger = LoggerFactory.getLogger(AbstractFakerTest.class);
     protected Faker faker;
 
@@ -34,7 +34,7 @@ public abstract class AbstractFakerTest {
         Object[][] data = new Object[][]{
                 {Locale.ENGLISH, null},
                 {Locale.FRENCH, null},
-                {FINISH_LOCALE, null},
+                {FINNISH_LOCALE, null},
                 {Locale.ENGLISH, new Random()},
                 {null, new Random()},
                 {null, null}};
