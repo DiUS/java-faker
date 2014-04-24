@@ -9,6 +9,8 @@ import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.Random;
 
+import static com.github.javafaker.matchers.IsANumber.isANumber;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -69,11 +71,10 @@ public class AddressTest extends AbstractFakerTest {
     public void testStreetAddressNumber() {
         String streetAddressNumber = faker.streetAddressNumber();
         logger.info("Street Address Number: " + streetAddressNumber);
-        assertTrue("street address is not a number " + streetAddressNumber, streetAddressNumber.matches("\\d+"));
-
+        assertThat(streetAddressNumber, isANumber());
 
         streetAddressNumber = faker.address().streetAddressNumber();
         logger.info("Street Address Number: " + streetAddressNumber);
-        assertTrue("street address is not a number " + streetAddressNumber, streetAddressNumber.matches("\\d+"));
+        assertThat(streetAddressNumber, isANumber());
     }
 }
