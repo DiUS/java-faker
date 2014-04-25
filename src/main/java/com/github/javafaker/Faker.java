@@ -46,14 +46,38 @@ public class Faker {
         this.business = new Business(fakeValuesService);
     }
 
+    /**
+     * Returns a string with the '#' characters in the parameter replaced with random digits between 0-9 inclusive.
+     *
+     * For example, the string "ABC##EFG" could be replaced with a string like "ABC99EFG".
+     *
+     * @param numberString
+     * @return
+     */
     public String numerify(String numberString) {
         return fakeValuesService.numerify(numberString);
     }
 
+    /**
+     * Returns a string with the '?' characters in the parameter replaced with random alphabetic
+     * characters.
+     *
+     * For example, the string "12??34" could be replaced with a string like "12AB34".
+     *
+     * @param letterString
+     * @return
+     */
     public String letterify(String letterString) {
         return fakeValuesService.letterify(letterString);
     }
 
+    /**
+     * Applies both a {@link #numerify(String)} and a {@link #letterify(String)}
+     * over the incoming string.
+     *
+     * @param string
+     * @return
+     */
     public String bothify(String string) {
         return fakeValuesService.bothify(string);
     }

@@ -1,7 +1,10 @@
 package com.github.javafaker.service;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
+import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -16,16 +19,14 @@ public class FakeValuesServiceTest {
 
     @Mock
     private RandomService randomService;
+    private FakeValuesService fakeValuesService;
 
     @Before
     public void before() {
         MockitoAnnotations.initMocks(this);
+        // always return the first element
         when(randomService.nextInt(anyInt())).thenReturn(0);
-    }
-
-    @Test
-    public void localeShouldLoadWhenItExists() {
-        new FakeValuesService(new Locale("test"), randomService);
+        fakeValuesService = new FakeValuesService(new Locale("test"), randomService);
     }
 
     @Test(expected = LocaleDoesNotExistException.class)
@@ -35,7 +36,16 @@ public class FakeValuesServiceTest {
 
     @Test
     public void fetchStringShouldReturnValue() {
-        final FakeValuesService fakeValueService = new FakeValuesService(new Locale("test"), randomService);
-        assertThat(fakeValueService.fetchString("property.dummy"), is("x"));
+        assertThat(fakeValuesService.fetchString("property.dummy"), is("x"));
+    }
+
+    @Test
+    public void fetchShouldReturnValue() {
+        assertThat(fakeValuesService.fetch("property.dummy"), Is.<Object>is("x"));
+    }
+
+    @Test
+    public void fetchObjectShouldReturnValue() {
+        assertThat(fakeValuesService.fetchObject("property.dummy"), Is.<Object>is(Arrays.asList("x", "y", "z")));
     }
 }
