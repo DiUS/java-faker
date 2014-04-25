@@ -1,4 +1,4 @@
-package com.github.javafaker;
+package com.github.javafaker.service;
 
 import org.apache.commons.lang.math.RandomUtils;
 

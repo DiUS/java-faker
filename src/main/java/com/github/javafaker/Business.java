@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import com.github.javafaker.service.FakeValuesService;
+
 public class Business {
     private final FakeValuesService fakeValuesService;
 

@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
+
 /**
  * Provides utility methods for generating fake strings, such as names, phone
  * numbers, addresses. generate random strings with given patterns

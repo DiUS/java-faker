@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import com.github.javafaker.service.FakeValuesService;
+
 public class Address {
 
     private final Name name;

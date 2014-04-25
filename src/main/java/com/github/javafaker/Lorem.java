@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;

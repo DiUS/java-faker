@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import com.github.javafaker.service.FakeValuesService;
+
 import static org.apache.commons.lang.StringUtils.join;
 
 public class Internet {
