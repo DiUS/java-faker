@@ -1,4 +1,4 @@
-en:
+test:
   faker:
-    abc:
-	  def: [x, y, z]
+    property:
+       dummy: [x, y, z]

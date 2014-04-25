@@ -22,7 +22,11 @@ public class FakeValuesService {
         logger.info("Using locale " + locale);
 
         String languageCode = locale.getLanguage();
-        Map valuesMap = (Map) new Yaml().load(findStream(languageCode + ".yml"));
+        final InputStream stream = findStream(languageCode + ".yml");
+        if (stream == null) {
+            throw new LocaleDoesNotExistException(String.format("%s could not be found, does not have a corresponding yaml file", locale));
+        }
+        Map valuesMap = (Map) new Yaml().load(stream);
         valuesMap = (Map) valuesMap.get(languageCode);
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
         this.randomService = randomService;
@@ -35,7 +39,6 @@ public class FakeValuesService {
         }
         return getClass().getClassLoader().getResourceAsStream(filename);
     }
-
 
     /**
      * Fetch a random value from an array item specified by the key
