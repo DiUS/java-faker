@@ -1,7 +1,6 @@
 package com.github.javafaker.service;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 
 import org.hamcrest.core.Is;
@@ -47,5 +46,32 @@ public class FakeValuesServiceTest {
     @Test
     public void fetchObjectShouldReturnValue() {
         assertThat(fakeValuesService.fetchObject("property.dummy"), Is.<Object>is(Arrays.asList("x", "y", "z")));
+    }
+
+    @Test
+    public void compositeShouldComposeMultipleProperties() {
+        final String composedProperty = fakeValuesService.composite("property.composite", " ", new DummyService());
+        assertThat(composedProperty, is("John Smith"));
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void compositeShouldThrowExceptionWhenMethodsDoNotExist() {
+        fakeValuesService.composite("property.composite", " ", new AnotherDummyService());
+    }
+
+    private static class DummyService {
+        public String firstName() {
+            return "John";
+        }
+
+        public String lastName() {
+            return "Smith";
+        }
+    }
+
+    private static class AnotherDummyService {
+        public String firstName() {
+            return "John";
+        }
     }
 }

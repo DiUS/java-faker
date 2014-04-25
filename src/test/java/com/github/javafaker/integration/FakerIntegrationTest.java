@@ -81,7 +81,7 @@ public class FakerIntegrationTest {
         for (Method method : methodsThatReturnStrings) {
             final Object returnValue = method.invoke(object);
 
-            logger.info(String.format("Invoked %s.%s and got this value back %s", object.getClass().getSimpleName(), method.getName(), returnValue));
+            logger.info(String.format("Invoked %s.%s = %s", object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
             assertThat(returnValue, is(notNullValue()));
         }
     }

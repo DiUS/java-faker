@@ -79,6 +79,21 @@ public class FakeValuesService {
         return currentValue;
     }
 
+    /**
+     * A property that is composed of other properties.
+     *
+     * It firstly fetches the formatKey using {@link #fetch(String)}. It will
+     * proceed to convert the returned properties from the {@link #fetch(String)}
+     * method to a methodName and invoke this method against the object passed in.
+     * Finally, concatenation occurs with the return values of the methods
+     * using the joiner parameter as a separator.
+     *
+     *
+     * @param formatKey
+     * @param joiner
+     * @param objectToInvokeMethodOn
+     * @return
+     */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public String composite(String formatKey, String joiner, Object objectToInvokeMethodOn) {
         List<String> format = (List<String>) fetch(formatKey);
