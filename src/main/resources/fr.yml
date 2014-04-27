@@ -1,0 +1,64 @@
+fr:
+  faker:
+    address:
+      city_prefix: [Île, Provence, Midi, Ville, Lac, Chemin]
+      city_suffix: [du Sud, du Nord, de France, de la Loire, de Calais, Alpes, d’Azur, de l'Est, de l'Ouest]
+      country: [Afrique du Sud, Albanie, Australie, Belgique, Croatie, États-Unis, France, Gambon, Irlande, Mexique, Norvège, Nouvelle-Zélande]
+      street_address: ['#####', '####', '###']
+      street_suffix: ["de l'Abbaye", "Adolphe Mille", "d'Alésia", "d'Argenteuil", "d'Assas", "du Bac", "de Paris", "La Boétie", "Bonaparte", "de la Bûcherie", "de Caumartin", "Charlemagne", "du Chat-qui-Pêche", "de la Chaussée-d'Antin", "du Dahomey", "Dauphine", "Delesseux", "du Faubourg Saint-Honoré", "du Faubourg-Saint-Denis", "de la Ferronnerie", "des Francs-Bourgeois", "des Grands Augustins", "de la Harpe", "du Havre", "de la Huchette", "Joubert", "Laffitte", "Lepic", "des Lombards", "Marcadet", "Molière", "Monsieur-le-Prince", "de Montmorency", "Montorgueil", "Mouffetard", "de Nesle", "Oberkampf", "de l'Odéon", "d'Orsel", "de la Paix", "des Panoramas", "Pastourelle", "Pierre Charron", "de la Pompe", "de Presbourg", "de Provence", "de Richelieu", "de Rivoli", "des Rosiers", "Royale", "d'Abbeville", "Saint-Honoré", "Saint-Bernard", "Saint-Denis", "Saint-Dominique", "Saint-Jacques", "Saint-Séverin", "des Saussaies", "de Seine", "de Solférino", "Du Sommerard", "de Tilsitt", "Vaneau", "de Vaugirard", "de la Victoire", "Zadkine"]
+      secondary_address: ['Apt. ###', '# étage']
+      postcode: ['#####']
+      state: ['Alsace', 'Aquitaine', 'Auvergne', 'Basse-Normandie', 'Bourgogne', 'Bretagne', 'Centre', 'Champagne-Ardenne', 'Corse', 'Franche-Comté', 'Haute-Normandie', 'Île-de-France', 'Languedoc-Roussillon', 'Limousin', 'Lorraine', 'Midi-Pyrénées', 'Nord-Pas-de-Calais', 'Pays de la Loire', 'Picardie', 'Poitou-Charentes', "Provence-Alpes-Côte d'Azur", 'Rhône-Alpes']
+      street_name_formats:
+          -
+            - :first_name
+            - :street_suffix
+          -
+            - :last_name
+            - :street_suffix
+      street_name_joiner: " "
+      street_formats:
+          -
+            - :street_address_number
+            - :street_name
+      state_abbr: [AL, AQ, AU, BN, BO, BR, CE, CH]
+    company:
+      suffix: [SARL, SA, EURL, SAS, SEM, SCOP, GIE, EI]
+    internet:
+      free_email: [gmail.com, yahoo.fr, hotmail.fr]
+      domain_suffix: [com, fr, eu, info, name, net, org]
+    lorem:
+      words: [alias, consequatur, aut, perferendis, sit, voluptatem, accusantium, doloremque, aperiam, eaque, ipsa, quae, ab, illo, inventore, veritatis, et, quasi, architecto, beatae, vitae, dicta, sunt, explicabo, aspernatur, aut, odit, aut, fugit, sed, quia, consequuntur, magni, dolores, eos, qui, ratione, voluptatem, sequi, nesciunt, neque, dolorem, ipsum, quia, dolor, sit, amet, consectetur, adipisci, velit, sed, quia, non, numquam, eius, modi, tempora, incidunt, ut, labore, et, dolore, magnam, aliquam, quaerat, voluptatem, ut, enim, ad, minima, veniam, quis, nostrum, exercitationem, ullam, corporis, nemo, enim, ipsam, voluptatem, quia, voluptas, sit, suscipit, laboriosam, nisi, ut, aliquid, ex, ea, commodi, consequatur, quis, autem, vel, eum, iure, reprehenderit, qui, in, ea, voluptate, velit, esse, quam, nihil, molestiae, et, iusto, odio, dignissimos, ducimus, qui, blanditiis, praesentium, laudantium, totam, rem, voluptatum, deleniti, atque, corrupti, quos, dolores, et, quas, molestias, excepturi, sint, occaecati, cupiditate, non, provident, sed, ut, perspiciatis, unde, omnis, iste, natus, error, similique, sunt, in, culpa, qui, officia, deserunt, mollitia, animi, id, est, laborum, et, dolorum, fuga, et, harum, quidem, rerum, facilis, est, et, expedita, distinctio, nam, libero, tempore, cum, soluta, nobis, est, eligendi, optio, cumque, nihil, impedit, quo, porro, quisquam, est, qui, minus, id, quod, maxime, placeat, facere, possimus, omnis, voluptas, assumenda, est, omnis, dolor, repellendus, temporibus, autem, quibusdam, et, aut, consequatur, vel, illum, qui, dolorem, eum, fugiat, quo, voluptas, nulla, pariatur, at, vero, eos, et, accusamus, officiis, debitis, aut, rerum, necessitatibus, saepe, eveniet, ut, et, voluptates, repudiandae, sint, et, molestiae, non, recusandae, itaque, earum, rerum, hic, tenetur, a, sapiente, delectus, ut, aut, reiciendis, voluptatibus, maiores, doloribus, asperiores, repellat]
+    name:
+      first_name: [Enzo, Lucas, Mathis, Nathan, Thomas, Hugo, Théo, Tom, Louis, Raphaël, Clément, Léo, Mathéo, Maxime, Alexandre, Antoine, Yanis, Paul, Baptiste, Alexis, Gabriel, Arthur, Jules, Ethan, Noah, Quentin, Axel, Evan, Mattéo, Romain, Valentin, Maxence, Noa, Adam, Nicolas, Julien, Mael, Pierre, Rayan, Victor, Mohamed, Adrien, Kylian, Sacha, Benjamin, Léa, Clara, Manon, Chloé, Camille, Ines, Sarah, Jade, Lola, Anaïs, Lucie, Océane, Lilou, Marie, Eva, Romane, Lisa, Zoe, Julie, Mathilde, Louise, Juliette, Clémence, Célia, Laura, Lena, Maëlys, Charlotte, Ambre, Maeva, Pauline, Lina, Jeanne, Lou, Noémie, Justine, Louna, Elisa, Alice, Emilie, Carla, Maëlle, Alicia, Mélissa]
+      last_name: [Martin, Bernard, Dubois, Thomas, Robert, Richard, Petit, Durand, Leroy, Moreau, Simon, Laurent, Lefebvre, Michel, Garcia, David, Bertrand, Roux, Vincent, Fournier, Morel, Girard, Andre, Lefevre, Mercier, Dupont, Lambert, Bonnet, Francois, Martinez, Legrand, Garnier, Faure, Rousseau, Blanc, Guerin, Muller, Henry, Roussel, Nicolas, Perrin, Morin, Mathieu, Clement, Gauthier, Dumont, Lopez, Fontaine, Chevalier, Robin, Masson, Sanchez, Gerard, Nguyen, Boyer, Denis, Lemaire, Duval, Joly, Gautier, Roger, Roche, Roy, Noel, Meyer, Lucas, Meunier, Jean, Perez, Marchand, Dufour, Blanchard, Marie, Barbier, Brun, Dumas, Brunet, Schmitt, Leroux, Colin, Fernandez, Pierre, Renard, Arnaud, Rolland, Caron, Aubert, Giraud, Leclerc, Vidal, Bourgeois, Renaud, Lemoine, Picard, Gaillard, Philippe, Leclercq, Lacroix, Fabre, Dupuis, Olivier, Rodriguez, Da silva, Hubert, Louis, Charles, Guillot, Riviere, Le gall, Guillaume, Adam, Rey, Moulin, Gonzalez, Berger, Lecomte, Menard, Fleury, Deschamps, Carpentier, Julien, Benoit, Paris, Maillard, Marchal, Aubry, Vasseur, Le roux, Renault, Jacquet, Collet, Prevost, Poirier, Charpentier, Royer, Huet, Baron, Dupuy, Pons, Paul, Laine, Carre, Breton, Remy, Schneider, Perrot, Guyot, Barre, Marty, Cousin]
+      prefix: [M, Mme, Mlle, Dr, Prof]
+      suffix: [Jr., Sr., I, II, III, IV, V, MD, DDS, PhD, DVM]
+      formats:
+        -
+          - :prefix
+          - :first_name
+          - :last_name
+        -
+          - :first_name
+          - :last_name
+          - :suffix
+        -
+          - :first_name
+          - :last_name
+        -
+          - :first_name
+          - :last_name
+        -
+          - :first_name
+          - :last_name
+        -
+          - :first_name
+          - :last_name
+
+    phone_number:
+      formats: ['01########', '02########', '03########', '04########', '05########', '06########', '07########', '+33 1########', '+33 2########', '+33 3########', '+33 4########', '+33 5########', '+33 6########', '+33 7########']
+    business:
+          credit_card_numbers: ['1234-2121-1221-1211', '1212-1221-1121-1234', '1211-1221-1234-2201', '1228-1221-1221-1431']
+          credit_card_expiry_dates: ['2011-10-12', '2012-11-12', '2015-11-11', '2013-9-12']
+          credit_card_types: ['visa', 'mastercard', 'americanexpress', 'discover']

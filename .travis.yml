@@ -1,0 +1,16 @@
+language: java
+jdk:
+- oraclejdk7
+- oraclejdk8
+- openjdk7
+- openjdk6
+branches:
+  except:
+    - travis
+notifications:
+  email: false
+after_success:
+- mvn clean cobertura:cobertura coveralls:cobertura
+env:
+  global:
+    secure: BN4ubmSkpNY/nzaZO3zGiVK+9xhX/O5pWqFk7llUGaAmDw1dNiTrVWMdzaGxmAJa+v1US5vdwLx8ZQMlO6crp3T1VGOwEM2J5vFDPtyMsKM1hC6yKYnJhlfskNznJBhWJZKaLd6FgbxaW08C0BedocD9uVnsPKHiOHn2FXUm8Hs=
