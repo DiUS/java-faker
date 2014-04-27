@@ -20,11 +20,7 @@ public class AddressTest {
 
     @Test
     public void testStreetAddressIsANumber() {
-        String streetAddressNumber = faker.streetAddressNumber();
-        logger.info("Street Address Number: " + streetAddressNumber);
-        assertThat(streetAddressNumber, isANumber());
-
-        streetAddressNumber = faker.address().streetAddressNumber();
+        final String streetAddressNumber = faker.address().streetAddressNumber();
         logger.info("Street Address Number: " + streetAddressNumber);
         assertThat(streetAddressNumber, isANumber());
     }

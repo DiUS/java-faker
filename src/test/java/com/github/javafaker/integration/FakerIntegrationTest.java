@@ -92,26 +92,15 @@ public class FakerIntegrationTest {
         assertThat(faker.letterify("????"), is(notNullValue()));
         assertThat(faker.numerify("####"), is(notNullValue()));
 
-        assertThat(faker.paragraph(1), is(notNullValue()));
         assertThat(faker.lorem().paragraph(1), is(notNullValue()));
-
-        assertThat(faker.paragraphs(1), is(notNullValue()));
         assertThat(faker.lorem().paragraphs(1), is(notNullValue()));
 
-        assertThat(faker.sentence(1), is(notNullValue()));
         assertThat(faker.lorem().sentence(1), is(notNullValue()));
-
-        assertThat(faker.sentences(1), is(notNullValue()));
         assertThat(faker.lorem().sentences(1), is(notNullValue()));
 
-        assertThat(faker.streetAddress(true), is(notNullValue()));
         assertThat(faker.address().streetAddress(true), is(notNullValue()));
 
-        assertThat(faker.words(), is(notNullValue()));
         assertThat(faker.lorem().words(), is(notNullValue()));
-
-        assertThat(faker.words(1), is(notNullValue()));
         assertThat(faker.lorem().words(1), is(notNullValue()));
     }
-
 }
