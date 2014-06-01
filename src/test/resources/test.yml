@@ -1,4 +1,11 @@
-en:
+test:
   faker:
-    abc:
-	  def: [x, y, z]
+    property:
+       dummy: [x, y, z]
+       composite:
+        -
+         - :first_name
+         - :last_name
+        -
+         - :last_name
+         - :first_name
