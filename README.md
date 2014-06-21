@@ -45,7 +45,7 @@ Copyright (c) 2014 DiUS Computing Pty Ltd. See the LICENSE file for license righ
 
 
 
-Additional Functionality in this fork
+Additional functionality in this fork
 -------------------------------------------
 1. Latitude and Longitude
 2. ISBN-10 and ISBN-13 Codes
