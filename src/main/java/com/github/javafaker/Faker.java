@@ -44,7 +44,7 @@ public class Faker {
         this.phoneNumber = new PhoneNumber(fakeValuesService);
         this.address = new Address(name, fakeValuesService);
         this.business = new Business(fakeValuesService);
-        this.code = new Code();
+        this.code = new Code(randomService);
     }
 
     /**
