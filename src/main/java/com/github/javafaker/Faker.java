@@ -43,7 +43,7 @@ public class Faker {
         this.name = new Name(fakeValuesService);
         this.internet = new Internet(name, fakeValuesService);
         this.phoneNumber = new PhoneNumber(fakeValuesService);
-        this.address = new Address(name, fakeValuesService);
+        this.address = new Address(name, fakeValuesService, randomService);
         this.business = new Business(fakeValuesService);
         this.options = new Options(randomService);
         this.code = new Code(randomService);

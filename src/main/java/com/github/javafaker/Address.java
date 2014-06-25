@@ -1,15 +1,18 @@
 package com.github.javafaker;
 
 import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
 
 public class Address {
 
     private final Name name;
     private final FakeValuesService fakeValuesService;
+    private final RandomService randomService;
 
-    public Address(Name name, FakeValuesService fakeValuesService) {
+    public Address(Name name, FakeValuesService fakeValuesService, RandomService randomService) {
         this.name = name;
         this.fakeValuesService = fakeValuesService;
+        this.randomService = randomService;
     }
 
     public String streetName() {
@@ -65,4 +68,13 @@ public class Address {
     public String lastName() {
         return name.lastName();
     }
+
+    public String latitude() {
+        return String.format("%.8g", (randomService.nextDouble() * 180) - 90);
+    }
+
+    public String longitude() {
+        return String.format("%.8g", (randomService.nextDouble() * 360) - 180);
+    }
+
 }

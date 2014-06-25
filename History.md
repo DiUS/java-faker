@@ -55,3 +55,13 @@ faker.internet().url();
 faker.options().option(String[]);
 ```
 
+=======
+* Added latitude and longitude
+
+```
+new Faker().address().latitude();
+```
+
+```
+new Faker().address().longitude();
+```
