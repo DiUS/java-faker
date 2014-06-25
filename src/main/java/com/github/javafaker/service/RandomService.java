@@ -17,4 +17,8 @@ public class RandomService {
     public int nextInt(int n) {
         return RandomUtils.nextInt(random, n);
     }
+
+    public double nextDouble() {
+        return RandomUtils.nextDouble(random);
+    }
 }

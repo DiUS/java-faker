@@ -44,3 +44,13 @@ new Faker().business().creditCardNumber();
 ```
 faker.lorem().fixedString(int);
 ```
+
+* Added latitude and longitude
+
+```
+new Faker().address().latitude();
+```
+
+```
+new Faker().address().longitude();
+```
