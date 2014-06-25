@@ -38,6 +38,14 @@ How to build
 2. $ mvn package
 
 
+
 LICENSE
 -------
 Copyright (c) 2014 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.
+
+
+
+Additional functionality in this fork
+-------------------------------------------
+1. Latitude and Longitude
+2. ISBN-10 and ISBN-13 Codes
