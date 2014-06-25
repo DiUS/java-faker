@@ -23,4 +23,16 @@ public class Internet {
                 fakeValuesService.fetchString("internet.free_email")
         });
     }
+    
+    public String url() {
+        return join(new Object[]{
+                "www",
+                ".",
+                name.firstName().toLowerCase(),
+                "-",
+                name.lastName().toLowerCase(),
+                ".",
+                fakeValuesService.fetchString("internet.domain_suffix")
+        });
+    }
 }

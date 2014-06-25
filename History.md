@@ -44,3 +44,14 @@ new Faker().business().creditCardNumber();
 ```
 faker.lorem().fixedString(int);
 ```
+
+* Added the ability to generate URLs.
+```
+faker.internet().url();
+```
+
+* Added the ability to get one option of a input set
+```
+faker.options().option(String[]);
+```
+
