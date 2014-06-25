@@ -3,6 +3,7 @@ package com.github.javafaker;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class CodeTest {
@@ -32,7 +33,7 @@ public class CodeTest {
                     i = i - 1;
                 }
             }
-            assertTrue(sum % 11 == 0);
+            assertThat(sum % 11, is(0L));
         }
     }
 
@@ -52,7 +53,7 @@ public class CodeTest {
                     multiplier = multiplier == 1 ? 3 : 1;
                 }
             }
-            assertTrue(sum % 10 == 0);
+            assertThat(sum % 10, is(0L));
         }
     }
 }
