@@ -27,6 +27,7 @@ public class Internet {
     public String url() {
         return join(new Object[]{
                 "www",
+                ".",
                 name.firstName().toLowerCase(),
                 "-",
                 name.lastName().toLowerCase(),
