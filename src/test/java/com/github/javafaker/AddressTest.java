@@ -24,4 +24,30 @@ public class AddressTest {
         logger.info("Street Address Number: " + streetAddressNumber);
         assertThat(streetAddressNumber, isANumber());
     }
+
+    @Test
+    public void testLatitude() {
+        String latStr;
+        Double lat;
+        for (int i = 0; i < 100; i++) {
+            latStr = faker.address().latitude();
+            assertThat(latStr, isANumber());
+            lat = new Double(latStr);
+            assertThat("Latitude is less then -90", lat >= -90);
+            assertThat("Latitude is greater than 90", lat <= 90);
+        }
+    }
+
+    @Test
+    public void testLongitude() {
+        String longStr;
+        Double lon;
+        for (int i = 0; i < 100; i++) {
+            longStr = faker.address().longitude();
+            assertThat(longStr, isANumber());
+            lon = new Double(longStr);
+            assertThat("Longitude is less then -180", lon >= -180);
+            assertThat("Longitude is greater than 180", lon <= 180);
+        }
+    }
 }

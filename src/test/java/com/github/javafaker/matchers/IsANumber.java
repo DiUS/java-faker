@@ -9,7 +9,12 @@ public class IsANumber extends TypeSafeMatcher<String> {
 
     @Override
     protected boolean matchesSafely(String item) {
-        return item.matches("\\d+");
+        try {
+            new Double(item);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
     @Override
