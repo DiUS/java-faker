@@ -2,13 +2,10 @@ package com.github.javafaker;
 
 import com.github.javafaker.service.FakeValuesService;
 
-import java.util.Random;
-
 public class Address {
 
     private final Name name;
     private final FakeValuesService fakeValuesService;
-    private final Random random = new Random();
 
     public Address(Name name, FakeValuesService fakeValuesService) {
         this.name = name;
@@ -59,14 +56,6 @@ public class Address {
 
     public String country() {
         return fakeValuesService.fetchString("address.country");
-    }
-
-    public String latitude() {
-        return String.format("%.8g", (random.nextDouble() * 180) - 90);
-    }
-
-    public String longitude() {
-        return String.format("%.8g", (random.nextDouble() * 360) - 180);
     }
 
     public String firstName() {
