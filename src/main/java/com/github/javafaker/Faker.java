@@ -51,7 +51,7 @@ public class Faker {
 
     /**
      * Returns a string with the '#' characters in the parameter replaced with random digits between 0-9 inclusive.
-     * <p/>
+     *
      * For example, the string "ABC##EFG" could be replaced with a string like "ABC99EFG".
      *
      * @param numberString
@@ -64,7 +64,7 @@ public class Faker {
     /**
      * Returns a string with the '?' characters in the parameter replaced with random alphabetic
      * characters.
-     * <p/>
+     * 
      * For example, the string "12??34" could be replaced with a string like "12AB34".
      *
      * @param letterString
