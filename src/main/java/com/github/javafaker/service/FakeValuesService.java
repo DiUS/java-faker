@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
@@ -26,8 +27,17 @@ public class FakeValuesService {
         if (stream == null) {
             throw new LocaleDoesNotExistException(String.format("%s could not be found, does not have a corresponding yaml file", locale));
         }
-        Map valuesMap = (Map) new Yaml().load(stream);
-        valuesMap = (Map) valuesMap.get(languageCode);
+        Map rootMap;
+        try {
+            rootMap = (Map) new Yaml().load(stream);
+        } finally {
+            try {
+                stream.close();
+            } catch (IOException e) {
+                throw new IllegalStateException("Unable close a stream", e);
+            }
+        }
+        Map valuesMap = (Map) rootMap.get(languageCode);
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
         this.randomService = randomService;
     }
