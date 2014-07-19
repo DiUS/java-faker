@@ -22,7 +22,7 @@ public class FakeValuesService {
         logger.info("Using locale " + locale);
 
         String languageCode = locale.getLanguage();
-        final InputStream stream = findStream(languageCode + ".yml");
+        final InputStream stream = findStream("/" + languageCode + ".yml");
         if (stream == null) {
             throw new LocaleDoesNotExistException(String.format("%s could not be found, does not have a corresponding yaml file", locale));
         }
@@ -33,11 +33,7 @@ public class FakeValuesService {
     }
 
     private InputStream findStream(String filename) {
-        InputStream streamOnClass = getClass().getResourceAsStream(filename);
-        if (streamOnClass != null) {
-            return streamOnClass;
-        }
-        return getClass().getClassLoader().getResourceAsStream(filename);
+        return getClass().getResourceAsStream(filename);
     }
 
     /**
