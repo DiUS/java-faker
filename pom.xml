@@ -28,6 +28,10 @@
             <name>Ren Shao</name>
             <email>renshao@gmail.com</email>
         </developer>
+        <developer>
+            <id>codingricky</id>
+            <name>Ricky Yim</name>
+        </developer>
     </developers>
     
     <parent>
