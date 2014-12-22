@@ -77,4 +77,7 @@ public class Address {
         return String.format("%.8g", (randomService.nextDouble() * 360) - 180);
     }
 
+    public String timeZone() {
+        return fakeValuesService.fetchString("address.time_zone");
+    }
 }
