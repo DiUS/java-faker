@@ -20,7 +20,7 @@ public class Internet {
                 ".",
                 name.lastName().toLowerCase(),
                 "@",
-                fakeValuesService.fetchString("internet.free_email")
+                java.net.IDN.toASCII(fakeValuesService.fetchString("internet.free_email"))
         });
     }
     
@@ -28,9 +28,11 @@ public class Internet {
         return join(new Object[]{
                 "www",
                 ".",
-                name.firstName().toLowerCase().replaceAll("'", ""),
-                "-",
-                name.lastName().toLowerCase().replaceAll("'", ""),
+                java.net.IDN.toASCII(
+                    name.firstName().toLowerCase().replaceAll("'", "") +
+                    "-" +
+                    name.lastName().toLowerCase().replaceAll("'", "")
+                ),
                 ".",
                 fakeValuesService.fetchString("internet.domain_suffix")
         });
