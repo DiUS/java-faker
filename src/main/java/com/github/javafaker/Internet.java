@@ -28,9 +28,9 @@ public class Internet {
         return join(new Object[]{
                 "www",
                 ".",
-                name.firstName().toLowerCase(),
+                name.firstName().toLowerCase().replaceAll("'", ""),
                 "-",
-                name.lastName().toLowerCase(),
+                name.lastName().toLowerCase().replaceAll("'", ""),
                 ".",
                 fakeValuesService.fetchString("internet.domain_suffix")
         });
