@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.github.javafaker.matchers.IsANumber.isANumber;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddressTest {
@@ -49,5 +50,11 @@ public class AddressTest {
             assertThat("Longitude is less then -180", lon >= -180);
             assertThat("Longitude is greater than 180", lon <= 180);
         }
+    }
+
+
+    @Test
+    public void testTimeZone() {
+        assertThat(faker.address().timeZone(), matchesRegularExpression("[A-Za-z_]+/[A-Za-z_]+[/A-Za-z_]*"));
     }
 }
