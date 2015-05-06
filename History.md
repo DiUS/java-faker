@@ -1,5 +1,19 @@
 Java Faker
 
+0.6
+---
+- Added detailed credit card numbers that pass the luhn check.
+
+```
+faker.finance().creditCard();
+```
+
+0.5
+---
+- IDN support
+- Stripped out quotes for domain names
+- Added timezone support for addresses
+
 0.4
 ---
 * Some API changes

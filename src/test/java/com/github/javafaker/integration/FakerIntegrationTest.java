@@ -69,6 +69,7 @@ public class FakerIntegrationTest {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lorem());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.phoneNumber());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.name());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.finance());
     }
 
 

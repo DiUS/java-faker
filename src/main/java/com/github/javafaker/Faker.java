@@ -23,6 +23,7 @@ public class Faker {
     private final Business business;
     private final Options options;
     private final Code code;
+    private final Finance finance;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -47,6 +48,7 @@ public class Faker {
         this.business = new Business(fakeValuesService);
         this.options = new Options(randomService);
         this.code = new Code(randomService);
+        this.finance = new Finance(fakeValuesService, randomService);
     }
 
     /**
@@ -116,4 +118,6 @@ public class Faker {
     public Code code() {
         return code;
     }
+
+    public Finance finance() { return finance; }
 }
