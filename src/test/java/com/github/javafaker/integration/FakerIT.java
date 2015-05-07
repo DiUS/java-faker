@@ -30,13 +30,13 @@ import static org.reflections.ReflectionUtils.withReturnType;
  * are correct. These tests just ensure that the methods can be invoked.
  */
 @RunWith(value = Parameterized.class)
-public class FakerIntegrationTest {
+public class FakerIT {
 
     private static final Locale FINNISH_LOCALE = new Locale("fi", "FI");
-    private static final Logger logger = LoggerFactory.getLogger(FakerIntegrationTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(FakerIT.class);
     private Faker faker;
 
-    public FakerIntegrationTest(Locale locale, Random random) {
+    public FakerIT(Locale locale, Random random) {
         if (locale != null && random != null) {
             faker = new Faker(locale, random);
         } else if (locale != null) {
