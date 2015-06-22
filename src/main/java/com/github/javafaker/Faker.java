@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import com.github.javafaker.service.CountryService;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 
@@ -24,6 +25,7 @@ public class Faker {
     private final Options options;
     private final Code code;
     private final Finance finance;
+    private final CountryService countryService;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -49,6 +51,7 @@ public class Faker {
         this.options = new Options(randomService);
         this.code = new Code(randomService);
         this.finance = new Finance(fakeValuesService, randomService);
+        this.countryService = new CountryService(fakeValuesService, randomService);
     }
 
     /**
@@ -105,6 +108,10 @@ public class Faker {
 
     public Address address() {
         return address;
+    }
+    
+    public Country country() {
+        return countryService.country();
     }
 
     public Business business() {
