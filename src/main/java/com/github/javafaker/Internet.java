@@ -37,4 +37,13 @@ public class Internet {
                 fakeValuesService.fetchString("internet.domain_suffix")
         });
     }
+
+    /**
+     * All this avatar have been authorized by its awesome users to be use on live websites (not just mockups). For more
+     * information, please visit: http://uifaces.com/authorized
+     */
+    public String avatar() {
+        return "https://s3.amazonaws.com/uifaces/faces/twitter/" + fakeValuesService.fetchString("internet.avatar");
+    }
+
 }

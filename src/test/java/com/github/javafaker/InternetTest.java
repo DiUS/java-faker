@@ -19,4 +19,10 @@ public class InternetTest {
     public void testUrl() {
         assertThat(faker.internet().url(), matchesRegularExpression("www\\.(\\w|-)+\\.\\w+"));
     }
+
+    @Test
+    public void testAvatar() {
+        assertThat(faker.internet().avatar(), matchesRegularExpression("http.*/[^/]+/128.jpg$"));
+    }
+
 }
