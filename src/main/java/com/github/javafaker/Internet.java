@@ -39,8 +39,12 @@ public class Internet {
     }
 
     /**
-     * All this avatar have been authorized by its awesome users to be use on live websites (not just mockups). For more
-     * information, please visit: http://uifaces.com/authorized
+     * Generates a random avatar url based on a collection of profile pictures of real people. All this avatar have been
+     * authorized by its awesome users to be used on live websites (not just mockups). For more information, please
+     * visit: http://uifaces.com/authorized
+     * 
+     * @return an url to a random avatar image.
+     * @see <a href="http://uifaces.com/authorized">Authorized UI Faces</a>
      */
     public String avatar() {
         return "https://s3.amazonaws.com/uifaces/faces/twitter/" + fakeValuesService.fetchString("internet.avatar");
