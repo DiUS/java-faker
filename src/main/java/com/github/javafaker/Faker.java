@@ -24,6 +24,7 @@ public class Faker {
     private final Options options;
     private final Code code;
     private final Finance finance;
+    private final DateAndTime dateAndTime;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -49,6 +50,7 @@ public class Faker {
         this.options = new Options(randomService);
         this.code = new Code(randomService);
         this.finance = new Finance(fakeValuesService, randomService);
+        this.dateAndTime = new DateAndTime(randomService);
     }
 
     /**
@@ -120,4 +122,9 @@ public class Faker {
     }
 
     public Finance finance() { return finance; }
+
+    public DateAndTime date() {
+        return dateAndTime;
+    }
+
 }
