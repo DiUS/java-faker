@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author Peter Miklos (pmiklos@sirokko.net)
+ * @author pmiklos
  *
  */
 public class DateAndTimeTest {

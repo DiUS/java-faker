@@ -11,7 +11,7 @@ import com.github.javafaker.service.RandomService;
 /**
  * A generator of random dates.
  * 
- * @author Peter Miklos (pmiklos@sirokko.net)
+ * @author pmiklos
  *
  */
 public class DateAndTime {

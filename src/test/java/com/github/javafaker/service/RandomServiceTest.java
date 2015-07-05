@@ -17,7 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Peter Miklos (pmiklos@sirokko.net)
+ * @author pmiklos
  *
  */
 public class RandomServiceTest {
