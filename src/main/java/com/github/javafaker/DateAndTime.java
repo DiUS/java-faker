@@ -61,10 +61,10 @@ public class DateAndTime {
      * Generates a past date from now. Note that there is a 1 second slack added.
      * 
      * @param atMost
-     *            at most this amount of time ahead from now exclusive.
+     *            at most this amount of time earlier from now exclusive.
      * @param unit
      *            the time unit.
-     * @return a future date from now.
+     * @return a past date from now.
      */
     public Date past(int atMost, TimeUnit unit) {
         Date now = new Date();
@@ -81,7 +81,7 @@ public class DateAndTime {
      *            the time unit.
      * @param referenceDate
      *            the past date relative to this date.
-     * @return a future date relative to {@code referenceDate}.
+     * @return a past date relative to {@code referenceDate}.
      */
     public Date past(int atMost, TimeUnit unit, Date referenceDate) {
         long upperBound = unit.toMillis(atMost);
