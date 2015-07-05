@@ -37,4 +37,15 @@ public class DateAndTimeTest {
         }
     }
 
+    @Test
+    public void testPastDate() {
+        Date now = new Date();
+
+        for (int i = 0; i < 1000; i++) {
+            Date future = faker.date().past(1, TimeUnit.SECONDS, now);
+            assertThat("future date", future.getTime(), lessThan(now.getTime()));
+            assertThat("past date over range", future.getTime(), greaterThan(now.getTime() - 1000));
+        }
+    }
+
 }
