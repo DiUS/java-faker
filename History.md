@@ -8,6 +8,12 @@ Java Faker
 faker.finance().creditCard();
 ```
 
+- Added avatar support
+
+```
+faker.internet().avatar();
+```
+
 0.5
 ---
 - IDN support
