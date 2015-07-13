@@ -4,6 +4,7 @@
 package com.github.javafaker;
 
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
 
@@ -45,6 +46,18 @@ public class DateAndTimeTest {
             Date future = faker.date().past(1, TimeUnit.SECONDS, now);
             assertThat("future date", future.getTime(), lessThan(now.getTime()));
             assertThat("past date over range", future.getTime(), greaterThan(now.getTime() - 1000));
+        }
+    }
+
+    @Test
+    public void testBetween() {
+        Date now = new Date();
+        Date then = new Date(now.getTime() + 1000);
+
+        for (int i = 0; i < 1000; i++) {
+            Date date = faker.date().between(now, then);
+            assertThat("after upper bound", date.getTime(), lessThan(then.getTime()));
+            assertThat("before lower bound", date.getTime(), greaterThanOrEqualTo(now.getTime()));
         }
     }
 

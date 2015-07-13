@@ -92,4 +92,24 @@ public class DateAndTime {
         return new Date(futureMillis);
     }
 
+    /**
+     * Generates a random date between two dates.
+     * 
+     * @param from
+     *            the lower bound inclusive
+     * @param to
+     *            the upper bound exclusive
+     * @return a random date between {@code from} and {@code to}.
+     * @throws IllegalArgumentException
+     *             if the {@code to} date represents an earlier date than {@code from} date.
+     */
+    public Date between(Date from, Date to) throws IllegalArgumentException {
+        if (to.before(from)) {
+            throw new IllegalArgumentException("Invalid date range, the upper bound date is before the lower bound.");
+        }
+
+        long offsetMillis = randomService.nextLong(to.getTime() - from.getTime());
+        return new Date(from.getTime() + offsetMillis);
+    }
+
 }
