@@ -14,6 +14,12 @@ faker.finance().creditCard();
 faker.internet().avatar();
 ```
 
+- Added date and time support
+
+```
+faker.date().past(1, TimeUnit.SECONDS, now);
+```
+
 0.5
 ---
 - IDN support
