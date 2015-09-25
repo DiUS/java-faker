@@ -22,6 +22,7 @@ public class Faker {
     private final PhoneNumber phoneNumber;
     private final Address address;
     private final Business business;
+    private final Company company;
     private final Options options;
     private final Code code;
     private final Finance finance;
@@ -49,6 +50,7 @@ public class Faker {
         this.phoneNumber = new PhoneNumber(fakeValuesService);
         this.address = new Address(name, fakeValuesService, randomService);
         this.business = new Business(fakeValuesService);
+        this.company = new Company(fakeValuesService);
         this.options = new Options(randomService);
         this.code = new Code(randomService);
         this.finance = new Finance(fakeValuesService, randomService);
@@ -118,6 +120,10 @@ public class Faker {
 
     public Business business() {
         return business;
+    }
+
+    public Company company() {
+        return company;
     }
 
     public Options options() {
