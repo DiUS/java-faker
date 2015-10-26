@@ -1,6 +1,8 @@
 package com.github.javafaker;
 
 import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
+import org.apache.commons.lang.StringUtils;
 
 import static org.apache.commons.lang.StringUtils.join;
 
@@ -8,10 +10,12 @@ public class Internet {
 
     private final Name name;
     private final FakeValuesService fakeValuesService;
+    private final RandomService randomService;
 
-    public Internet(Name name, FakeValuesService fakeValuesService) {
+    public Internet(Name name, FakeValuesService fakeValuesService, RandomService randomService) {
         this.name = name;
         this.fakeValuesService = fakeValuesService;
+        this.randomService = randomService;
     }
 
     public String emailAddress() {
@@ -48,6 +52,19 @@ public class Internet {
      */
     public String avatar() {
         return "https://s3.amazonaws.com/uifaces/faces/twitter/" + fakeValuesService.fetchString("internet.avatar");
+    }
+
+    public String image(Integer width, Integer height, Boolean gray, String text) {
+        return String.format("https://ssl.webpack.de/lorempixel.com/%s%s/%s/%s/%s",
+                gray ? "g/" : StringUtils.EMPTY, width, height, fakeValuesService.fetchString("internet.image_category"),
+                StringUtils.isEmpty(text) ? StringUtils.EMPTY : text);
+    }
+
+    public String image() {
+        String[] dimension = StringUtils.split(fakeValuesService.fetchString("internet.image_dimension"), 'x');
+        return image(
+                Integer.valueOf(StringUtils.trim(dimension[0])), Integer.valueOf(StringUtils.trim(dimension[1])),
+                randomService.nextBoolean(), null);
     }
 
 }

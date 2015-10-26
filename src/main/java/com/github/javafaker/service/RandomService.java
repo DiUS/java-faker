@@ -36,4 +36,8 @@ public class RandomService {
     public double nextDouble() {
         return RandomUtils.nextDouble(random);
     }
+
+    public Boolean nextBoolean() {
+        return RandomUtils.nextBoolean(random);
+    }
 }

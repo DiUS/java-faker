@@ -46,7 +46,7 @@ public class Faker {
         this.fakeValuesService = new FakeValuesService(locale, randomService);
         this.lorem = new Lorem(fakeValuesService, randomService);
         this.name = new Name(fakeValuesService);
-        this.internet = new Internet(name, fakeValuesService);
+        this.internet = new Internet(name, fakeValuesService, randomService);
         this.phoneNumber = new PhoneNumber(fakeValuesService);
         this.address = new Address(name, fakeValuesService, randomService);
         this.business = new Business(fakeValuesService);
