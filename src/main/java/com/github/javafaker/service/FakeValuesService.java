@@ -33,11 +33,7 @@ public class FakeValuesService {
     }
 
     private InputStream findStream(String filename) {
-        InputStream streamOnClass = getClass().getResourceAsStream(filename);
-        if (streamOnClass != null) {
-            return streamOnClass;
-        }
-        return getClass().getClassLoader().getResourceAsStream(filename);
+        return getClass().getResourceAsStream(filename);
     }
 
     /**
