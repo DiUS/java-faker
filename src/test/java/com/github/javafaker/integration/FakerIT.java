@@ -53,6 +53,7 @@ public class FakerIT {
         Object[][] data = new Object[][]{
                 {Locale.ENGLISH, null},
                 {Locale.FRENCH, null},
+                {new Locale("pt"), null},
                 {FINNISH_LOCALE, null},
                 {Locale.ENGLISH, new Random()},
                 {null, new Random()},
