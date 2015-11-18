@@ -34,6 +34,11 @@ public class Lorem {
         return words(3);
     }
 
+    public String word() {
+        List<String> words = (List<String>) fakeValuesService.fetchObject("lorem.words");
+        return words.get(randomService.nextInt(words.size()));
+    }
+
     public String sentence(int wordCount) {
         return capitalize(join(words(wordCount + randomService.nextInt(6)), " ") + ".");
     }

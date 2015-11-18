@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class LoremTest {
 
@@ -22,4 +23,8 @@ public class LoremTest {
         assertEquals(0, faker.lorem().fixedString(-1).length());
     }
 
+    @Test
+    public void wordShouldNotBeNull() {
+        assertNotNull(faker.lorem().word());
+    }
 }
