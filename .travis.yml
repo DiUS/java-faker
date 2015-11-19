@@ -4,8 +4,7 @@ jdk:
 - oraclejdk8
 - openjdk7
 - openjdk6
-before_install: "git clone -b travis `git config --get remote.origin.url` target/travis"
-script: "mvn verify failsafe:integration-test deploy --settings target/travis/settings.xml"
+script: "mvn verify failsafe:integration-test "
 branches:
   except:
   - travis
