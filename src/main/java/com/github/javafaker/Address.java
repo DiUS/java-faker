@@ -53,6 +53,10 @@ public class Address {
         return fakeValuesService.fetchString("address.city_prefix");
     }
 
+    public String state() {
+        return fakeValuesService.fetchString("address.state");
+    }
+
     public String stateAbbr() {
         return fakeValuesService.fetchString("address.state_abbr");
     }
