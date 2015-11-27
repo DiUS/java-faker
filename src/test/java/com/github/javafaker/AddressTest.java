@@ -57,4 +57,9 @@ public class AddressTest {
     public void testTimeZone() {
         assertThat(faker.address().timeZone(), matchesRegularExpression("[A-Za-z_]+/[A-Za-z_]+[/A-Za-z_]*"));
     }
+
+    @Test
+    public void testState() {
+        assertThat(faker.address().state(), matchesRegularExpression("[A-Za-z]+"));
+    }
 }
