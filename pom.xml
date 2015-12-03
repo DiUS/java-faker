@@ -33,12 +33,12 @@
             <name>Ricky Yim</name>
         </developer>
     </developers>
-    
+
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
-    </parent>    
+    </parent>
 
     <dependencies>
         <dependency>
@@ -55,6 +55,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.7</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

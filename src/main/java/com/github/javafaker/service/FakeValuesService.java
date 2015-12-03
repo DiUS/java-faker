@@ -2,8 +2,6 @@ package com.github.javafaker.service;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
@@ -13,14 +11,11 @@ import java.util.Map;
 
 public class FakeValuesService {
     private static final char[] METHOD_NAME_DELIMITERS = {'_'};
-    private static final Logger logger = LoggerFactory.getLogger(FakeValuesService.class);
     private final Map<String, Object> fakeValuesMap;
     private final RandomService randomService;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public FakeValuesService(Locale locale, RandomService randomService) {
-        logger.info("Using locale " + locale);
-
         String languageCode = locale.getLanguage();
         final InputStream stream = findStream("/" + languageCode + ".yml");
         if (stream == null) {
@@ -64,8 +59,7 @@ public class FakeValuesService {
     /**
      * Return the object selected by the key from yaml file.
      *
-     * @param key
-     *            key contains path to an object. Path segment is separated by
+     * @param key key contains path to an object. Path segment is separated by
      *            dot. E.g. name.first_name
      * @return
      */
@@ -81,13 +75,12 @@ public class FakeValuesService {
 
     /**
      * A property that is composed of other properties.
-     *
+     * <p/>
      * It firstly fetches the formatKey using {@link #fetch(String)}. It will
      * proceed to convert the returned properties from the {@link #fetch(String)}
      * method to a methodName and invoke this method against the object passed in.
      * Finally, concatenation occurs with the return values of the methods
      * using the joiner parameter as a separator.
-     *
      *
      * @param formatKey
      * @param joiner
@@ -118,7 +111,7 @@ public class FakeValuesService {
 
     /**
      * Returns a string with the '#' characters in the parameter replaced with random digits between 0-9 inclusive.
-     *
+     * <p/>
      * For example, the string "ABC##EFG" could be replaced with a string like "ABC99EFG".
      *
      * @param numberString
@@ -152,7 +145,7 @@ public class FakeValuesService {
     /**
      * Returns a string with the '?' characters in the parameter replaced with random alphabetic
      * characters.
-     *
+     * <p/>
      * For example, the string "12??34" could be replaced with a string like "12AB34".
      *
      * @param letterString
