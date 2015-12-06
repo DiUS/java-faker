@@ -3,6 +3,13 @@ fr:
     address:
       city_prefix: [Île, Provence, Midi, Ville, Lac, Chemin]
       city_suffix: [du Sud, du Nord, de France, de la Loire, de Calais, Alpes, d’Azur, de l'Est, de l'Ouest]
+      city:
+        -
+         - :first_name
+         - :city_suffix
+        -
+          - :last_name
+          - :city_suffix
       country: [Afrique du Sud, Albanie, Australie, Belgique, Croatie, États-Unis, France, Gambon, Irlande, Mexique, Norvège, Nouvelle-Zélande]
       street_address: ['#####', '####', '###']
       street_suffix: ["de l'Abbaye", "Adolphe Mille", "d'Alésia", "d'Argenteuil", "d'Assas", "du Bac", "de Paris", "La Boétie", "Bonaparte", "de la Bûcherie", "de Caumartin", "Charlemagne", "du Chat-qui-Pêche", "de la Chaussée-d'Antin", "du Dahomey", "Dauphine", "Delesseux", "du Faubourg Saint-Honoré", "du Faubourg-Saint-Denis", "de la Ferronnerie", "des Francs-Bourgeois", "des Grands Augustins", "de la Harpe", "du Havre", "de la Huchette", "Joubert", "Laffitte", "Lepic", "des Lombards", "Marcadet", "Molière", "Monsieur-le-Prince", "de Montmorency", "Montorgueil", "Mouffetard", "de Nesle", "Oberkampf", "de l'Odéon", "d'Orsel", "de la Paix", "des Panoramas", "Pastourelle", "Pierre Charron", "de la Pompe", "de Presbourg", "de Provence", "de Richelieu", "de Rivoli", "des Rosiers", "Royale", "d'Abbeville", "Saint-Honoré", "Saint-Bernard", "Saint-Denis", "Saint-Dominique", "Saint-Jacques", "Saint-Séverin", "des Saussaies", "de Seine", "de Solférino", "Du Sommerard", "de Tilsitt", "Vaneau", "de Vaugirard", "de la Victoire", "Zadkine"]

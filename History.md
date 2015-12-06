@@ -1,5 +1,13 @@
 Java Faker
 
+0.7
+--
+- Added city from address
+
+```
+faker.address().city();
+```
+
 0.6
 ---
 - Added detailed credit card numbers that pass the luhn check.

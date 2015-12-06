@@ -26,6 +26,13 @@ fi:
         - koski
         - pudas
         - saari
+      city:
+        -
+         - :first_name
+         - :city_suffix
+        -
+          - :last_name
+          - :city_suffix
       country: 
         - Afganistan
         - Alankomaat

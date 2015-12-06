@@ -62,4 +62,9 @@ public class AddressTest {
     public void testState() {
         assertThat(faker.address().state(), matchesRegularExpression("[A-Za-z ]+"));
     }
+
+    @Test
+    public void testCity() {
+        assertThat(faker.address().city(), matchesRegularExpression("[A-Za-z ]+"));
+    }
 }

@@ -53,6 +53,12 @@ public class Address {
         return fakeValuesService.fetchString("address.city_prefix");
     }
 
+    public String city() {
+        return fakeValuesService.composite("address.city",
+                "",
+                this);
+    }
+
     public String state() {
         return fakeValuesService.fetchString("address.state");
     }
