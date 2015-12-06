@@ -23,6 +23,19 @@ In pom.xml, add following between `<dependencies> ... </dependencies>`
 </dependency>
 ```
 
+For gradle users, add the following to your build.gradle file.
+
+```groovy
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.6'
+}
+
+```
+
 In your Java code
 
 ```java
