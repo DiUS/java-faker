@@ -60,6 +60,6 @@ public class AddressTest {
 
     @Test
     public void testState() {
-        assertThat(faker.address().state(), matchesRegularExpression("[A-Za-z]+"));
+        assertThat(faker.address().state(), matchesRegularExpression("[A-Za-z ]+"));
     }
 }
