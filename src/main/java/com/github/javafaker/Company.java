@@ -10,6 +10,17 @@ public class Company {
     }
 
     public String name() {
-        return fakeValuesService.fetchString("company.name");
+        String companyName = fakeValuesService.fetchString("company.name");
+        try {
+            companyName = companyName + " " + fakeValuesService.fetchString("company.suffix");
+        } catch (Exception ignored) {
+            //ignored
+        }
+        return companyName;
     }
+
+    public String suffix() {
+        return fakeValuesService.fetchString("company.suffix");
+    }
+
 }
