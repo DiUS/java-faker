@@ -52,10 +52,12 @@ public class FakerIT {
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
                 {Locale.ENGLISH, null},
+                {Locale.GERMAN, null},
                 {Locale.FRENCH, null},
                 {new Locale("pt"), null},
                 {FINNISH_LOCALE, null},
                 {Locale.ENGLISH, new Random()},
+                {Locale.GERMAN, new Random()},
                 {null, new Random()},
                 {null, null}};
         return Arrays.asList(data);
