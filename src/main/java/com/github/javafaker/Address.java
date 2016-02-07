@@ -34,11 +34,15 @@ public class Address {
     }
 
     public String secondaryAddress() {
-        return fakeValuesService.numerify(fakeValuesService.fetchString("address.secondary_address"));
+        return fakeValuesService.bothify(fakeValuesService.fetchString("address.secondary_address"));
     }
 
     public String zipCode() {
         return fakeValuesService.bothify(fakeValuesService.fetchString("address.postcode"));
+    }
+
+    public String streetPrefix() {
+        return fakeValuesService.fetchString("address.street_prefix");
     }
 
     public String streetSuffix() {
