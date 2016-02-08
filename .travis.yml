@@ -4,7 +4,7 @@ jdk:
 - oraclejdk8
 - openjdk7
 - openjdk6
-script: "mvn verify failsafe:integration-test "
+script: "mvn verify failsafe:integration-test failsafe:verify"
 branches:
   except:
   - travis
