@@ -9,9 +9,12 @@ import static com.github.javafaker.matchers.IsANumber.isANumber;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.text.DecimalFormatSymbols;
+
 public class AddressTest {
 
     private static final Logger logger = LoggerFactory.getLogger(AddressTest.class);
+    private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
     private Faker faker;
 
     @Before
@@ -31,7 +34,7 @@ public class AddressTest {
         String latStr;
         Double lat;
         for (int i = 0; i < 100; i++) {
-            latStr = faker.address().latitude();
+            latStr = faker.address().latitude().replace(decimalSeparator, '.');
             assertThat(latStr, isANumber());
             lat = new Double(latStr);
             assertThat("Latitude is less then -90", lat >= -90);
@@ -44,7 +47,7 @@ public class AddressTest {
         String longStr;
         Double lon;
         for (int i = 0; i < 100; i++) {
-            longStr = faker.address().longitude();
+            longStr = faker.address().longitude().replace(decimalSeparator, '.');
             assertThat(longStr, isANumber());
             lon = new Double(longStr);
             assertThat("Longitude is less then -180", lon >= -180);
