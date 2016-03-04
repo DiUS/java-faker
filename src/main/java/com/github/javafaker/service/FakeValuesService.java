@@ -43,7 +43,7 @@ public class FakeValuesService {
      */
     public Object fetch(String key) {
         List valuesArray = (List) fetchObject(key);
-        return valuesArray.get(nextInt(valuesArray.size()));
+        return valuesArray == null || valuesArray.size() < 1 ? null : valuesArray.get(nextInt(valuesArray.size()));
     }
 
     /**
@@ -53,7 +53,8 @@ public class FakeValuesService {
      * @return
      */
     public String fetchString(String key) {
-        return (String) fetch(key);
+        Object fetch = fetch(key);
+        return fetch == null ? "" : (String) fetch;
     }
 
     /**
@@ -93,17 +94,26 @@ public class FakeValuesService {
 
         String[] parts = new String[format.size()];
         for (int i = 0; i < parts.length; i++) {
-            // remove leading colon
-            String methodName = format.get(i).substring(1);
-            // convert to camel case
-            methodName = WordUtils.capitalizeFully(methodName, METHOD_NAME_DELIMITERS).replaceAll("_", "");
-            methodName = methodName.substring(0, 1).toLowerCase() + methodName.substring(1);
+            String[] combinedFormat = format.get(i).split("\"");
+            StringBuffer partBuffer = new StringBuffer();
+            for (String rawFormat : combinedFormat) {
+                if (rawFormat.startsWith(":")) {
+                    // remove leading colon
+                    String methodName = rawFormat.substring(1);
+                    // convert to camel case
+                    methodName = WordUtils.capitalizeFully(methodName, METHOD_NAME_DELIMITERS).replaceAll("_", "");
+                    methodName = methodName.substring(0, 1).toLowerCase() + methodName.substring(1);
 
-            try {
-                parts[i] = (String) objectToInvokeMethodOn.getClass().getMethod(methodName, (Class[]) null).invoke(objectToInvokeMethodOn);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+                    try {
+                        partBuffer.append((String) objectToInvokeMethodOn.getClass().getMethod(methodName, (Class[]) null).invoke(objectToInvokeMethodOn));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    partBuffer.append(rawFormat);
+                }
             }
+            parts[i] = partBuffer.toString();
         }
 
         return StringUtils.join(parts, joiner);
