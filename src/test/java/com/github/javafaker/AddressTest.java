@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -22,8 +23,6 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(value = Parameterized.class)
-import java.text.DecimalFormatSymbols;
-
 public class AddressTest {
 
     private static final Locale FINNISH_LOCALE = new Locale("fi", "FI");
