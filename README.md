@@ -48,6 +48,10 @@ String lastName = faker.name().lastName(); // Barton
 String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 ```
 
+Javadoc
+-----
+http://dius.github.io/java-faker/apidocs/index.html
+
 How to build
 ------------
 1. Make sure Apache Maven 3 is installed. ($ mvn --version)
