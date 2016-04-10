@@ -1,5 +1,13 @@
 Java Faker
 
+0.8 (unreleased)
+--
+- Added emailaddress with local-part parameter to internet
+
+```
+faker.internet().emailAddress("john"); //john@gmail.com
+```
+
 0.7
 --
 - Added city from address

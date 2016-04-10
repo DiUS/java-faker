@@ -19,10 +19,16 @@ public class Internet {
     }
 
     public String emailAddress() {
-        return join(new Object[]{
+        return emailAddress(join(new Object[]{
                 name.firstName().toLowerCase(),
                 ".",
-                name.lastName().toLowerCase(),
+                name.lastName().toLowerCase()
+        }));
+    }
+
+    public String emailAddress(String localPart) {
+        return join(new Object[]{
+                localPart,
                 "@",
                 java.net.IDN.toASCII(fakeValuesService.fetchString("internet.free_email"))
         });
