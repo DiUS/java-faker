@@ -317,6 +317,7 @@ fi:
         - oyj
         - ky
         - ay
+      name: [Ahlstrom, Ålandsbanken, Bittium, Cargotec, DNA, Eckerö Line, Finnlines, Huhtamäki, Kemppi, Kone, Konecranes, Lemminkäinen Group, Metso, Outotec, Patria, Planmeca, Ponsse Corporation, Posiva, Pöyry, Rautaruukki, Silja Line, Tikkurila, Vacon, Valmet, Valtra, Viking Line, VR, Wärtsilä, YIT]
     internet: 
       domain_suffix: 
         - fi
