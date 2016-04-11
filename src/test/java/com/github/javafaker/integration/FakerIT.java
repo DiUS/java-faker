@@ -1,6 +1,7 @@
 package com.github.javafaker.integration;
 
 import com.github.javafaker.Faker;
+import com.github.javafaker.service.DefaultingFakeValuesService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Proxy;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
@@ -18,6 +20,8 @@ import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.reflections.ReflectionUtils.getAllMethods;
 import static org.reflections.ReflectionUtils.withModifier;
@@ -48,11 +52,14 @@ public class FakerIT {
         }
     }
 
+
     @Parameterized.Parameters(name = "testing locale {0} and random {1}")
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
                 {Locale.ENGLISH, null},
                 {Locale.FRENCH, null},
+                {Locale.CANADA_FRENCH, null},
+                {Locale.TRADITIONAL_CHINESE, null},
                 {new Locale("pt"), null},
                 {FINNISH_LOCALE, null},
                 {Locale.ENGLISH, new Random()},
@@ -72,7 +79,6 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.phoneNumber());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.name());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.finance());
-        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.country());
     }
 
 
@@ -84,9 +90,10 @@ public class FakerIT {
 
         for (Method method : methodsThatReturnStrings) {
             final Object returnValue = method.invoke(object);
-
             logger.info(String.format("Invoked %s.%s = %s", object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
             assertThat(returnValue, is(notNullValue()));
+            assertThat((String) returnValue, not(isEmptyString()));
+
         }
     }
 
@@ -102,7 +109,7 @@ public class FakerIT {
         assertThat(faker.lorem().sentence(1), is(notNullValue()));
         assertThat(faker.lorem().sentences(1), is(notNullValue()));
 
-        assertThat(faker.address().streetAddress(true), is(notNullValue()));
+        assertThat(faker.address().streetAddress(), is(notNullValue()));
 
         assertThat(faker.lorem().words(), is(notNullValue()));
         assertThat(faker.lorem().words(1), is(notNullValue()));

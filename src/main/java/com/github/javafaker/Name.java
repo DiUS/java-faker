@@ -1,16 +1,18 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.FakeValuesServiceInterface;
 
 public class Name {
-    private final FakeValuesService fakeValuesService;
+    private final Resolver resolver;
+    private final FakeValuesServiceInterface fakeValuesService;
 
-    public Name(FakeValuesService fakeValuesService) {
+    public Name(Resolver resolver, FakeValuesServiceInterface fakeValuesService) {
+        this.resolver = resolver;
         this.fakeValuesService = fakeValuesService;
     }
 
     public String name() {
-        return fakeValuesService.composite("name.formats", " ", this);
+        return fakeValuesService.resolve("name.name", this, resolver);
     }
 
     public String fullName() {

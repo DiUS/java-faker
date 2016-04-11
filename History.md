@@ -3,10 +3,13 @@ Java Faker
 0.8 (unreleased)
 --
 - Added emailaddress with local-part parameter to internet
+- Deleted countryService/country, using address.country() and address.countryCode() instead because of the desire
+to reuse existing yaml files
 
 ```
 faker.internet().emailAddress("john"); //john@gmail.com
 ```
+- Added a lot more YML files from the ruby faker version
 
 0.7
 --

@@ -1,36 +1,40 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
 
 public class Address {
 
+    private final Resolver resolver;
     private final Name name;
-    private final FakeValuesService fakeValuesService;
+    private final FakeValuesServiceInterface fakeValuesService;
     private final RandomService randomService;
 
-    public Address(Name name, FakeValuesService fakeValuesService, RandomService randomService) {
+    public Address(Resolver resolver, Name name, FakeValuesServiceInterface fakeValuesService, RandomService randomService) {
+        this.resolver = resolver;
         this.name = name;
         this.fakeValuesService = fakeValuesService;
         this.randomService = randomService;
     }
 
     public String streetName() {
-        return fakeValuesService.composite("address.street_name_formats",
-                (String) fakeValuesService.fetchObject("address.street_name_joiner"),
-                this);
+        return resolve("address.street_name");
     }
 
     public String streetAddressNumber() {
-        return fakeValuesService.numerify(fakeValuesService.fetchString("address.street_address"));
+        return resolve("address.street_address");
+    }
+
+    public String streetAddress() {
+        return resolve("address.street_address");
     }
 
     public String streetAddress(boolean includeSecondary) {
-        String streetAddress = fakeValuesService.composite("address.street_formats", " ", this);
+        String streetAddress = resolve("address.street_address");
         if (includeSecondary) {
             streetAddress = streetAddress + " " + secondaryAddress();
         }
-        return fakeValuesService.numerify(streetAddress);
+        return streetAddress;
     }
 
     public String secondaryAddress() {
@@ -46,17 +50,19 @@ public class Address {
     }
 
     public String citySuffix() {
-        return fakeValuesService.fetchString("address.city_suffix");
+        return fakeValuesService.safeFetch("address.city_suffix");
     }
 
     public String cityPrefix() {
-        return fakeValuesService.fetchString("address.city_prefix");
+        return fakeValuesService.safeFetch("address.city_prefix");
     }
 
     public String city() {
-        return fakeValuesService.composite("address.city",
-                "",
-                this);
+        return resolve("address.city");
+    }
+
+    public String cityName() {
+        return city();
     }
 
     public String state() {
@@ -65,10 +71,6 @@ public class Address {
 
     public String stateAbbr() {
         return fakeValuesService.fetchString("address.state_abbr");
-    }
-
-    public String country() {
-        return fakeValuesService.fetchString("address.country");
     }
 
     public String firstName() {
@@ -89,5 +91,17 @@ public class Address {
 
     public String timeZone() {
         return fakeValuesService.fetchString("address.time_zone");
+    }
+
+    public String country() { return fakeValuesService.fetchString("address.country"); }
+
+    public String countryCode() { return fakeValuesService.fetchString("address.country_code"); }
+
+    public String buildingNumber() {
+        return fakeValuesService.numerify(fakeValuesService.fetchString("address.building_number"));
+    }
+
+    private String resolve(String key) {
+        return fakeValuesService.resolve(key, this, resolver);
     }
 }

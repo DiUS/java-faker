@@ -1,9 +1,13 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.CountryService;
+import com.github.javafaker.service.DefaultingFakeValuesService;
 import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
+import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang.reflect.MethodUtils;
 
+import java.lang.reflect.Proxy;
 import java.util.Locale;
 import java.util.Random;
 
@@ -13,7 +17,7 @@ import java.util.Random;
  *
  * @author ren
  */
-public class Faker {
+public class Faker implements Resolver {
     private final RandomService randomService;
     private final FakeValuesService fakeValuesService;
     private final Lorem lorem;
@@ -26,7 +30,6 @@ public class Faker {
     private final Options options;
     private final Code code;
     private final Finance finance;
-    private final CountryService countryService;
     private final DateAndTime dateAndTime;
 
     public Faker() {
@@ -44,23 +47,34 @@ public class Faker {
     public Faker(Locale locale, Random random) {
         this.randomService = new RandomService(random);
         this.fakeValuesService = new FakeValuesService(locale, randomService);
-        this.lorem = new Lorem(fakeValuesService, randomService);
-        this.name = new Name(fakeValuesService);
-        this.internet = new Internet(name, fakeValuesService, randomService);
-        this.phoneNumber = new PhoneNumber(fakeValuesService);
-        this.address = new Address(name, fakeValuesService, randomService);
-        this.business = new Business(fakeValuesService);
-        this.company = new Company(fakeValuesService);
+        FakeValuesService defaultEnglishFakeValuesService = new FakeValuesService(locale.ENGLISH, randomService);
+        FakeValuesServiceInterface proxiedFakeValueService = createProxiedFakeValuesService(fakeValuesService,
+                defaultEnglishFakeValuesService);
+
+        this.lorem = new Lorem(proxiedFakeValueService, randomService);
+        this.name = new Name(this, proxiedFakeValueService);
+        this.internet = new Internet(name, proxiedFakeValueService, randomService);
+        this.phoneNumber = new PhoneNumber(proxiedFakeValueService);
+        this.address = new Address(this, name, proxiedFakeValueService, randomService);
+        this.business = new Business(proxiedFakeValueService);
+        this.company = new Company(this, proxiedFakeValueService);
         this.options = new Options(randomService);
         this.code = new Code(randomService);
-        this.finance = new Finance(fakeValuesService, randomService);
-        this.countryService = new CountryService(fakeValuesService, randomService);
+        this.finance = new Finance(proxiedFakeValueService, randomService);
         this.dateAndTime = new DateAndTime(randomService);
+    }
+
+    private static FakeValuesServiceInterface createProxiedFakeValuesService(FakeValuesServiceInterface fakeValuesServiceInterface,
+                                                                                      FakeValuesServiceInterface defaultFakeValuesServiceInterface) {
+        return (FakeValuesServiceInterface) Proxy.newProxyInstance(Faker.class.getClassLoader(),
+                new Class[]{FakeValuesServiceInterface.class},
+                new DefaultingFakeValuesService(fakeValuesServiceInterface,
+                                                defaultFakeValuesServiceInterface));
     }
 
     /**
      * Returns a string with the '#' characters in the parameter replaced with random digits between 0-9 inclusive.
-     *
+     * <p>
      * For example, the string "ABC##EFG" could be replaced with a string like "ABC99EFG".
      *
      * @param numberString
@@ -73,7 +87,7 @@ public class Faker {
     /**
      * Returns a string with the '?' characters in the parameter replaced with random alphabetic
      * characters.
-     * 
+     * <p>
      * For example, the string "12??34" could be replaced with a string like "12AB34".
      *
      * @param letterString
@@ -113,10 +127,6 @@ public class Faker {
     public Address address() {
         return address;
     }
-    
-    public Country country() {
-        return countryService.country();
-    }
 
     public Business business() {
         return business;
@@ -134,10 +144,33 @@ public class Faker {
         return code;
     }
 
-    public Finance finance() { return finance; }
+    public Finance finance() {
+        return finance;
+    }
 
     public DateAndTime date() {
         return dateAndTime;
     }
 
+    /**
+     * Resolves a key in the format of class.method_name
+     *
+     * @param key
+     * @return
+     */
+    public String resolve(String key) {
+        String[] keySplit = key.split("\\.", 2);
+        String object = keySplit[0].toLowerCase();
+        String methodName = keySplit[1];
+
+        char[] METHOD_NAME_REPLACEMENT = {'_'};
+        methodName = WordUtils.capitalizeFully(methodName, METHOD_NAME_REPLACEMENT).replaceAll("_", "");
+        methodName = methodName.substring(0, 1).toLowerCase() + methodName.substring(1);
+        try {
+            Object objectWithMethodToInvoke = MethodUtils.invokeMethod(this, object, null);
+            return (String) MethodUtils.invokeMethod(objectWithMethodToInvoke, methodName, null);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

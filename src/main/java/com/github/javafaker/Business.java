@@ -1,11 +1,11 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.FakeValuesServiceInterface;
 
 public class Business {
-    private final FakeValuesService fakeValuesService;
+    private final FakeValuesServiceInterface fakeValuesService;
 
-    public Business(FakeValuesService fakeValuesService) {
+    public Business(FakeValuesServiceInterface fakeValuesService) {
         this.fakeValuesService = fakeValuesService;
     }
 

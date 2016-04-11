@@ -1,15 +1,21 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.FakeValuesServiceInterface;
 
 public class Company {
-    private final FakeValuesService fakeValuesService;
+    private final FakeValuesServiceInterface fakeValuesService;
+    private final Resolver resolver;
 
-    public Company(FakeValuesService fakeValuesService) {
+    public Company(Resolver resolver, FakeValuesServiceInterface fakeValuesService) {
         this.fakeValuesService = fakeValuesService;
+        this.resolver = resolver;
     }
 
     public String name() {
-        return fakeValuesService.fetchString("company.name");
+        return fakeValuesService.resolve("company.name", this, resolver);
+    }
+
+    public String suffix() {
+        return fakeValuesService.safeFetch("company.suffix");
     }
 }

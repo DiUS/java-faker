@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import static com.github.javafaker.matchers.IsANumber.isANumber;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNot.not;
 
 import java.text.DecimalFormatSymbols;
 
@@ -26,7 +29,7 @@ public class AddressTest {
     public void testStreetAddressIsANumber() {
         final String streetAddressNumber = faker.address().streetAddressNumber();
         logger.info("Street Address Number: " + streetAddressNumber);
-        assertThat(streetAddressNumber, isANumber());
+        assertThat(streetAddressNumber, matchesRegularExpression("[0-9]+ [A-Za-z0-9 ]+"));
     }
 
     @Test
@@ -69,5 +72,20 @@ public class AddressTest {
     @Test
     public void testCity() {
         assertThat(faker.address().city(), matchesRegularExpression("[A-Za-z ]+"));
+    }
+
+    @Test
+    public void testCountry() {
+        assertThat(faker.address().country(), matchesRegularExpression("[A-Za-z ]+"));
+    }
+
+    @Test
+    public void testCountryCode() {
+        assertThat(faker.address().countryCode(), matchesRegularExpression("[A-Za-z ]+"));
+    }
+
+    @Test
+    public void testStreetAddressIncludeSecondary() {
+        assertThat(faker.address().streetAddress(true), not(isEmptyString()));
     }
 }

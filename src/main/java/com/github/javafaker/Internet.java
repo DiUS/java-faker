@@ -1,6 +1,6 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang.StringUtils;
 
@@ -9,10 +9,10 @@ import static org.apache.commons.lang.StringUtils.join;
 public class Internet {
 
     private final Name name;
-    private final FakeValuesService fakeValuesService;
+    private final FakeValuesServiceInterface fakeValuesService;
     private final RandomService randomService;
 
-    public Internet(Name name, FakeValuesService fakeValuesService, RandomService randomService) {
+    public Internet(Name name, FakeValuesServiceInterface fakeValuesService, RandomService randomService) {
         this.name = name;
         this.fakeValuesService = fakeValuesService;
         this.randomService = randomService;
@@ -69,6 +69,7 @@ public class Internet {
      */
     public String image() {
         String[] dimension = StringUtils.split(fakeValuesService.fetchString("internet.image_dimension"), 'x');
+        if (dimension .length == 0) return "";
         return image(
                 Integer.valueOf(StringUtils.trim(dimension[0])), Integer.valueOf(StringUtils.trim(dimension[1])),
                 randomService.nextBoolean(), null);

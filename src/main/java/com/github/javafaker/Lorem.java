@@ -1,10 +1,12 @@
 package com.github.javafaker;
 
 import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.apache.commons.lang.StringUtils.capitalize;
@@ -12,20 +14,19 @@ import static org.apache.commons.lang.StringUtils.join;
 
 public class Lorem {
 
-    private final FakeValuesService fakeValuesService;
+    private final FakeValuesServiceInterface fakeValuesService;
     private final RandomService randomService;
 
-    public Lorem(FakeValuesService fakeValuesService, RandomService randomService) {
+    public Lorem(FakeValuesServiceInterface fakeValuesService, RandomService randomService) {
         this.fakeValuesService = fakeValuesService;
         this.randomService = randomService;
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public List<String> words(int num) {
-        List<String> words = (List<String>) fakeValuesService.fetchObject("lorem.words");
         List<String> returnList = new ArrayList();
         for (int i = 0; i < num; i++) {
-            returnList.add(words.get(randomService.nextInt(words.size())));
+            returnList.add(word());
         }
         return returnList;
     }
@@ -35,8 +36,7 @@ public class Lorem {
     }
 
     public String word() {
-        List<String> words = (List<String>) fakeValuesService.fetchObject("lorem.words");
-        return words.get(randomService.nextInt(words.size()));
+        return fakeValuesService.safeFetch("lorem.words");
     }
 
     public String sentence(int wordCount) {

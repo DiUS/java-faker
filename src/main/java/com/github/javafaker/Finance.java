@@ -1,16 +1,16 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Finance {
-    private final FakeValuesService fakeValuesService;
+    private final FakeValuesServiceInterface fakeValuesService;
     private final RandomService randomService;
 
-    public Finance(FakeValuesService fakeValuesService, RandomService randomService) {
+    public Finance(FakeValuesServiceInterface fakeValuesService, RandomService randomService) {
         this.fakeValuesService = fakeValuesService;
         this.randomService = randomService;
     }
