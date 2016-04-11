@@ -5,16 +5,20 @@ import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
+import java.util.Scanner;
+
 public class IsANumber extends TypeSafeMatcher<String> {
 
     @Override
     protected boolean matchesSafely(String item) {
-        try {
-            new Double(item);
-        } catch (NumberFormatException nfe) {
+        Scanner scanner = new Scanner(item);
+        boolean firstTokenIsNumberic = scanner.hasNextInt() || scanner.hasNextDouble();
+        if (firstTokenIsNumberic) {
+            scanner.next();
+            return !scanner.hasNext();
+        } else {
             return false;
         }
-        return true;
     }
 
     @Override
