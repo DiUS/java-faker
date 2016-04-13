@@ -69,7 +69,7 @@ public class DateAndTime {
     public Date past(int atMost, TimeUnit unit) {
         Date now = new Date();
         Date aBitEarlierThanNow = new Date(now.getTime() - 1000);
-        return future(atMost, unit, aBitEarlierThanNow);
+        return past(atMost, unit, aBitEarlierThanNow);
     }
 
     /**

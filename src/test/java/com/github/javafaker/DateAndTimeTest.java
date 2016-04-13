@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.github.javafaker;
 
@@ -16,7 +16,6 @@ import org.junit.Test;
 
 /**
  * @author pmiklos
- *
  */
 public class DateAndTimeTest {
 
@@ -39,14 +38,21 @@ public class DateAndTimeTest {
     }
 
     @Test
-    public void testPastDate() {
+    public void testPastDateWithReferenceDate() {
         Date now = new Date();
 
         for (int i = 0; i < 1000; i++) {
-            Date future = faker.date().past(1, TimeUnit.SECONDS, now);
-            assertThat("future date", future.getTime(), lessThan(now.getTime()));
-            assertThat("past date over range", future.getTime(), greaterThan(now.getTime() - 1000));
+            Date past = faker.date().past(1, TimeUnit.SECONDS, now);
+            assertThat("past date", past.getTime(), lessThan(now.getTime()));
+            assertThat("past date over range", past.getTime(), greaterThan(now.getTime() - 1000));
         }
+    }
+
+    @Test
+    public void testPastDate() {
+        Date now = new Date();
+        Date past = faker.date().past(100, TimeUnit.SECONDS);
+        assertThat("past date is in the past", past.getTime(), lessThan(now.getTime()));
     }
 
     @Test
