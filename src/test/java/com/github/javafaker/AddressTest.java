@@ -13,6 +13,8 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 
 import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import java.util.Random;
 
 public class AddressTest {
 
@@ -75,6 +77,11 @@ public class AddressTest {
     }
 
     @Test
+    public void testCityName() {
+        assertThat(faker.address().cityName(), matchesRegularExpression("[A-Za-z'() ]+"));
+    }
+
+    @Test
     public void testCountry() {
         assertThat(faker.address().country(), matchesRegularExpression("[A-Za-z\\- ]+"));
     }
@@ -87,5 +94,13 @@ public class AddressTest {
     @Test
     public void testStreetAddressIncludeSecondary() {
         assertThat(faker.address().streetAddress(true), not(isEmptyString()));
+    }
+
+    @Test
+    public void testCityWithLocaleFranceAndSeed() {
+        long seed = 1L;
+        Faker firstFaker = new Faker(Locale.FRANCE, new Random(seed));
+        Faker secondFaker = new Faker(Locale.FRANCE, new Random(seed));
+        assertThat(firstFaker.address().city(), is(secondFaker.address().city()));
     }
 }

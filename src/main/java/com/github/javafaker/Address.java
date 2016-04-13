@@ -62,7 +62,7 @@ public class Address {
     }
 
     public String cityName() {
-        return city();
+        return resolve("address.city_name");
     }
 
     public String state() {
