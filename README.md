@@ -19,7 +19,7 @@ In pom.xml, add following between `<dependencies> ... </dependencies>`
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.7</version>
+    <version>0.8</version>
 </dependency>
 ```
 
@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.7'
+    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.8'
 }
 
 ```
