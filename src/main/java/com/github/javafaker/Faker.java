@@ -26,6 +26,7 @@ public class Faker implements Resolver {
     private final PhoneNumber phoneNumber;
     private final Address address;
     private final Business business;
+    private final Book book;
     private final Company company;
     private final Options options;
     private final Code code;
@@ -56,6 +57,7 @@ public class Faker implements Resolver {
         this.internet = new Internet(name, proxiedFakeValueService, randomService);
         this.phoneNumber = new PhoneNumber(proxiedFakeValueService);
         this.address = new Address(this, name, proxiedFakeValueService, randomService);
+        this.book = new Book(this, proxiedFakeValueService);
         this.business = new Business(proxiedFakeValueService);
         this.company = new Company(this, proxiedFakeValueService);
         this.options = new Options(randomService);
@@ -126,6 +128,10 @@ public class Faker implements Resolver {
 
     public Address address() {
         return address;
+    }
+
+    public Book book() {
+        return book;
     }
 
     public Business business() {
