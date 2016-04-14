@@ -24,4 +24,14 @@ public class CompanyTest {
     public void testSuffix() {
         assertThat(faker.company().suffix(), matchesRegularExpression("[A-Za-z ]+"));
     }
+
+    @Test
+    public void testIndustry() {
+        assertThat(faker.company().industry(), matchesRegularExpression("[A-Za-z\\-/& ]+"));
+    }
+
+    @Test
+    public void testProfession() {
+        assertThat(faker.company().profession(), matchesRegularExpression("[a-z ]+"));
+    }
 }
