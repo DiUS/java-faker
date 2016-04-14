@@ -18,4 +18,12 @@ public class Company {
     public String suffix() {
         return fakeValuesService.safeFetch("company.suffix");
     }
+
+    public String industry() {
+        return fakeValuesService.safeFetch("company.industry");
+    }
+
+    public String profession() {
+        return fakeValuesService.safeFetch("company.profession");
+    }
 }
