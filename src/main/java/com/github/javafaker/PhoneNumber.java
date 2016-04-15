@@ -10,6 +10,10 @@ public class PhoneNumber {
         this.fakeValuesService = fakeValuesService;
     }
 
+    public String cellPhone() {
+        return fakeValuesService.numerify(fakeValuesService.fetchString("cell_phone.formats"));
+    }
+
     public String phoneNumber() {
         return fakeValuesService.numerify(fakeValuesService.fetchString("phone_number.formats"));
     }
