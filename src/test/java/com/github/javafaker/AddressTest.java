@@ -2,8 +2,6 @@ package com.github.javafaker;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.github.javafaker.matchers.IsANumber.isANumber;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
@@ -18,7 +16,6 @@ import java.util.Random;
 
 public class AddressTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(AddressTest.class);
     private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
     private Faker faker;
 
@@ -82,7 +79,7 @@ public class AddressTest {
 
     @Test
     public void testCountry() {
-        assertThat(faker.address().country(), matchesRegularExpression("[A-Za-z\\-  &.]+"));
+        assertThat(faker.address().country(), matchesRegularExpression("[A-Za-z\\- &.,'()\\d]+"));
     }
 
     @Test

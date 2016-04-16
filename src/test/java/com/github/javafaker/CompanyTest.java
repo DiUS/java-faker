@@ -27,7 +27,7 @@ public class CompanyTest {
 
     @Test
     public void testIndustry() {
-        assertThat(faker.company().industry(), matchesRegularExpression("[A-Za-z\\-/& ]+"));
+        assertThat(faker.company().industry(), matchesRegularExpression("(\\w+([ ,&/-]{1,3})?){1,4}+"));
     }
 
     @Test
