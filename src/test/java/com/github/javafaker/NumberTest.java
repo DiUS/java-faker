@@ -42,7 +42,6 @@ public class NumberTest {
     public void testRandomNumberWithSingleDigitStrict() {
         for (int i = 0; i < 100; ++i) {
             long value = faker.number().randomNumber(1, true);
-            System.out.println(value);
             assertTrue(value < 10 && value >= 0);
         }
     }
