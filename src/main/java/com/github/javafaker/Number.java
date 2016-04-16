@@ -3,7 +3,6 @@ package com.github.javafaker;
 import com.github.javafaker.service.RandomService;
 
 import java.math.BigDecimal;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Number {
 
