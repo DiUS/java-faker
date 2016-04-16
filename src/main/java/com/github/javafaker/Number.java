@@ -61,15 +61,8 @@ public class Number {
     }
 
     public double randomDouble(int maxNumberOfDecimals, int min, int max) {
-        double value = ThreadLocalRandom.current().nextDouble((double) min, (double) max);
+        double value = min + (max - min) * randomService.nextDouble();
 
         return new BigDecimal(value).setScale(maxNumberOfDecimals, BigDecimal.ROUND_HALF_EVEN).doubleValue();
     }
-
-    private void checkMinMax(Long min, Long max) {
-        if (min > max) {
-            throw new IllegalArgumentException("min value is higher than max value");
-        }
-    }
-
 }
