@@ -22,6 +22,7 @@ public class Faker implements Resolver {
     private final FakeValuesService fakeValuesService;
     private final Lorem lorem;
     private final Name name;
+    private final Number number;
     private final Internet internet;
     private final PhoneNumber phoneNumber;
     private final Address address;
@@ -55,6 +56,7 @@ public class Faker implements Resolver {
 
         this.lorem = new Lorem(proxiedFakeValueService, randomService);
         this.name = new Name(this, proxiedFakeValueService);
+        this.number = new Number(randomService);
         this.internet = new Internet(name, proxiedFakeValueService, randomService);
         this.phoneNumber = new PhoneNumber(proxiedFakeValueService);
         this.address = new Address(this, name, proxiedFakeValueService, randomService);
@@ -115,6 +117,8 @@ public class Faker implements Resolver {
     public Name name() {
         return name;
     }
+
+    public Number number() { return number; }
 
     public Internet internet() {
         return internet;
