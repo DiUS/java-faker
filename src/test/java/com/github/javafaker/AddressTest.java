@@ -30,7 +30,6 @@ public class AddressTest {
     @Test
     public void testStreetAddressIsANumber() {
         final String streetAddressNumber = faker.address().streetAddressNumber();
-        logger.info("Street Address Number: " + streetAddressNumber);
         assertThat(streetAddressNumber, matchesRegularExpression("[0-9]+ [A-Za-z0-9' ]+"));
     }
 
@@ -83,7 +82,7 @@ public class AddressTest {
 
     @Test
     public void testCountry() {
-        assertThat(faker.address().country(), matchesRegularExpression("[A-Za-z\\-  &]+"));
+        assertThat(faker.address().country(), matchesRegularExpression("[A-Za-z\\-  &.]+"));
     }
 
     @Test
