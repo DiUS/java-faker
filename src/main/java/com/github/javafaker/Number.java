@@ -22,7 +22,7 @@ public class Number {
     /**
      * Returns a random number between 1 and 9
      */
-    public int randomDigitNotNull() {
+    public int randomDigitNotZero() {
         return randomService.nextInt(8) + 1;
     }
 
@@ -53,11 +53,23 @@ public class Number {
         return randomService.nextLong(max);
     }
 
+    /**
+     * Returns a ranbom number
+     */
+
     public long randomNumber() {
         int numberOfDigits = randomService.nextInt(8) + 1;
 
         return randomNumber(numberOfDigits, false);
     }
+
+    /**
+     * Returns a random double
+     *
+     * @param maxNumberOfDecimals maximum number of places
+     * @param min minimum value
+     * @param max maximum value
+     */
 
     public double randomDouble(int maxNumberOfDecimals, int min, int max) {
         double value = min + (max - min) * randomService.nextDouble();

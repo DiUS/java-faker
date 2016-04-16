@@ -4,9 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.lang.*;
-import java.lang.Number;
 import java.math.BigDecimal;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.number.OrderingComparison.*;
 import static org.junit.Assert.*;
 
 public class NumberTest {
@@ -22,29 +23,32 @@ public class NumberTest {
     public void testRandomDigit() {
         for (int i = 0; i < 1000; ++i) {
             int value = faker.number().randomDigit();
-            assertTrue(value <= 9 && value >= 0);
+            assertThat(value, is(lessThanOrEqualTo(9)));
+            assertThat(value, is(greaterThanOrEqualTo(0)));
         }
     }
 
     @Test
-    public void testRandomDigitNotNull() {
+    public void testRandomDigitNotZero() {
         for (int i = 0; i < 1000; ++i) {
-            int value = faker.number().randomDigitNotNull();
-            assertTrue(value <= 9 && value > 0);
+            int value = faker.number().randomDigitNotZero();
+            assertThat(value, is(lessThanOrEqualTo(9)));
+            assertThat(value, is(greaterThan(0)));
         }
     }
 
     @Test
     public void testRandomNumber() {
         long value = faker.number().randomNumber();
-        assertTrue(value < Long.MAX_VALUE);
+        assertThat(value, is(lessThan(Long.MAX_VALUE)));
     }
 
     @Test
     public void testRandomNumberWithSingleDigitStrict() {
         for (int i = 0; i < 100; ++i) {
             long value = faker.number().randomNumber(1, true);
-            assertTrue(value < 10 && value >= 0);
+            assertThat(value, is(lessThan(10L)));
+            assertThat(value, is(greaterThanOrEqualTo(0L)));
         }
     }
 
@@ -54,7 +58,7 @@ public class NumberTest {
             for (int x = 0; x < 100; ++x) {
                 long value = faker.number().randomNumber(i, true);
                 String stringValue = String.valueOf(value);
-                assertEquals(i, stringValue.length());
+                assertThat(stringValue.length(), is(i));
             }
         }
     }
@@ -67,7 +71,7 @@ public class NumberTest {
                 String strVal = BigDecimal.valueOf(value).stripTrailingZeros().toString();
                 if (strVal.contains(".") && !strVal.contains("+")) {
                     int ind = strVal.indexOf(".");
-                    assertTrue(i >= strVal.length() - ind - 1);
+                    assertThat(strVal.length() - ind - 1, is(lessThanOrEqualTo(i)));
                 }
             }
         }
@@ -77,16 +81,19 @@ public class NumberTest {
     public void testNumberBetween() {
         for (int i = 1; i < 100; ++i) {
             int v = faker.number().numberBetween(0, i);
-            assertTrue(v <= i && v >= 0);
+            assertThat(v, is(lessThanOrEqualTo(i)));
+            assertThat(v, is(greaterThanOrEqualTo(0)));
         }
 
         for (long i = 1L; i < 100L; ++i) {
             long v = faker.number().numberBetween(0, i);
-            assertTrue(v <= i && v >= 0);
+            assertThat(v, is(lessThanOrEqualTo(i)));
+            assertThat(v, is(greaterThanOrEqualTo(0L)));
         }
 
         int min1 = 1;
         long v1 = faker.number().numberBetween(min1, 980000000L);
-        assertTrue(v1 > min1 && v1 < 980000000L);
+        assertThat(v1, is(greaterThan((long) min1)));
+        assertThat(v1, is(lessThan(980000000L)));
     }
 }
