@@ -52,6 +52,77 @@ Javadoc
 -----
 http://dius.github.io/java-faker/apidocs/index.html
 
+
+Fakers
+-----
+* Address
+* Book
+* Business
+* Code
+* Color
+* Company
+* CreditCardType
+* DateAndTime
+* Faker
+* Finance
+* Internet
+* Lorem
+* Name
+* Number
+* Options
+* PhoneNumber
+
+
+Usage with Locales
+-----
+
+```java
+Faker faker = new Faker(new Locale("{YOUR_LOCALE}"));
+```
+
+Supported Locales
+-----
+* ca
+* ca-CAT
+* da-DK
+* de
+* de-AT
+* de-CH
+* en 2
+* en
+* en-AU
+* en-au-ocker
+* en-BORK
+* en-CA
+* en-GB
+* en-IND
+* en-NEP
+* en-NZ
+* en-SG
+* en-UG
+* en-US
+* es
+* fa
+* fi-FI
+* fr
+* he
+* it
+* ja
+* ko
+* nb-NO
+* nl
+* pl
+* pt
+* pt-BR
+* ru
+* sk
+* sv
+* uk
+* vi
+* zh-CN
+* zh-TW
+
+
 How to build
 ------------
 1. Make sure Apache Maven 3 is installed. ($ mvn --version)
