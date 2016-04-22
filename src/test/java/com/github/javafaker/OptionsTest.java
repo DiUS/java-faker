@@ -1,12 +1,10 @@
 package com.github.javafaker;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.isOneOf;
+import static org.junit.Assert.assertThat;
 
 public class OptionsTest {
 
@@ -20,8 +18,12 @@ public class OptionsTest {
     }
 
     @Test
-    public void testOption() {
-        List<String> helper = Arrays.asList(options);
-        assertTrue(helper.contains(faker.options().option(options)));
+    public void testOptionWithArray() {
+        assertThat(faker.options().option(options), isOneOf(options));
+    }
+
+    @Test
+    public void testOptionWithVarargs() {
+        assertThat(faker.options().option("A", "B", "C"), isOneOf(options));
     }
 }
