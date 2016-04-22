@@ -9,7 +9,7 @@ public class Options {
         this.randomService = randomService;
     }
 
-    public String option(String[] options) {
+    public String option(String... options) {
         return options[randomService.nextInt(options.length)];
     }
 }
