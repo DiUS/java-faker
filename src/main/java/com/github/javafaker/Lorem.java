@@ -1,12 +1,10 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.apache.commons.lang.StringUtils.capitalize;

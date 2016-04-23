@@ -3,11 +3,8 @@ package com.github.javafaker;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Locale;
-
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 
