@@ -3,11 +3,8 @@ package com.github.javafaker;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Locale;
-
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 
@@ -43,6 +40,71 @@ public class FakerTest {
     @Test
     public void numerifyShouldLeaveNonSpecialCharactersAlone() {
         assertThat(faker.numerify("####123"), matchesRegularExpression("\\d{4}123"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateNumbers() {
+        assertThat(faker.regexify("\\d"), matchesRegularExpression("\\d"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateLetters() {
+        assertThat(faker.regexify("\\w"), matchesRegularExpression("\\w"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateAlternations() {
+        assertThat(faker.regexify("(a|b)"), matchesRegularExpression("(a|b)"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateBasicCharacterClasses() {
+        assertThat(faker.regexify("(aeiou)"), matchesRegularExpression("(aeiou)"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateCharacterClassRanges() {
+        assertThat(faker.regexify("[a-z]"), matchesRegularExpression("[a-z]"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateMultipleCharacterClassRanges() {
+        assertThat(faker.regexify("[a-z1-9]"), matchesRegularExpression("[a-z1-9]"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateSingleCharacterQuantifiers() {
+        assertThat(faker.regexify("a*b+c?"), matchesRegularExpression("a*b+c?"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateBracketsQuantifiers() {
+        assertThat(faker.regexify("a{2}"), matchesRegularExpression("a{2}"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateMinMaxQuantifiers() {
+        assertThat(faker.regexify("a{2,3}"), matchesRegularExpression("a{2,3}"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateBracketsQuantifiersOnBasicCharacterClasses() {
+        assertThat(faker.regexify("[aeiou]{2,3}"), matchesRegularExpression("[aeiou]{2,3}"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateBracketsQuantifiersOnCharacterClassRanges() {
+        assertThat(faker.regexify("[a-z]{2,3}"), matchesRegularExpression("[a-z]{2,3}"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateBracketsQuantifiersOnAlternations() {
+        assertThat(faker.regexify("(a|b){2,3}"), matchesRegularExpression("(a|b){2,3}"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateEscapedCharacters() {
+        assertThat(faker.regexify("\\.\\*\\?\\+"), matchesRegularExpression("\\.\\*\\?\\+"));
     }
 
     @Test
