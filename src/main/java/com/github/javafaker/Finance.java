@@ -39,6 +39,13 @@ public class Finance {
         return template.replace('\\', ' ').replace('/', ' ').trim().replace('L', String.valueOf(luhnDigit).charAt(0));
     }
 
+    /**
+     * Generates a random Business Identifier Code
+     */
+    public String bic() {
+        return fakeValuesService.regexify("([A-Z]){4}([A-Z]){2}([0-9A-Z]){2}([0-9A-Z]{3})?");
+    }
+
     private CreditCardType randomCreditCardType() {
         return CreditCardType.values()[this.randomService.nextInt(CreditCardType.values().length)];
     }
