@@ -56,15 +56,17 @@ http://dius.github.io/java-faker/apidocs/index.html
 Fakers
 -----
 * Address
+* App
 * Book
 * Business
 * Code
 * Color
+* Commerce
 * Company
 * CreditCardType
 * DateAndTime
-* Faker
 * Finance
+* Hacker
 * Internet
 * Lorem
 * Name
