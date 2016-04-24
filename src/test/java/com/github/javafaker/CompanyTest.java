@@ -31,6 +31,26 @@ public class CompanyTest {
     }
 
     @Test
+    public void testBuzzword() {
+        assertThat(faker.company().buzzword(), matchesRegularExpression("(\\w+[ /-]?){1,2}"));
+    }
+
+    @Test
+    public void testCatchPhrase() {
+        assertThat(faker.company().catchPhrase(), matchesRegularExpression("(\\w+[ /-]?){1,9}"));
+    }
+
+    @Test
+    public void testBs() {
+        assertThat(faker.company().bs(), matchesRegularExpression("(\\w+[ /-]?){1,9}"));
+    }
+
+    @Test
+    public void testLogo() {
+        assertThat(faker.company().logo(), matchesRegularExpression("https://pigment.github.io/fake-logos/logos/medium/color/\\d+\\.png"));
+    }
+
+    @Test
     public void testProfession() {
         assertThat(faker.company().profession(), matchesRegularExpression("[a-z ]+"));
     }
