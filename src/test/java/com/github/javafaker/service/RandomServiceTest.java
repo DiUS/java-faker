@@ -50,38 +50,4 @@ public class RandomServiceTest {
         assertThat(randomService.nextLong(Long.MAX_VALUE), greaterThan(0L));
         assertThat(randomService.nextLong(Long.MAX_VALUE), lessThan(Long.MAX_VALUE));
     }
-
-    @Test
-    public void testLongUniformDistribution() {
-        assumeTrue(Boolean.getBoolean("probabilisticTestsEnabled"));
-
-        long max = 100;
-        int sampleSize = 10;
-        double expectedMean = max / 2.0;
-        double expectedDeviation = Math.sqrt(max * max / 12);
-
-        double sampleMean = 0.0;
-        long[] numbers = new long[sampleSize];
-        for (int i = 0; i < sampleSize; i++) {
-            numbers[i] = randomService.nextLong(max);
-            sampleMean += numbers[i] / (double) sampleSize;
-        }
-
-        double sampleVariance = 0.0;
-        for (int i = 0; i < sampleSize; i++) {
-            double diff = numbers[i] - sampleMean;
-            sampleVariance += diff * diff / (sampleSize - 1);
-        }
-
-        double sampleDeviation = Math.sqrt(sampleVariance);
-
-        assertThat(sampleMean, greaterThan(expectedMean - expectedDeviation));
-        assertThat(sampleMean, lessThan(expectedMean + expectedDeviation));
-
-        assertThat(sampleVariance, greaterThan(0.0));
-
-        logger.info("nextLong(n): sampleMean=" + sampleMean + " (expected: " + expectedMean + ")");
-        logger.info("nextLong(n): sampleVariance=" + sampleDeviation + " (expected: " + expectedDeviation + ")");
-    }
-
 }
