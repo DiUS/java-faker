@@ -114,6 +114,13 @@ public class Faker implements Resolver {
         return fakeValuesService.bothify(string);
     }
 
+    /**
+     * Generates a String that matches the given regular expression,
+     */
+    public String regexify(String regex) {
+        return fakeValuesService.regexify(regex);
+    }
+
     public Name name() {
         return name;
     }

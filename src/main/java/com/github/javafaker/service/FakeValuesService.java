@@ -1,6 +1,8 @@
 package com.github.javafaker.service;
 
 import com.github.javafaker.Resolver;
+import com.mifmif.common.regex.Generex;
+
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
@@ -136,6 +138,12 @@ public class FakeValuesService implements FakeValuesServiceInterface {
         return letterify(numerify(string));
     }
 
+    /**
+     * Generates a String that matches the given regular expression.
+     */
+    public String regexify(String regex) {
+        return new Generex(regex).random();
+    }
 
     /**
      * Returns a string with the '?' characters in the parameter replaced with random alphabetic

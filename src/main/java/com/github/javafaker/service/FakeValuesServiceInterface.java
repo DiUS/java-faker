@@ -18,5 +18,7 @@ public interface FakeValuesServiceInterface {
 
     String letterify(String letterString);
 
+    String regexify(String regex);
+
     String resolve(String key, Object current, Resolver resolver);
 }
