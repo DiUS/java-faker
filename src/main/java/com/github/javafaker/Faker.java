@@ -66,8 +66,8 @@ public class Faker implements Resolver {
         this.book = new Book(this, proxiedFakeValueService);
         this.business = new Business(proxiedFakeValueService);
         this.color = new Color(proxiedFakeValueService);
-        this.company = new Company(this, proxiedFakeValueService);
         this.hacker = new Hacker(proxiedFakeValueService);
+        this.company = new Company(this, proxiedFakeValueService, randomService);
         this.options = new Options(randomService);
         this.code = new Code(randomService);
         this.finance = new Finance(proxiedFakeValueService, randomService);
