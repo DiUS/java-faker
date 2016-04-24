@@ -1,7 +1,6 @@
 package com.github.javafaker.integration;
 
 import com.github.javafaker.Faker;
-import com.github.javafaker.service.DefaultingFakeValuesService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -11,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Proxy;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;

@@ -3,7 +3,6 @@ package com.github.javafaker;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.*;
 import java.math.BigDecimal;
 
 import static org.hamcrest.core.Is.is;
