@@ -30,6 +30,7 @@ public class Faker implements Resolver {
     private final Book book;
     private final Color color;
     private final Company company;
+    private final Hacker hacker;
     private final Options options;
     private final Code code;
     private final Finance finance;
@@ -64,6 +65,7 @@ public class Faker implements Resolver {
         this.business = new Business(proxiedFakeValueService);
         this.color = new Color(proxiedFakeValueService);
         this.company = new Company(this, proxiedFakeValueService);
+        this.hacker = new Hacker(proxiedFakeValueService);
         this.options = new Options(randomService);
         this.code = new Code(randomService);
         this.finance = new Finance(proxiedFakeValueService, randomService);
@@ -152,6 +154,10 @@ public class Faker implements Resolver {
         return company;
     }
 
+    public Hacker hacker() {
+        return hacker;
+    }
+
     public Options options() {
         return options;
     }
@@ -189,5 +195,4 @@ public class Faker implements Resolver {
             throw new RuntimeException(e);
         }
     }
-
 }
