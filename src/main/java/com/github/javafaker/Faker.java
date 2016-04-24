@@ -20,6 +20,7 @@ import java.util.Random;
 public class Faker implements Resolver {
     private final RandomService randomService;
     private final FakeValuesService fakeValuesService;
+    private final App app;
     private final Lorem lorem;
     private final Name name;
     private final Number number;
@@ -55,6 +56,7 @@ public class Faker implements Resolver {
         FakeValuesServiceInterface proxiedFakeValueService = createProxiedFakeValuesService(fakeValuesService,
                 defaultEnglishFakeValuesService);
 
+        this.app = new App(this, proxiedFakeValueService);
         this.lorem = new Lorem(proxiedFakeValueService, randomService);
         this.name = new Name(this, proxiedFakeValueService);
         this.number = new Number(randomService);
@@ -121,6 +123,10 @@ public class Faker implements Resolver {
      */
     public String regexify(String regex) {
         return fakeValuesService.regexify(regex);
+    }
+
+    public App app() {
+        return app;
     }
 
     public Name name() {
