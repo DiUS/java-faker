@@ -38,6 +38,7 @@ public class Faker implements Resolver {
     private final Finance finance;
     private final DateAndTime dateAndTime;
     private final Superhero superhero;
+    private final Bool bool;
     private final Team team;
 
     public Faker() {
@@ -78,6 +79,7 @@ public class Faker implements Resolver {
         this.dateAndTime = new DateAndTime(randomService);
         this.superhero = new Superhero(this, proxiedFakeValueService);
         this.team = new Team(this, proxiedFakeValueService);
+        this.bool = new Bool(randomService);
     }
 
     private static FakeValuesServiceInterface createProxiedFakeValuesService(FakeValuesServiceInterface fakeValuesServiceInterface,
@@ -199,6 +201,10 @@ public class Faker implements Resolver {
 
     public Superhero superhero() {
         return superhero;
+    }
+    
+    public Bool bool() {
+        return bool;
     }
 
     public Team team() {

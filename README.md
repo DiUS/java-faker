@@ -58,6 +58,7 @@ Fakers
 * Address
 * App
 * Book
+* Bool
 * Business
 * Code
 * Color
