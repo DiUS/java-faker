@@ -27,7 +27,7 @@ public class HackerTest {
 
     @Test
     public void testNoun() {
-        assertThat(faker.hacker().noun(), matchesRegularExpression("\\w+"));
+        assertThat(faker.hacker().noun(), matchesRegularExpression("\\w+( \\w+)?"));
     }
 
     @Test
