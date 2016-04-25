@@ -1,27 +1,21 @@
-/**
- * 
- */
 package com.github.javafaker.service;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assume.assumeTrue;
-
-import java.util.Random;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author pmiklos
  *
  */
 public class RandomServiceTest {
-    
+
     private RandomService randomService;
 
     @Before
