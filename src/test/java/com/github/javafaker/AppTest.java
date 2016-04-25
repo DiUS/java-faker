@@ -17,7 +17,7 @@ public class AppTest {
 
     @Test
     public void testName() {
-        assertThat(faker.app().name(), matchesRegularExpression("\\w+"));
+        assertThat(faker.app().name(), matchesRegularExpression("[\\w-]+"));
     }
 
     @Test
