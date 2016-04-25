@@ -3,11 +3,14 @@ package com.github.javafaker;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.text.DecimalFormatSymbols;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class CommerceTest {
 
+    private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
     private Faker faker;
 
     @Before
@@ -35,4 +38,13 @@ public class CommerceTest {
         assertThat(faker.commerce().material(), matchesRegularExpression("\\w+"));
     }
 
+    @Test
+    public void testPrice() {
+        assertThat(faker.commerce().price(), matchesRegularExpression("\\d{1,3}\\" + decimalSeparator + "\\d{2}"));
+    }
+
+    @Test
+    public void testPriceMinMax() {
+        assertThat(faker.commerce().price(100, 1000), matchesRegularExpression("\\d{3,4}\\" + decimalSeparator + "\\d{2}"));
+    }
 }

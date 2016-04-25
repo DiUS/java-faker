@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import java.text.DecimalFormat;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -44,5 +45,17 @@ public class Commerce {
 
     public String material() {
         return fakeValuesService.fetchString("commerce.product_name.material");
+    }
+
+    /**
+     * Generate a random price between 0.00 and 100.00 
+     */
+    public String price() {
+        return price(0, 100);
+    }
+
+    public String price(double min, double max) {
+        double price =  min + (randomService.nextDouble() * (max - min));
+        return new DecimalFormat("#0.00").format(price);
     }
 }
