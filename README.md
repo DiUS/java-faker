@@ -73,6 +73,7 @@ Fakers
 * Number
 * Options
 * PhoneNumber
+* Superhero
 
 
 Usage with Locales
