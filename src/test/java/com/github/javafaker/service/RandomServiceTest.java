@@ -21,9 +21,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class RandomServiceTest {
-
-    private static final Logger logger = LoggerFactory.getLogger(RandomServiceTest.class);
-
+    
     private RandomService randomService;
 
     @Before
