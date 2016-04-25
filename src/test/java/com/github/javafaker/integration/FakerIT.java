@@ -80,10 +80,12 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.name());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.finance());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.superhero());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.team());
     }
 
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws IllegalAccessException, InvocationTargetException {
+        @SuppressWarnings("unchecked")
         Set<Method> methodsThatReturnStrings = getAllMethods(object.getClass(),
                 withModifier(Modifier.PUBLIC),
                 withReturnType(String.class),

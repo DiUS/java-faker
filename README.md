@@ -74,6 +74,7 @@ Fakers
 * Options
 * PhoneNumber
 * Superhero
+* Team
 
 
 Usage with Locales

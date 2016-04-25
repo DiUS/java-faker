@@ -38,6 +38,7 @@ public class Faker implements Resolver {
     private final Finance finance;
     private final DateAndTime dateAndTime;
     private final Superhero superhero;
+    private final Team team;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -76,6 +77,7 @@ public class Faker implements Resolver {
         this.finance = new Finance(proxiedFakeValueService, randomService);
         this.dateAndTime = new DateAndTime(randomService);
         this.superhero = new Superhero(this, proxiedFakeValueService);
+        this.team = new Team(this, proxiedFakeValueService);
     }
 
     private static FakeValuesServiceInterface createProxiedFakeValuesService(FakeValuesServiceInterface fakeValuesServiceInterface,
@@ -123,7 +125,7 @@ public class Faker implements Resolver {
     }
 
     /**
-     * Generates a String that matches the given regular expression,
+     * Generates a String that matches the given regular expression.
      */
     public String regexify(String regex) {
         return fakeValuesService.regexify(regex);
@@ -197,6 +199,10 @@ public class Faker implements Resolver {
 
     public Superhero superhero() {
         return superhero;
+    }
+
+    public Team team() {
+        return team;
     }
 
     /**

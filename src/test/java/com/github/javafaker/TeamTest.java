@@ -6,7 +6,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AppTest {
+public class TeamTest {
 
     private Faker faker;
 
@@ -17,16 +17,16 @@ public class AppTest {
 
     @Test
     public void testName() {
-        assertThat(faker.app().name(), matchesRegularExpression("([\\w-]+ ?)+"));
+        assertThat(faker.team().name(), matchesRegularExpression("(\\w+( )?){2,4}"));
     }
 
     @Test
-    public void testVersion() {
-        assertThat(faker.app().version(), matchesRegularExpression("\\d\\.(\\d){1,2}(\\.\\d)?"));
+    public void testCreature() {
+        assertThat(faker.team().creature(), matchesRegularExpression("\\w+( \\w+)?"));
     }
 
     @Test
-    public void testAuthor() {
-        assertThat(faker.app().author(), matchesRegularExpression("([\\w']+[-& ]?){2,9}"));
+    public void testState() {
+        assertThat(faker.team().state(), matchesRegularExpression("(\\w+( )?){1,2}"));
     }
 }
