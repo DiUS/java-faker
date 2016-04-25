@@ -70,9 +70,11 @@ public class FakerIT {
     public void testAllFakerMethodsThatReturnStrings() throws Exception {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker);
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.address());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.app());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.business());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.book());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.color());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.commerce());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.company());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.internet());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lorem());
@@ -82,7 +84,6 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.superhero());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.team());
     }
-
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws IllegalAccessException, InvocationTargetException {
         @SuppressWarnings("unchecked")
