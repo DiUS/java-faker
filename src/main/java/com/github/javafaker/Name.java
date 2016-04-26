@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.github.javafaker.service.FakeValuesServiceInterface;
 
 public class Name {
@@ -13,6 +15,10 @@ public class Name {
 
     public String name() {
         return fakeValuesService.resolve("name.name", this, resolver);
+    }
+
+    public String nameWithMiddle() {
+        return fakeValuesService.resolve("name.name_with_middle", this, resolver);
     }
 
     public String fullName() {
@@ -33,5 +39,10 @@ public class Name {
 
     public String suffix() {
         return fakeValuesService.fetchString("name.suffix");
+    }
+
+    public String title() {
+        return StringUtils.join(new String[] { fakeValuesService.fetchString("name.title.descriptor"),
+                fakeValuesService.fetchString("name.title.level"), fakeValuesService.fetchString("name.title.job") }, " ");
     }
 }
