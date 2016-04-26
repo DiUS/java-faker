@@ -17,7 +17,12 @@ public class NameTest {
 
     @Test
     public void testName() {
-        assertThat(faker.name().name(), matchesRegularExpression("(\\w+\\.?( )?){2,4}"));
+        assertThat(faker.name().name(), matchesRegularExpression("(\\w+\\.?( )?){2,3}"));
+    }
+
+    @Test
+    public void testNameWithMiddle() {
+        assertThat(faker.name().nameWithMiddle(), matchesRegularExpression("(\\w+\\.?( )?){3,4}"));
     }
 
     @Test

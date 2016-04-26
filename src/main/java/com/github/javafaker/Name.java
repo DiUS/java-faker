@@ -15,6 +15,10 @@ public class Name {
         return fakeValuesService.resolve("name.name", this, resolver);
     }
 
+    public String nameWithMiddle() {
+        return fakeValuesService.resolve("name.name_with_middle", this, resolver);
+    }
+
     public String fullName() {
         return name();
     }
