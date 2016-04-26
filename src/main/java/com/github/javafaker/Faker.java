@@ -40,6 +40,7 @@ public class Faker implements Resolver {
     private final Superhero superhero;
     private final Bool bool;
     private final Team team;
+    private final Beer beer;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -80,6 +81,7 @@ public class Faker implements Resolver {
         this.superhero = new Superhero(this, proxiedFakeValueService);
         this.team = new Team(this, proxiedFakeValueService);
         this.bool = new Bool(randomService);
+        this.beer = new Beer(proxiedFakeValueService);
     }
 
     private static FakeValuesServiceInterface createProxiedFakeValuesService(FakeValuesServiceInterface fakeValuesServiceInterface,
@@ -209,6 +211,10 @@ public class Faker implements Resolver {
 
     public Team team() {
         return team;
+    }
+
+    public Beer beer() {
+        return beer;
     }
 
     /**

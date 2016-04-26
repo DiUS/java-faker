@@ -83,6 +83,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.finance());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.superhero());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.team());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.beer());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws IllegalAccessException, InvocationTargetException {

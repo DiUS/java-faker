@@ -54,6 +54,7 @@ Fakers
 -----
 * Address
 * App
+* Beer
 * Book
 * Bool
 * Business
