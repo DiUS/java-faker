@@ -23,4 +23,8 @@ public class Team {
     public String state() {
         return fakeValuesService.fetchString("address.state");
     }
+
+    public String sport() {
+        return fakeValuesService.fetchString("team.sport");
+    }
 }
