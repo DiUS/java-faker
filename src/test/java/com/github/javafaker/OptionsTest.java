@@ -26,4 +26,13 @@ public class OptionsTest {
     public void testOptionWithVarargs() {
         assertThat(faker.options().option("A", "B", "C"), isOneOf(options));
     }
+
+    @Test
+    public void testOptionWithEnum() {
+        assertThat(faker.options().option(Day.class), isOneOf(Day.values()));
+    }
+
+    public enum Day {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
 }

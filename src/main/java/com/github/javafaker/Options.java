@@ -12,4 +12,9 @@ public class Options {
     public String option(String... options) {
         return options[randomService.nextInt(options.length)];
     }
+
+    public <E extends Enum<E>> E option(Class<E> enumeration) {
+        E[] enumConstants = enumeration.getEnumConstants();
+        return enumConstants[randomService.nextInt(enumConstants.length)];
+    }
 }
