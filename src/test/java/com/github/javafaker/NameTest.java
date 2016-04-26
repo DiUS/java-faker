@@ -47,7 +47,11 @@ public class NameTest {
 
     @Test
     public void testSuffix() {
-        assertThat(faker.name().suffix(), matchesRegularExpression("\\w+"));
+        assertThat(faker.name().suffix(), matchesRegularExpression("\\w+\\.?"));
     }
 
+    @Test
+    public void testTitle() {
+        assertThat(faker.name().title(), matchesRegularExpression("(\\w+\\.?( )?){3}"));
+    }
 }
