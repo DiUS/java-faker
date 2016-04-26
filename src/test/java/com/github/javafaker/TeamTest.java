@@ -29,4 +29,9 @@ public class TeamTest {
     public void testState() {
         assertThat(faker.team().state(), matchesRegularExpression("(\\w+( )?){1,2}"));
     }
+
+    @Test
+    public void testSport() {
+        assertThat(faker.team().sport(), matchesRegularExpression("\\w+"));
+    }
 }
