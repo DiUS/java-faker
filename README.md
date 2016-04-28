@@ -58,6 +58,7 @@ Fakers
 * Book
 * Bool
 * Business
+* ChuckNorris
 * Code
 * Color
 * Commerce
