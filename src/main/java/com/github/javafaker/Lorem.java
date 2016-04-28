@@ -12,6 +12,19 @@ import static org.apache.commons.lang.StringUtils.join;
 
 public class Lorem {
 
+    static {
+        StringBuilder builder = new StringBuilder(36);
+        for (char number = '0'; number <= '9'; number++) {
+            builder.append(number);
+        }
+        for (char character = 'a'; character <= 'z'; character++) {
+            builder.append(character);
+        }
+        characters = builder.toString().toCharArray();
+    }
+
+    private static final char[] characters;
+
     private final FakeValuesServiceInterface fakeValuesService;
     private final RandomService randomService;
 
@@ -20,7 +33,26 @@ public class Lorem {
         this.randomService = randomService;
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    public char character() {
+        return characters(1).charAt(0);
+    }
+
+    public String characters() {
+        return characters(255);
+    }
+
+    public String characters(int fixedNumberOfCharacters) {
+        if (fixedNumberOfCharacters < 1) {
+            return "";
+        }
+        char[] buffer = new char[fixedNumberOfCharacters];
+        for (int i = 0; i < buffer.length; i++) {
+            buffer[i] = characters[randomService.nextInt(characters.length)];
+        }
+        return new String(buffer);
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public List<String> words(int num) {
         List<String> returnList = new ArrayList();
         for (int i = 0; i < num; i++) {

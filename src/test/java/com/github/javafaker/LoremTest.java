@@ -1,10 +1,14 @@
 package com.github.javafaker;
 
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class LoremTest {
 
@@ -24,7 +28,25 @@ public class LoremTest {
     }
 
     @Test
-    public void wordShouldNotBeNull() {
-        assertNotNull(faker.lorem().word());
+    public void wordShouldNotBeNullOrEmpty() {
+        assertThat(faker.lorem().word(), not(isEmptyOrNullString()));
+    }
+
+    @Test
+    public void testCharacter() {
+        assertThat(String.valueOf(faker.lorem().character()), matchesRegularExpression("[a-z\\d]{1}"));
+    }
+
+    @Test
+    public void testCharacters() {
+        assertThat(faker.lorem().characters(), matchesRegularExpression("[a-z\\d]{255}"));
+    }
+
+    @Test
+    public void testCharactersWithLength() {
+        assertThat(faker.lorem().characters(2), matchesRegularExpression("[a-z\\d]{2}"));
+        assertThat(faker.lorem().characters(500), matchesRegularExpression("[a-z\\d]{500}"));
+        assertThat(faker.lorem().characters(0), isEmptyString());
+        assertThat(faker.lorem().characters(-1), isEmptyString());
     }
 }
