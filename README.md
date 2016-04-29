@@ -63,6 +63,7 @@ Fakers
 * Color
 * Commerce
 * Company
+* Crypto
 * DateAndTime
 * Finance
 * Hacker
