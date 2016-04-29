@@ -127,8 +127,7 @@ Supported Locales
 
 TODO
 ----
-1. Add regexify method so we can just use the en.yml from faker as is
-2. Port more classes over as there are more entries in the yml file that we don't have classes for
+- Port more classes over as there are more entries in the yml file that we don't have classes for
 
 LICENSE
 -------
