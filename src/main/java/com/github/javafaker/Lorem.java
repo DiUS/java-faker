@@ -41,6 +41,10 @@ public class Lorem {
         return characters(255);
     }
 
+    public String characters(int minimumLength, int maximumLength) {
+        return characters(randomService.nextInt(maximumLength - minimumLength) + minimumLength);
+    }
+
     public String characters(int fixedNumberOfCharacters) {
         if (fixedNumberOfCharacters < 1) {
             return "";

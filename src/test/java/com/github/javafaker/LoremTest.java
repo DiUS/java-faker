@@ -1,8 +1,11 @@
 package com.github.javafaker;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -48,5 +51,10 @@ public class LoremTest {
         assertThat(faker.lorem().characters(500), matchesRegularExpression("[a-z\\d]{500}"));
         assertThat(faker.lorem().characters(0), isEmptyString());
         assertThat(faker.lorem().characters(-1), isEmptyString());
+    }
+
+    @Test
+    public void testCharactersMinimumMaximumLength() {
+        assertThat(faker.lorem().characters(1, 10).length(), allOf(greaterThanOrEqualTo(1), lessThanOrEqualTo(10)));
     }
 }
