@@ -39,6 +39,7 @@ public class Faker implements Resolver {
     private final Code code;
     private final Finance finance;
     private final DateAndTime dateAndTime;
+    private final Educator educator;
     private final Superhero superhero;
     private final Bool bool;
     private final Team team;
@@ -59,7 +60,7 @@ public class Faker implements Resolver {
     public Faker(Locale locale, Random random) {
         this.randomService = new RandomService(random);
         this.fakeValuesService = new FakeValuesService(locale, randomService);
-        FakeValuesService defaultEnglishFakeValuesService = new FakeValuesService(locale.ENGLISH, randomService);
+        FakeValuesService defaultEnglishFakeValuesService = new FakeValuesService(Locale.ENGLISH, randomService);
         FakeValuesServiceInterface proxiedFakeValueService = createProxiedFakeValuesService(fakeValuesService,
                 defaultEnglishFakeValuesService);
 
@@ -82,6 +83,7 @@ public class Faker implements Resolver {
         this.code = new Code(randomService);
         this.finance = new Finance(proxiedFakeValueService, randomService);
         this.dateAndTime = new DateAndTime(randomService);
+        this.educator = new Educator(proxiedFakeValueService);
         this.superhero = new Superhero(this, proxiedFakeValueService);
         this.team = new Team(this, proxiedFakeValueService);
         this.bool = new Bool(randomService);
@@ -211,6 +213,10 @@ public class Faker implements Resolver {
 
     public DateAndTime date() {
         return dateAndTime;
+    }
+
+    public Educator educator() {
+        return educator;
     }
 
     public Superhero superhero() {
