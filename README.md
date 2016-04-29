@@ -125,12 +125,6 @@ Supported Locales
 * zh-CN
 * zh-TW
 
-
-How to build
-------------
-1. Make sure Apache Maven 3 is installed. ($ mvn --version)
-2. $ mvn package
-
 TODO
 ----
 1. Add regexify method so we can just use the en.yml from faker as is
