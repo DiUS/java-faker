@@ -38,6 +38,7 @@ public class Faker implements Resolver {
     private final Code code;
     private final Finance finance;
     private final DateAndTime dateAndTime;
+    private final Shakespeare shakespeare;
     private final Superhero superhero;
     private final Bool bool;
     private final Team team;
@@ -80,6 +81,7 @@ public class Faker implements Resolver {
         this.code = new Code(randomService);
         this.finance = new Finance(proxiedFakeValueService, randomService);
         this.dateAndTime = new DateAndTime(randomService);
+        this.shakespeare = new Shakespeare(randomService);
         this.superhero = new Superhero(this, proxiedFakeValueService);
         this.team = new Team(this, proxiedFakeValueService);
         this.bool = new Bool(randomService);
@@ -207,6 +209,10 @@ public class Faker implements Resolver {
         return dateAndTime;
     }
 
+    public Shakespeare shakespeare() {
+        return shakespeare;
+    }
+
     public Superhero superhero() {
         return superhero;
     }
@@ -244,4 +250,5 @@ public class Faker implements Resolver {
             throw new RuntimeException(e);
         }
     }
+
 }

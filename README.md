@@ -72,6 +72,7 @@ Fakers
 * Number
 * Options
 * PhoneNumber
+* Shakespeare
 * Superhero
 * Team
 
