@@ -37,7 +37,7 @@ public class NameTest {
 
     @Test
     public void testLastName() {
-        assertThat(faker.name().lastName(), matchesRegularExpression("\\w+"));
+        assertThat(faker.name().lastName(), matchesRegularExpression("[A-Za-z']+"));
     }
 
     @Test
