@@ -77,6 +77,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.commerce());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.company());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.crypto());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.educator());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.internet());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lorem());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.phoneNumber());

@@ -65,6 +65,7 @@ Fakers
 * Company
 * Crypto
 * DateAndTime
+* Educator
 * Finance
 * Hacker
 * Internet

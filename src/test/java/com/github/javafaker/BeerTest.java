@@ -27,7 +27,7 @@ public class BeerTest {
 
     @Test
     public void testHop() {
-        assertThat(faker.beer().hop(), matchesRegularExpression("[A-Za-z'()\\. 0-9-]+"));
+        assertThat(faker.beer().hop(), matchesRegularExpression("[A-Za-z'’()\\. 0-9-]+"));
     }
 
     @Test
@@ -37,6 +37,6 @@ public class BeerTest {
 
     @Test
     public void testYeast() {
-        assertThat(faker.beer().yeast(), matchesRegularExpression("[A-Za-z'() 0-9-ö]+"));
+        assertThat(faker.beer().yeast(), matchesRegularExpression("[\\p{L}'() 0-9-ö]+"));
     }
 }
