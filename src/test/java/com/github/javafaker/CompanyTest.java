@@ -32,7 +32,7 @@ public class CompanyTest {
 
     @Test
     public void testBuzzword() {
-        assertThat(faker.company().buzzword(), matchesRegularExpression("(\\w+[ /-]?){1,2}"));
+        assertThat(faker.company().buzzword(), matchesRegularExpression("(\\w+[ /-]?){1,3}"));
     }
 
     @Test
