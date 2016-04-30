@@ -16,7 +16,7 @@ public class SuperheroTest {
 
     @Test
     public void testName() {
-        assertThat(faker.superhero().name(), matchesRegularExpression("[A-Za-z -]+"));
+        assertThat(faker.superhero().name(), matchesRegularExpression("[A-Za-z -/]+"));
     }
 
     @Test
