@@ -45,6 +45,7 @@ public class Faker implements Resolver {
     private final Bool bool;
     private final Team team;
     private final Beer beer;
+    private final University university;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -90,6 +91,7 @@ public class Faker implements Resolver {
         this.team = new Team(this, proxiedFakeValueService);
         this.bool = new Bool(randomService);
         this.beer = new Beer(proxiedFakeValueService);
+        this.university = new University(this, proxiedFakeValueService);
     }
 
     private static FakeValuesServiceInterface createProxiedFakeValuesService(FakeValuesServiceInterface fakeValuesServiceInterface,
@@ -241,6 +243,10 @@ public class Faker implements Resolver {
         return beer;
     }
 
+    public University university() {
+        return university;
+    }
+
     /**
      * Resolves a key in the format of class.method_name
      *
@@ -262,5 +268,4 @@ public class Faker implements Resolver {
             throw new RuntimeException(e);
         }
     }
-
 }

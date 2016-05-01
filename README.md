@@ -77,7 +77,7 @@ Fakers
 * Shakespeare
 * Superhero
 * Team
-
+* University
 
 Usage with Locales
 -----
