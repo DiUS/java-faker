@@ -49,6 +49,21 @@ public class InternetTest {
     }
 
     @Test
+    public void testDomainName() {
+        assertThat(faker.internet().domainName(), matchesRegularExpression("[a-z]+\\.\\w{2,4}"));
+    }
+
+    @Test
+    public void testDomainWord() {
+        assertThat(faker.internet().domainWord(), matchesRegularExpression("[a-z]+"));
+    }
+
+    @Test
+    public void testDomainSuffix() {
+      assertThat(faker.internet().domainSuffix(), matchesRegularExpression("\\w{2,4}"));
+    }
+
+    @Test
     public void testImageWithExplicitParams() {
         String imageUrl = faker.internet().image(800, 600, false, "bugs");
         assertThat(imageUrl, matchesRegularExpression("^https:\\/\\/ssl\\.webpack\\.de/lorempixel\\.com/800/600/\\w+/bugs$"));

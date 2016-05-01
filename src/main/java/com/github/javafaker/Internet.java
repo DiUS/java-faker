@@ -6,6 +6,8 @@ import org.apache.commons.lang.StringUtils;
 
 import static org.apache.commons.lang.StringUtils.join;
 
+import java.net.IDN;
+
 public class Internet {
 
     private final Name name;
@@ -30,21 +32,33 @@ public class Internet {
         return join(new Object[]{
                 localPart,
                 "@",
-                java.net.IDN.toASCII(fakeValuesService.fetchString("internet.free_email"))
+                IDN.toASCII(fakeValuesService.fetchString("internet.free_email"))
         });
+    }
+
+    public String domainName() {
+        return domainWord() + "." + domainSuffix();
+    }
+
+    public String domainWord() {
+        return IDN.toASCII(name.lastName().toLowerCase().replaceAll("'", ""));
+    }
+
+    public String domainSuffix() {
+        return fakeValuesService.fetchString("internet.domain_suffix");
     }
 
     public String url() {
         return join(new Object[]{
                 "www",
                 ".",
-                java.net.IDN.toASCII(
+                IDN.toASCII(
                     name.firstName().toLowerCase().replaceAll("'", "") +
                     "-" +
-                    name.lastName().toLowerCase().replaceAll("'", "")
+                    domainWord()
                 ),
                 ".",
-                fakeValuesService.fetchString("internet.domain_suffix")
+                domainSuffix()
         });
     }
 
