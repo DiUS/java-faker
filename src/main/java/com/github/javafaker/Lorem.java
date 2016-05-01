@@ -34,24 +34,44 @@ public class Lorem {
     }
 
     public char character() {
+        return character(false);
+    }
+    
+    public char character(boolean includeUppercase) {
         return characters(1).charAt(0);
     }
 
     public String characters() {
-        return characters(255);
+        return characters(255, false);
+    }
+
+    public String characters(boolean includeUppercase) {
+        return characters(255, false);
     }
 
     public String characters(int minimumLength, int maximumLength) {
-        return characters(randomService.nextInt(maximumLength - minimumLength) + minimumLength);
+        return characters(randomService.nextInt(maximumLength - minimumLength) + minimumLength, false);
+    }
+
+    public String characters(int minimumLength, int maximumLength, boolean includeUppercase) {
+        return characters(randomService.nextInt(maximumLength - minimumLength) + minimumLength, includeUppercase);
     }
 
     public String characters(int fixedNumberOfCharacters) {
+        return characters(fixedNumberOfCharacters, false);
+    }
+
+    public String characters(int fixedNumberOfCharacters, boolean includeUppercase) {
         if (fixedNumberOfCharacters < 1) {
             return "";
         }
         char[] buffer = new char[fixedNumberOfCharacters];
         for (int i = 0; i < buffer.length; i++) {
-            buffer[i] = characters[randomService.nextInt(characters.length)];
+            char randomCharacter = characters[randomService.nextInt(characters.length)];
+            if (includeUppercase && randomService.nextBoolean()) {
+                randomCharacter = Character.toUpperCase(randomCharacter);
+            }
+            buffer[i] = randomCharacter;
         }
         return new String(buffer);
     }

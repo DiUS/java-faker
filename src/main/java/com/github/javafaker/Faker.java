@@ -70,7 +70,7 @@ public class Faker implements Resolver {
         this.lorem = new Lorem(proxiedFakeValueService, randomService);
         this.name = new Name(this, proxiedFakeValueService);
         this.number = new Number(randomService);
-        this.internet = new Internet(name, proxiedFakeValueService, randomService);
+        this.internet = new Internet(name, lorem, proxiedFakeValueService, randomService);
         this.phoneNumber = new PhoneNumber(proxiedFakeValueService);
         this.address = new Address(this, name, proxiedFakeValueService, randomService);
         this.book = new Book(this, proxiedFakeValueService);

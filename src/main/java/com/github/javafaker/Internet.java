@@ -11,11 +11,13 @@ import java.net.IDN;
 public class Internet {
 
     private final Name name;
+    private final Lorem lorem;
     private final FakeValuesServiceInterface fakeValuesService;
     private final RandomService randomService;
 
-    public Internet(Name name, FakeValuesServiceInterface fakeValuesService, RandomService randomService) {
+    public Internet(Name name, Lorem lorem, FakeValuesServiceInterface fakeValuesService, RandomService randomService) {
         this.name = name;
+        this.lorem = lorem;
         this.fakeValuesService = fakeValuesService;
         this.randomService = randomService;
     }
@@ -101,6 +103,31 @@ public class Internet {
         return String.format("https://ssl.webpack.de/lorempixel.com/%s%s/%s/%s/%s",
                 gray ? "g/" : StringUtils.EMPTY, width, height, fakeValuesService.fetchString("internet.image_category"),
                 StringUtils.isEmpty(text) ? StringUtils.EMPTY : text);
+    }
+
+    public String password() {
+        return password(8, 16);
+    }
+
+    public String password(int minimumLength, int maximumLength) {
+        return password(minimumLength, maximumLength, false);
+    }
+
+    public String password(int minimumLength, int maximumLength, boolean includeUppercase) {
+        return password(minimumLength, maximumLength, includeUppercase, false);
+    }
+
+    public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial) {
+        if (includeSpecial) {
+            char[] password = lorem.characters(minimumLength, maximumLength, includeUppercase).toCharArray();
+            char[] special = new char[] { '!', '@', '#', '$', '%', '^', '&', '*' };
+            for (int i = 0; i < randomService.nextInt(minimumLength); i++) {
+                password[randomService.nextInt(password.length)] = special[randomService.nextInt(special.length)];
+            }
+            return new String(password);
+        } else {
+            return lorem.characters(minimumLength, maximumLength, includeUppercase);
+        }
     }
 
 }
