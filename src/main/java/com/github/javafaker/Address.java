@@ -22,7 +22,7 @@ public class Address {
     }
 
     public String streetAddressNumber() {
-        return resolve("address.street_address");
+        return String.valueOf(randomService.nextInt(1000));
     }
 
     public String streetAddress() {
