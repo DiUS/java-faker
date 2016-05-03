@@ -94,7 +94,6 @@ Supported Locales
 * de
 * de-AT
 * de-CH
-* en 2
 * en
 * en-AU
 * en-au-ocker
