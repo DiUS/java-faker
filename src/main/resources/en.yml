@@ -173,7 +173,7 @@ en:
         - "#{Company.name}"
 
     id_number:
-      valid: "#{IDNumber.ssn_valid}"
+      valid: "#{ssn_valid}"
       invalid: ['000-##-####', '###-00-####', '###-##-0000', '666-##-####', '9##-##-####']
 
     slack_emoji:

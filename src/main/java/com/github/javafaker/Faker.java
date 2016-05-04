@@ -34,6 +34,7 @@ public class Faker implements Resolver {
     private final Commerce commerce;
     private final Company company;
     private final Crypto crypto;
+    private final IdNumber idNumber;
     private final Hacker hacker;
     private final Options options;
     private final Code code;
@@ -77,6 +78,7 @@ public class Faker implements Resolver {
         this.business = new Business(proxiedFakeValueService);
         this.chuckNorris = new ChuckNorris(proxiedFakeValueService);
         this.color = new Color(proxiedFakeValueService);
+        this.idNumber = new IdNumber(this, proxiedFakeValueService);
         this.hacker = new Hacker(proxiedFakeValueService);
         this.company = new Company(this, proxiedFakeValueService, randomService);
         this.crypto = new Crypto(lorem);
@@ -202,6 +204,10 @@ public class Faker implements Resolver {
     public Hacker hacker() {
         return hacker;
     }
+ 
+    public IdNumber idNumber() {
+        return idNumber;
+    }
 
     public Options options() {
         return options;
@@ -255,7 +261,7 @@ public class Faker implements Resolver {
      */
     public String resolve(String key) {
         String[] keySplit = key.split("\\.", 2);
-        String object = keySplit[0].toLowerCase();
+        String object = WordUtils.uncapitalize(keySplit[0]);
         String methodName = keySplit[1];
 
         char[] METHOD_NAME_REPLACEMENT = {'_'};
