@@ -4,9 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
+
+import java.util.Random;
 
 public class FakerTest {
 
@@ -105,6 +108,17 @@ public class FakerTest {
     @Test
     public void regexifyShouldGenerateEscapedCharacters() {
         assertThat(faker.regexify("\\.\\*\\?\\+"), matchesRegularExpression("\\.\\*\\?\\+"));
+    }
+
+    @Test
+    public void regexifyShouldGenerateSameValueForFakerWithSameSeed() {
+        long seed = 1L;
+        String regex = "\\d";
+
+        String firstResult = new Faker(new Random(seed)).regexify(regex);
+        String secondResult = new Faker(new Random(seed)).regexify(regex);
+
+        assertThat(secondResult, is(firstResult));
     }
 
     @Test
