@@ -142,7 +142,9 @@ public class FakeValuesService implements FakeValuesServiceInterface {
      * Generates a String that matches the given regular expression.
      */
     public String regexify(String regex) {
-        return new Generex(regex).random();
+        Generex generex = new Generex(regex);
+        generex.setSeed(randomService.nextLong());
+        return generex.random();
     }
 
     /**

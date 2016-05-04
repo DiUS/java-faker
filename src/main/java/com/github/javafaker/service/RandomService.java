@@ -18,6 +18,10 @@ public class RandomService {
         return RandomUtils.nextInt(random, n);
     }
 
+    public long nextLong() {
+        return RandomUtils.nextLong(random);
+    }
+
     // lifted from http://stackoverflow.com/questions/2546078/java-random-long-number-in-0-x-n-range
     public long nextLong(long n) {
         if (n <= 0) {
