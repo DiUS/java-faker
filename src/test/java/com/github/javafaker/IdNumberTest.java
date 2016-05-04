@@ -22,7 +22,7 @@ public class IdNumberTest {
 
     @Test
     public void testInvalid() {
-        assertThat(faker.idNumber().invalid(), matchesRegularExpression("[0-8]\\d{2}-\\d{2}-\\d{4}"));
+        assertThat(faker.idNumber().invalid(), matchesRegularExpression("[0-9]\\d{2}-\\d{2}-\\d{4}"));
     }
 
     @Test
