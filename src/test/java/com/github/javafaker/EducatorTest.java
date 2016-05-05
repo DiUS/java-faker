@@ -17,21 +17,21 @@ public class EducatorTest {
 
     @Test
     public void testUniversity() {
-        assertThat(faker.educator().university(), matchesRegularExpression("(\\w+\\.? ?){2,3}"));
+        assertThat(faker.educator().university(), matchesRegularExpression("(\\w+ ?){2,3}"));
     }
 
     @Test
     public void testCourse() {
-        assertThat(faker.educator().course(), matchesRegularExpression("(\\w+\\.? ?){3,6}"));
+        assertThat(faker.educator().course(), matchesRegularExpression("(\\(?\\w+\\)? ?){3,6}"));
     }
 
     @Test
     public void testSecondarySchool() {
-        assertThat(faker.educator().secondarySchool(), matchesRegularExpression("(\\w+\\.? ?){2,3}"));
+        assertThat(faker.educator().secondarySchool(), matchesRegularExpression("(\\w+ ?){2,3}"));
     }
 
     @Test
     public void testCampus() {
-        assertThat(faker.educator().campus(), matchesRegularExpression("(\\w+\\.? ?){1,2}"));
+        assertThat(faker.educator().campus(), matchesRegularExpression("(\\w+ ?){1,2}"));
     }
 }
