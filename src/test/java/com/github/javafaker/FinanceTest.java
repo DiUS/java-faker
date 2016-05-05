@@ -29,4 +29,14 @@ public class FinanceTest {
     public void bic() {
         assertThat(faker.finance().bic(), matchesRegularExpression("([A-Z]){4}([A-Z]){2}([0-9A-Z]){2}([0-9A-Z]{3})?"));
     }
+
+    @Test
+    public void iban() {
+        assertThat(faker.finance().iban(), matchesRegularExpression("[A-Z]{2}\\p{Alnum}{13,30}"));
+    }
+
+    @Test
+    public void ibanWithCountryCode() {
+        assertThat(faker.finance().iban("DE"), matchesRegularExpression("DE\\d{20}"));
+    }
 }
