@@ -12,8 +12,3 @@ notifications:
   email: false
 after_success:
 - mvn clean cobertura:cobertura coveralls:cobertura
-env:
-  global:
-  - secure: BN4ubmSkpNY/nzaZO3zGiVK+9xhX/O5pWqFk7llUGaAmDw1dNiTrVWMdzaGxmAJa+v1US5vdwLx8ZQMlO6crp3T1VGOwEM2J5vFDPtyMsKM1hC6yKYnJhlfskNznJBhWJZKaLd6FgbxaW08C0BedocD9uVnsPKHiOHn2FXUm8Hs=
-  - secure: mh8ltsj1dJxObXd4eBA4t3EOV/WNblKCmcTn48FmZlfoTL+YXSDa/UV4fG6VONgDCfWxp8Qe6Dnim+OHtf0FUra7+tyyD3AL3fy1bLMPud3ON+j3qJ8jI8YqYs2R2pK6OqBohjZU2P29kHECcOoPT/Hb9eGkZbeq49h1qiwHl7A=
-  - secure: EnFbdFEerOJRuXgXUP3tJTC/rreVOiUZJr8Mw9h+NeOBP2ecggVzsyL4k/ZT6NlWUSBtranHFkQYsQsmrXKRkkHtCV/Ly023+cv9DmI7O1xKm06wRofCjsXV9QlPdElJS3cJEoDOQCL2HZu92xJCLH0EvXJz6Ma0tmMv2FXT8K0=
