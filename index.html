@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -21,7 +21,7 @@
       <div class="inner">
         <h1>Java-faker</h1>
         <h2>Brings the popular ruby faker gem to Java</h2>
-        <a href="https://github.com/DiUS/java-faker" class="button"><small>View project on</small>GitHub</a>
+        <a href="https://github.com/DiUS/java-faker" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
 
@@ -29,47 +29,145 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
-<a name="java-faker" class="anchor" href="#java-faker"><span class="octicon octicon-link"></span></a>Java Faker</h1>
+<a id="java-faker" class="anchor" href="#java-faker" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Java Faker</h1>
 
-<p><a href="https://travis-ci.org/DiUS/java-faker"><img src="https://travis-ci.org/DiUS/java-faker.png?branch=master" alt="Build Status"></a></p>
-
-<p><a href="https://coveralls.io/r/DiUS/java-faker"><img src="https://coveralls.io/repos/DiUS/java-faker/badge.png" alt="Coverage Status"></a></p>
+<p><a href="http://mvnrepository.com/artifact/com.github.javafaker/javafaker"><img src="https://maven-badges.herokuapp.com/maven-central/com.github.javafaker/javafaker/badge.svg?style=flat" alt="Maven Status"></a>
+<a href="https://travis-ci.org/DiUS/java-faker"><img src="https://travis-ci.org/DiUS/java-faker.svg?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/r/DiUS/java-faker"><img src="https://coveralls.io/repos/DiUS/java-faker/badge.svg" alt="Coverage Status"></a>
+<a href="https://www.versioneye.com/user/projects/572c2f11a0ca35004baf861a"><img src="https://www.versioneye.com/user/projects/572c2f11a0ca35004baf861a/badge.svg?style=flat" alt="Dependency Status"></a>
+<a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-brightgreen.svg" alt="License"></a></p>
 
 <p>This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
 It's useful when you're developing a new project and need some pretty data for showcase.</p>
 
 <h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>In pom.xml, add following between <code>&lt;dependencies&gt; ... &lt;/dependencies&gt;</code></p>
 
-<div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>com.github.javafaker<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>javafaker<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>0.7<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+    &lt;<span class="pl-ent">groupId</span>&gt;com.github.javafaker&lt;/<span class="pl-ent">groupId</span>&gt;
+    &lt;<span class="pl-ent">artifactId</span>&gt;javafaker&lt;/<span class="pl-ent">artifactId</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;0.9&lt;/<span class="pl-ent">version</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+
+<p>For gradle users, add the following to your build.gradle file.</p>
+
+<div class="highlight highlight-source-groovy"><pre>repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile <span class="pl-c1">group</span>: <span class="pl-s"><span class="pl-pds">'</span>com.github.javafaker<span class="pl-pds">'</span></span>, <span class="pl-c1">name</span>: <span class="pl-s"><span class="pl-pds">'</span>javafaker<span class="pl-pds">'</span></span>, <span class="pl-c1">version</span>: <span class="pl-s"><span class="pl-pds">'</span>0.9<span class="pl-pds">'</span></span>
+}
 </pre></div>
 
 <p>In your Java code</p>
 
-<div class="highlight highlight-java"><pre><span class="n">Faker</span> <span class="n">faker</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Faker</span><span class="o">();</span>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Faker</span> faker <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Faker</span>();
 
-<span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="na">name</span><span class="o">().</span><span class="na">fullName</span><span class="o">();</span> <span class="c1">// Miss Samanta Schmidt</span>
-<span class="n">String</span> <span class="n">firstName</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="na">name</span><span class="o">().</span><span class="na">firstName</span><span class="o">();</span> <span class="c1">// Emory</span>
-<span class="n">String</span> <span class="n">lastName</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="na">name</span><span class="o">().</span><span class="na">lastName</span><span class="o">();</span> <span class="c1">// Barton</span>
+<span class="pl-smi">String</span> name <span class="pl-k">=</span> faker<span class="pl-k">.</span>name()<span class="pl-k">.</span>fullName(); <span class="pl-c">// Miss Samanta Schmidt</span>
+<span class="pl-smi">String</span> firstName <span class="pl-k">=</span> faker<span class="pl-k">.</span>name()<span class="pl-k">.</span>firstName(); <span class="pl-c">// Emory</span>
+<span class="pl-smi">String</span> lastName <span class="pl-k">=</span> faker<span class="pl-k">.</span>name()<span class="pl-k">.</span>lastName(); <span class="pl-c">// Barton</span>
 
-<span class="n">String</span> <span class="n">streetAddress</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="na">address</span><span class="o">().</span><span class="na">streetAddress</span><span class="o">();</span> <span class="c1">// 60018 Sawayn Brooks Suite 449</span>
-</pre></div>
+<span class="pl-smi">String</span> streetAddress <span class="pl-k">=</span> faker<span class="pl-k">.</span>address()<span class="pl-k">.</span>streetAddress(); <span class="pl-c">// 60018 Sawayn Brooks Suite 449</span></pre></div>
 
 <h2>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>JavaDoc</h2>
+<a id="javadoc" class="anchor" href="#javadoc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Javadoc</h2>
+
+<p><a href="http://dius.github.io/java-faker/apidocs/index.html">http://dius.github.io/java-faker/apidocs/index.html</a></p>
+
+<h2>
+<a id="fakers" class="anchor" href="#fakers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fakers</h2>
 
 <ul>
-<li><a href="apidocs/index.html">JavaDoc</a></li>
+<li>Address</li>
+<li>App</li>
+<li>Beer</li>
+<li>Book</li>
+<li>Bool</li>
+<li>Business</li>
+<li>ChuckNorris</li>
+<li>Code</li>
+<li>Color</li>
+<li>Commerce</li>
+<li>Company</li>
+<li>Crypto</li>
+<li>DateAndTime</li>
+<li>Educator</li>
+<li>Finance</li>
+<li>Hacker</li>
+<li>IdNumber</li>
+<li>Internet</li>
+<li>Lorem</li>
+<li>Name</li>
+<li>Number</li>
+<li>Options</li>
+<li>PhoneNumber</li>
+<li>Shakespeare</li>
+<li>Superhero</li>
+<li>Team</li>
+<li>University</li>
 </ul>
 
+<h2>
+<a id="usage-with-locales" class="anchor" href="#usage-with-locales" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage with Locales</h2>
 
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>LICENSE</h2>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Faker</span> faker <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Faker</span>(<span class="pl-k">new</span> <span class="pl-smi">Locale</span>(<span class="pl-s"><span class="pl-pds">"</span>{YOUR_LOCALE}<span class="pl-pds">"</span></span>));</pre></div>
+
+<h2>
+<a id="supported-locales" class="anchor" href="#supported-locales" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported Locales</h2>
+
+<ul>
+<li>ca</li>
+<li>ca-CAT</li>
+<li>da-DK</li>
+<li>de</li>
+<li>de-AT</li>
+<li>de-CH</li>
+<li>en</li>
+<li>en-AU</li>
+<li>en-au-ocker</li>
+<li>en-BORK</li>
+<li>en-CA</li>
+<li>en-GB</li>
+<li>en-IND</li>
+<li>en-NEP</li>
+<li>en-NZ</li>
+<li>en-SG</li>
+<li>en-UG</li>
+<li>en-US</li>
+<li>es</li>
+<li>fa</li>
+<li>fi-FI</li>
+<li>fr</li>
+<li>he</li>
+<li>it</li>
+<li>ja</li>
+<li>ko</li>
+<li>nb-NO</li>
+<li>nl</li>
+<li>pl</li>
+<li>pt</li>
+<li>pt-BR</li>
+<li>ru</li>
+<li>sk</li>
+<li>sv</li>
+<li>uk</li>
+<li>vi</li>
+<li>zh-CN</li>
+<li>zh-TW</li>
+</ul>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>Port more classes over as there are more entries in the yml file that we don't have classes for</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LICENSE</h2>
 
 <p>Copyright (c) 2014 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.</p>
         </section>
