@@ -49,7 +49,7 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.13</version>
+            <version>1.17</version>
         </dependency>
         <dependency>
             <groupId>com.github.mifmif</groupId>
@@ -59,19 +59,19 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.7</version>
+            <version>1.7.21</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.7</version>
+            <version>1.7.21</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -83,19 +83,19 @@
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>0.9.9-RC1</version>
+            <version>0.9.10</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
+            <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>commons-validator</groupId>
             <artifactId>commons-validator</artifactId>
-            <version>1.4.1</version>
+            <version>1.5.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -114,7 +114,7 @@
                 <plugin>
                     <groupId>org.eluder.coveralls</groupId>
                     <artifactId>coveralls-maven-plugin</artifactId>
-                    <version>2.2.0</version>
+                    <version>4.1.0</version>
                     <configuration>
                         <repoToken>${env.COVERALLS_TOKEN}</repoToken>
                     </configuration>
@@ -122,7 +122,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.6</version>
+                    <version>2.2</version>
                     <configuration>
                         <format>xml</format>
                         <maxmem>256m</maxmem>
