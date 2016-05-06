@@ -39,12 +39,6 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>commons-lang</groupId>
@@ -52,9 +46,9 @@
             <version>2.6</version>
         </dependency>
         <dependency>
-            <groupId>com.github.bmoliveira</groupId>
-            <artifactId>snake-yaml</artifactId>
-            <version>v1.18-android</version>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.17</version>
         </dependency>
         <dependency>
             <groupId>com.github.mifmif</groupId>
