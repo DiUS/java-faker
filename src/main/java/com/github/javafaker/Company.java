@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import java.net.IDN;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,8 @@ import org.apache.commons.lang.StringUtils;
 
 import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
+
+import static org.apache.commons.lang.StringUtils.join;
 
 public class Company {
     private final FakeValuesServiceInterface fakeValuesService;
@@ -69,6 +72,24 @@ public class Company {
     public String logo() {
         int number = randomService.nextInt(13) + 1;
         return "https://pigment.github.io/fake-logos/logos/medium/color/" + number + ".png";
+    }
+
+    public String url() {
+        return join(new Object[]{
+                "www",
+                ".",
+                IDN.toASCII(domainName()),
+                ".",
+                domainSuffix()
+        });
+    }
+
+    private String domainName(){
+        return StringUtils.deleteWhitespace(name().toLowerCase().replaceAll(",", ""));
+    }
+
+    private String domainSuffix() {
+        return fakeValuesService.fetchString("internet.domain_suffix");
     }
 
     private String joinSampleOfEachList(List<List<String>> listOfLists, String separator) {
