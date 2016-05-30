@@ -85,7 +85,7 @@ public class Company {
     }
 
     private String domainName(){
-        return StringUtils.deleteWhitespace(name().toLowerCase().replaceAll(",", ""));
+        return StringUtils.deleteWhitespace(name().toLowerCase().replaceAll(",", "").replaceAll("'", ""));
     }
 
     private String domainSuffix() {
