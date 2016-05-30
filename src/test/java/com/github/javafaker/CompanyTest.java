@@ -54,4 +54,10 @@ public class CompanyTest {
     public void testProfession() {
         assertThat(faker.company().profession(), matchesRegularExpression("[a-z ]+"));
     }
+
+    @Test
+    public void testUrl() {
+        String regexp = "(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])";
+        assertThat(faker.company().url(), matchesRegularExpression(regexp));
+    }
 }
