@@ -1,10 +1,10 @@
 package com.github.javafaker;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NameTest {
 
@@ -53,5 +53,10 @@ public class NameTest {
     @Test
     public void testTitle() {
         assertThat(faker.name().title(), matchesRegularExpression("(\\w+\\.?( )?){3}"));
+    }
+
+    @Test
+    public void testUsername() {
+        assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
     }
 }

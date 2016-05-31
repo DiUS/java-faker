@@ -45,4 +45,12 @@ public class Name {
         return StringUtils.join(new String[] { fakeValuesService.fetchString("name.title.descriptor"),
                 fakeValuesService.fetchString("name.title.level"), fakeValuesService.fetchString("name.title.job") }, " ");
     }
+
+    public String username() {
+        return StringUtils.join(new String[]{
+                firstName().replaceAll("'", "").toLowerCase(),
+                ".",
+                lastName().replaceAll("'", "").toLowerCase()}
+        );
+    }
 }
