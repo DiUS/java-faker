@@ -26,6 +26,6 @@ public class CatTest {
 
     @Test
     public void registry() throws Exception {
-        assertThat(faker.cat().registry(), matchesRegularExpression("[A-Za-z'() 0-9-]+"));
+        assertThat(faker.cat().registry(), matchesRegularExpression("[A-Za-zé'() 0-9-]+"));
     }
 }
