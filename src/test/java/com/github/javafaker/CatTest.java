@@ -15,17 +15,17 @@ public class CatTest {
     }
 
     @Test
-    public void name() throws Exception {
+    public void name() {
         assertThat(faker.cat().name(), matchesRegularExpression("[A-Za-z'() 0-9-]+"));
     }
 
     @Test
-    public void breed() throws Exception {
+    public void breed() {
         assertThat(faker.cat().breed(), matchesRegularExpression("[A-Za-z'() 0-9-]+"));
     }
 
     @Test
-    public void registry() throws Exception {
+    public void registry() {
         assertThat(faker.cat().registry(), matchesRegularExpression("[A-Za-zé'() 0-9-]+"));
     }
 }
