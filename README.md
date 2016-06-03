@@ -61,6 +61,7 @@ Fakers
 * Bool
 * Business
 * ChuckNorris
+* Cat
 * Code
 * Color
 * Commerce
