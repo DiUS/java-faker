@@ -24,9 +24,9 @@ public class Internet {
 
     public String emailAddress() {
         return emailAddress(join(new Object[]{
-                name.firstName().toLowerCase(),
+                name.firstName().toLowerCase().replaceAll("'", ""),
                 ".",
-                name.lastName().toLowerCase()
+                name.lastName().toLowerCase().replaceAll("'", "")
         }));
     }
 
