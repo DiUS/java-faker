@@ -21,7 +21,7 @@ public class CatTest {
 
     @Test
     public void breed() {
-        assertThat(faker.cat().breed(), matchesRegularExpression("[A-Za-z'() 0-9-]+"));
+        assertThat(faker.cat().breed(), matchesRegularExpression("[A-Za-z'() 0-9-,]+"));
     }
 
     @Test
