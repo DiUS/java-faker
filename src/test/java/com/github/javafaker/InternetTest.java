@@ -70,23 +70,23 @@ public class InternetTest {
     }
 
     @Test
-    public void testPasswort() {
+    public void testPassword() {
         assertThat(faker.internet().password(), matchesRegularExpression("[a-z\\d]{8,16}"));
     }
 
     @Test
-    public void testPasswortMinLengthMaxLength() {
+    public void testPasswordMinLengthMaxLength() {
         assertThat(faker.internet().password(10, 25), matchesRegularExpression("[a-z\\d]{10,25}"));
     }
 
     @Test
-    public void testPasswortMinLengthMaxLengthIncludeUpperCase() {
+    public void testPasswordMinLengthMaxLengthIncludeUpperCase() {
         assertThat(faker.internet().password(1, 2, false), matchesRegularExpression("[a-z\\d]{1,2}"));
         assertThat(faker.internet().password(10, 25, true), matchesRegularExpression("[a-zA-Z\\d]{10,25}"));
     }
 
     @Test
-    public void testPasswortMinLengthMaxLengthIncludeUpperCaseIncludeSpecial() {
+    public void testPasswordMinLengthMaxLengthIncludeUpperCaseIncludeSpecial() {
         assertThat(faker.internet().password(10, 25, false, false), matchesRegularExpression("[a-z\\d]{10,25}"));
         assertThat(faker.internet().password(10, 25, false, true), matchesRegularExpression("[a-z\\d!@#$%^&*]{10,25}"));
         assertThat(faker.internet().password(10, 25, true, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{10,25}"));
