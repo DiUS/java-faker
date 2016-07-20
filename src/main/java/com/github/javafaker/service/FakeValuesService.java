@@ -139,6 +139,18 @@ public class FakeValuesService implements FakeValuesServiceInterface {
     }
 
     /**
+     * Applies both a {@link #numerify(String)} and a {@link #letterify(String,boolean)}
+     * over the incoming string.
+     *
+     * @param string
+     * @param isUpper
+     * @return
+     */
+    public String bothify(String string, boolean isUpper) {
+        return letterify(numerify(string), isUpper);
+    }
+
+    /**
      * Generates a String that matches the given regular expression.
      */
     public String regexify(String regex) {
@@ -161,6 +173,30 @@ public class FakeValuesService implements FakeValuesServiceInterface {
         for (int i = 0; i < letterString.length(); i++) {
             if (letterString.charAt(i) == '?') {
                 sb.append((char) (97 + nextInt(26))); // a-z
+            } else {
+                sb.append(letterString.charAt(i));
+            }
+        }
+
+        return sb.toString();
+    }
+
+    /**
+     * Returns a string with the '?' characters in the parameter replaced with random alphabetic
+     * characters.
+     * <p/>
+     * For example, the string "12??34" could be replaced with a string like "12AB34".
+     *
+     * @param letterString
+     * @param isUpper specifies whether or not letters should be upper case
+     * @return
+     */
+    public String letterify(String letterString, boolean isUpper) {
+        StringBuffer sb = new StringBuffer();
+	int baseChar = (isUpper) ? 65 : 97; // from ascii table
+        for (int i = 0; i < letterString.length(); i++) {
+            if (letterString.charAt(i) == '?') {
+                sb.append((char) (baseChar + nextInt(26))); // a-z
             } else {
                 sb.append(letterString.charAt(i));
             }

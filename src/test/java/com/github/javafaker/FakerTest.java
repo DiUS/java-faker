@@ -31,6 +31,11 @@ public class FakerTest {
     }
 
     @Test
+    public void letterifyShouldGenerateUpperCaseLetters() {
+        assertThat(faker.bothify("????",true), matchesRegularExpression("[A-Z]{4}"));
+    }
+
+    @Test
     public void letterifyShouldLeaveNonSpecialCharactersAlone() {
         assertThat(faker.bothify("ABC????DEF"), matchesRegularExpression("ABC\\w{4}DEF"));
     }
