@@ -132,6 +132,20 @@ public class Faker implements Resolver {
     }
 
     /**
+     * Returns a string with the '?' characters in the parameter replaced with random alphabetic
+     * characters.
+     * <p>
+     * For example, the string "12??34" could be replaced with a string like "12AB34".
+     *
+     * @param letterString
+     * @param isUpper
+     * @return
+     */
+    public String letterify(String letterString, boolean isUpper) {
+        return fakeValuesService.letterify(letterString, isUpper);
+    }
+
+    /**
      * Applies both a {@link #numerify(String)} and a {@link #letterify(String)}
      * over the incoming string.
      *
@@ -140,6 +154,18 @@ public class Faker implements Resolver {
      */
     public String bothify(String string) {
         return fakeValuesService.bothify(string);
+    }
+
+    /**
+     * Applies both a {@link #numerify(String)} and a {@link #letterify(String)}
+     * over the incoming string.
+     *
+     * @param string
+     * @param isUpper
+     * @return
+     */
+    public String bothify(String string, boolean isUpper) {
+        return fakeValuesService.bothify(string, isUpper);
     }
 
     /**
