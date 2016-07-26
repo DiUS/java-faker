@@ -169,16 +169,7 @@ public class FakeValuesService implements FakeValuesServiceInterface {
      * @return
      */
     public String letterify(String letterString) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < letterString.length(); i++) {
-            if (letterString.charAt(i) == '?') {
-                sb.append((char) (97 + nextInt(26))); // a-z
-            } else {
-                sb.append(letterString.charAt(i));
-            }
-        }
-
-        return sb.toString();
+        return this.letterify(letterString, false);
     }
 
     /**
@@ -192,8 +183,11 @@ public class FakeValuesService implements FakeValuesServiceInterface {
      * @return
      */
     public String letterify(String letterString, boolean isUpper) {
+        return letterHelper((isUpper) ? 65 : 97, letterString); // from ascii table
+    }
+
+    private String letterHelper(int baseChar, String letterString) {
         StringBuffer sb = new StringBuffer();
-	int baseChar = (isUpper) ? 65 : 97; // from ascii table
         for (int i = 0; i < letterString.length(); i++) {
             if (letterString.charAt(i) == '?') {
                 sb.append((char) (baseChar + nextInt(26))); // a-z
