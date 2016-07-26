@@ -16,7 +16,11 @@ public interface FakeValuesServiceInterface {
 
     String bothify(String string);
 
+    String bothify(String string, boolean isUpper);
+
     String letterify(String letterString);
+
+    String letterify(String letterString, boolean isUpper);
 
     String regexify(String regex);
 
