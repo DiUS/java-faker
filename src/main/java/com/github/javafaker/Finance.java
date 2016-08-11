@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class Finance {
 
-    private static final Map<String, String> countryCodeToBasicBankAccountNumberPattern = 
+    private static final Map<String, String> countryCodeToBasicBankAccountNumberPattern =
             createCountryCodeToBasicBankAccountNumberPatternMap();
 
     private final FakeValuesServiceInterface fakeValuesService;

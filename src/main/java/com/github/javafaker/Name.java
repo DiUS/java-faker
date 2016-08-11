@@ -1,6 +1,6 @@
 package com.github.javafaker;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.github.javafaker.service.FakeValuesServiceInterface;
 
