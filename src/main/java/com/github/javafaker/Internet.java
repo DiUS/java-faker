@@ -38,6 +38,22 @@ public class Internet {
         });
     }
 
+    public String safeEmailAddress(){
+        return emailAddress(join(new Object[]{
+                name.firstName().toLowerCase().replaceAll("'", ""),
+                ".",
+                name.lastName().toLowerCase().replaceAll("'", "")
+        }));
+    }
+
+    public String safeEmailAddress(String localPart){
+        return join(new Object[]{
+                localPart,
+                "@",
+                IDN.toASCII(fakeValuesService.fetchString("internet.free_email"))
+        });
+    }
+
     public String domainName() {
         return domainWord() + "." + domainSuffix();
     }

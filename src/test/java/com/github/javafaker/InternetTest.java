@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.*;
@@ -27,6 +28,19 @@ public class InternetTest {
 
     @Test
     public void testEmailAddressWithLocalPartParameter() {
+        String emailAddress = faker.internet().emailAddress("john");
+        assertThat(emailAddress, startsWith("john@"));
+        assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
+    }
+
+    @Test
+    public void testSafeEmailAddress() {
+        String emailAddress = faker.internet().safeEmailAddress();
+        assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
+    }
+
+    @Test
+    public void testSafeEmailAddressWithLocalPartParameter() {
         String emailAddress = faker.internet().emailAddress("john");
         assertThat(emailAddress, startsWith("john@"));
         assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
