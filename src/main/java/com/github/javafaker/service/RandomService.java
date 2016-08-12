@@ -1,25 +1,31 @@
 package com.github.javafaker.service;
 
-import org.apache.commons.lang.math.RandomUtils;
-
 import java.util.Random;
 
 public class RandomService {
+    private static final Random SHARED_RANDOM = new Random();
     private final Random random;
+
+    /**
+     * Uses a default shared random.
+     */
+    public RandomService() {
+        this(SHARED_RANDOM);
+    }
 
     /**
      * @param random If null is passed in, a default Random is assigned
      */
     public RandomService(Random random) {
-        this.random = random != null ? random : RandomUtils.JVM_RANDOM;
+        this.random = random != null ? random : SHARED_RANDOM;
     }
 
     public int nextInt(int n) {
-        return RandomUtils.nextInt(random, n);
+        return random.nextInt(n);
     }
 
     public long nextLong() {
-        return RandomUtils.nextLong(random);
+        return random.nextLong();
     }
 
     // lifted from http://stackoverflow.com/questions/2546078/java-random-long-number-in-0-x-n-range
@@ -30,7 +36,7 @@ public class RandomService {
 
         long bits, val;
         do {
-            long randomLong = RandomUtils.nextLong(random);
+            long randomLong = random.nextLong();
             bits = (randomLong << 1) >>> 1;
             val = bits % n;
         } while (bits - val + (n - 1) < 0L);
@@ -38,10 +44,10 @@ public class RandomService {
     }
 
     public double nextDouble() {
-        return RandomUtils.nextDouble(random);
+        return random.nextDouble();
     }
 
     public Boolean nextBoolean() {
-        return RandomUtils.nextBoolean(random);
+        return random.nextBoolean();
     }
 }

@@ -4,8 +4,8 @@ import com.github.javafaker.service.DefaultingFakeValuesService;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
-import org.apache.commons.lang.WordUtils;
-import org.apache.commons.lang.reflect.MethodUtils;
+import org.apache.commons.lang3.text.WordUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import java.lang.reflect.Proxy;
 import java.util.Locale;
