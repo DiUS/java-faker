@@ -33,6 +33,19 @@ public class InternetTest {
     }
 
     @Test
+    public void testSafeEmailAddress() {
+        String emailAddress = faker.internet().safeEmailAddress();
+        assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
+    }
+
+    @Test
+    public void testSafeEmailAddressWithLocalPartParameter() {
+        String emailAddress = faker.internet().emailAddress("john");
+        assertThat(emailAddress, startsWith("john@"));
+        assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
+    }
+
+    @Test
     public void testUrl() {
         assertThat(faker.internet().url(), matchesRegularExpression("www\\.(\\w|-)+\\.\\w+"));
     }
