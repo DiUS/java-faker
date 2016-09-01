@@ -153,10 +153,13 @@ public class FakeValuesService implements FakeValuesServiceInterface {
     /**
      * Generates a String that matches the given regular expression.
      */
-    public String regexify(String regex) {
+    public String regexify(String regex, int min, int max) {
         Generex generex = new Generex(regex);
         generex.setSeed(randomService.nextLong());
-        return generex.random();
+        return generex.random(min,max);
+    }
+    public String regexify(String regex){
+        return regexify(regex,1,Integer.MAX_VALUE);
     }
 
     /**

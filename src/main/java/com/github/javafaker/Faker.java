@@ -171,8 +171,11 @@ public class Faker implements Resolver {
     /**
      * Generates a String that matches the given regular expression.
      */
-    public String regexify(String regex) {
-        return fakeValuesService.regexify(regex);
+    public String regexify(String regex,int min,int max) {
+        return fakeValuesService.regexify(regex,min,max);
+    }
+    public String regexify(String regx){
+        return fakeValuesService.regexify(regx);
     }
 
     public App app() {

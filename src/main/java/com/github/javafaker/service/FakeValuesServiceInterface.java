@@ -22,6 +22,7 @@ public interface FakeValuesServiceInterface {
 
     String letterify(String letterString, boolean isUpper);
 
+    String regexify(String regex,int min,int max);
     String regexify(String regex);
 
     String resolve(String key, Object current, Resolver resolver);
