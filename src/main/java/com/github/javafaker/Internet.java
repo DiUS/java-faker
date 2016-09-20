@@ -116,7 +116,7 @@ public class Internet {
      * @return an url to a random image with the given characteristics.
      */
     public String image(Integer width, Integer height, Boolean gray, String text) {
-        return String.format("https://ssl.webpack.de/lorempixel.com/%s%s/%s/%s/%s",
+        return String.format("http://lorempixel.com/%s%s/%s/%s/%s",
                 gray ? "g/" : StringUtils.EMPTY, width, height, fakeValuesService.fetchString("internet.image_category"),
                 StringUtils.isEmpty(text) ? StringUtils.EMPTY : text);
     }
