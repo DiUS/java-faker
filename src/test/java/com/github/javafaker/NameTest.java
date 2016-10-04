@@ -1,19 +1,11 @@
 package com.github.javafaker;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThat;
 
-public class NameTest {
-
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
+public class NameTest  extends AbstractFakerTest{
 
     @Test
     public void testName() {

@@ -1,32 +1,29 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Hacker {
+    private final Faker faker;
 
-    private final FakeValuesServiceInterface fakeValuesService;
-
-    public Hacker(FakeValuesServiceInterface fakeValuesService) {
-        this.fakeValuesService = fakeValuesService;
+    Hacker(Faker faker) {
+        this.faker = faker;
     }
 
     public String abbreviation() {
-        return fakeValuesService.fetchString("hacker.abbreviation");
+        return faker.fakeValuesService().resolve("hacker.abbreviation", this, faker);
     }
 
     public String adjective() {
-        return fakeValuesService.fetchString("hacker.adjective");
+        return faker.fakeValuesService().resolve("hacker.adjective", this, faker);
     }
 
     public String noun() {
-        return fakeValuesService.fetchString("hacker.noun");
+        return faker.fakeValuesService().resolve("hacker.noun", this, faker);
     }
 
     public String verb() {
-        return fakeValuesService.fetchString("hacker.verb");
+        return faker.fakeValuesService().resolve("hacker.verb", this, faker);
     }
 
     public String ingverb() {
-        return fakeValuesService.fetchString("hacker.ingverb");
+        return faker.fakeValuesService().resolve("hacker.ingverb", this, faker);
     }
 }

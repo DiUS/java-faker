@@ -1,19 +1,13 @@
 package com.github.javafaker;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
-public class CodeTest {
-
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
+public class CodeTest extends AbstractFakerTest{
 
     @Test
     public void testIsbn10() {

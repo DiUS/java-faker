@@ -1,13 +1,8 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.DefaultingFakeValuesService;
 import com.github.javafaker.service.FakeValuesService;
-import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
-import org.apache.commons.lang3.text.WordUtils;
-import org.apache.commons.lang3.reflect.MethodUtils;
 
-import java.lang.reflect.Proxy;
 import java.util.Locale;
 import java.util.Random;
 
@@ -17,9 +12,10 @@ import java.util.Random;
  *
  * @author ren
  */
-public class Faker implements Resolver {
+public class Faker {
     private final RandomService randomService;
     private final FakeValuesService fakeValuesService;
+
     private final App app;
     private final Lorem lorem;
     private final Name name;
@@ -64,46 +60,35 @@ public class Faker implements Resolver {
     public Faker(Locale locale, Random random) {
         this.randomService = new RandomService(random);
         this.fakeValuesService = new FakeValuesService(locale, randomService);
-        FakeValuesService defaultEnglishFakeValuesService = new FakeValuesService(Locale.ENGLISH, randomService);
-        FakeValuesServiceInterface proxiedFakeValueService = createProxiedFakeValuesService(fakeValuesService,
-                defaultEnglishFakeValuesService);
 
-        this.app = new App(this, proxiedFakeValueService);
-        this.lorem = new Lorem(proxiedFakeValueService, randomService);
-        this.name = new Name(this, proxiedFakeValueService);
-        this.number = new Number(randomService);
-        this.internet = new Internet(name, lorem, proxiedFakeValueService, randomService);
-        this.phoneNumber = new PhoneNumber(proxiedFakeValueService);
-        this.address = new Address(this, name, proxiedFakeValueService, randomService);
-        this.book = new Book(this, proxiedFakeValueService);
-        this.business = new Business(proxiedFakeValueService);
-        this.chuckNorris = new ChuckNorris(proxiedFakeValueService);
-        this.color = new Color(proxiedFakeValueService);
-        this.idNumber = new IdNumber(this, proxiedFakeValueService);
-        this.hacker = new Hacker(proxiedFakeValueService);
-        this.company = new Company(this, proxiedFakeValueService, randomService);
-        this.crypto = new Crypto(lorem);
-        this.commerce = new Commerce(proxiedFakeValueService, randomService);
-        this.options = new Options(randomService);
-        this.code = new Code(randomService);
-        this.finance = new Finance(proxiedFakeValueService, randomService);
-        this.dateAndTime = new DateAndTime(randomService);
-        this.educator = new Educator(proxiedFakeValueService);
-        this.shakespeare = new Shakespeare(randomService);
-        this.superhero = new Superhero(this, proxiedFakeValueService);
-        this.team = new Team(this, proxiedFakeValueService);
-        this.bool = new Bool(randomService);
-        this.beer = new Beer(proxiedFakeValueService);
-        this.university = new University(this, proxiedFakeValueService);
-        this.cat = new Cat(proxiedFakeValueService);
-    }
-
-    private static FakeValuesServiceInterface createProxiedFakeValuesService(FakeValuesServiceInterface fakeValuesServiceInterface,
-                                                                                      FakeValuesServiceInterface defaultFakeValuesServiceInterface) {
-        return (FakeValuesServiceInterface) Proxy.newProxyInstance(Faker.class.getClassLoader(),
-                new Class[]{FakeValuesServiceInterface.class},
-                new DefaultingFakeValuesService(fakeValuesServiceInterface,
-                                                defaultFakeValuesServiceInterface));
+        this.app = new App(this);
+        this.lorem = new Lorem(this);
+        this.name = new Name(this);
+        this.number = new Number(this);
+        this.internet = new Internet(this);
+        this.phoneNumber = new PhoneNumber(this);
+        this.address = new Address(this);
+        this.book = new Book(this);
+        this.business = new Business(this);
+        this.chuckNorris = new ChuckNorris(this);
+        this.color = new Color(this);
+        this.idNumber = new IdNumber(this);
+        this.hacker = new Hacker(this);
+        this.company = new Company(this);
+        this.crypto = new Crypto(this);
+        this.commerce = new Commerce(this);
+        this.options = new Options(this);
+        this.code = new Code(this);
+        this.finance = new Finance(this);
+        this.dateAndTime = new DateAndTime(this);
+        this.educator = new Educator(this);
+        this.shakespeare = new Shakespeare(this);
+        this.superhero = new Superhero(this);
+        this.team = new Team(this);
+        this.bool = new Bool(this);
+        this.beer = new Beer(this);
+        this.university = new University(this);
+        this.cat = new Cat(this);
     }
 
     /**
@@ -175,6 +160,14 @@ public class Faker implements Resolver {
         return fakeValuesService.regexify(regex);
     }
 
+    RandomService random() {
+        return this.randomService;
+    }
+
+    FakeValuesService fakeValuesService() {
+        return this.fakeValuesService;
+    }
+
     public App app() {
         return app;
     }
@@ -183,7 +176,10 @@ public class Faker implements Resolver {
         return name;
     }
 
-    public Number number() { return number; }
+
+    public Number number() {
+        return number;
+    }
 
     public Internet internet() {
         return internet;
@@ -232,7 +228,7 @@ public class Faker implements Resolver {
     public Hacker hacker() {
         return hacker;
     }
- 
+
     public IdNumber idNumber() {
         return idNumber;
     }
@@ -256,7 +252,7 @@ public class Faker implements Resolver {
     public Educator educator() {
         return educator;
     }
-    
+
     public Shakespeare shakespeare() {
         return shakespeare;
     }
@@ -264,7 +260,7 @@ public class Faker implements Resolver {
     public Superhero superhero() {
         return superhero;
     }
-    
+
     public Bool bool() {
         return bool;
     }
@@ -285,25 +281,4 @@ public class Faker implements Resolver {
         return cat;
     }
 
-    /**
-     * Resolves a key in the format of class.method_name
-     *
-     * @param key
-     * @return
-     */
-    public String resolve(String key) {
-        String[] keySplit = key.split("\\.", 2);
-        String object = WordUtils.uncapitalize(keySplit[0]);
-        String methodName = keySplit[1];
-
-        char[] METHOD_NAME_REPLACEMENT = {'_'};
-        methodName = WordUtils.capitalizeFully(methodName, METHOD_NAME_REPLACEMENT).replaceAll("_", "");
-        methodName = methodName.substring(0, 1).toLowerCase() + methodName.substring(1);
-        try {
-            Object objectWithMethodToInvoke = MethodUtils.invokeMethod(this, object, null);
-            return (String) MethodUtils.invokeMethod(objectWithMethodToInvoke, methodName, null);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

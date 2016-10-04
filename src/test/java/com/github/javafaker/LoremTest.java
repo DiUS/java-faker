@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import org.junit.Test;
+
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.isEmptyString;
@@ -7,18 +9,7 @@ import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
-import org.junit.Test;
-
-public class LoremTest {
-
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
-
+public class LoremTest extends AbstractFakerTest {
     @Test
     public void shouldCreateFixedLengthString() {
         assertEquals(10, faker.lorem().fixedString(10).length());

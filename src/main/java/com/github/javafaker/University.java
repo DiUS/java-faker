@@ -1,26 +1,21 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class University {
+    private final Faker faker;
 
-    private final Resolver resolver;
-    private final FakeValuesServiceInterface fakeValueService;
-
-    public University(Resolver resolver, FakeValuesServiceInterface fakeValueService) {
-        this.resolver = resolver;
-        this.fakeValueService = fakeValueService;
+    University(Faker faker) {
+        this.faker = faker;
     }
 
     public String name() {
-        return fakeValueService.resolve("university.name", this, resolver);
+        return faker.fakeValuesService().resolve("university.name", this, faker);
     }
 
     public String prefix() {
-        return fakeValueService.fetchString("university.prefix");
+        return faker.fakeValuesService().resolve("university.prefix", this, faker);
     }
 
     public String suffix() {
-        return fakeValueService.fetchString("university.suffix");
+        return faker.fakeValuesService().resolve("university.suffix", this, faker);
     }
 }

@@ -1,34 +1,29 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Superhero {
-    private final Resolver resolver;
-    private final FakeValuesServiceInterface fakeValueService;
+    private final Faker faker;
 
-    public Superhero(Resolver resolver,
-                     FakeValuesServiceInterface fakeValueService) {
-        this.resolver = resolver;
-        this.fakeValueService = fakeValueService;
+    Superhero(Faker faker) {
+        this.faker = faker;
     }
 
     public String name() {
-        return fakeValueService.resolve("superhero.name", this, resolver);
+        return faker.fakeValuesService().resolve("superhero.name", this, faker);
     }
 
     public String prefix() {
-        return fakeValueService.fetchString("superhero.prefix");
+        return faker.fakeValuesService().resolve("superhero.prefix", this, faker);
     }
 
     public String suffix() {
-        return fakeValueService.fetchString("superhero.suffix");
+        return faker.fakeValuesService().resolve("superhero.suffix", this, faker);
     }
 
     public String power() {
-        return fakeValueService.fetchString("superhero.power");
+        return faker.fakeValuesService().resolve("superhero.power", this, faker);
     }
 
     public String descriptor() {
-        return fakeValueService.fetchString("superhero.descriptor");
+        return faker.fakeValuesService().resolve("superhero.descriptor", this, faker);
     }
 }

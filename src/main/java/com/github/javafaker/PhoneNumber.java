@@ -1,20 +1,17 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class PhoneNumber {
+    private final Faker faker;
 
-    private final FakeValuesServiceInterface fakeValuesService;
-
-    public PhoneNumber(FakeValuesServiceInterface fakeValuesService) {
-        this.fakeValuesService = fakeValuesService;
+    PhoneNumber(Faker faker) {
+        this.faker = faker;
     }
 
     public String cellPhone() {
-        return fakeValuesService.numerify(fakeValuesService.fetchString("cell_phone.formats"));
+        return faker.numerify(faker.fakeValuesService().resolve("cell_phone.formats", this, faker));
     }
 
     public String phoneNumber() {
-        return fakeValuesService.numerify(fakeValuesService.fetchString("phone_number.formats"));
+        return faker.numerify(faker.fakeValuesService().resolve("phone_number.formats", this, faker));
     }
 }

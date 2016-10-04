@@ -4,9 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThat;
 
-public class UniversityTest {
+public class UniversityTest extends AbstractFakerTest {
 
     private Faker faker;
 

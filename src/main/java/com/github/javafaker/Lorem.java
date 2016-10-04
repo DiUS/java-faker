@@ -1,7 +1,5 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -11,32 +9,16 @@ import static org.apache.commons.lang3.StringUtils.capitalize;
 import static org.apache.commons.lang3.StringUtils.join;
 
 public class Lorem {
+    private final Faker faker;
 
-    static {
-        StringBuilder builder = new StringBuilder(36);
-        for (char number = '0'; number <= '9'; number++) {
-            builder.append(number);
-        }
-        for (char character = 'a'; character <= 'z'; character++) {
-            builder.append(character);
-        }
-        characters = builder.toString().toCharArray();
+    Lorem(Faker faker) {
+        this.faker = faker;
     }
-
-    private static final char[] characters;
-
-    private final FakeValuesServiceInterface fakeValuesService;
-    private final RandomService randomService;
-
-    public Lorem(FakeValuesServiceInterface fakeValuesService, RandomService randomService) {
-        this.fakeValuesService = fakeValuesService;
-        this.randomService = randomService;
-    }
-
+    
     public char character() {
         return character(false);
     }
-    
+
     public char character(boolean includeUppercase) {
         return characters(1).charAt(0);
     }
@@ -50,11 +32,11 @@ public class Lorem {
     }
 
     public String characters(int minimumLength, int maximumLength) {
-        return characters(randomService.nextInt(maximumLength - minimumLength) + minimumLength, false);
+        return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength, false);
     }
 
     public String characters(int minimumLength, int maximumLength, boolean includeUppercase) {
-        return characters(randomService.nextInt(maximumLength - minimumLength) + minimumLength, includeUppercase);
+        return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength, includeUppercase);
     }
 
     public String characters(int fixedNumberOfCharacters) {
@@ -67,8 +49,8 @@ public class Lorem {
         }
         char[] buffer = new char[fixedNumberOfCharacters];
         for (int i = 0; i < buffer.length; i++) {
-            char randomCharacter = characters[randomService.nextInt(characters.length)];
-            if (includeUppercase && randomService.nextBoolean()) {
+            char randomCharacter = characters[faker.random().nextInt(characters.length)];
+            if (includeUppercase && faker.bool().bool()) {
                 randomCharacter = Character.toUpperCase(randomCharacter);
             }
             buffer[i] = randomCharacter;
@@ -76,9 +58,8 @@ public class Lorem {
         return new String(buffer);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     public List<String> words(int num) {
-        List<String> returnList = new ArrayList();
+        List<String> returnList = new ArrayList<String>();
         for (int i = 0; i < num; i++) {
             returnList.add(word());
         }
@@ -90,11 +71,11 @@ public class Lorem {
     }
 
     public String word() {
-        return fakeValuesService.safeFetch("lorem.words");
+        return faker.fakeValuesService().resolve("lorem.words", this, faker);
     }
 
     public String sentence(int wordCount) {
-        return capitalize(join(words(wordCount + randomService.nextInt(6)), " ") + ".");
+        return capitalize(join(words(wordCount + faker.random().nextInt(6)), " ") + ".");
     }
 
     public String sentence() {
@@ -110,7 +91,7 @@ public class Lorem {
     }
 
     public String paragraph(int sentenceCount) {
-        return join(sentences(sentenceCount + randomService.nextInt(3)), " ");
+        return join(sentences(sentenceCount + faker.random().nextInt(3)), " ");
     }
 
     public String paragraph() {
@@ -139,4 +120,18 @@ public class Lorem {
         }
         return StringUtils.substring(builder.toString(), 0, numberOfLetters);
     }
+
+    static {
+        StringBuilder builder = new StringBuilder(36);
+        for (char number = '0'; number <= '9'; number++) {
+            builder.append(number);
+        }
+        for (char character = 'a'; character <= 'z'; character++) {
+            builder.append(character);
+        }
+        characters = builder.toString().toCharArray();
+    }
+
+    private static final char[] characters;
+
 }

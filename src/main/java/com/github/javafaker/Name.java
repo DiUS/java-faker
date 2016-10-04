@@ -2,19 +2,16 @@ package com.github.javafaker;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Name {
-    private final Resolver resolver;
-    private final FakeValuesServiceInterface fakeValuesService;
+    
+    private final Faker faker;
 
     /**
      * Internal constructor, not to be used by clients.  Instances of {@link Name} should be accessed via 
      * {@link Faker#name()}.
      */
-    public Name(Resolver resolver, FakeValuesServiceInterface fakeValuesService) {
-        this.resolver = resolver;
-        this.fakeValuesService = fakeValuesService;
+    Name(Faker faker) {
+        this.faker = faker;
     }
 
     /**
@@ -29,7 +26,7 @@ public class Name {
      * @return a random name with given and family names and an optional suffix.
      */
     public String name() {
-        return fakeValuesService.resolve("name.name", this, resolver);
+        return faker.fakeValuesService().resolve("name.name", this, faker);
     }
 
     /**
@@ -46,7 +43,7 @@ public class Name {
      * @return a random name with a middle name component with optional prefix and suffix
      */
     public String nameWithMiddle() {
-        return fakeValuesService.resolve("name.name_with_middle", this, resolver);
+        return faker.fakeValuesService().resolve("name.name_with_middle", this, faker);
     }
 
     /**
@@ -62,7 +59,7 @@ public class Name {
      * @return a 'given' name such as Aaliyah, Aaron, Abagail or Abbey
      */
     public String firstName() {
-        return fakeValuesService.fetchString("name.first_name");
+        return faker.fakeValuesService().resolve("name.first_name", this, faker);
     }
 
     /**
@@ -70,7 +67,7 @@ public class Name {
      * @return a random last name such as Smith, Jones or Baldwin
      */
     public String lastName() {
-        return fakeValuesService.fetchString("name.last_name");
+        return faker.fakeValuesService().resolve("name.last_name", this, faker);
     }
 
     /**
@@ -78,7 +75,7 @@ public class Name {
      * @return a name prefix such as Mr., Mrs., Ms., Miss, or Dr.
      */
     public String prefix() {
-        return fakeValuesService.fetchString("name.prefix");
+        return faker.fakeValuesService().resolve("name.prefix", this, faker);
     }
 
     /**
@@ -86,7 +83,7 @@ public class Name {
      * @return a name suffix such as Jr., Sr., I, II, III, IV, V, MD, DDS, PhD or DVM
      */
     public String suffix() {
-        return fakeValuesService.fetchString("name.suffix");
+        return faker.fakeValuesService().resolve("name.suffix", this, faker);
     }
 
     /**
@@ -102,8 +99,10 @@ public class Name {
      * @return a random three part job title
      */
     public String title() {
-        return StringUtils.join(new String[] { fakeValuesService.fetchString("name.title.descriptor"),
-                fakeValuesService.fetchString("name.title.level"), fakeValuesService.fetchString("name.title.job") }, " ");
+        return StringUtils.join(new String[] {
+            faker.fakeValuesService().resolve("name.title.descriptor", this, faker), 
+            faker.fakeValuesService().resolve("name.title.level", this, faker), 
+            faker.fakeValuesService().resolve("name.title.job", this, faker) }, " ");
     }
 
     /**

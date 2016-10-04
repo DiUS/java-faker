@@ -1,20 +1,19 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.RandomService;
-
 public class Options {
-    private final RandomService randomService;
+    private final Faker faker;
 
-    public Options(RandomService randomService) {
-        this.randomService = randomService;
+    Options(Faker faker) {
+        this.faker = faker;
     }
 
+
     public String option(String... options) {
-        return options[randomService.nextInt(options.length)];
+        return options[faker.random().nextInt(options.length)];
     }
 
     public <E extends Enum<E>> E option(Class<E> enumeration) {
         E[] enumConstants = enumeration.getEnumConstants();
-        return enumConstants[randomService.nextInt(enumConstants.length)];
+        return enumConstants[faker.random().nextInt(enumConstants.length)];
     }
 }

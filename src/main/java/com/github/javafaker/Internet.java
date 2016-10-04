@@ -1,7 +1,5 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.IDN;
@@ -17,23 +15,18 @@ public class Internet {
             "^192\\.168\\..+"
     };
     
-    private final Name name;
-    private final Lorem lorem;
-    private final FakeValuesServiceInterface fakeValuesService;
-    private final RandomService randomService;
 
-    public Internet(Name name, Lorem lorem, FakeValuesServiceInterface fakeValuesService, RandomService randomService) {
-        this.name = name;
-        this.lorem = lorem;
-        this.fakeValuesService = fakeValuesService;
-        this.randomService = randomService;
+    private final Faker faker;
+    
+    Internet(Faker faker) {
+        this.faker = faker;
     }
 
     public String emailAddress() {
         return emailAddress(join(new Object[]{
-                name.firstName().toLowerCase().replaceAll("'", ""),
+                faker.name().firstName().toLowerCase().replaceAll("'", ""),
                 ".",
-                name.lastName().toLowerCase().replaceAll("'", "")
+                faker.name().lastName().toLowerCase().replaceAll("'", "")
         }));
     }
 
@@ -41,23 +34,23 @@ public class Internet {
         return join(new Object[]{
                 localPart,
                 "@",
-                IDN.toASCII(fakeValuesService.fetchString("internet.free_email"))
+                IDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker))
         });
     }
 
-    public String safeEmailAddress(){
+    public String safeEmailAddress() {
         return emailAddress(join(new Object[]{
-                name.firstName().toLowerCase().replaceAll("'", ""),
+                faker.name().firstName().toLowerCase().replaceAll("'", ""),
                 ".",
-                name.lastName().toLowerCase().replaceAll("'", "")
+                faker.name().lastName().toLowerCase().replaceAll("'", "")
         }));
     }
 
-    public String safeEmailAddress(String localPart){
+    public String safeEmailAddress(String localPart) {
         return join(new Object[]{
                 localPart,
                 "@",
-                IDN.toASCII(fakeValuesService.fetchString("internet.free_email"))
+                IDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker))
         });
     }
 
@@ -66,11 +59,11 @@ public class Internet {
     }
 
     public String domainWord() {
-        return IDN.toASCII(name.lastName().toLowerCase().replaceAll("'", ""));
+        return IDN.toASCII(faker.name().lastName().toLowerCase().replaceAll("'", ""));
     }
 
     public String domainSuffix() {
-        return fakeValuesService.fetchString("internet.domain_suffix");
+        return faker.fakeValuesService().resolve("internet.domain_suffix", this, faker);
     }
 
     public String url() {
@@ -78,9 +71,9 @@ public class Internet {
                 "www",
                 ".",
                 IDN.toASCII(
-                    name.firstName().toLowerCase().replaceAll("'", "") +
-                    "-" +
-                    domainWord()
+                        faker.name().firstName().toLowerCase().replaceAll("'", "") +
+                                "-" +
+                                domainWord()
                 ),
                 ".",
                 domainSuffix()
@@ -96,7 +89,7 @@ public class Internet {
      * @see <a href="http://uifaces.com/authorized">Authorized UI Faces</a>
      */
     public String avatar() {
-        return "https://s3.amazonaws.com/uifaces/faces/twitter/" + fakeValuesService.fetchString("internet.avatar");
+        return "https://s3.amazonaws.com/uifaces/faces/twitter/" + faker.fakeValuesService().resolve("internet.avatar", this, faker);
     }
 
     /**
@@ -107,24 +100,25 @@ public class Internet {
      * @see <a href="http://lorempixel.com/">lorempixel - Placeholder Images for every case</a>
      */
     public String image() {
-        String[] dimension = StringUtils.split(fakeValuesService.fetchString("internet.image_dimension"), 'x');
-        if (dimension .length == 0) return "";
+        String[] dimension = StringUtils.split(faker.fakeValuesService().resolve("internet.image_dimension", this, faker), 'x');
+        if (dimension.length == 0) return "";
         return image(
                 Integer.valueOf(StringUtils.trim(dimension[0])), Integer.valueOf(StringUtils.trim(dimension[1])),
-                randomService.nextBoolean(), null);
+                faker.bool().bool(), null);
     }
 
     /**
      * Same as image() but allows client code to choose a few image characteristics
-     * @param width the image width
+     *
+     * @param width  the image width
      * @param height the image height
-     * @param gray true for gray image and false for color image
-     * @param text optional custom text on the selected picture
+     * @param gray   true for gray image and false for color image
+     * @param text   optional custom text on the selected picture
      * @return an url to a random image with the given characteristics.
      */
     public String image(Integer width, Integer height, Boolean gray, String text) {
         return String.format("http://lorempixel.com/%s%s/%s/%s/%s",
-                gray ? "g/" : StringUtils.EMPTY, width, height, fakeValuesService.fetchString("internet.image_category"),
+                gray ? "g/" : StringUtils.EMPTY, width, height, faker.fakeValuesService().resolve("internet.image_category", this, faker),
                 StringUtils.isEmpty(text) ? StringUtils.EMPTY : text);
     }
 
@@ -142,14 +136,14 @@ public class Internet {
 
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial) {
         if (includeSpecial) {
-            char[] password = lorem.characters(minimumLength, maximumLength, includeUppercase).toCharArray();
-            char[] special = new char[] { '!', '@', '#', '$', '%', '^', '&', '*' };
-            for (int i = 0; i < randomService.nextInt(minimumLength); i++) {
-                password[randomService.nextInt(password.length)] = special[randomService.nextInt(special.length)];
+            char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase).toCharArray();
+            char[] special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
+            for (int i = 0; i < faker.random().nextInt(minimumLength); i++) {
+                password[faker.random().nextInt(password.length)] = special[faker.random().nextInt(special.length)];
             }
             return new String(password);
         } else {
-            return lorem.characters(minimumLength, maximumLength, includeUppercase);
+            return faker.lorem().characters(minimumLength, maximumLength, includeUppercase);
         }
     }
     
@@ -169,8 +163,8 @@ public class Internet {
             if (out.length() > 0) {
                 out.append(':');
             }
-            out.append(Integer.toHexString(randomService.nextInt(16)));
-            out.append(Integer.toHexString(randomService.nextInt(16)));
+            out.append(Integer.toHexString(faker.random().nextInt(16)));
+            out.append(Integer.toHexString(faker.random().nextInt(16)));
         }
         return out.toString();
     }
@@ -188,10 +182,10 @@ public class Internet {
      */
     public String ipV4Address() {
         return String.format("%d.%d.%d.%d",
-          randomService.nextInt(254) + 2,
-          randomService.nextInt(254) + 2,
-          randomService.nextInt(254) + 2,
-          randomService.nextInt(254) + 2);
+          faker.random().nextInt(254) + 2,
+          faker.random().nextInt(254) + 2,
+          faker.random().nextInt(254) + 2,
+          faker.random().nextInt(254) + 2);
     }
 
     /**
@@ -222,7 +216,7 @@ public class Internet {
     public String ipV4Cidr() {
         return new StringBuilder(ipV4Address())
           .append('/')
-          .append(randomService.nextInt(31) + 1)
+          .append(faker.random().nextInt(31) + 1)
           .toString();
     }
 
@@ -236,10 +230,10 @@ public class Internet {
             if (i > 0) {
                 tmp.append(":");
             }
-            tmp.append(Integer.toHexString(randomService.nextInt(16)));
-            tmp.append(Integer.toHexString(randomService.nextInt(16)));
-            tmp.append(Integer.toHexString(randomService.nextInt(16)));
-            tmp.append(Integer.toHexString(randomService.nextInt(16)));
+            tmp.append(Integer.toHexString(faker.random().nextInt(16)));
+            tmp.append(Integer.toHexString(faker.random().nextInt(16)));
+            tmp.append(Integer.toHexString(faker.random().nextInt(16)));
+            tmp.append(Integer.toHexString(faker.random().nextInt(16)));
         }
         return tmp.toString();
     }
@@ -250,7 +244,7 @@ public class Internet {
     public String ipV6Cidr() {
         return new StringBuilder(ipV6Address())
           .append('/')
-          .append(randomService.nextInt(127) + 1)
+          .append(faker.random().nextInt(127) + 1)
           .toString();
     }
 

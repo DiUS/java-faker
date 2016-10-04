@@ -6,8 +6,6 @@ package com.github.javafaker;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import com.github.javafaker.service.RandomService;
-
 /**
  * A generator of random dates.
  * 
@@ -15,12 +13,12 @@ import com.github.javafaker.service.RandomService;
  *
  */
 public class DateAndTime {
+    private final Faker faker;
 
-    private RandomService randomService;
-
-    public DateAndTime(RandomService randomService) {
-        this.randomService = randomService;
+    DateAndTime(Faker faker) {
+        this.faker = faker;
     }
+
 
     /**
      * Generates a future date from now. Note that there is a 1 second slack to avoid generating a past date.
@@ -52,7 +50,7 @@ public class DateAndTime {
         long upperBound = unit.toMillis(atMost);
 
         long futureMillis = referenceDate.getTime();
-        futureMillis += 1 + randomService.nextLong(upperBound - 1);
+        futureMillis += 1 + faker.random().nextLong(upperBound - 1);
 
         return new Date(futureMillis);
     }
@@ -87,7 +85,7 @@ public class DateAndTime {
         long upperBound = unit.toMillis(atMost);
 
         long futureMillis = referenceDate.getTime();
-        futureMillis -= 1 + randomService.nextLong(upperBound - 1);
+        futureMillis -= 1 + faker.random().nextLong(upperBound - 1);
 
         return new Date(futureMillis);
     }
@@ -108,7 +106,7 @@ public class DateAndTime {
             throw new IllegalArgumentException("Invalid date range, the upper bound date is before the lower bound.");
         }
 
-        long offsetMillis = randomService.nextLong(to.getTime() - from.getTime());
+        long offsetMillis = faker.random().nextLong(to.getTime() - from.getTime());
         return new Date(from.getTime() + offsetMillis);
     }
 

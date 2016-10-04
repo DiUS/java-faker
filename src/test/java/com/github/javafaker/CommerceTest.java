@@ -1,22 +1,15 @@
 package com.github.javafaker;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.Test;
 
 import java.text.DecimalFormatSymbols;
 
-import org.junit.Before;
-import org.junit.Test;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.junit.Assert.assertThat;
 
-public class CommerceTest {
+public class CommerceTest extends AbstractFakerTest {
 
     private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
 
     @Test
     public void testColor() {

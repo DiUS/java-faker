@@ -1,20 +1,14 @@
 package com.github.javafaker;
 
 import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
-import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class FinanceTest {
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
+public class FinanceTest extends AbstractFakerTest {
+    
 
     @Test
     public void creditCard() {
