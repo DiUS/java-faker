@@ -156,36 +156,36 @@ public class InternetTest {
 
     @Test
     public void testPrivateIpV4Address() {
-        String ten_dot = "^10\\..+";
-        String one_two_seven = "^127\\..+";
-        String one_six_nine = "^169\\.254\\..+";
-        String one_nine_two = "^192\\.168\\..+";
-        String one_seven_two = "^172\\.(16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31)\\..+";
+        String tenDot = "^10\\..+";
+        String oneTwoSeven = "^127\\..+";
+        String oneSixNine = "^169\\.254\\..+";
+        String oneNineTwo = "^192\\.168\\..+";
+        String oneSevenTwo = "^172\\.(16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31)\\..+";
         for (int i = 0; i < 1000; i++) {
             String addr = faker.internet().privateIpV4Address();
             
-            assertThat(addr, anyOf(matchesRegularExpression(ten_dot),
-                    matchesRegularExpression(one_two_seven),
-                    matchesRegularExpression(one_six_nine),
-                    matchesRegularExpression(one_nine_two),
-                    matchesRegularExpression(one_seven_two)));
+            assertThat(addr, anyOf(matchesRegularExpression(tenDot),
+                    matchesRegularExpression(oneTwoSeven),
+                    matchesRegularExpression(oneSixNine),
+                    matchesRegularExpression(oneNineTwo),
+                    matchesRegularExpression(oneSevenTwo)));
         }
     }
 
     @Test
     public void testPublicIpV4Address() {
-        String ten_dot = "^10\\.";
-        String one_two_seven = "^127\\.";
-        String one_six_nine = "^169\\.254";
-        String one_nine_two = "^192\\.168\\.";
-        String one_seven_two = "^172\\.(16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31)\\.";
+        String tenDot = "^10\\.";
+        String oneTwoSeven = "^127\\.";
+        String oneSixNine = "^169\\.254";
+        String oneNineTwo = "^192\\.168\\.";
+        String oneSevenTwo = "^172\\.(16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31)\\.";
         for (int i = 0; i < 1000; i++) {
             String addr = faker.internet().publicIpV4Address();
-            assertThat(addr.matches(ten_dot),is(false));
-            assertThat(addr.matches(one_two_seven),is(false));
-            assertThat(addr.matches(one_six_nine),is(false));
-            assertThat(addr.matches(one_nine_two),is(false));
-            assertThat(addr.matches(one_seven_two),is(false));
+            assertThat(addr.matches(tenDot),is(false));
+            assertThat(addr.matches(oneTwoSeven),is(false));
+            assertThat(addr.matches(oneSixNine),is(false));
+            assertThat(addr.matches(oneNineTwo),is(false));
+            assertThat(addr.matches(oneSevenTwo),is(false));
         }
     }
 
