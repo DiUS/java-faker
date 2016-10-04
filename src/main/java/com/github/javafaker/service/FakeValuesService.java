@@ -17,12 +17,38 @@ public class FakeValuesService implements FakeValuesServiceInterface {
     private final Map<String, Object> fakeValuesMap;
     private final RandomService randomService;
 
+    /**
+     * <p>
+     *     Resolves YAML file using the most specific path first based on language and country code.
+     *      'en_US' would resolve in the following order:
+     *      <ol>
+     *          <li>/en-US.yml</li>
+     *          <li>/en.yml</li>
+     *      </ol>
+     *      The search is case-insensitive, so the following will all resolve correctly.  Also, either a hyphen or
+     *      an underscore can be used when constructing a {@link Locale} instance.  This is legacy behavior and not
+     *      condoned, but it will work.
+     *      <ul>
+     *          <li>EN_US</li>
+     *          <li>En-Us</li>
+     *          <li>eN_uS</li>
+     *      </ul>
+     * </p>
+     * @param locale
+     * @param randomService
+     */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public FakeValuesService(Locale locale, RandomService randomService) {
-        String filename = locale.getLanguage();
+        if (locale == null) {
+            throw new IllegalArgumentException("locale is required");
+        }
+        locale = normalizeLocale(locale);
+        
+        String filename = locale.getLanguage() + '-' + locale.getCountry();
+        
         InputStream stream = findStream(filename);
         if (stream == null) {
-            filename = filename + "-" + locale.getCountry();
+            filename = locale.getLanguage();
             stream = findStream(filename);
         }
         if (stream == null) {
@@ -33,6 +59,21 @@ public class FakeValuesService implements FakeValuesServiceInterface {
         valuesMap = (Map) valuesMap.get(filename);
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
         this.randomService = randomService;
+    }
+
+    /**
+     * @return a proper {@link Locale} instance with language and country code set regardless of how
+     *         it was instantiated.  new Locale("pt-br") will be normalized to a locale constructed
+     *         with new Locale("pt","BR").
+     */
+    private Locale normalizeLocale(Locale locale) {
+        final String[] parts = locale.toString().split("[-\\_]");
+        
+        if (parts.length == 1) {
+            return new Locale(parts[0]);
+        } else {
+            return new Locale(parts[0],parts[1]);
+        }
     }
 
     private InputStream findStream(String filename) {

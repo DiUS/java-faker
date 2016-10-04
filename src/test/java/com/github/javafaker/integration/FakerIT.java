@@ -10,21 +10,14 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Locale;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.reflections.ReflectionUtils.getAllMethods;
-import static org.reflections.ReflectionUtils.withModifier;
-import static org.reflections.ReflectionUtils.withParametersCount;
-import static org.reflections.ReflectionUtils.withReturnType;
+import static org.reflections.ReflectionUtils.*;
 
 /**
  * The purpose of these tests is to ensure that the Locales have been properly configured
@@ -53,6 +46,7 @@ public class FakerIT {
     @Parameterized.Parameters(name = "testing locale {0} and random {1}")
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
+                {Locale.US, null},
                 {Locale.ENGLISH, null},
                 {Locale.FRENCH, null},
                 {Locale.CANADA_FRENCH, null},
@@ -60,6 +54,11 @@ public class FakerIT {
                 {new Locale("pt"), null},
                 {FINNISH_LOCALE, null},
                 {Locale.ENGLISH, new Random()},
+                {new Locale("pt-BR"), null},
+                {new Locale("pt-br"), null},
+                {new Locale("Pt_br"), null},
+                {new Locale("pT_Br"), null},
+                {new Locale("pt","Br","x2"), null},
                 {null, new Random()},
                 {null, null}};
         return Arrays.asList(data);
