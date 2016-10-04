@@ -4,12 +4,19 @@ import com.github.javafaker.service.FakeValuesServiceInterface;
 import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang3.StringUtils;
 
-import static org.apache.commons.lang3.StringUtils.join;
-
 import java.net.IDN;
 
-public class Internet {
+import static org.apache.commons.lang3.StringUtils.join;
 
+public class Internet {
+    private static final String[] PRIVATE_IPV4_NETS_REGEX = {
+            "^10\\..+",
+            "^127\\..+",
+            "^169\\.254\\..+",
+            "^172\\.(16|17|18|19|2\\d|30|31)\\..+",
+            "^192\\.168\\..+"
+    };
+    
     private final Name name;
     private final Lorem lorem;
     private final FakeValuesServiceInterface fakeValuesService;
@@ -145,5 +152,120 @@ public class Internet {
             return lorem.characters(minimumLength, maximumLength, includeUppercase);
         }
     }
+    
+    /**
+     * <p>Returns a MAC address in the following format: 6-bytes in MM:MM:MM:SS:SS:SS format.</p>
+     * @return a correctly formatted MAC address
+     * @param prefix a prefix to put on the front of the address
+     */
+    public String macAddress(String prefix) {
+        final String tmp = (prefix == null) ? "" : prefix;
+        final int prefixLength = tmp.trim().length() == 0 
+          ? 0 
+          : tmp.split(":").length;
+        
+        final StringBuilder out = new StringBuilder(tmp);
+        for (int i=0;i < 6 - prefixLength;i++) {
+            if (out.length() > 0) {
+                out.append(':');
+            }
+            out.append(Integer.toHexString(randomService.nextInt(16)));
+            out.append(Integer.toHexString(randomService.nextInt(16)));
+        }
+        return out.toString();
+    }
+
+    /**
+     * @see Internet#macAddress(String) 
+     */
+    public String macAddress() {
+        return macAddress("");
+    }
+
+    /**
+     * returns an IPv4 address in dot separated octets. 
+     * @return a correctly formatted IPv4 address.
+     */
+    public String ipV4Address() {
+        return String.format("%d.%d.%d.%d",
+          randomService.nextInt(254) + 2,
+          randomService.nextInt(254) + 2,
+          randomService.nextInt(254) + 2,
+          randomService.nextInt(254) + 2);
+    }
+
+    /**
+     * @return a valid private IPV4 address in dot notation
+     */
+    public String privateIpV4Address() {
+        String addr = null;
+        do {
+            addr = ipV4Address(); 
+        } while (!isPrivate(addr));
+        return addr;
+    }
+
+    /**
+     * @return a valid public IPV4 address in dot notation
+     */
+    public String publicIpV4Address() {
+        String addr = null;
+        do {
+            addr = ipV4Address();
+        } while (isPrivate(addr));
+        return addr;
+    }
+
+    /**
+     * @return a valid IPV4 CIDR
+     */
+    public String ipV4Cidr() {
+        return new StringBuilder(ipV4Address())
+          .append('/')
+          .append(randomService.nextInt(31) + 1)
+          .toString();
+    }
+
+    /**
+     * <p>Returns an IPv6 address in hh:hh:hh:hh:hh:hh:hh:hh format.</p>
+     * @return a correctly formatted IPv6 address.
+     */
+    public String ipV6Address() {
+        final StringBuilder tmp = new StringBuilder();
+        for (int i=0;i < 8;i++) {
+            if (i > 0) {
+                tmp.append(":");
+            }
+            tmp.append(Integer.toHexString(randomService.nextInt(16)));
+            tmp.append(Integer.toHexString(randomService.nextInt(16)));
+            tmp.append(Integer.toHexString(randomService.nextInt(16)));
+            tmp.append(Integer.toHexString(randomService.nextInt(16)));
+        }
+        return tmp.toString();
+    }
+
+    /**
+     * @return a valid IPV6 CIDR
+     */
+    public String ipV6Cidr() {
+        return new StringBuilder(ipV6Address())
+          .append('/')
+          .append(randomService.nextInt(127) + 1)
+          .toString();
+    }
+
+    /**
+     * @return true if the specified ipv4 address is a private address, false otherwise.
+     */
+    private final boolean isPrivate(String addr) {
+        for (int i = 0; i< PRIVATE_IPV4_NETS_REGEX.length; i++) {
+            if (addr.matches(PRIVATE_IPV4_NETS_REGEX[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
 }
