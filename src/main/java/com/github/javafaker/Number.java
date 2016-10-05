@@ -31,10 +31,14 @@ public class Number {
     }
 
     public int numberBetween(int min, int max) {
+        long mm = (long)max -(long)min;
+        if(mm > Integer.MAX_VALUE) throw new IllegalArgumentException("Too big range");
         return randomService.nextInt(max - min) + min;
     }
 
     public long numberBetween(long min, long max) {
+        double mm = (double)max -(double)min;
+        if(mm > Long.MAX_VALUE) throw new IllegalArgumentException("Too big range");
         return randomService.nextLong(max - min) + min;
     }
 
@@ -72,8 +76,8 @@ public class Number {
      */
 
     public double randomDouble(int maxNumberOfDecimals, int min, int max) {
-        double value = min + (max - min) * randomService.nextDouble();
-
+        long mm= (long)max - (long)min;
+        double value = (double) min + mm * randomService.nextDouble();
         return new BigDecimal(value).setScale(maxNumberOfDecimals, BigDecimal.ROUND_HALF_EVEN).doubleValue();
     }
 }
