@@ -291,7 +291,12 @@ public class Faker implements Resolver {
      * @param key
      * @return
      */
-    public String resolve(String key) {
+    @Override
+    public String resolve(String key){
+        return resolve(key, null);
+    }
+
+    public String resolve(String key, Object... args) {
         String[] keySplit = key.split("\\.", 2);
         String object = WordUtils.uncapitalize(keySplit[0]);
         String methodName = keySplit[1];
@@ -301,7 +306,7 @@ public class Faker implements Resolver {
         methodName = methodName.substring(0, 1).toLowerCase() + methodName.substring(1);
         try {
             Object objectWithMethodToInvoke = MethodUtils.invokeMethod(this, object, null);
-            return (String) MethodUtils.invokeMethod(objectWithMethodToInvoke, methodName, null);
+            return MethodUtils.invokeMethod(objectWithMethodToInvoke, methodName, args).toString();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
