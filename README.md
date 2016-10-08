@@ -19,7 +19,6 @@ In pom.xml, add following between `<dependencies> ... </dependencies>`
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
     <version>0.10</version>
-    <classifier>deps</classifier>
 </dependency>
 ```
 
@@ -31,7 +30,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.10', classifier: 'deps'
+    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.10'
 }
 
 ```
@@ -47,12 +46,6 @@ String lastName = faker.name().lastName(); // Barton
 
 String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 ```
-
-Dependencies
-------------
-
-The 'deps' jar (selected above via ```classifier```) contains all the classes from ```com.github.bmoliveira:snake-yaml``` 
-artifact.  
 
 Javadoc
 -----
