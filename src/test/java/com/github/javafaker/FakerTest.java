@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.Random;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class FakerTest extends AbstractFakerTest {
@@ -124,13 +124,14 @@ public class FakerTest extends AbstractFakerTest {
         assertThat(secondResult, is(firstResult));
     }
 
-//    @Test
-//    public void resolveShouldReturnValueThatExists() {
-//        assertThat(faker.fakeValuesService().resolve("address.city_prefix"), not(isEmptyString()));
-//    }
+    @Test
+    public void resolveShouldReturnValueThatExists() {
+        assertThat(faker.resolve("address.city_prefix"), not(isEmptyString()));
+    }
 
-//    @Test(expected = RuntimeException.class)
-//    public void resolveShouldThrowExceptionWhenPropertyDoesntExist() {
-//        faker.fakeValuesService().resolve("address.nothing");
-//    }
+    @Test(expected = RuntimeException.class)
+    public void resolveShouldThrowExceptionWhenPropertyDoesntExist() {
+        final String resolve = faker.resolve("address.nothing");
+        assertThat(resolve, is(nullValue()));
+    }
 }

@@ -307,7 +307,7 @@ public class FakeValuesService {
      *
      */
     public String resolve(String key, Object current, Faker root) {
-        final String template = safeFetch(key, "");
+        final String template = safeFetch(key, null);
         return processTemplate(template, current, root);
     }
 

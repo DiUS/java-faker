@@ -281,4 +281,7 @@ public class Faker {
         return cat;
     }
 
+    public String resolve(String key) {
+        return this.fakeValuesService.resolve(key, this, this);
+    }
 }
