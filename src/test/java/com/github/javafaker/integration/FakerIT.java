@@ -3,7 +3,6 @@ package com.github.javafaker.integration;
 import com.github.javafaker.Faker;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.junit.Assume;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -19,7 +18,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.reflections.ReflectionUtils.*;
 
@@ -116,10 +114,11 @@ public class FakerIT {
                 withParametersCount(0));
 
         for (Method method : methodsThatReturnStrings) {
+            if (isExcepted(object, method)) {
+                continue;
+            }
             final Object returnValue = method.invoke(object);
             logger.info(String.format("Invoked %s.%s = %s", object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
-            Assume.assumeThat(method + " on " + object + " is excepted", isExcepted(object, method), is(false));
-
             assertThat(method + " on " + object, returnValue, is(notNullValue()));
             assertThat(method + " on " + object, (String) returnValue, not(isEmptyString()));
         }
