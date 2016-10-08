@@ -24,7 +24,7 @@ public class UkLocalDirectivesTest {
      * child objects.
      */
     @Test
-    public void resolvesTheMostSpecificLocale() {
+    public void resolvesDirectivesOnlyInYmlFile() {
         final Locale uk = new Locale("uk");
 
         final String streetName = new Faker(uk).address().streetName();
