@@ -131,6 +131,11 @@ public class FakerTest {
         assertThat(faker.resolve("address.city_prefix"), not(isEmptyString()));
     }
 
+    @Test
+    public void resolveShouldReturnValueThatExistsWithArgs(){
+        assertThat(faker.resolve("number.number_between", 0, 10), not(isEmptyString()));
+    }
+
     @Test(expected = RuntimeException.class)
     public void resolveShouldThrowExceptionWhenPropertyDoesntExist() {
         faker.resolve("address.nothing");
