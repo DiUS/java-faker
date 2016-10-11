@@ -1,20 +1,17 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.RandomService;
-
 public class Code {
+    private final Faker faker;
 
-    private final RandomService randomService;
-
-    public Code(RandomService randomService) {
-        this.randomService = randomService;
+    Code(Faker faker) {
+        this.faker = faker;
     }
 
     public String isbn10() {
         StringBuilder isbn10 = new StringBuilder();
         int sum = 0;
         for (int i = 10; i > 1; i--) {
-            int n = randomService.nextInt(10);
+            int n = faker.random().nextInt(10);
             sum += i * n;
             isbn10.append(n);
         }
@@ -31,7 +28,7 @@ public class Code {
         int a = 1;
         int b = 2;
         for (int i = 0; i < 12; i++) {
-            int n = randomService.nextInt(10);
+            int n = faker.random().nextInt(10);
             sum += multiplier * n;
             multiplier = multiplier == 1 ? 3 : 1;
             isbn13.append(n);

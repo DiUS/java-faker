@@ -1,32 +1,29 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Beer {
+    private final Faker faker;
 
-    private final FakeValuesServiceInterface fakeValuesService;
-
-    public Beer(FakeValuesServiceInterface fakeValuesService) {
-        this.fakeValuesService = fakeValuesService;
+    Beer(Faker faker) {
+        this.faker = faker;
     }
 
     public String name() {
-        return fakeValuesService.fetchString("beer.name");
+        return faker.fakeValuesService().resolve("beer.name", this, faker);
     }
 
     public String style() {
-        return fakeValuesService.fetchString("beer.style");
+        return faker.fakeValuesService().resolve("beer.style", this, faker);
     }
 
     public String hop() {
-        return fakeValuesService.fetchString("beer.hop");
+        return faker.fakeValuesService().resolve("beer.hop", this, faker);
     }
 
     public String yeast() {
-        return fakeValuesService.fetchString("beer.yeast");
+        return faker.fakeValuesService().resolve("beer.yeast", this, faker);
     }
 
     public String malt() {
-        return fakeValuesService.fetchString("beer.malt");
+        return faker.fakeValuesService().resolve("beer.malt", this, faker);
     }
 }

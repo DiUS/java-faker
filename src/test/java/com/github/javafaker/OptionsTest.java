@@ -6,14 +6,12 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.isOneOf;
 import static org.junit.Assert.assertThat;
 
-public class OptionsTest {
+public class OptionsTest extends AbstractFakerTest {
 
-    private Faker faker;
     private String[] options;
 
     @Before
-    public void before() {
-        faker = new Faker();
+    public void setupOptions() {
         options = new String[]{"A", "B", "C"};
     }
 

@@ -1,20 +1,11 @@
 package com.github.javafaker;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.Before;
 import org.junit.Test;
 
-public class HackerTest {
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.junit.Assert.assertThat;
 
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
-
+public class HackerTest  extends AbstractFakerTest{
     @Test
     public void testAbbreviation() {
         assertThat(faker.hacker().abbreviation(), matchesRegularExpression("[A-Z]{2,4}"));

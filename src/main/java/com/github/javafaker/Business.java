@@ -1,23 +1,22 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Business {
-    private final FakeValuesServiceInterface fakeValuesService;
+    
+    private final Faker faker;
 
-    public Business(FakeValuesServiceInterface fakeValuesService) {
-        this.fakeValuesService = fakeValuesService;
+    Business(Faker faker) {
+        this.faker = faker;
     }
 
     public String creditCardNumber() {
-        return fakeValuesService.fetchString("business.credit_card_numbers");
+        return faker.fakeValuesService().resolve("business.credit_card_numbers", this, faker);
     }
 
     public String creditCardType() {
-        return fakeValuesService.fetchString("business.credit_card_types");
+        return faker.fakeValuesService().resolve("business.credit_card_types", this, faker);
     }
 
     public String creditCardExpiry() {
-        return fakeValuesService.fetchString("business.credit_card_expiry_dates");
+        return faker.fakeValuesService().resolve("business.credit_card_expiry_dates", this, faker);
     }
 }

@@ -1,30 +1,25 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Team {
+    private final Faker faker;
 
-    private final Resolver resolver;
-    private final FakeValuesServiceInterface fakeValuesService;
-
-    public Team(Resolver resolver, FakeValuesServiceInterface fakeValuesService) {
-        this.resolver = resolver;
-        this.fakeValuesService = fakeValuesService;
+    Team(Faker faker) {
+        this.faker = faker;
     }
 
     public String name() {
-        return fakeValuesService.resolve("team.name", this, resolver);
+        return faker.fakeValuesService().resolve("team.name", this, faker);
     }
 
     public String creature() {
-        return fakeValuesService.fetchString("team.creature");
+        return faker.fakeValuesService().resolve("team.creature", this, faker);
     }
 
     public String state() {
-        return fakeValuesService.fetchString("address.state");
+        return faker.fakeValuesService().resolve("address.state", this, faker);
     }
 
     public String sport() {
-        return fakeValuesService.fetchString("team.sport");
+        return faker.fakeValuesService().resolve("team.sport", this, faker);
     }
 }

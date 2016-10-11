@@ -3,15 +3,13 @@ package com.github.javafaker;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.core.IsNot.not;
-import static org.junit.Assert.assertThat;
-
 import java.util.Random;
 
-public class FakerTest {
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+
+public class FakerTest extends AbstractFakerTest {
 
     private Faker faker;
 
@@ -133,6 +131,7 @@ public class FakerTest {
 
     @Test(expected = RuntimeException.class)
     public void resolveShouldThrowExceptionWhenPropertyDoesntExist() {
-        faker.resolve("address.nothing");
+        final String resolve = faker.resolve("address.nothing");
+        assertThat(resolve, is(nullValue()));
     }
 }

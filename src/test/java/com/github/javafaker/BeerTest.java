@@ -1,23 +1,15 @@
 package com.github.javafaker;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThat;
 
-public class BeerTest {
-
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
+public class BeerTest extends AbstractFakerTest {
 
     @Test
     public void testName() {
-       assertThat(faker.beer().name(), matchesRegularExpression("[\\p{L}'()\\., 0-9-’’]+"));
+        assertThat(faker.beer().name(), matchesRegularExpression("[\\p{L}'()\\., 0-9-’’]+"));
     }
 
     @Test

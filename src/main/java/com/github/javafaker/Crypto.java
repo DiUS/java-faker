@@ -5,11 +5,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Crypto {
+    private final Faker faker;
 
-    private final Lorem lorem;
-
-    public Crypto(Lorem lorem) {
-        this.lorem = lorem;
+    Crypto(Faker faker) {
+        this.faker = faker;
     }
 
     public String md5() {
@@ -31,7 +30,7 @@ public class Crypto {
     private String generateString(String algorithm) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
-            String characters = lorem.characters();
+            String characters = faker.lorem().characters();
             messageDigest.update(characters.getBytes(), 0, characters.length());
             return new BigInteger(1, messageDigest.digest()).toString(16);
         } catch (NoSuchAlgorithmException noSuchAlgorithmException) {

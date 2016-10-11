@@ -1,23 +1,22 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Cat {
-    private final FakeValuesServiceInterface fakeValuesService;
 
-    public Cat(FakeValuesServiceInterface fakeValuesService) {
-        this.fakeValuesService = fakeValuesService;
+    private final Faker faker;
+
+    Cat(Faker faker) {
+        this.faker = faker;
     }
 
     public String name() {
-        return fakeValuesService.fetchString("cat.name");
+        return faker.fakeValuesService().resolve("cat.name", this, faker);
     }
 
     public String breed() {
-        return fakeValuesService.fetchString("cat.breed");
+        return faker.fakeValuesService().resolve("cat.breed", this, faker);
     }
 
     public String registry() {
-        return fakeValuesService.fetchString("cat.registry");
+        return faker.fakeValuesService().resolve("cat.registry", this, faker);
     }
 }

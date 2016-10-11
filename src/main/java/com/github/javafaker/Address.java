@@ -1,36 +1,26 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-import com.github.javafaker.service.RandomService;
-
 public class Address {
+    private final Faker faker;
 
-    private final Resolver resolver;
-    private final Name name;
-    private final FakeValuesServiceInterface fakeValuesService;
-    private final RandomService randomService;
-
-    public Address(Resolver resolver, Name name, FakeValuesServiceInterface fakeValuesService, RandomService randomService) {
-        this.resolver = resolver;
-        this.name = name;
-        this.fakeValuesService = fakeValuesService;
-        this.randomService = randomService;
+    Address(Faker faker) {
+        this.faker = faker;
     }
 
     public String streetName() {
-        return resolve("address.street_name");
+        return faker.fakeValuesService().resolve("address.street_name", this, faker);
     }
 
     public String streetAddressNumber() {
-        return String.valueOf(randomService.nextInt(1000));
+        return String.valueOf(faker.random().nextInt(1000));
     }
 
     public String streetAddress() {
-        return resolve("address.street_address");
+        return faker.fakeValuesService().resolve("address.street_address", this, faker);
     }
 
     public String streetAddress(boolean includeSecondary) {
-        String streetAddress = resolve("address.street_address");
+        String streetAddress = faker.fakeValuesService().resolve("address.street_address", this, faker);
         if (includeSecondary) {
             streetAddress = streetAddress + " " + secondaryAddress();
         }
@@ -38,70 +28,74 @@ public class Address {
     }
 
     public String secondaryAddress() {
-        return fakeValuesService.numerify(fakeValuesService.fetchString("address.secondary_address"));
+        return faker.numerify(faker.fakeValuesService().resolve("address.secondary_address", this,faker));
     }
 
     public String zipCode() {
-        return fakeValuesService.bothify(fakeValuesService.fetchString("address.postcode"));
+        return faker.bothify(faker.fakeValuesService().resolve("address.postcode", this,faker));
     }
 
     public String streetSuffix() {
-        return fakeValuesService.fetchString("address.street_suffix");
+        return faker.fakeValuesService().resolve("address.street_suffix", this, faker);
+    }
+
+    public String streetPrefix() {
+        return faker.fakeValuesService().resolve("address.street_prefix", this, faker);
     }
 
     public String citySuffix() {
-        return fakeValuesService.safeFetch("address.city_suffix");
+        return faker.fakeValuesService().resolve("address.city_suffix", this, faker);
     }
 
     public String cityPrefix() {
-        return fakeValuesService.safeFetch("address.city_prefix");
+        return faker.fakeValuesService().resolve("address.city_prefix", this, faker);
     }
 
     public String city() {
-        return resolve("address.city");
+        return faker.fakeValuesService().resolve("address.city", this, faker);
     }
 
     public String cityName() {
-        return resolve("address.city_name");
+        return faker.fakeValuesService().resolve("address.city_name", this, faker);
     }
 
     public String state() {
-        return fakeValuesService.fetchString("address.state");
+        return faker.fakeValuesService().resolve("address.state", this, faker);
     }
 
     public String stateAbbr() {
-        return fakeValuesService.fetchString("address.state_abbr");
+        return faker.fakeValuesService().resolve("address.state_abbr", this, faker);
     }
 
     public String firstName() {
-        return name.firstName();
+        return faker.name().firstName();
     }
 
     public String lastName() {
-        return name.lastName();
+        return faker.name().lastName();
     }
 
     public String latitude() {
-        return String.format("%.8g", (randomService.nextDouble() * 180) - 90);
+        return String.format("%.8g", (faker.random().nextDouble() * 180) - 90);
     }
 
     public String longitude() {
-        return String.format("%.8g", (randomService.nextDouble() * 360) - 180);
+        return String.format("%.8g", (faker.random().nextDouble() * 360) - 180);
     }
 
     public String timeZone() {
-        return fakeValuesService.fetchString("address.time_zone");
+        return faker.fakeValuesService().resolve("address.time_zone", this, faker);
     }
 
-    public String country() { return fakeValuesService.fetchString("address.country"); }
+    public String country() {
+        return faker.fakeValuesService().resolve("address.country", this, faker);
+    }
 
-    public String countryCode() { return fakeValuesService.fetchString("address.country_code"); }
+    public String countryCode() {
+        return faker.fakeValuesService().resolve("address.country_code", this, faker);
+    }
 
     public String buildingNumber() {
-        return fakeValuesService.numerify(fakeValuesService.fetchString("address.building_number"));
-    }
-
-    private String resolve(String key) {
-        return fakeValuesService.resolve(key, this, resolver);
+        return faker.numerify(faker.fakeValuesService().resolve("address.building_number", this, faker));
     }
 }

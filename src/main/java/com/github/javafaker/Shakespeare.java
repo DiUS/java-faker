@@ -1,7 +1,5 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.RandomService;
-
 public class Shakespeare {
 
     private static final String [] hamletQuotes = {
@@ -57,10 +55,11 @@ public class Shakespeare {
          "See, how she leans her cheek upon her hand! O that I were a glove upon that hand, that I might touch that cheek!.",
          "Not stepping o'er the bounds of modesty." };
 
-    private final RandomService randomService;
 
-    public Shakespeare(RandomService randomService) {
-        this.randomService = randomService;
+    private final Faker faker;
+
+    Shakespeare(Faker faker) {
+        this.faker = faker;
     }
 
     public String hamletQuote() {
@@ -80,7 +79,7 @@ public class Shakespeare {
     }
 
     private String randomElement(String[] values) {
-        return values[randomService.nextInt(values.length)];
+        return values[faker.random().nextInt(values.length)];
     }
 
 }

@@ -1,6 +1,7 @@
 package com.github.javafaker.service;
 
-import com.github.javafaker.Resolver;
+import com.github.javafaker.Faker;
+import com.github.javafaker.Superhero;
 import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,16 +9,15 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class FakeValuesServiceTest {
 
@@ -25,7 +25,7 @@ public class FakeValuesServiceTest {
     private RandomService randomService;
 
     @Mock
-    private Resolver resolver;
+    private Faker faker;
 
     private FakeValuesService fakeValuesService;
 
@@ -59,65 +59,134 @@ public class FakeValuesServiceTest {
 
     @Test
     public void safeFetchShouldReturnValueInList() {
-        assertThat(fakeValuesService.safeFetch("property.dummy"), is("x"));
+        assertThat(fakeValuesService.safeFetch("property.dummy", null), is("x"));
     }
 
     @Test
     public void safeFetchShouldReturnSimpleList() {
-        assertThat(fakeValuesService.safeFetch("property.simple"), is("hello"));
+        assertThat(fakeValuesService.safeFetch("property.simple", null), is("hello"));
     }
 
     @Test
     public void safeFetchShouldReturnEmptyStringWhenPropertyDoesntExist() {
-        assertThat(fakeValuesService.safeFetch("property.dummy2"), isEmptyString());
+        assertThat(fakeValuesService.safeFetch("property.dummy2", ""), isEmptyString());
     }
 
     @Test
     public void resolveKeyToPropertyWithAPropertyWithoutAnObject() {
         // #{hello} -> DummyService.hello
-        when(resolver.resolve(anyString())).thenReturn("");
 
-        fakeValuesService.resolve("property.simpleResolution", new DummyService(), resolver);
+        // given
+        final Faker faker = mock(Faker.class);
+        final DummyService dummy = mock(DummyService.class);
+        doReturn("Yo!").when(dummy).hello();
 
-        verify(resolver).resolve(eq("DummyService.hello"));
+        // when
+        final String actual = fakeValuesService.resolve("property.simpleResolution", dummy, faker);
+
+        // then
+        assertThat(actual, is("Yo!"));
+        verify(dummy).hello();
+        verifyZeroInteractions(faker);
     }
 
     @Test
     public void resolveKeyToPropertyWithAPropertyWithAnObject() {
-        // #{person.hello} -> Person.hello
-        when(resolver.resolve(anyString())).thenReturn("");
+        // given
+        final Faker faker = mock(Faker.class);
+        final Superhero person = mock(Superhero.class);
+        final DummyService dummy = mock(DummyService.class);
+        doReturn(person).when(faker).superhero();
+        doReturn("Luke Cage").when(person).name();
 
-        fakeValuesService.resolve("property.advancedResolution", new DummyService(), resolver);
+        // when
+        final String actual = fakeValuesService.resolve("property.advancedResolution", dummy, faker);
 
-        verify(resolver).resolve(eq("Person.hello"));
+        // then
+        assertThat(actual, is("Luke Cage"));
+        verify(faker).superhero();
+        verify(person).name();
     }
 
     @Test
     public void resolveKeyToPropertyWithAList() {
+        // property.resolutionWithList -> #{hello}
         // #{hello} -> DummyService.hello
-        when(resolver.resolve(anyString())).thenReturn("");
 
-        fakeValuesService.resolve("property.resolutionWithList", new DummyService(), resolver);
+        // given
+        final Faker faker = mock(Faker.class);
+        final DummyService dummy = mock(DummyService.class);
+        doReturn("Yo!").when(dummy).hello();
 
-        verify(resolver).resolve(eq("DummyService.hello"));
+        // when
+        final String actual = fakeValuesService.resolve("property.resolutionWithList", dummy, faker);
+
+        // then
+        assertThat(actual, is("Yo!"));
+        verify(dummy).hello();
     }
 
     @Test
     public void resolveKeyWithMultiplePropertiesShouldJoinResults() {
-        when(resolver.resolve("DummyService.hello")).thenReturn("1");
-        when(resolver.resolve("Person.hello")).thenReturn("2");
+        // given
+        final Faker faker = mock(Faker.class);
+        final Superhero person = mock(Superhero.class);
+        final DummyService dummy = mock(DummyService.class);
+        doReturn(person).when(faker).superhero();
 
-        String resolved = fakeValuesService.resolve("property.multipleResolution", new DummyService(), resolver);
-        assertThat(resolved, is("1 2"));
+        doReturn("Yo Superman!").when(dummy).hello();
+        doReturn("up up and away").when(person).descriptor();
+
+        // when
+        String actual = fakeValuesService.resolve("property.multipleResolution", dummy, faker);
+
+        // then
+        assertThat(actual, is("Yo Superman! up up and away"));
+
+        verify(faker).superhero();
+        verify(person).descriptor();
+        verify(dummy).hello();
     }
 
-    private static class DummyService {
+    @Test
+    public void testLocaleChain() {
+        final List<Locale> chain = fakeValuesService.localeChain(Locale.SIMPLIFIED_CHINESE);
+        
+        assertThat(chain, hasSize(3));
+        assertThat(chain.get(0), is(Locale.SIMPLIFIED_CHINESE));
+        assertThat(chain.get(1), is(Locale.CHINESE));
+        assertThat(chain.get(2), is(Locale.ENGLISH));
+        
+    }
+    
+    @Test
+    public void testLocaleChainEnglish() {
+        final List<Locale> chain = fakeValuesService.localeChain(Locale.ENGLISH);
+
+        assertThat(chain, hasSize(1));
+        assertThat(chain.get(0), is(Locale.ENGLISH));
+    }
+    
+    @Test
+    public void testLocaleChainLanguageOnly() {
+        final List<Locale> chain = fakeValuesService.localeChain(Locale.CHINESE);
+
+        assertThat(chain, hasSize(2));
+        assertThat(chain.get(0), is(Locale.CHINESE));
+        assertThat(chain.get(1), is(Locale.ENGLISH));
+    }
+    
+    public static class DummyService {
         public String firstName() {
             return "John";
         }
 
         public String lastName() {
             return "Smith";
+        }
+        
+        public String hello() {
+            return "Hello";
         }
     }
 

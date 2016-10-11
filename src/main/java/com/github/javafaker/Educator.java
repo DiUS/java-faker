@@ -1,30 +1,33 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Educator {
+    private final Faker faker;
 
-    private final FakeValuesServiceInterface fakeValuesService;
-
-    public Educator(FakeValuesServiceInterface fakeValuesService) {
-        this.fakeValuesService = fakeValuesService;
+    Educator(Faker faker) {
+        this.faker = faker;
     }
 
+    // TODO - move these all out to en.yml by default. 
     public String university() {
-        return fakeValuesService.fetchString("educator.name") + " " + fakeValuesService.fetchString("educator.tertiary.type");
+        return faker.fakeValuesService().resolve("educator.name", this, faker) 
+                + " " 
+                + faker.fakeValuesService().resolve("educator.tertiary.type", this, faker);
     }
 
     public String course() {
-        return fakeValuesService.fetchString("educator.tertiary.course.type") + " "
-                + fakeValuesService.fetchString("educator.tertiary.course.subject");
+        return faker.fakeValuesService().resolve("educator.tertiary.course.type", this, faker) 
+                + " "
+                + faker.fakeValuesService().resolve("educator.tertiary.course.subject", this, faker);
     }
 
     public String secondarySchool() {
-        return fakeValuesService.fetchString("educator.name") + " " + fakeValuesService.fetchString("educator.secondary");
+        return faker.fakeValuesService().resolve("educator.name", this, faker)
+                + " "
+                + faker.fakeValuesService().resolve("educator.secondary", this, faker);
     }
 
     public String campus() {
-        return fakeValuesService.fetchString("educator.name") + " Campus";
+        return faker.fakeValuesService().resolve("educator.name", this, faker) + " Campus";
     }
 
 }

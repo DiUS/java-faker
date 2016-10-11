@@ -1,20 +1,12 @@
 package com.github.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.Matchers.not;
-
-import org.junit.Before;
 import org.junit.Test;
 
-public class ChuckNorrisTest {
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
 
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
+public class ChuckNorrisTest extends AbstractFakerTest {
 
     @Test
     public void testFact() {

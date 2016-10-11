@@ -1,22 +1,16 @@
 package com.github.javafaker;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.number.OrderingComparison.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.junit.Assert.assertThat;
 
-public class NumberTest {
+public class NumberTest  extends AbstractFakerTest{
 
-    private Faker faker;
-
-    @Before
-    public void setUp() {
-        faker = new Faker();
-    }
 
     @Test
     public void testRandomDigit() {

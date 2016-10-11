@@ -4,8 +4,8 @@ test:
        dummy: [x, y, z]
        simple: "hello"
        simpleResolution: "#{hello}"
-       advancedResolution: "#{Person.hello}"
-       multipleResolution: "#{hello} #{Person.hello}"
+       advancedResolution: "#{Superhero.name}"
+       multipleResolution: "#{hello} #{Superhero.descriptor}"
        resolutionWithList:
            - "#{hello}"
            - "#{hello2}"

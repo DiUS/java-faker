@@ -1,26 +1,21 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class App {
+    private final Faker faker;
 
-    private final Resolver resolver;
-    private final FakeValuesServiceInterface fakeValuesService;
-
-    public App(Resolver resolver, FakeValuesServiceInterface fakeValuesService) {
-        this.resolver = resolver;
-        this.fakeValuesService = fakeValuesService;
+    App(Faker faker) {
+        this.faker = faker;
     }
 
     public String name() {
-        return fakeValuesService.fetchString("app.name");
+        return faker.fakeValuesService().resolve("app.name", this, faker);
     }
 
     public String version() {
-        return fakeValuesService.numerify(fakeValuesService.fetchString("app.version"));
+        return faker.numerify(faker.fakeValuesService().resolve("app.version", this, faker));
     }
 
     public String author() {
-        return fakeValuesService.resolve("app.name", this, resolver);
+        return faker.fakeValuesService().resolve("app.name", this, faker);
     }
 }

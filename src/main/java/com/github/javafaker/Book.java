@@ -1,29 +1,25 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Book {
-    private final FakeValuesServiceInterface fakeValuesService;
-    private final Resolver resolver;
+    private final Faker faker;
 
-    public Book(Resolver resolver, FakeValuesServiceInterface fakeValuesService) {
-        this.fakeValuesService = fakeValuesService;
-        this.resolver = resolver;
+    Book(Faker faker) {
+        this.faker = faker;
     }
 
     public String author() {
-        return fakeValuesService.resolve("book.author", this, resolver);
+        return faker.fakeValuesService().resolve("book.author", this, faker);
     }
 
     public String title() {
-        return fakeValuesService.fetchString("book.title");
+        return faker.fakeValuesService().resolve("book.title", this, faker);
     }
 
     public String publisher() {
-        return fakeValuesService.fetchString("book.publisher");
+        return faker.fakeValuesService().resolve("book.publisher", this, faker);
     }
 
     public String genre() {
-        return fakeValuesService.fetchString("book.genre");
+        return faker.fakeValuesService().resolve("book.genre", this, faker);
     }
 }

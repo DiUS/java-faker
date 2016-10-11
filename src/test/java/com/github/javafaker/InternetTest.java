@@ -7,19 +7,10 @@ import org.junit.Test;
 import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static java.lang.Integer.parseInt;
-import static org.hamcrest.CoreMatchers.both;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
-public class InternetTest {
-
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
-
+public class InternetTest extends AbstractFakerTest {
     @Test
     public void testEmailAddress() {
         String emailAddress = faker.internet().emailAddress();

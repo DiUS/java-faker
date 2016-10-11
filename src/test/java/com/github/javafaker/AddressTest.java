@@ -1,28 +1,19 @@
 package com.github.javafaker;
 
-import org.junit.Before;
 import org.junit.Test;
-
-import static com.github.javafaker.matchers.IsANumber.isANumber;
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNot.not;
 
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Random;
 
-public class AddressTest {
+import static com.github.javafaker.matchers.IsANumber.isANumber;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+
+public class AddressTest extends AbstractFakerTest {
 
     private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
 
     @Test
     public void testStreetAddressIsANumber() {
@@ -38,8 +29,8 @@ public class AddressTest {
             latStr = faker.address().latitude().replace(decimalSeparator, '.');
             assertThat(latStr, isANumber());
             lat = new Double(latStr);
-            assertThat("Latitude is less then -90", lat >= -90);
-            assertThat("Latitude is greater than 90", lat <= 90);
+            assertThat("Latitude is less then -90", lat, greaterThanOrEqualTo(-90.0));
+            assertThat("Latitude is greater than 90", lat, lessThanOrEqualTo(90.0));
         }
     }
 
@@ -51,8 +42,8 @@ public class AddressTest {
             longStr = faker.address().longitude().replace(decimalSeparator, '.');
             assertThat(longStr, isANumber());
             lon = new Double(longStr);
-            assertThat("Longitude is less then -180", lon >= -180);
-            assertThat("Longitude is greater than 180", lon <= 180);
+            assertThat("Longitude is less then -180", lon, greaterThanOrEqualTo(-180.0));
+            assertThat("Longitude is greater than 180", lon, lessThanOrEqualTo(180.0));
         }
     }
 

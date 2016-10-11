@@ -1,15 +1,13 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class Color {
-    private final FakeValuesServiceInterface fakeValuesService;
+    private final Faker faker;
 
-    public Color(FakeValuesServiceInterface fakeValuesService) {
-        this.fakeValuesService = fakeValuesService;
+    Color(Faker faker) {
+        this.faker = faker;
     }
 
     public String name() {
-        return fakeValuesService.fetchString("color.name");
+        return faker.fakeValuesService().resolve("color.name", this, faker);
     }
 }

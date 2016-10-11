@@ -1,16 +1,13 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesServiceInterface;
-
 public class ChuckNorris {
+    private final Faker faker;
 
-    private final FakeValuesServiceInterface fakeValuesService;
-
-    public ChuckNorris(FakeValuesServiceInterface fakeValuesService) {
-        this.fakeValuesService = fakeValuesService;
+    ChuckNorris(Faker faker) {
+        this.faker = faker;
     }
 
     public String fact() {
-        return fakeValuesService.fetchString("chuck_norris.fact");
+        return faker.fakeValuesService().resolve("chuck_norris.fact", this, faker);
     }
 }

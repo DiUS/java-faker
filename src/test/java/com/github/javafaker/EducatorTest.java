@@ -1,20 +1,11 @@
 package com.github.javafaker;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.Before;
 import org.junit.Test;
 
-public class EducatorTest {
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.junit.Assert.assertThat;
 
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
-
+public class EducatorTest extends AbstractFakerTest {
     @Test
     public void testUniversity() {
         assertThat(faker.educator().university(), matchesRegularExpression("(\\w+ ?){2,3}"));

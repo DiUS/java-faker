@@ -1,6 +1,8 @@
 package com.github.javafaker.integration;
 
 import com.github.javafaker.Faker;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -13,10 +15,10 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
 import static org.reflections.ReflectionUtils.*;
 
 /**
@@ -27,11 +29,23 @@ import static org.reflections.ReflectionUtils.*;
 @RunWith(value = Parameterized.class)
 public class FakerIT {
 
-    private static final Locale FINNISH_LOCALE = new Locale("fi", "FI");
     private static final Logger logger = LoggerFactory.getLogger(FakerIT.class);
-    private Faker faker;
+    private final Locale locale;
+    private final Faker faker;
+
+    /**
+     * a collection of Locales -> Exceptions.
+     * In the case of 'pt', city_prefix is '' by design. This test fails because it's testing that all string returning
+     * methods return a non blank string. But pt city_prefix is blank ,but the test shouldn't fail. So we add put 
+     * exceptions like this into this collection.
+     */
+    private static final Map<Locale, List<String>> exceptions = Maps.newHashMap();
+    static {
+        exceptions.put(new Locale("pt"), Lists.newArrayList("Address.cityPrefix","Address.citySuffix"));
+    }
 
     public FakerIT(Locale locale, Random random) {
+        this.locale = locale;
         if (locale != null && random != null) {
             faker = new Faker(locale, random);
         } else if (locale != null) {
@@ -52,7 +66,7 @@ public class FakerIT {
                 {Locale.CANADA_FRENCH, null},
                 {Locale.TRADITIONAL_CHINESE, null},
                 {new Locale("pt"), null},
-                {FINNISH_LOCALE, null},
+                {new Locale("fi", "FI"), null},
                 {Locale.ENGLISH, new Random()},
                 {new Locale("pt-BR"), null},
                 {new Locale("pt-br"), null},
@@ -102,10 +116,18 @@ public class FakerIT {
         for (Method method : methodsThatReturnStrings) {
             final Object returnValue = method.invoke(object);
             logger.info(String.format("Invoked %s.%s = %s", object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
-            assertThat(returnValue, is(notNullValue()));
-            assertThat((String) returnValue, not(isEmptyString()));
-
+            if (isExcepted(object, method)) {
+                continue;
+            }
+            assertThat(method + " on " + object, returnValue, is(notNullValue()));
+            assertThat(method + " on " + object, (String) returnValue, not(isEmptyString()));
         }
+    }
+
+    private boolean isExcepted(Object object, Method method) {
+        final List<String> classDotMethod = exceptions.get(this.locale);
+        if (classDotMethod == null) {return false;}
+        return classDotMethod.contains(object.getClass().getSimpleName() + "." + method.getName());
     }
 
     @Test
@@ -125,4 +147,6 @@ public class FakerIT {
         assertThat(faker.lorem().words(), is(notNullValue()));
         assertThat(faker.lorem().words(1), is(notNullValue()));
     }
+
+    
 }

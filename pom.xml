@@ -10,6 +10,10 @@
         It's useful when you're developing a new project and need some pretty data for showcase.
     </description>
     <url>http://github.com/DiUS/java-faker</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
