@@ -1,6 +1,5 @@
 package com.github.javafaker;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Random;
@@ -10,13 +9,6 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class FakerTest extends AbstractFakerTest {
-
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
 
     @Test
     public void bothifyShouldGenerateLettersAndNumbers() {
@@ -111,6 +103,33 @@ public class FakerTest extends AbstractFakerTest {
     @Test
     public void regexifyShouldGenerateEscapedCharacters() {
         assertThat(faker.regexify("\\.\\*\\?\\+"), matchesRegularExpression("\\.\\*\\?\\+"));
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void badExpressionTooManyArgs() {
+        faker.expression("#{regexify 'a','a'}");
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void badExpressionTooFewArgs() {
+        faker.expression("#{regexify}");
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void badExpressionCouldntCoerce() {
+        faker.expression("#{number.number_between 'x','10'}");
+    }
+
+    @Test
+    public void expression() {
+        assertThat(faker.expression("#{regexify '(a|b){2,3}'}"), matchesRegularExpression("(a|b){2,3}"));
+        assertThat(faker.expression("#{regexify '\\.\\*\\?\\+'}"), matchesRegularExpression("\\.\\*\\?\\+"));
+        assertThat(faker.expression("#{bothify '????','true'}"), matchesRegularExpression("[A-Z]{4}"));
+        assertThat(faker.expression("#{bothify '????','false'}"), matchesRegularExpression("[a-z]{4}"));
+        assertThat(faker.expression("#{letterify '????','true'}"), matchesRegularExpression("[A-Z]{4}"));
+        assertThat(faker.expression("#{Name.first_name} #{Name.first_name} #{Name.last_name}"), matchesRegularExpression("[a-zA-Z']+ [a-zA-Z']+ [a-zA-Z']+"));
+        assertThat(faker.expression("#{number.number_between '1','10'}"), matchesRegularExpression("[1-9]"));
+        assertThat(faker.expression("#{color.name}"), matchesRegularExpression("[a-z\\s]+"));
     }
 
     @Test

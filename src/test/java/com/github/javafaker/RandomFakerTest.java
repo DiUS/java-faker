@@ -16,6 +16,7 @@ public class RandomFakerTest extends AbstractFakerTest {
 
     @Before
     public void before() {
+        super.before();
         random = new Random();
         faker = new Faker(random);
     }
