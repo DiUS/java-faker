@@ -8,13 +8,6 @@ import static org.junit.Assert.assertThat;
 
 public class UniversityTest extends AbstractFakerTest {
 
-    private Faker faker;
-
-    @Before
-    public void before() {
-        faker = new Faker();
-    }
-
     @Test
     public void testName() {
         assertThat(faker.university().name(), matchesRegularExpression("[A-Za-z'() ]+"));

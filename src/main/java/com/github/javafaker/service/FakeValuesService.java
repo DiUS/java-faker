@@ -4,9 +4,11 @@ import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 import com.mifmif.common.regex.Generex;
+import org.apache.commons.lang3.ClassUtils;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
@@ -15,6 +17,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FakeValuesService {
+    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-zA-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*\\}");
+
     private final Logger log = Logger.getLogger("faker");
     
     private final List<Map<String, Object>> fakeValuesMaps;
@@ -297,7 +301,6 @@ public class FakeValuesService {
         return sb.toString();
     }
 
-    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([A-Za-z_.]+)\\}");
     /**
      * Resolves a key to a method on an object.
      *
@@ -307,12 +310,25 @@ public class FakeValuesService {
      *
      */
     public String resolve(String key, Object current, Faker root) {
-        final String template = safeFetch(key, null);
-        return processTemplate(template, current, root);
+        final String expression = safeFetch(key, null);
+        if (expression == null) {
+            throw new RuntimeException(key + " resulted in null expression");
+        }
+
+        return resolveExpression(expression, current, root);
     }
 
     /**
-     * <p>processes a template in the style #{X.y} using the current objects as the 'current' location
+     * resolves an expression using the current faker.
+     * @param expression
+     * @param faker
+     * @return
+     */
+    public String expression(String expression, Faker faker) {
+        return resolveExpression(expression, null, faker);
+    }
+    /**
+     * <p>processes a expression in the style #{X.y} using the current objects as the 'current' location
      * within the yml file (or the {@link Faker} object hierarchy as it were).
      * </p>
      * <p>
@@ -329,18 +345,25 @@ public class FakeValuesService {
      *     {@link Faker#address()}'s {@link Address#streetName()}.
      * </p>
      */
-    protected String processTemplate(String template, Object current, Faker root) {
-        final Matcher matcher = EXPRESSION_PATTERN.matcher(template);
+    protected String resolveExpression(String expression, Object current, Faker root) {
+        final Matcher matcher = EXPRESSION_PATTERN.matcher(expression);
 
-        String result = template;
+        String result = expression;
         while (matcher.find()) {
             final String escapedDirective = matcher.group(0);
             final String directive = matcher.group(1);
+            List<String> args = new ArrayList<String>();
+            for (int i=2;i < matcher.groupCount()+1 && matcher.group(i) != null;i++) {
+                args.add(matcher.group(i));
+            }
             
             // resolve the expression and reprocess it to handle recursive templates
-            String resolved = resolveExpression(directive, current, root);
-            resolved = processTemplate(resolved, current, root);
-            
+            String resolved = resolveExpression(directive, args, current, root);
+            if (resolved == null) {
+                throw new RuntimeException("Unable to resolve " + escapedDirective + " directive.");
+            }
+
+            resolved = resolveExpression(resolved, current, root);
             result = result.replace(escapedDirective, resolved);
         }
         return result;
@@ -353,32 +376,40 @@ public class FakeValuesService {
      *     <li>Search for methods on the current object</li>
      *     <li>Search for methods on faker child objects</li>
      * </ul>
-     * @param directive
-     * @param current
-     * @param root
-     * @return
+     * @return null if unable to resolve
      */
-    private String resolveExpression(String directive, Object current, Faker root) {
+    private String resolveExpression(String directive, List<String> args, Object current, Faker root) {
         // name.name (resolve locally)
         // Name.first_name (resolve to faker.name().firstName())
-        final String simpleDirective = isNestedDirective(directive) 
+        final String simpleDirective = (isDotDirective(directive) || current == null) 
                 ? directive 
                 : classNameToYamlName(current) + "." + directive;
         
+        // simple fetch of a value from the yaml file. the directive may have been mutated
+        // such that if the current yml object is car: and directive is #{wheel} then 
+        // car.wheel will be looked up in the YAML file.
         String resolved = safeFetch(simpleDirective, null);
-        if (resolved == null && !isNestedDirective(directive)) {
-            resolved = resolveFromMethodOnCurrent(current, directive);
+
+        // resolve method references on CURRENT object like #{number_between '1','10'} on Number or
+        // #{ssn_valid} on IdNumber
+        if (resolved == null && !isDotDirective(directive)) {
+            resolved = resolveFromMethodOn(current, directive, args);
         }
-        if (resolved == null) {
-            final String fakerChildObjectAndMethod = isNestedDirective(directive) 
-                ? directive
-                : current.getClass().getSimpleName() + "." + directive;
-            resolved = resolveFakerObjectAndMethod(root, fakerChildObjectAndMethod);
+
+        // resolve method references on faker object like #{regexify '[a-z]'}
+        if (resolved == null && !isDotDirective(directive)) {
+            resolved = resolveFromMethodOn(root, directive, args);
         }
+
+        // Resolve Faker Object method references like #{ClassName.method_name}
+        if (resolved == null && isDotDirective(directive)) {
+            resolved = resolveFakerObjectAndMethod(root, directive, args);
+        }
+        
         return resolved;
     }
 
-    private boolean isNestedDirective(String directive) {
+    private boolean isDotDirective(String directive) {
         return directive.contains(".");
     }
 
@@ -390,54 +421,110 @@ public class FakeValuesService {
     }
 
     /**
-     * Given a directive like 'firstName', attempts to resolve it to a method.  For example if current is an instance of
+     * Given a directive like 'firstName', attempts to resolve it to a method.  For example if obj is an instance of
      * {@link Name} then this method would return {@link Name#firstName()}.  Returns null if the directive is nested
-     * (i.e. has a '.') or the method doesn't exist on the <em>current</em> object.
+     * (i.e. has a '.') or the method doesn't exist on the <em>obj</em> object.
      */
-    private String resolveFromMethodOnCurrent(Object current, String directive) {
-        try {
-            return string(accessor(current,directive).invoke(current));
+    private String resolveFromMethodOn(Object obj, String directive, List<String> args) {
+        if (obj == null) {
+            return null;
         }
-        catch (Exception e) {
-            log.log(Level.FINE, "Can't call " + directive + " on " + current, e);
+        try {
+            Method accessor = accessor(obj, directive, args);
+            if (accessor == null) {
+                return null;
+            }
+            // coerce the string arguments into the correct argument types
+            List<Object> coerced = coerceArguments(accessor, args);
+            return (accessor == null || coerced == null)
+                    ? null
+                    : string(accessor.invoke(obj, coerced.toArray()));
+        } catch (Exception e) {
+            log.log(Level.FINE, "Can't call " + directive + " on " + obj, e);
             return null;
         }
     }
-
-
+    
     /**
      * Accepts a {@link Faker} instance and a name.firstName style 'key' which is resolved to the return value of:
      * {@link Faker#name()}'s {@link Name#firstName()} method.
      * @throws RuntimeException if there's a problem invoking the method or it doesn't exist.
      */
-    public String resolveFakerObjectAndMethod(Faker faker, String key) {
+    public String resolveFakerObjectAndMethod(Faker faker, String key, List<String> args) {
         final String[] classAndMethod = key.split("\\.", 2);
         
         try {
-            Method fakerAccessor = accessor(faker, classAndMethod[0].replaceAll("_", ""));
+            String fakerMethodName = classAndMethod[0].replaceAll("_", "");
+            Method fakerAccessor = accessor(faker, fakerMethodName, Collections.<String>emptyList());
+            if (fakerAccessor == null) {
+                throw new RuntimeException("Can't find top level faker object named " + fakerMethodName);
+            }
             Object objectWithMethodToInvoke = fakerAccessor.invoke(faker);
-            final Method accessor = accessor(objectWithMethodToInvoke, classAndMethod[1].replaceAll("_", ""));
-            Object ret = accessor.invoke(objectWithMethodToInvoke);
+            String nestedMethodName = classAndMethod[1].replaceAll("_", "");
+            final Method accessor = accessor(objectWithMethodToInvoke, classAndMethod[1].replaceAll("_", ""), args);
+            if (accessor == null) {
+                throw new RuntimeException("Can't find method on " + objectWithMethodToInvoke + " called " + nestedMethodName);
+            }
+            final List<Object> coerced = coerceArguments(accessor, args);
+            
+            if (coerced == null) {
+                throw new RuntimeException("Can't coerce arguments for downstream faker object.");
+            }
+                
+            Object ret = accessor.invoke(objectWithMethodToInvoke, coerced.toArray());
+
             return ret == null ? null : ret.toString();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            if (e instanceof RuntimeException) {
+                throw (RuntimeException) e;
+            }
+            return null;
         }
     }
 
+    
     /**
      * Find an accessor by name ignoring case.
      */
-    private Method accessor(Object faker, String name) {
+    private Method accessor(Object onObject, String name, List<String> args) {
+        log.fine("Find accessor named " + name + " on " + onObject + " with args " + args);
         Method fakerAccessor = null;
-        for (Method m : faker.getClass().getMethods()) {
-            if (m.getName().equalsIgnoreCase(name) && m.getParameterTypes().length == 0) {
+        for (Method m : onObject.getClass().getMethods()) {
+            if (m.getName().equalsIgnoreCase(name) && m.getParameterTypes().length == args.size()) {
                 fakerAccessor = m;
                 break;
             }
         }
+        if (fakerAccessor == null && name.contains("_")) {
+            fakerAccessor = accessor(onObject, name.replaceAll("_", ""), args);
+        }
         return fakerAccessor;
     }
 
+    /**
+     * Coerce arguments in <em>args</em> into the appropriate types (if possible) for the parameter arguments
+     * to <em>accessor</em>.
+     * @return array of coerced values if successful, null otherwise
+     * @throws Exception if unable to coerce
+     */
+    private List<Object> coerceArguments(Method accessor, List<String> args) {
+        final List<Object> coerced = new ArrayList<Object>();
+        for (int i = 0; i < accessor.getParameterTypes().length; i++) {
+
+            Class<?> toType = ClassUtils.primitiveToWrapper(accessor.getParameterTypes()[i]);
+            try {
+                final Constructor<?> ctor = toType.getConstructor(String.class);
+                final Object coercedArgument = ctor.newInstance(args.get(i));
+
+                coerced.add(coercedArgument);
+            } catch (Exception e) {
+                log.log(Level.FINE, "Unable to coerce " + args.get(i) + " to " + toType.getSimpleName() + " via string constructor" ,e);
+                return null;
+            }
+        }
+        return coerced;
+    }
+    
     private String string(Object obj) {
         return (obj == null) ? null : obj.toString();
     }

@@ -1,5 +1,6 @@
 package com.github.javafaker.service;
 
+import com.github.javafaker.AbstractFakerTest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,12 +15,13 @@ import static org.junit.Assert.assertThat;
  * @author pmiklos
  *
  */
-public class RandomServiceTest {
+public class RandomServiceTest extends AbstractFakerTest {
 
     private RandomService randomService;
 
     @Before
     public void before() {
+        super.before();
         randomService = new RandomService(new Random());
     }
 

@@ -1,40 +1,41 @@
 package com.github.javafaker.service;
 
+import com.github.javafaker.AbstractFakerTest;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Superhero;
 import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.isEmptyString;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.*;
 
-public class FakeValuesServiceTest {
+public class FakeValuesServiceTest extends AbstractFakerTest {
 
     @Mock
     private RandomService randomService;
-
-    @Mock
-    private Faker faker;
 
     private FakeValuesService fakeValuesService;
 
     @Before
     public void before() {
+        super.before();
         MockitoAnnotations.initMocks(this);
+
         // always return the first element
         when(randomService.nextInt(anyInt())).thenReturn(0);
-        fakeValuesService = new FakeValuesService(new Locale("test"), randomService);
+        
+        fakeValuesService = spy(new FakeValuesService(new Locale("test"), randomService));
     }
 
     @Test(expected = LocaleDoesNotExistException.class)
@@ -59,6 +60,7 @@ public class FakeValuesServiceTest {
 
     @Test
     public void safeFetchShouldReturnValueInList() {
+        doReturn(0).when(randomService).nextInt(Mockito.anyInt());
         assertThat(fakeValuesService.safeFetch("property.dummy", null), is("x"));
     }
 
@@ -71,13 +73,41 @@ public class FakeValuesServiceTest {
     public void safeFetchShouldReturnEmptyStringWhenPropertyDoesntExist() {
         assertThat(fakeValuesService.safeFetch("property.dummy2", ""), isEmptyString());
     }
+    
+    @Test
+    public void bothify2Args() {
+        final DummyService dummy = mock(DummyService.class);
+        
+        Faker f = new Faker();
+
+        String value = fakeValuesService.resolve("property.bothify_2", dummy, f);
+        assertThat(value, matchesRegularExpression("[A-Z]{2}\\d{2}"));
+    }
+
+    @Test
+    public void regexifyDirective() {
+        final DummyService dummy = mock(DummyService.class);
+
+        String value = fakeValuesService.resolve("property.regexify1", dummy, faker);
+        assertThat(value, either(is("55")).or(is("44")).or(is("45")).or(is("54")));
+        verify(faker).regexify("[45]{2}");
+    }
+
+    @Test
+    public void regexifyDirective2() {
+        final DummyService dummy = mock(DummyService.class);
+
+        String value = fakeValuesService.resolve("property.regexify_cell", dummy, faker);
+        assertThat(value, either(is("479")).or(is("459")));
+        verify(faker).regexify("4[57]9");
+    }
+
 
     @Test
     public void resolveKeyToPropertyWithAPropertyWithoutAnObject() {
         // #{hello} -> DummyService.hello
 
         // given
-        final Faker faker = mock(Faker.class);
         final DummyService dummy = mock(DummyService.class);
         doReturn("Yo!").when(dummy).hello();
 
@@ -93,7 +123,6 @@ public class FakeValuesServiceTest {
     @Test
     public void resolveKeyToPropertyWithAPropertyWithAnObject() {
         // given
-        final Faker faker = mock(Faker.class);
         final Superhero person = mock(Superhero.class);
         final DummyService dummy = mock(DummyService.class);
         doReturn(person).when(faker).superhero();
@@ -114,8 +143,8 @@ public class FakeValuesServiceTest {
         // #{hello} -> DummyService.hello
 
         // given
-        final Faker faker = mock(Faker.class);
         final DummyService dummy = mock(DummyService.class);
+        doReturn(0).when(randomService).nextInt(Mockito.anyInt());
         doReturn("Yo!").when(dummy).hello();
 
         // when
@@ -129,7 +158,6 @@ public class FakeValuesServiceTest {
     @Test
     public void resolveKeyWithMultiplePropertiesShouldJoinResults() {
         // given
-        final Faker faker = mock(Faker.class);
         final Superhero person = mock(Superhero.class);
         final DummyService dummy = mock(DummyService.class);
         doReturn(person).when(faker).superhero();

@@ -284,4 +284,23 @@ public class Faker {
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
+
+    /**
+     * Allows the evaluation of native YML expressions to allow you to build your own.
+     *
+     * The following are valid expressions: 
+     * <ul>
+     *     <li>#{regexify '(a|b){2,3}'}</li>
+     *     <li>#{regexify '\\.\\*\\?\\+'}</li>
+     *     <li>#{bothify '????','false'}</li>
+     *     <li>#{Name.first_name} #{Name.first_name} #{Name.last_name}</li>
+     *     <li>#{number.number_between '1','10'}</li>
+     * </ul>
+     * @param expression (see examples above)
+     * @return the evaluated string expression
+     * @throws RuntimeException if unable to evaluate the expression
+     */
+    public String expression(String expression) {
+        return this.fakeValuesService.expression(expression, this);
+    }
 }
