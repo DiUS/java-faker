@@ -1,9 +1,12 @@
 package com.github.javafaker.service;
 
 import com.github.javafaker.AbstractFakerTest;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -15,16 +18,24 @@ import static org.junit.Assert.assertThat;
  * @author pmiklos
  *
  */
+@RunWith(Parameterized.class)
 public class RandomServiceTest extends AbstractFakerTest {
 
     private RandomService randomService;
 
-    @Before
-    public void before() {
-        super.before();
-        randomService = new RandomService(new Random());
+    public RandomServiceTest(String ignoredTitle, RandomService service) {
+        this.randomService = service;
     }
 
+    @Parameterized.Parameters(name = "Created via {0}")
+    public static Collection<Object[]> data() {
+        Object[][] data = new Object[][]{
+                {"RandomService(Random)", new RandomService(new Random())},
+                {"RandomService()", new RandomService()}
+        };
+        return Arrays.asList(data);
+    }
+    
     @Test(expected = IllegalArgumentException.class)
     public void testPositiveBoundariesOnly() {
         randomService.nextLong(0L);
