@@ -435,7 +435,12 @@ public class FakeValuesService {
                 return null;
             }
             // coerce the string arguments into the correct argument types
-            List<Object> coerced = coerceArguments(accessor, args);
+            List<Object> coerced = null;
+            try  {
+                coerced = coerceArguments(accessor, args);
+            } catch (RuntimeException re) {
+              log.log(Level.FINE, "Unable to coerce arguments : " + re.getMessage());  
+            }
             return (accessor == null || coerced == null)
                     ? null
                     : string(accessor.invoke(obj, coerced.toArray()));
@@ -450,27 +455,25 @@ public class FakeValuesService {
      * {@link Faker#name()}'s {@link Name#firstName()} method.
      * @throws RuntimeException if there's a problem invoking the method or it doesn't exist.
      */
-    public String resolveFakerObjectAndMethod(Faker faker, String key, List<String> args) {
+    private String resolveFakerObjectAndMethod(Faker faker, String key, List<String> args) {
         final String[] classAndMethod = key.split("\\.", 2);
         
         try {
             String fakerMethodName = classAndMethod[0].replaceAll("_", "");
             Method fakerAccessor = accessor(faker, fakerMethodName, Collections.<String>emptyList());
             if (fakerAccessor == null) {
-                throw new RuntimeException("Can't find top level faker object named " + fakerMethodName);
+                throw new RuntimeException("Can't find top level faker object named " + fakerMethodName + ".");
             }
             Object objectWithMethodToInvoke = fakerAccessor.invoke(faker);
             String nestedMethodName = classAndMethod[1].replaceAll("_", "");
             final Method accessor = accessor(objectWithMethodToInvoke, classAndMethod[1].replaceAll("_", ""), args);
             if (accessor == null) {
-                throw new RuntimeException("Can't find method on " + objectWithMethodToInvoke + " called " + nestedMethodName);
+                throw new RuntimeException("Can't find method on " 
+                        + objectWithMethodToInvoke.getClass().getSimpleName() 
+                        + " called " + nestedMethodName + ".");
             }
             final List<Object> coerced = coerceArguments(accessor, args);
             
-            if (coerced == null) {
-                throw new RuntimeException("Can't coerce arguments for downstream faker object.");
-            }
-                
             Object ret = accessor.invoke(objectWithMethodToInvoke, coerced.toArray());
 
             return ret == null ? null : ret.toString();
@@ -487,7 +490,7 @@ public class FakeValuesService {
      * Find an accessor by name ignoring case.
      */
     private Method accessor(Object onObject, String name, List<String> args) {
-        log.fine("Find accessor named " + name + " on " + onObject + " with args " + args);
+        log.log(Level.FINE, "Find accessor named " + name + " on " + onObject.getClass().getSimpleName() + " with args " + args);
         Method fakerAccessor = null;
         for (Method m : onObject.getClass().getMethods()) {
             if (m.getName().equalsIgnoreCase(name) && m.getParameterTypes().length == args.size()) {
@@ -518,8 +521,7 @@ public class FakeValuesService {
 
                 coerced.add(coercedArgument);
             } catch (Exception e) {
-                log.log(Level.FINE, "Unable to coerce " + args.get(i) + " to " + toType.getSimpleName() + " via string constructor" ,e);
-                return null;
+                throw new RuntimeException("Unable to coerce " + args.get(i) + " to " + toType.getSimpleName() + " via " + toType.getSimpleName() + "(String) constructor.");
             }
         }
         return coerced;
