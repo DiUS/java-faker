@@ -10,31 +10,38 @@ public class Number {
     }
 
     /**
-     * Returns a random number between 0 and 9
+     * Returns a random number from 0-9 (both inclusive)
      */
     public int randomDigit() {
-        return faker.random().nextInt(9);
+        return decimalBetween(0,10).intValue();
     }
 
     /**
-     * Returns a random number between 1 and 9
+     * Returns a random number from 1-9 (both inclusive)
      */
     public int randomDigitNotZero() {
-        return faker.random().nextInt(8) + 1;
+        return decimalBetween(1,10).intValue();
     }
 
-    public long numberBetween(int min, long max) {
-        return numberBetween((long) min, max);
-    }
-
+    /**
+     * @see Number#numberBetween(long, long) 
+     */
     public int numberBetween(int min, int max) {
-        return faker.random().nextInt(max - min) + min;
+        return decimalBetween(min,max).intValue();
     }
 
+    /**
+     * Return a number between <em>min</em> and <em>max</em>.  If 
+     * min == max, then min is returned. So numberBetween(2,2) will yield 2 even though
+     * it doesn't make sense.
+     *
+     * @param min inclusive
+     * @param max exclusive (unless min == max)
+     */
     public long numberBetween(long min, long max) {
-        return faker.random().nextLong(max - min) + min;
+        return decimalBetween(min,max).longValue();
     }
-
+    
     /**
      * @param numberOfDigits the number of digits the generated value should have
      * @param strict         whether or not the generated value should have exactly <code>numberOfDigits</code>
@@ -50,15 +57,16 @@ public class Number {
     }
 
     /**
-     * Returns a ranbom number
+     * Returns a random number
      */
-
     public long randomNumber() {
-        int numberOfDigits = faker.random().nextInt(8) + 1;
-
+        int numberOfDigits = decimalBetween(1,10).intValue();
         return randomNumber(numberOfDigits, false);
     }
 
+    public double randomDouble(int maxNumberOfDecimals, int min, int max) {
+        return randomDouble(maxNumberOfDecimals,(long) min, (long) max);
+    }
     /**
      * Returns a random double
      *
@@ -66,17 +74,39 @@ public class Number {
      * @param min                 minimum value
      * @param max                 maximum value
      */
+    public double randomDouble(int maxNumberOfDecimals, long min, long max) {
+        return decimalBetween(min,max)
+                .setScale(maxNumberOfDecimals, BigDecimal.ROUND_HALF_DOWN)
+                .doubleValue();
+    }
 
-    public double randomDouble(int maxNumberOfDecimals, int min, int max) {
-        double value = min + (max - min) * faker.random().nextDouble();
+    /**
+     * @param min inclusive
+     * @param max exclusive
+     * @return
+     */
+    private BigDecimal decimalBetween(long min, long max) {
+        if (min == max) {
+            return new BigDecimal(min);
+        }
+        final long trueMin = Math.min(min, max);
+        final long trueMax = Math.max(min, max);
 
-        return new BigDecimal(value).setScale(maxNumberOfDecimals, BigDecimal.ROUND_HALF_EVEN).doubleValue();
+        final double range = (double) trueMax - (double) trueMin;
+        
+        final double chunkCount = Math.sqrt(Math.abs(range));
+        final double chunkSize = chunkCount;
+        final long randomChunk = faker.random().nextLong((long) chunkCount);
+
+        final double chunkStart = trueMin + randomChunk * chunkSize;
+        final double adj = chunkSize * faker.random().nextDouble();
+        return new BigDecimal(chunkStart + adj);
     }
 
     public String digits(int count) {
         final StringBuilder tmp = new StringBuilder();
         for (int i = 0; i < count; i++) {
-            tmp.append(faker.random().nextInt(10));
+            tmp.append(randomDigit());
         }
         return tmp.toString();
     }
