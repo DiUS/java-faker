@@ -1,21 +1,14 @@
 package com.github.javafaker;
 
+import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.IDN;
+import java.util.Arrays;
 
 import static org.apache.commons.lang3.StringUtils.join;
 
 public class Internet {
-    private static final String[] PRIVATE_IPV4_NETS_REGEX = {
-            "^10\\..+",
-            "^127\\..+",
-            "^169\\.254\\..+",
-            "^172\\.(16|17|18|19|2\\d|30|31)\\..+",
-            "^192\\.168\\..+"
-    };
-    
-
     private final Faker faker;
     
     Internet(Faker faker) {
@@ -192,22 +185,46 @@ public class Internet {
      * @return a valid private IPV4 address in dot notation
      */
     public String privateIpV4Address() {
-        String addr = null;
-        do {
-            addr = ipV4Address(); 
-        } while (!isPrivate(addr));
-        return addr;
+        final Integer[] PRIVATE_FIRST_OCTET = {10,127,169,192,172};
+        final Integer[] PRIVATE_SECOND_OCTET_172 = {16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+
+        final RandomService r = faker.random();
+        int first = random(PRIVATE_FIRST_OCTET),
+                second = r.nextInt(256),
+                third = r.nextInt(256),
+                fourth = r.nextInt(256);
+
+        switch (first) {
+            case 172:
+                second = random(PRIVATE_SECOND_OCTET_172);
+                break;
+            case 192:
+                second = 168;
+                break;
+            case 169:
+                second = 254;
+                break;
+        }
+        return String.format("%d.%d.%d.%d", first, second, third, fourth);
     }
 
     /**
      * @return a valid public IPV4 address in dot notation
      */
     public String publicIpV4Address() {
-        String addr = null;
-        do {
-            addr = ipV4Address();
-        } while (isPrivate(addr));
-        return addr;
+        final RandomService r = faker.random();
+        
+        final int[] PRIVATE_FIRST_OCTET = {10,127,169,192,172};
+
+        int first = r.nextInt(256),
+                second = r.nextInt(256),
+                third = r.nextInt(256),
+                fourth = r.nextInt(256);
+        
+        while (Arrays.binarySearch(PRIVATE_FIRST_OCTET, first) > 0) {
+            first = r.nextInt(256);
+        }
+        return String.format("%d.%d.%d.%d", first, second, third, fourth);
     }
 
     /**
@@ -248,18 +265,7 @@ public class Internet {
           .toString();
     }
 
-    /**
-     * @return true if the specified ipv4 address is a private address, false otherwise.
-     */
-    private final boolean isPrivate(String addr) {
-        for (int i = 0; i< PRIVATE_IPV4_NETS_REGEX.length; i++) {
-            if (addr.matches(PRIVATE_IPV4_NETS_REGEX[i])) {
-                return true;
-            }
-        }
-        return false;
+    private <T> T random(T[] src) {
+        return src[faker.random().nextInt(src.length)];
     }
-
-
-
 }

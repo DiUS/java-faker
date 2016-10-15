@@ -1,7 +1,6 @@
 package com.github.javafaker;
 
 import org.apache.commons.validator.routines.EmailValidator;
-import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
@@ -152,9 +151,10 @@ public class InternetTest extends AbstractFakerTest {
         String oneSixNine = "^169\\.254\\..+";
         String oneNineTwo = "^192\\.168\\..+";
         String oneSevenTwo = "^172\\.(16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31)\\..+";
+
+        
         for (int i = 0; i < 1000; i++) {
             String addr = faker.internet().privateIpV4Address();
-            
             assertThat(addr, anyOf(matchesRegularExpression(tenDot),
                     matchesRegularExpression(oneTwoSeven),
                     matchesRegularExpression(oneSixNine),
