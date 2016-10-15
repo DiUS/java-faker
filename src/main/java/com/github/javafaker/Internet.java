@@ -23,35 +23,23 @@ public class Internet {
     }
 
     public String emailAddress() {
-        return emailAddress(join(new Object[]{
-                faker.name().firstName().toLowerCase().replaceAll("'", ""),
-                ".",
-                faker.name().lastName().toLowerCase().replaceAll("'", "")
-        }));
+        return emailAddress(faker.name().username());
     }
 
     public String emailAddress(String localPart) {
-        return join(new Object[]{
-                localPart,
+        return join(localPart,
                 "@",
-                IDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker))
-        });
+                IDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker)));
     }
 
     public String safeEmailAddress() {
-        return emailAddress(join(new Object[]{
-                faker.name().firstName().toLowerCase().replaceAll("'", ""),
-                ".",
-                faker.name().lastName().toLowerCase().replaceAll("'", "")
-        }));
+        return safeEmailAddress(faker.name().username());
     }
 
     public String safeEmailAddress(String localPart) {
-        return join(new Object[]{
-                localPart,
+        return join(localPart, 
                 "@",
-                IDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker))
-        });
+                IDN.toASCII(faker.fakeValuesService().resolve("internet.safe_email", this, faker)));
     }
 
     public String domainName() {

@@ -1,8 +1,13 @@
 package com.github.javafaker;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import org.apache.commons.validator.routines.EmailValidator;
-import org.junit.Before;
 import org.junit.Test;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
@@ -24,17 +29,42 @@ public class InternetTest extends AbstractFakerTest {
         assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
     }
 
+
     @Test
     public void testSafeEmailAddress() {
-        String emailAddress = faker.internet().safeEmailAddress();
-        assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
+        List<String> emails = Lists.newArrayList();
+        for (int i=0;i<100;i++) {
+            String emailAddress = faker.internet().safeEmailAddress();
+            assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
+            emails.add(emailAddress);
+        }
+        final String safeDomain = faker.resolve("internet.safe_email");
+        boolean foundSafeDomainEmail = Iterables.any(emails, new Predicate<String>() {
+            @Override
+            public boolean apply(@Nullable String s) {
+                return s.endsWith("@" + safeDomain);
+            }});
+        
+        assertThat("Should find at least one email from " + safeDomain, foundSafeDomainEmail, is(true));
     }
 
     @Test
     public void testSafeEmailAddressWithLocalPartParameter() {
-        String emailAddress = faker.internet().emailAddress("john");
-        assertThat(emailAddress, startsWith("john@"));
-        assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
+        List<String> emails = Lists.newArrayList();
+        for (int i=0;i<100;i++) {
+            String emailAddress = faker.internet().safeEmailAddress("john");
+            assertThat(emailAddress, startsWith("john@"));
+            assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
+            emails.add(emailAddress);
+        }
+        final String safeDomain = faker.resolve("internet.safe_email");
+        boolean foundSafeDomainEmail = Iterables.any(emails, new Predicate<String>() {
+            @Override
+            public boolean apply(@Nullable String s) {
+                return s.endsWith("@" + safeDomain);
+            }});
+
+        assertThat("Should find at least one email from " + safeDomain, foundSafeDomainEmail, is(true));
     }
 
     @Test
