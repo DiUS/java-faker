@@ -12,15 +12,27 @@ It's useful when you're developing a new project and need some pretty data for s
 
 Usage
 -----
-In pom.xml, add following between `<dependencies> ... </dependencies>`
+In pom.xml, add the following xml stanza between `<dependencies> ... </dependencies>`
 
 ```xml
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.10</version>
+    <version>0.11</version>
 </dependency>
 ```
+
+Since version 0.11, the ```snake-yaml``` files are no longer included in the main jar.  If you still wish 
+to use the shaded jar, you need to use the 'deps' classifier in the Maven coordinates (shown below).
+```xml
+<dependency>
+    <groupId>com.github.javafaker</groupId>
+    <artifactId>javafaker</artifactId>
+    <version>0.11</version>
+    <classifier>deps</classifier>
+</dependency>
+```
+
 
 For gradle users, add the following to your build.gradle file.
 
@@ -30,7 +42,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.10'
+    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.11'
 }
 
 ```

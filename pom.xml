@@ -157,19 +157,21 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.4.3</version>
-                <configuration>
-                    <artifactSet>
-                        <includes>
-                            <include>com.github.bmoliveira:snake-yaml</include>
-                        </includes>
-                    </artifactSet>
-                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>deps</shadedClassifierName>
+                            <artifactSet>
+                                <includes>
+                                    <include>com.github.bmoliveira:snake-yaml</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
