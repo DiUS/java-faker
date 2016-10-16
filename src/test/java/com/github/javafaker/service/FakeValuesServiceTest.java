@@ -18,6 +18,7 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
 public class FakeValuesServiceTest extends AbstractFakerTest {
@@ -204,6 +205,55 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         assertThat(chain.get(1), is(Locale.ENGLISH));
     }
     
+    
+    @Test
+    public void expressionWithInvalidFakerObject() {
+        expressionShouldFailWith("#{ObjectNotOnFaker.methodName}", 
+                "Can't find top level faker object named ObjectNotOnFaker.");
+    }
+    
+    @Test
+    public void expressionWithValidFakerObjectButInvalidMethod() {
+        expressionShouldFailWith("#{Name.nonExistentMethod}", 
+                "Can't find method on Name called nonExistentMethod.");
+    }
+
+    /**
+     * Two things are important here:
+     * 1) the message in the exception should be USEFUL
+     * 2) a {@link RuntimeException} should be thrown.
+     *
+     * if the message changes, it's ok to update the test provided
+     * the two conditions above are still true.
+     */
+    @Test/*(expected = RuntimeException.class)*/
+    public void expressionWithValidFakerObjectValidMethodInvalidArgs() {
+        expressionShouldFailWith("#{Number.number_between 'x','y'}", 
+                "Unable to coerce x to Long via Long(String) constructor.");
+    }
+
+    /**
+     * Two things are important here:
+     * 1) the message in the exception should be USEFUL
+     * 2) a {@link RuntimeException} should be thrown.
+     * 
+     * if the message changes, it's ok to update the test provided
+     * the two conditions above are still true.
+     */
+    @Test
+    public void expressionCompletelyUnresolvable() {
+        expressionShouldFailWith("#{x}", "Unable to resolve #{x} directive.");
+    }
+    
+    private void expressionShouldFailWith(String expression, String errorMessage) {
+        try {
+            fakeValuesService.expression(expression, faker);
+            fail("Should have failed with RuntimeException and message of " + errorMessage);
+        } catch (RuntimeException re) {
+            assertThat(re.getMessage(), is(errorMessage));
+        }
+    }
+
     public static class DummyService {
         public String firstName() {
             return "John";
