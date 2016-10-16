@@ -17,4 +17,8 @@ public class PhoneNumber {
     public String phoneNumber() {
         return fakeValuesService.numerify(fakeValuesService.fetchString("phone_number.formats"));
     }
+    
+    public String validPhoneNumber() {
+        return fakeValuesService.numerify(fakeValuesService.fetchString("valid_cc_phone_number.formats"));
+    }
 }
