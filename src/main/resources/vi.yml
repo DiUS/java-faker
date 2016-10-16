@@ -2,14 +2,14 @@
 vi:
   faker:
     address:
-      city_root: ["Bắc Giang", "Bắc Kạn", "Bắc Ninh", "Cao Bằng", "Điện Biên", "Hà Giang", "Hà Nam", "Hà Tây",
-                  "Hải Dương", "TP Hải Phòng", "Hòa Bình", "Hưng Yên", "Lai Châu", "Lào Cai", "Lạng Sơn", "Nam Định",
-                  "Ninh Bình", "Phú Thọ", "Quảng Ninh", "Sơn La", "Thái Bình", "Thái Nguyên", "Tuyên Quang", "Vĩnh Phúc",
-                  "Yên Bái", "TP Đà Nẵng", "Bình Định", "Đắk Lắk", "Đắk Nông", "Gia Lai", "Hà Tĩnh", "Khánh Hòa", "Kon Tum",
-                  "Nghệ An", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Trị", "Thanh Hóa", "Thừa Thiên Huế",
-                  "TP TP. Hồ Chí Minh", "An Giang", "Bà Rịa Vũng Tàu", "Bạc Liêu", "Bến Tre", "Bình Dương", "Bình Phước",
-                  "Bình Thuận", "Cà Mau", "TP Cần Thơ", "Đồng Nai", "Đồng Tháp", "Hậu Giang", "Kiên Giang", "Lâm Đồng",
-                  "Long An", "Ninh Thuận", "Sóc Trăng", "Tây Ninh", "Tiền Giang", "Trà Vinh", "Vĩnh Long"]
+      city_root: ["Báº¯c Giang", "Báº¯c Káº¡n", "Báº¯c Ninh", "Cao Báº±ng", "Ä�iá»‡n BiÃªn", "HÃ  Giang", "HÃ  Nam", "HÃ  TÃ¢y",
+                  "Háº£i DÆ°Æ¡ng", "TP Háº£i PhÃ²ng", "HÃ²a BÃ¬nh", "HÆ°ng YÃªn", "Lai ChÃ¢u", "LÃ o Cai", "Láº¡ng SÆ¡n", "Nam Ä�á»‹nh",
+                  "Ninh BÃ¬nh", "PhÃº Thá»�", "Quáº£ng Ninh", "SÆ¡n La", "ThÃ¡i BÃ¬nh", "ThÃ¡i NguyÃªn", "TuyÃªn Quang", "VÄ©nh PhÃºc",
+                  "YÃªn BÃ¡i", "TP Ä�Ã  Náºµng", "BÃ¬nh Ä�á»‹nh", "Ä�áº¯k Láº¯k", "Ä�áº¯k NÃ´ng", "Gia Lai", "HÃ  TÄ©nh", "KhÃ¡nh HÃ²a", "Kon Tum",
+                  "Nghá»‡ An", "PhÃº YÃªn", "Quáº£ng BÃ¬nh", "Quáº£ng Nam", "Quáº£ng NgÃ£i", "Quáº£ng Trá»‹", "Thanh HÃ³a", "Thá»«a ThiÃªn Huáº¿",
+                  "TP TP. Há»“ ChÃ­ Minh", "An Giang", "BÃ  Rá»‹a VÅ©ng TÃ u", "Báº¡c LiÃªu", "Báº¿n Tre", "BÃ¬nh DÆ°Æ¡ng", "BÃ¬nh PhÆ°á»›c",
+                  "BÃ¬nh Thuáº­n", "CÃ  Mau", "TP Cáº§n ThÆ¡", "Ä�á»“ng Nai", "Ä�á»“ng ThÃ¡p", "Háº­u Giang", "KiÃªn Giang", "LÃ¢m Ä�á»“ng",
+                  "Long An", "Ninh Thuáº­n", "SÃ³c TrÄƒng", "TÃ¢y Ninh", "Tiá»�n Giang", "TrÃ  Vinh", "VÄ©nh Long"]
       city:
         - "#{city_root}"
       postcode: /[A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {1,2}[0-9][ABD-HJLN-UW-Z]{2}/
@@ -21,43 +21,45 @@ vi:
               "Highlands and Islands", "Humberside", "Isle of Wight", "Kent", "Lancashire", "Leicestershire", "Lincolnshire",
               "Lothian", "Merseyside", "Mid Glamorgan", "Norfolk", "North Yorkshire", "Northamptonshire", "Northumberland",
               "Nottinghamshire", "Oxfordshire", "Powys", "Rutland", "Shropshire", "Somerset", "South Glamorgan", "South Yorkshire",
-              "Staffordshire", "Strathclyde", "Suffolk", "Surrey", "Tayside", "Tyne and Wear", "Việt Nam", "Warwickshire",
+              "Staffordshire", "Strathclyde", "Suffolk", "Surrey", "Tayside", "Tyne and Wear", "Viá»‡t Nam", "Warwickshire",
               "West Glamorgan", "West Midlands", "West Sussex", "West Yorkshire", "Wiltshire", "Worcestershire"]
-      default_country: ["Việt Nam"]
+      default_country: ["Viá»‡t Nam"]
     internet:
       domain_suffix: [com, net, info, vn, com.vn]
     phone_number:
       formats: ['01#### #####', '01### ######', '01#1 ### ####', '011# ### ####', '02# #### ####', '03## ### ####', '055 #### ####', '056 #### ####', '0800 ### ####', '08## ### ####', '09## ### ####', '016977 ####', '01### #####', '0500 ######', '0800 ######']
+    valid_cc_phone_number:
+      formats: ['+1 01#### #####', '+1 01### ######', '+1 01#1 ### ####', '+1 011# ### ####', '+1 02# #### ####', '+1 03## ### ####', '+1 055 #### ####', '+1 056 #### ####', '+1 0800 ### ####', '+1 08## ### ####', '+1 09## ### ####']
     cell_phone:
       formats: ['074## ######', '075## ######', '076## ######', '077## ######', '078## ######', '079## ######']
     name:
-      first_name: ["Phạm", "Nguyễn", "Trần", "Lê", "Lý", "Hoàng", "Phan", "Vũ", "Tăng",
-                   "Đặng", "Bùi", "Đỗ", "Hồ", "Ngô", "Dương", "Đào", "Đoàn", "Vương",
-                   "Trịnh", "Đinh", "Lâm", "Phùng", "Mai", "Tô", "Trương", "Hà"]
-      last_name: ["Nam", "Trung", "Thanh", "Thị", "Văn", "Dương", "Tăng", "Quốc", "Như", 
-                 "Phạm", "Nguyễn", "Trần", "Lê", "Lý", "Hoàng", "Phan", "Vũ", "Tăng",
-                 "Đặng", "Bùi", "Đỗ", "Hồ", "Ngô", "Dương", "Đào", "Đoàn", "Vương",
-                 "Trịnh", "Đinh", "Lâm", "Phùng", "Mai", "Tô", "Trương", "Hà",
-                 "Vinh", "Nhung", "Hòa", "Tiến", "Tâm", "Bửu", "Loan", "Hiền", "Hải",
-                 "Vân", "Kha", "Minh", "Nhân", "Triệu", "Tuân", "Hữu", "Đức", "Phú", "Khoa",
-                 "Thắgn", "Sơn", "Dung", "Tú", "Trinh", "Thảo", "Sa", "Kim", "Long", "Thi",
-                 "Cường", "Ngọc", "Sinh", "Khang", "Phong", "Thắm", "Thu", "Thủy", "Nhàn"]
+      first_name: ["Pháº¡m", "Nguyá»…n", "Tráº§n", "LÃª", "LÃ½", "HoÃ ng", "Phan", "VÅ©", "TÄƒng",
+                   "Ä�áº·ng", "BÃ¹i", "Ä�á»—", "Há»“", "NgÃ´", "DÆ°Æ¡ng", "Ä�Ã o", "Ä�oÃ n", "VÆ°Æ¡ng",
+                   "Trá»‹nh", "Ä�inh", "LÃ¢m", "PhÃ¹ng", "Mai", "TÃ´", "TrÆ°Æ¡ng", "HÃ "]
+      last_name: ["Nam", "Trung", "Thanh", "Thá»‹", "VÄƒn", "DÆ°Æ¡ng", "TÄƒng", "Quá»‘c", "NhÆ°", 
+                 "Pháº¡m", "Nguyá»…n", "Tráº§n", "LÃª", "LÃ½", "HoÃ ng", "Phan", "VÅ©", "TÄƒng",
+                 "Ä�áº·ng", "BÃ¹i", "Ä�á»—", "Há»“", "NgÃ´", "DÆ°Æ¡ng", "Ä�Ã o", "Ä�oÃ n", "VÆ°Æ¡ng",
+                 "Trá»‹nh", "Ä�inh", "LÃ¢m", "PhÃ¹ng", "Mai", "TÃ´", "TrÆ°Æ¡ng", "HÃ ",
+                 "Vinh", "Nhung", "HÃ²a", "Tiáº¿n", "TÃ¢m", "Bá»­u", "Loan", "Hiá»�n", "Háº£i",
+                 "VÃ¢n", "Kha", "Minh", "NhÃ¢n", "Triá»‡u", "TuÃ¢n", "Há»¯u", "Ä�á»©c", "PhÃº", "Khoa",
+                 "Tháº¯gn", "SÆ¡n", "Dung", "TÃº", "Trinh", "Tháº£o", "Sa", "Kim", "Long", "Thi",
+                 "CÆ°á»�ng", "Ngá»�c", "Sinh", "Khang", "Phong", "Tháº¯m", "Thu", "Thá»§y", "NhÃ n"]
       name:
         - "#{first_name} #{last_name}"
         - "#{first_name} #{last_name} #{last_name}"
         - "#{first_name} #{last_name} #{last_name} #{last_name}"
     company:
-      prefix: ["Công ty", "Cty TNHH", "Cty", "Cửa hàng", "Trung tâm", "Chi nhánh"]
+      prefix: ["CÃ´ng ty", "Cty TNHH", "Cty", "Cá»­a hÃ ng", "Trung tÃ¢m", "Chi nhÃ¡nh"]
       name:
         - "#{prefix} #{Name.last_name}"
     lorem:
-      words: ["đã", "đang", "ừ", "ờ", "á", "không", "biết", "gì", "hết", "đâu", "nha",
-              "thế", "thì", "là", "đánh", "đá", "đập", "phá", "viết", "vẽ", "tô", "thuê",
-              "mướn", "mượn", "mua", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám",
-              "chín", "mười", "thôi", "việc", "nghỉ", "làm", "nhà", "cửa", "xe", "đạp", "ác",
-              "độc", "khoảng", "khoan", "thuyền", "tàu", "bè", "lầu", "xanh", "đỏ", "tím", "vàng",
-              "kim", "chỉ", "khâu", "may", "vá", "em", "anh", "yêu", "thương", "thích", "con", "cái",
-              "bàn", "ghế", "tủ", "quần", "áo", "nón", "dép", "giày", "lỗi", "được", "ghét", "giết", 
-              "chết", "hết", "tôi", "bạn", "tui", "trời", "trăng", "mây", "gió", "máy", "hàng", "hóa",
-              "leo", "núi", "bơi", "biển", "chìm", "xuồng", "nước", "ngọt", "ruộng", "đồng", "quê", "hương"]
+      words: ["Ä‘Ã£", "Ä‘ang", "á»«", "á»�", "Ã¡", "khÃ´ng", "biáº¿t", "gÃ¬", "háº¿t", "Ä‘Ã¢u", "nha",
+              "tháº¿", "thÃ¬", "lÃ ", "Ä‘Ã¡nh", "Ä‘Ã¡", "Ä‘áº­p", "phÃ¡", "viáº¿t", "váº½", "tÃ´", "thuÃª",
+              "mÆ°á»›n", "mÆ°á»£n", "mua", "má»™t", "hai", "ba", "bá»‘n", "nÄƒm", "sÃ¡u", "báº£y", "tÃ¡m",
+              "chÃ­n", "mÆ°á»�i", "thÃ´i", "viá»‡c", "nghá»‰", "lÃ m", "nhÃ ", "cá»­a", "xe", "Ä‘áº¡p", "Ã¡c",
+              "Ä‘á»™c", "khoáº£ng", "khoan", "thuyá»�n", "tÃ u", "bÃ¨", "láº§u", "xanh", "Ä‘á»�", "tÃ­m", "vÃ ng",
+              "kim", "chá»‰", "khÃ¢u", "may", "vÃ¡", "em", "anh", "yÃªu", "thÆ°Æ¡ng", "thÃ­ch", "con", "cÃ¡i",
+              "bÃ n", "gháº¿", "tá»§", "quáº§n", "Ã¡o", "nÃ³n", "dÃ©p", "giÃ y", "lá»—i", "Ä‘Æ°á»£c", "ghÃ©t", "giáº¿t", 
+              "cháº¿t", "háº¿t", "tÃ´i", "báº¡n", "tui", "trá»�i", "trÄƒng", "mÃ¢y", "giÃ³", "mÃ¡y", "hÃ ng", "hÃ³a",
+              "leo", "nÃºi", "bÆ¡i", "biá»ƒn", "chÃ¬m", "xuá»“ng", "nÆ°á»›c", "ngá»�t", "ruá»™ng", "Ä‘á»“ng", "quÃª", "hÆ°Æ¡ng"]
               

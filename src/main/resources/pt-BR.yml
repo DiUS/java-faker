@@ -1,29 +1,29 @@
 pt-BR:
   faker:
     address:
-      city_prefix: [Nova, Velha, Grande, Vila, Município de]
+      city_prefix: [Nova, Velha, Grande, Vila, MunicÃ­pio de]
       city_suffix: [do Descoberto, de Nossa Senhora, do Norte, do Sul]
-      country: [ "Afeganistão", "Albânia", "Algéria", "Samoa", "Andorra", "Angola", "Anguilla", "Antigua and Barbada", "Argentina", "Armênia", "Aruba", "Austrália",
-                 "Áustria", "Alzerbajão", "Bahamas", "Barém", "Bangladesh", "Barbado", "Belgrado", "Bélgica", "Belize", "Benin", "Bermuda", "Bhutan", "Bolívia",
-                 "Bôsnia", "Botuasuna", "Bouvetoia", "Brasil", "Arquipélago de Chagos", "Ilhas Virgens", "Brunei", "Bulgária", "Burkina Faso", "Burundi", "Cambójia",
-                 "Camarões", "Canadá", "Cabo Verde", "Ilhas Caiman", "República da África Central", "Chad", "Chile", "China", "Ilhas Natal", "Ilhas Cocos", "Colômbia",
-                 "Comoros", "Congo", "Ilhas Cook", "Costa Rica", "Costa do Marfim", "Croácia", "Cuba", "Cyprus", "República Tcheca", "Dinamarca", "Djibouti", "Dominica",
-                 "República Dominicana", "Equador", "Egito", "El Salvador", "Guiné Equatorial", "Eritrea", "Estônia", "Etiópia", "Ilhas Faroe", "Malvinas", "Fiji",
-                 "Finlândia", "França", "Guiné Francesa", "Polinésia Francesa", "Gabão", "Gâmbia", "Georgia", "Alemanha", "Gana", "Gibraltar", "Grécia", "Groelândia",
-                 "Granada", "Guadalupe", "Guano", "Guatemala", "Guernsey", "Guiné", "Guiné-Bissau", "Guiana", "Haiti", "Heard Island and McDonald Islands", "Vaticano",
-                 "Honduras", "Hong Kong", "Hungria", "Iceland", "Índia", "Indonésia", "Irã", "Iraque", "Irlanda", "Ilha de Man", "Israel", "Itália", "Jamaica", "Japão",
-                 "Jersey", "Jordânia", "Cazaquistão", "Quênia", "Kiribati", "Coreia do Norte", "Coreia do Sul", "Kuwait", "Kyrgyz Republic", "República Democrática de Lao People",
-                 "Latvia", "Líbano", "Lesotho", "Libéria", "Libyan Arab Jamahiriya", "Liechtenstein", "Lituânia", "Luxemburgo", "Macao", "Macedônia", "Madagascar", "Malawi",
-                 "Malásia", "Maldives", "Mali", "Malta", "Ilhas Marshall", "Martinica", "Mauritânia", "Mauritius", "Mayotte", "México", "Micronésia", "Moldova", "Mônaco",
-                 "Mongólia", "Montenegro", "Montserrat", "Marrocos", "Moçambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Antilhas Holandesas", "Holanda", "Nova Caledonia",
-                 "Nova Zelândia", "Nicarágua", "Nigéria", "Niue", "Ilha Norfolk", "Northern Mariana Islands", "Noruega", "Oman", "Paquistão", "Palau", "Território da Palestina",
-                 "Panamá", "Nova Guiné Papua", "Paraguai", "Peru", "Filipinas", "Polônia", "Portugal", "Puerto Rico", "Qatar", "Romênia", "Rússia", "Ruanda", "São Bartolomeu",
-                 "Santa Helena", "Santa Lúcia", "Saint Martin", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tomé e Príncipe",
-                 "Arábia Saudita", "Senegal", "Sérvia", "Seychelles", "Serra Leoa", "Singapura", "Eslováquia", "Eslovênia", "Ilhas Salomão", "Somália",
-                 "África do Sul", "South Georgia and the South Sandwich Islands", "Spanha", "Sri Lanka", "Sudão", "Suriname", "Svalbard & Jan Mayen Islands", "Swaziland",
-                 "Suécia", "Suíça", "Síria", "Taiwan", "Tajiquistão", "Tanzânia", "Tailândia", "Timor-Leste", "Togo", "Tokelau", "Tonga", "Trinidá e Tobago", "Tunísia",
-                 "Turquia", "Turcomenistão", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ucrânia", "Emirados Árabes Unidos", "Reino Unido", "Estados Unidos da América",
-                 "Estados Unidos das Ilhas Virgens", "Uruguai", "Uzbequistão", "Vanuatu", "Venezuela", "Vietnã", "Wallis and Futuna", "Sahara", "Yemen", "Zâmbia", "Zimbábue"]
+      country: [ "AfeganistÃ£o", "AlbÃ¢nia", "AlgÃ©ria", "Samoa", "Andorra", "Angola", "Anguilla", "Antigua and Barbada", "Argentina", "ArmÃªnia", "Aruba", "AustrÃ¡lia",
+                 "Ã�ustria", "AlzerbajÃ£o", "Bahamas", "BarÃ©m", "Bangladesh", "Barbado", "Belgrado", "BÃ©lgica", "Belize", "Benin", "Bermuda", "Bhutan", "BolÃ­via",
+                 "BÃ´snia", "Botuasuna", "Bouvetoia", "Brasil", "ArquipÃ©lago de Chagos", "Ilhas Virgens", "Brunei", "BulgÃ¡ria", "Burkina Faso", "Burundi", "CambÃ³jia",
+                 "CamarÃµes", "CanadÃ¡", "Cabo Verde", "Ilhas Caiman", "RepÃºblica da Ã�frica Central", "Chad", "Chile", "China", "Ilhas Natal", "Ilhas Cocos", "ColÃ´mbia",
+                 "Comoros", "Congo", "Ilhas Cook", "Costa Rica", "Costa do Marfim", "CroÃ¡cia", "Cuba", "Cyprus", "RepÃºblica Tcheca", "Dinamarca", "Djibouti", "Dominica",
+                 "RepÃºblica Dominicana", "Equador", "Egito", "El Salvador", "GuinÃ© Equatorial", "Eritrea", "EstÃ´nia", "EtiÃ³pia", "Ilhas Faroe", "Malvinas", "Fiji",
+                 "FinlÃ¢ndia", "FranÃ§a", "GuinÃ© Francesa", "PolinÃ©sia Francesa", "GabÃ£o", "GÃ¢mbia", "Georgia", "Alemanha", "Gana", "Gibraltar", "GrÃ©cia", "GroelÃ¢ndia",
+                 "Granada", "Guadalupe", "Guano", "Guatemala", "Guernsey", "GuinÃ©", "GuinÃ©-Bissau", "Guiana", "Haiti", "Heard Island and McDonald Islands", "Vaticano",
+                 "Honduras", "Hong Kong", "Hungria", "Iceland", "Ã�ndia", "IndonÃ©sia", "IrÃ£", "Iraque", "Irlanda", "Ilha de Man", "Israel", "ItÃ¡lia", "Jamaica", "JapÃ£o",
+                 "Jersey", "JordÃ¢nia", "CazaquistÃ£o", "QuÃªnia", "Kiribati", "Coreia do Norte", "Coreia do Sul", "Kuwait", "Kyrgyz Republic", "RepÃºblica DemocrÃ¡tica de Lao People",
+                 "Latvia", "LÃ­bano", "Lesotho", "LibÃ©ria", "Libyan Arab Jamahiriya", "Liechtenstein", "LituÃ¢nia", "Luxemburgo", "Macao", "MacedÃ´nia", "Madagascar", "Malawi",
+                 "MalÃ¡sia", "Maldives", "Mali", "Malta", "Ilhas Marshall", "Martinica", "MauritÃ¢nia", "Mauritius", "Mayotte", "MÃ©xico", "MicronÃ©sia", "Moldova", "MÃ´naco",
+                 "MongÃ³lia", "Montenegro", "Montserrat", "Marrocos", "MoÃ§ambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Antilhas Holandesas", "Holanda", "Nova Caledonia",
+                 "Nova ZelÃ¢ndia", "NicarÃ¡gua", "NigÃ©ria", "Niue", "Ilha Norfolk", "Northern Mariana Islands", "Noruega", "Oman", "PaquistÃ£o", "Palau", "TerritÃ³rio da Palestina",
+                 "PanamÃ¡", "Nova GuinÃ© Papua", "Paraguai", "Peru", "Filipinas", "PolÃ´nia", "Portugal", "Puerto Rico", "Qatar", "RomÃªnia", "RÃºssia", "Ruanda", "SÃ£o Bartolomeu",
+                 "Santa Helena", "Santa LÃºcia", "Saint Martin", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao TomÃ© e PrÃ­ncipe",
+                 "ArÃ¡bia Saudita", "Senegal", "SÃ©rvia", "Seychelles", "Serra Leoa", "Singapura", "EslovÃ¡quia", "EslovÃªnia", "Ilhas SalomÃ£o", "SomÃ¡lia",
+                 "Ã�frica do Sul", "South Georgia and the South Sandwich Islands", "Spanha", "Sri Lanka", "SudÃ£o", "Suriname", "Svalbard & Jan Mayen Islands", "Swaziland",
+                 "SuÃ©cia", "SuÃ­Ã§a", "SÃ­ria", "Taiwan", "TajiquistÃ£o", "TanzÃ¢nia", "TailÃ¢ndia", "Timor-Leste", "Togo", "Tokelau", "Tonga", "TrinidÃ¡ e Tobago", "TunÃ­sia",
+                 "Turquia", "TurcomenistÃ£o", "Turks and Caicos Islands", "Tuvalu", "Uganda", "UcrÃ¢nia", "Emirados Ã�rabes Unidos", "Reino Unido", "Estados Unidos da AmÃ©rica",
+                 "Estados Unidos das Ilhas Virgens", "Uruguai", "UzbequistÃ£o", "Vanuatu", "Venezuela", "VietnÃ£", "Wallis and Futuna", "Sahara", "Yemen", "ZÃ¢mbia", "ZimbÃ¡bue"]
       building_number: ["#####", "####", "###", "s/n"]
       street_suffix: ["Rua", "Avenida", "Travessa", "Ponte", "Alameda", "Marginal", "Viela", "Rodovia"]
       street_name:
@@ -32,7 +32,7 @@ pt-BR:
       secondary_address: ["Apto. ###", "Sobrado ##", "Casa #", "Lote ##", "Quadra ##"]
       # Though these are US-specific, they are here (in the default locale) for backwards compatibility
       postcode: ["#####-###"]
-      state: ["Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"]
+      state: ["Acre", "Alagoas", "AmapÃ¡", "Amazonas", "Bahia", "CearÃ¡", "Distrito Federal", "EspÃ­rito Santo", "GoiÃ¡s", "MaranhÃ£o", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "ParÃ¡", "ParaÃ­ba", "ParanÃ¡", "Pernambuco", "PiauÃ­", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "RondÃ´nia", "Roraima", "Santa Catarina", "SÃ£o Paulo", "Sergipe", "Tocantins"]
       state_abbr: [AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP]
       postcode_by_state:
         SP: '1####-###'
@@ -62,7 +62,7 @@ pt-BR:
       default_country: [Brasil]
 
     company:
-      suffix: ["S.A.", "LTDA", "e Associados", "Comércio", "EIRELI"]
+      suffix: ["S.A.", "LTDA", "e Associados", "ComÃ©rcio", "EIRELI"]
       name:
         - "#{Name.last_name} #{suffix}"
         - "#{Name.last_name}-#{Name.last_name}"
@@ -76,10 +76,14 @@ pt-BR:
       words: [alias, consequatur, aut, perferendis, sit, voluptatem, accusantium, doloremque, aperiam, eaque, ipsa, quae, ab, illo, inventore, veritatis, et, quasi, architecto, beatae, vitae, dicta, sunt, explicabo, aspernatur, aut, odit, aut, fugit, sed, quia, consequuntur, magni, dolores, eos, qui, ratione, voluptatem, sequi, nesciunt, neque, dolorem, ipsum, quia, dolor, sit, amet, consectetur, adipisci, velit, sed, quia, non, numquam, eius, modi, tempora, incidunt, ut, labore, et, dolore, magnam, aliquam, quaerat, voluptatem, ut, enim, ad, minima, veniam, quis, nostrum, exercitationem, ullam, corporis, nemo, enim, ipsam, voluptatem, quia, voluptas, sit, suscipit, laboriosam, nisi, ut, aliquid, ex, ea, commodi, consequatur, quis, autem, vel, eum, iure, reprehenderit, qui, in, ea, voluptate, velit, esse, quam, nihil, molestiae, et, iusto, odio, dignissimos, ducimus, qui, blanditiis, praesentium, laudantium, totam, rem, voluptatum, deleniti, atque, corrupti, quos, dolores, et, quas, molestias, excepturi, sint, occaecati, cupiditate, non, provident, sed, ut, perspiciatis, unde, omnis, iste, natus, error, similique, sunt, in, culpa, qui, officia, deserunt, mollitia, animi, id, est, laborum, et, dolorum, fuga, et, harum, quidem, rerum, facilis, est, et, expedita, distinctio, nam, libero, tempore, cum, soluta, nobis, est, eligendi, optio, cumque, nihil, impedit, quo, porro, quisquam, est, qui, minus, id, quod, maxime, placeat, facere, possimus, omnis, voluptas, assumenda, est, omnis, dolor, repellendus, temporibus, autem, quibusdam, et, aut, consequatur, vel, illum, qui, dolorem, eum, fugiat, quo, voluptas, nulla, pariatur, at, vero, eos, et, accusamus, officiis, debitis, aut, rerum, necessitatibus, saepe, eveniet, ut, et, voluptates, repudiandae, sint, et, molestiae, non, recusandae, itaque, earum, rerum, hic, tenetur, a, sapiente, delectus, ut, aut, reiciendis, voluptatibus, maiores, doloribus, asperiores, repellat]
 
     name:
-      first_name: ["Alessandro", "Alessandra", "Alexandre", "Aline", "Antônio", "Breno", "Bruna", "Carlos", "Carla", "Célia", "Cecília", "César", "Danilo", "Dalila", "Deneval", "Eduardo", "Eduarda", "Esther", "Elísio", "Fábio", "Fabrício", "Fabrícia", "Félix", "Felícia", "Feliciano", "Frederico", "Fabiano", "Gustavo", "Guilherme", "Gúbio", "Heitor", "Hélio", "Hugo", "Isabel", "Isabela", "Ígor", "João", "Joana", "Júlio César", "Júlio", "Júlia", "Janaína", "Karla", "Kléber", "Lucas", "Lorena", "Lorraine", "Larissa", "Ladislau", "Marcos", "Meire", "Marcelo", "Marcela", "Margarida", "Mércia", "Márcia", "Marli", "Morgana", "Maria", "Norberto", "Natália", "Nataniel", "Núbia", "Ofélia", "Paulo", "Paula", "Pablo", "Pedro", "Raul", "Rafael", "Rafaela", "Ricardo", "Roberto", "Roberta", "Sílvia", "Sílvia", "Silas", "Suélen", "Sara", "Salvador", "Sirineu", "Talita", "Tertuliano", "Vicente", "Víctor", "Vitória", "Yango", "Yago", "Yuri", "Washington", "Warley"]
+      first_name: ["Alessandro", "Alessandra", "Alexandre", "Aline", "AntÃ´nio", "Breno", "Bruna", "Carlos", "Carla", "CÃ©lia", "CecÃ­lia", "CÃ©sar", "Danilo", "Dalila", "Deneval", "Eduardo", "Eduarda", "Esther", "ElÃ­sio", "FÃ¡bio", "FabrÃ­cio", "FabrÃ­cia", "FÃ©lix", "FelÃ­cia", "Feliciano", "Frederico", "Fabiano", "Gustavo", "Guilherme", "GÃºbio", "Heitor", "HÃ©lio", "Hugo", "Isabel", "Isabela", "Ã�gor", "JoÃ£o", "Joana", "JÃºlio CÃ©sar", "JÃºlio", "JÃºlia", "JanaÃ­na", "Karla", "KlÃ©ber", "Lucas", "Lorena", "Lorraine", "Larissa", "Ladislau", "Marcos", "Meire", "Marcelo", "Marcela", "Margarida", "MÃ©rcia", "MÃ¡rcia", "Marli", "Morgana", "Maria", "Norberto", "NatÃ¡lia", "Nataniel", "NÃºbia", "OfÃ©lia", "Paulo", "Paula", "Pablo", "Pedro", "Raul", "Rafael", "Rafaela", "Ricardo", "Roberto", "Roberta", "SÃ­lvia", "SÃ­lvia", "Silas", "SuÃ©len", "Sara", "Salvador", "Sirineu", "Talita", "Tertuliano", "Vicente", "VÃ­ctor", "VitÃ³ria", "Yango", "Yago", "Yuri", "Washington", "Warley"]
       last_name: ["Silva", "Souza", "Carvalho", "Santos", "Reis", "Xavier", "Franco", "Braga", "Macedo", "Batista", "Barros", "Moraes", "Costa", "Pereira", "Carvalho", "Melo", "Saraiva", "Nogueira", "Oliveira", "Martins", "Moreira", "Albuquerque"]
       prefix: ["Sr.", "Sra.", "Srta.", "Dr.", "Dra."]
       suffix: ["Jr.", "Neto", "Filho"]
 
     phone_number:
       formats: ["(##) ####-####", "+55 (##) ####-####", "(##) #####-####"]
+	
+	valid_cc_phone_number:
+      formats: ["+55 (##) ####-####"]
+      

@@ -29,5 +29,7 @@ en-au-ocker:
       default_country: [Australia]
     phone_number:
       formats: ['0# #### ####', '+61 # #### ####', '+61 4## ### ###'] #iOS AUS phone formats
+    valid_cc_phone_number:
+      formats: ['+61 # #### ####', '+61 4## ### ###'] #iOS AUS phone formats
     cell_phone:
       formats: ['04##-###-###', '(0) 4##-###-###', '04## ### ###', '04########', '04## ## ## ##']

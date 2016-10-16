@@ -25,5 +25,7 @@ fi-FI:
 
     phone_number:
       formats: ['##-######', '###-#######']
+    valid_cc_phone_number:
+      formats: ['+358-##-######', '+358-###-#######']
     cell_phone:
       formats: ['0##-#######']

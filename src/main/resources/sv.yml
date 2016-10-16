@@ -53,6 +53,8 @@ sv:
 
     phone_number:
       formats: ['####-#####', '####-######']
+    valid_cc_phone_number:
+      formats: ['+46 ####-#####', '+46 ####-######']
     cell_phone:
       formats:
         - '070-###-####'

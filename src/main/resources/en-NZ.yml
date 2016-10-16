@@ -21,5 +21,7 @@ en-NZ:
       default_country: [New Zealand]
     phone_number:
       formats: ['0# ### ####', '+64 # ### ####']
+    phone_number:
+      formats: ['+64 # ### ####']
     cell_phone:
       formats: ['02##-###-###', '02## ### ###', '02# ### ###', '02#-###-####']
