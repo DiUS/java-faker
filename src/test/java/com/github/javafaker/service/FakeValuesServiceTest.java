@@ -226,12 +226,12 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
      * if the message changes, it's ok to update the test provided
      * the two conditions above are still true.
      */
-    @Test/*(expected = RuntimeException.class)*/
+    @Test
     public void expressionWithValidFakerObjectValidMethodInvalidArgs() {
         expressionShouldFailWith("#{Number.number_between 'x','y'}", 
-                "Unable to coerce x to Long via Long(String) constructor.");
+                "Can't find method on Number called numberbetween.");
     }
-
+    
     /**
      * Two things are important here:
      * 1) the message in the exception should be USEFUL

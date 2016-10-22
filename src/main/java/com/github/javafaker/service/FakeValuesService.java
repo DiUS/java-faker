@@ -9,6 +9,7 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
@@ -430,20 +431,10 @@ public class FakeValuesService {
             return null;
         }
         try {
-            Method accessor = accessor(obj, directive, args);
-            if (accessor == null) {
-                return null;
-            }
-            // coerce the string arguments into the correct argument types
-            List<Object> coerced = null;
-            try  {
-                coerced = coerceArguments(accessor, args);
-            } catch (RuntimeException re) {
-              log.log(Level.FINE, "Unable to coerce arguments : " + re.getMessage());  
-            }
-            return (accessor == null || coerced == null)
+            final MethodAndCoercedArgs accessor = accessor(obj, directive, args);
+            return (accessor == null)
                     ? null
-                    : string(accessor.invoke(obj, coerced.toArray()));
+                    : string(accessor.invoke(obj));
         } catch (Exception e) {
             log.log(Level.FINE, "Can't call " + directive + " on " + obj, e);
             return null;
@@ -460,23 +451,20 @@ public class FakeValuesService {
         
         try {
             String fakerMethodName = classAndMethod[0].replaceAll("_", "");
-            Method fakerAccessor = accessor(faker, fakerMethodName, Collections.<String>emptyList());
+            MethodAndCoercedArgs fakerAccessor = accessor(faker, fakerMethodName, Collections.<String>emptyList());
             if (fakerAccessor == null) {
                 throw new RuntimeException("Can't find top level faker object named " + fakerMethodName + ".");
             }
             Object objectWithMethodToInvoke = fakerAccessor.invoke(faker);
             String nestedMethodName = classAndMethod[1].replaceAll("_", "");
-            final Method accessor = accessor(objectWithMethodToInvoke, classAndMethod[1].replaceAll("_", ""), args);
+            final MethodAndCoercedArgs accessor = accessor(objectWithMethodToInvoke, classAndMethod[1].replaceAll("_", ""), args);
             if (accessor == null) {
                 throw new RuntimeException("Can't find method on " 
                         + objectWithMethodToInvoke.getClass().getSimpleName() 
                         + " called " + nestedMethodName + ".");
             }
-            final List<Object> coerced = coerceArguments(accessor, args);
-            
-            Object ret = accessor.invoke(objectWithMethodToInvoke, coerced.toArray());
 
-            return ret == null ? null : ret.toString();
+            return string(accessor.invoke(objectWithMethodToInvoke));
         } catch (Exception e) {
             if (e instanceof RuntimeException) {
                 throw (RuntimeException) e;
@@ -489,19 +477,23 @@ public class FakeValuesService {
     /**
      * Find an accessor by name ignoring case.
      */
-    private Method accessor(Object onObject, String name, List<String> args) {
+    private MethodAndCoercedArgs accessor(Object onObject, String name, List<String> args) {
         log.log(Level.FINE, "Find accessor named " + name + " on " + onObject.getClass().getSimpleName() + " with args " + args);
-        Method fakerAccessor = null;
+        
         for (Method m : onObject.getClass().getMethods()) {
-            if (m.getName().equalsIgnoreCase(name) && m.getParameterTypes().length == args.size()) {
-                fakerAccessor = m;
-                break;
+            if (m.getName().equalsIgnoreCase(name) 
+                    && m.getParameterTypes().length == args.size()) {
+                final List<Object> coercedArguments = coerceArguments(m, args);
+                if (coercedArguments != null) {
+                    return new MethodAndCoercedArgs(m, coercedArguments);
+                }
             }
         }
-        if (fakerAccessor == null && name.contains("_")) {
-            fakerAccessor = accessor(onObject, name.replaceAll("_", ""), args);
+
+        if (name.contains("_")) {
+            return accessor(onObject, name.replaceAll("_", ""), args);
         }
-        return fakerAccessor;
+        return null;
     }
 
     /**
@@ -521,7 +513,8 @@ public class FakeValuesService {
 
                 coerced.add(coercedArgument);
             } catch (Exception e) {
-                throw new RuntimeException("Unable to coerce " + args.get(i) + " to " + toType.getSimpleName() + " via " + toType.getSimpleName() + "(String) constructor.");
+                log.fine("Unable to coerce " + args.get(i) + " to " + toType.getSimpleName() + " via " + toType.getSimpleName() + "(String) constructor.");
+                return null;
             }
         }
         return coerced;
@@ -529,5 +522,36 @@ public class FakeValuesService {
     
     private String string(Object obj) {
         return (obj == null) ? null : obj.toString();
+    }
+
+    /**
+     * simple wrapper class around an accessor and a list of coerced arguments.
+     * this is useful as we get to find the method and coerce the arguments in one
+     * shot, returning both when successful.  This saves us from doing it more than once (coercing args).
+     */
+    private class MethodAndCoercedArgs {
+
+        private final Method method;
+        
+        private final List<Object> coerced;
+
+        private MethodAndCoercedArgs(Method m, List<Object> coerced) {
+            this.method = requireNonNull(m, "method cannot be null");
+            this.coerced = requireNonNull(coerced, "coerced arguments cannot be null");
+        }
+        
+        private Object invoke(Object on) throws InvocationTargetException, IllegalAccessException {
+            return method.invoke(on, coerced.toArray());
+        }
+
+        /**
+         * source level precludes me from using Objects.requireNonNull
+         */
+        private <T> T requireNonNull(T instance, String messageIfNull) {
+            if (instance == null) {
+                throw new NullPointerException(messageIfNull);
+            }
+            return instance;
+        }
     }
 }
