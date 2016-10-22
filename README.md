@@ -82,6 +82,7 @@ Fakers
 * DateAndTime
 * Educator
 * Finance
+* Food
 * Hacker
 * IdNumber
 * Internet
