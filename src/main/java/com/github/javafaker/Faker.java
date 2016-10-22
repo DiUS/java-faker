@@ -35,6 +35,7 @@ public class Faker {
     private final Options options;
     private final Code code;
     private final Finance finance;
+    private final Food food;
     private final DateAndTime dateAndTime;
     private final Educator educator;
     private final Shakespeare shakespeare;
@@ -80,6 +81,7 @@ public class Faker {
         this.options = new Options(this);
         this.code = new Code(this);
         this.finance = new Finance(this);
+        this.food = new Food(this);
         this.dateAndTime = new DateAndTime(this);
         this.educator = new Educator(this);
         this.shakespeare = new Shakespeare(this);
@@ -243,6 +245,10 @@ public class Faker {
 
     public Finance finance() {
         return finance;
+    }
+
+    public Food food() {
+      return food;
     }
 
     public DateAndTime date() {
