@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import com.github.javafaker.service.FakerIDN;
 import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang3.StringUtils;
 
@@ -51,7 +52,7 @@ public class Internet {
         return join(new Object[]{
                 "www",
                 ".",
-                IDN.toASCII(
+                FakerIDN.toASCII(
                         faker.name().firstName().toLowerCase().replaceAll("'", "") +
                                 "-" +
                                 domainWord()
