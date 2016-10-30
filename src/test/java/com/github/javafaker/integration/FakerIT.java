@@ -3,12 +3,15 @@ package com.github.javafaker.integration;
 import com.github.javafaker.Faker;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -60,13 +63,6 @@ public class FakerIT {
     @Parameterized.Parameters(name = "testing locale {0} and random {1}")
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
-                {Locale.US, null},
-                {Locale.ENGLISH, null},
-                {Locale.FRENCH, null},
-                {Locale.CANADA_FRENCH, null},
-                {Locale.TRADITIONAL_CHINESE, null},
-                {new Locale("pt"), null},
-                {new Locale("fi", "FI"), null},
                 {Locale.ENGLISH, new Random()},
                 {new Locale("pt-BR"), null},
                 {new Locale("pt-br"), null},
@@ -75,7 +71,18 @@ public class FakerIT {
                 {new Locale("pt","Br","x2"), null},
                 {null, new Random()},
                 {null, null}};
-        return Arrays.asList(data);
+
+        String[] ymlFiles = new File("./src/main/resources").list();
+        int numberOfYmlFiles = ymlFiles.length;
+        Object[][] dataFromYmlFiles = new Object[numberOfYmlFiles][2];
+        for (int i = 0; i < numberOfYmlFiles; i++) {
+            String ymlFileName = ymlFiles[i];
+            dataFromYmlFiles[i][0] = new Locale(StringUtils.substringBefore(ymlFileName, "."));
+        }
+
+        List<Object[]> allData = new ArrayList<Object[]>(Arrays.asList(data));
+        allData.addAll(Arrays.asList(dataFromYmlFiles));
+        return allData;
     }
 
     @Test
@@ -149,5 +156,4 @@ public class FakerIT {
         assertThat(faker.lorem().words(1), is(notNullValue()));
     }
 
-    
 }
