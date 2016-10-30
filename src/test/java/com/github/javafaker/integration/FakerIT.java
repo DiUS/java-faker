@@ -43,6 +43,9 @@ public class FakerIT {
      */
     private static final Map<Locale, List<String>> exceptions = Maps.newHashMap();
     static {
+        // 'it' has an empty suffix list so it never returns a value
+        exceptions.put(new Locale("it"), Arrays.asList("Name.suffix"));
+        
         exceptions.put(new Locale("pt"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
         exceptions.put(new Locale("uk"), Arrays.asList("Address.stateAbbr", "Address.streetSuffix",
                 "Address.cityPrefix", "Address.citySuffix"));
@@ -123,11 +126,11 @@ public class FakerIT {
                 withParametersCount(0));
 
         for (Method method : methodsThatReturnStrings) {
-            final Object returnValue = method.invoke(object);
-            logger.info(String.format("Invoked %s.%s = %s", object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
             if (isExcepted(object, method)) {
                 continue;
             }
+            final Object returnValue = method.invoke(object);
+            logger.info(String.format("Invoked %s.%s = %s", object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
             assertThat(method + " on " + object, returnValue, is(notNullValue()));
             assertThat(method + " on " + object, (String) returnValue, not(isEmptyString()));
         }
