@@ -209,13 +209,13 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     @Test
     public void expressionWithInvalidFakerObject() {
         expressionShouldFailWith("#{ObjectNotOnFaker.methodName}", 
-                "Can't find top level faker object named ObjectNotOnFaker.");
+                "Unable to resolve #{ObjectNotOnFaker.methodName} directive.");
     }
     
     @Test
     public void expressionWithValidFakerObjectButInvalidMethod() {
         expressionShouldFailWith("#{Name.nonExistentMethod}", 
-                "Can't find method on Name called nonExistentMethod.");
+                "Unable to resolve #{Name.nonExistentMethod} directive.");
     }
 
     /**
@@ -229,7 +229,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     @Test
     public void expressionWithValidFakerObjectValidMethodInvalidArgs() {
         expressionShouldFailWith("#{Number.number_between 'x','y'}", 
-                "Can't find method on Number called numberbetween.");
+                "Unable to resolve #{Number.number_between 'x','y'} directive.");
     }
     
     /**
