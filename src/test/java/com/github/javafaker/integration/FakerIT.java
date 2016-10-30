@@ -1,7 +1,6 @@
 package com.github.javafaker.integration;
 
 import com.github.javafaker.Faker;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.StringUtils;
@@ -44,7 +43,9 @@ public class FakerIT {
      */
     private static final Map<Locale, List<String>> exceptions = Maps.newHashMap();
     static {
-        exceptions.put(new Locale("pt"), Lists.newArrayList("Address.cityPrefix","Address.citySuffix"));
+        exceptions.put(new Locale("pt"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
+        exceptions.put(new Locale("uk"), Arrays.asList("Address.stateAbbr", "Address.streetSuffix",
+                "Address.cityPrefix", "Address.citySuffix"));
     }
 
     public FakerIT(Locale locale, Random random) {
