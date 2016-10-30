@@ -59,7 +59,7 @@ public class FakeValuesService {
         for (int i=0;i< locales.size();i++) {
             final Locale l = locales.get(i);
             
-            final StringBuilder filename = new StringBuilder(l.getLanguage());
+            final StringBuilder filename = new StringBuilder(language(l));
             if (!"".equals(l.getCountry())) {
                 filename.append("-").append(l.getCountry());
             }
@@ -81,6 +81,17 @@ public class FakeValuesService {
         }
 
         this.fakeValuesMaps = Collections.unmodifiableList(all);
+    }
+
+    /**
+     * If you new up a locale with "he", it gets converted to "iw" which is old.
+     * This addresses that unfortunate condition.
+     */
+    private String language(Locale l) {
+        if (l.getLanguage().equals("iw")) {
+            return "he";
+        }
+        return l.getLanguage();
     }
 
     /**
@@ -178,6 +189,9 @@ public class FakeValuesService {
         if (o == null) return defaultIfNull;
         if (o instanceof List) {
             List<String> values = (List<String>) o;
+            if (values.size() == 0) {
+                return defaultIfNull;
+            }
             return values.get(randomService.nextInt(values.size()));
         } else {
             return (String) o;
@@ -407,6 +421,15 @@ public class FakeValuesService {
             resolved = resolveFakerObjectAndMethod(root, directive, args);
         }
         
+        // last ditch effort.  Due to Ruby's dynamic nature, something like 'Address.street_title' will resolve
+        // because 'street_title' is a dynamic method on the Address object.  We can't do this in Java so we go 
+        // thru the normal resolution above, but if we will can't resolve it, we once again do a 'safeFetch' as we
+        // did first but FIRST we change the Object reference Class.method_name with a yml style internal refernce ->
+        // class.method_name (lowercase)
+        if (resolved == null && isDotDirective(directive)) {
+            resolved = safeFetch(simpleDirective.toLowerCase(), null);
+        }
+        
         return resolved;
     }
 
@@ -453,22 +476,21 @@ public class FakeValuesService {
             String fakerMethodName = classAndMethod[0].replaceAll("_", "");
             MethodAndCoercedArgs fakerAccessor = accessor(faker, fakerMethodName, Collections.<String>emptyList());
             if (fakerAccessor == null) {
-                throw new RuntimeException("Can't find top level faker object named " + fakerMethodName + ".");
+                log.fine("Can't find top level faker object named " + fakerMethodName + ".");
+                return null;
             }
             Object objectWithMethodToInvoke = fakerAccessor.invoke(faker);
             String nestedMethodName = classAndMethod[1].replaceAll("_", "");
             final MethodAndCoercedArgs accessor = accessor(objectWithMethodToInvoke, classAndMethod[1].replaceAll("_", ""), args);
             if (accessor == null) {
-                throw new RuntimeException("Can't find method on " 
-                        + objectWithMethodToInvoke.getClass().getSimpleName() 
-                        + " called " + nestedMethodName + ".");
+                log.fine("Can't find method on " 
+                    + objectWithMethodToInvoke.getClass().getSimpleName() 
+                    + " called " + nestedMethodName + ".");
             }
 
             return string(accessor.invoke(objectWithMethodToInvoke));
         } catch (Exception e) {
-            if (e instanceof RuntimeException) {
-                throw (RuntimeException) e;
-            }
+            log.fine(e.getMessage());
             return null;
         }
     }
