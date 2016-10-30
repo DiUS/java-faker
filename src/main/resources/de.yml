@@ -72,5 +72,5 @@ de:
       suffix: [Universität, Hochschule]
       name:
         - "#{Name.last_name} #{University.suffix}"
-        - "#{University.prefix} #{University.suffix} #{City.name}"
-        - "#{University.suffix} #{City.name}"
+        - "#{University.prefix} #{University.suffix} #{Address.city}"
+        - "#{University.suffix} #{Address.city}"
