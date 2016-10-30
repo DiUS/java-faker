@@ -14,7 +14,7 @@ public class FoodTest extends AbstractFakerTest {
 
     @Test
     public void spice() {
-        assertThat(faker.food().spice(), matchesRegularExpression("[A-Za-z ]+"));
+        assertThat(faker.food().spice(), matchesRegularExpression("[A-Za-z1-9- ]+"));
     }
 
     @Test
