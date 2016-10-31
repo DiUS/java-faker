@@ -1,6 +1,8 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -232,5 +234,17 @@ public class InternetTest extends AbstractFakerTest {
             assertThat(parseInt(faker.internet().ipV6Cidr().split("\\/")[1]),
                     both(greaterThanOrEqualTo(1)).and(lessThan(128)));
         }
+    }
+
+    @Test
+    @Repeat(times=10)
+    public void testSlugWithParams() {
+        assertThat(faker.internet().slug(ImmutableList.of("a", "b"), "-"), matchesRegularExpression("[a-zA-Z]+\\-[a-zA-Z]+"));
+    }
+
+    @Test
+    @Repeat(times=10)
+    public void testSlug() {
+        assertThat(faker.internet().slug(), matchesRegularExpression("[a-zA-Z]+\\_[a-zA-Z]+"));
     }
 }

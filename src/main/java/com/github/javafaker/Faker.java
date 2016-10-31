@@ -45,6 +45,7 @@ public class Faker {
     private final Beer beer;
     private final University university;
     private final Cat cat;
+    private final File file;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -80,6 +81,7 @@ public class Faker {
         this.commerce = new Commerce(this);
         this.options = new Options(this);
         this.code = new Code(this);
+        this.file = new File(this);
         this.finance = new Finance(this);
         this.food = new Food(this);
         this.dateAndTime = new DateAndTime(this);
@@ -243,6 +245,10 @@ public class Faker {
         return code;
     }
 
+    public File file() {
+        return file;
+    }
+
     public Finance finance() {
         return finance;
     }
@@ -309,4 +315,5 @@ public class Faker {
     public String expression(String expression) {
         return this.fakeValuesService.expression(expression, this);
     }
+
 }

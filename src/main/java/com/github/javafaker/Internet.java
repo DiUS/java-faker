@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.net.IDN;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.join;
 
@@ -254,6 +255,36 @@ public class Internet {
           .toString();
     }
 
+    /**
+     * @return a slug using '_' as the word separator and two {@link Lorem} words as the values
+     */
+    public String slug() {
+        return slug(faker.lorem().words(2), "_");
+    }
+
+    /**
+     * @param wordsOrNull if null, then 2 {@link Lorem} words
+     * @param glueOrNull  if null, "_"
+     * @return a slug string combining wordsOrNull with glueOrNull (ex. x_y)
+     */
+    public String slug(List<String> wordsOrNull, String glueOrNull) {
+        final String glue = glueOrNull == null
+                ? "_"
+                : glueOrNull;
+        final List<String> words = wordsOrNull == null
+                ? faker.lorem().words(2)
+                : wordsOrNull;
+
+        final StringBuilder slug = new StringBuilder();
+        for (int i = 0; i < words.size(); i++) {
+            if (i > 0) {
+                slug.append(glue);
+            }
+            slug.append(words.get(i));
+        }
+        return slug.toString();
+    }
+          
     private <T> T random(T[] src) {
         return src[faker.random().nextInt(src.length)];
     }
