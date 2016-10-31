@@ -4,7 +4,6 @@ import com.github.javafaker.service.FakerIDN;
 import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang3.StringUtils;
 
-import java.net.IDN;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class Internet {
     public String emailAddress(String localPart) {
         return join(localPart,
                 "@",
-                IDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker)));
+                FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker)));
     }
 
     public String safeEmailAddress() {
@@ -34,7 +33,7 @@ public class Internet {
     public String safeEmailAddress(String localPart) {
         return join(localPart, 
                 "@",
-                IDN.toASCII(faker.fakeValuesService().resolve("internet.safe_email", this, faker)));
+                FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.safe_email", this, faker)));
     }
 
     public String domainName() {
@@ -42,7 +41,7 @@ public class Internet {
     }
 
     public String domainWord() {
-        return IDN.toASCII(faker.name().lastName().toLowerCase().replaceAll("'", ""));
+        return FakerIDN.toASCII(faker.name().lastName().toLowerCase().replaceAll("'", ""));
     }
 
     public String domainSuffix() {
