@@ -16,6 +16,12 @@ public class AddressTest extends AbstractFakerTest {
     private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
 
     @Test
+    public void testStreetAddressStartsWithNumber() {
+        final String streetAddressNumber = faker.address().streetAddress();
+        assertThat(streetAddressNumber, matchesRegularExpression("[0-9]+ .+"));
+    }
+
+    @Test
     public void testStreetAddressIsANumber() {
         final String streetAddressNumber = faker.address().streetAddressNumber();
         assertThat(streetAddressNumber, matchesRegularExpression("[0-9]+"));
