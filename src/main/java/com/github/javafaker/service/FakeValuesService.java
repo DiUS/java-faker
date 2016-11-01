@@ -427,7 +427,7 @@ public class FakeValuesService {
         // did first but FIRST we change the Object reference Class.method_name with a yml style internal refernce ->
         // class.method_name (lowercase)
         if (resolved == null && isDotDirective(directive)) {
-            resolved = safeFetch(simpleDirective.toLowerCase(), null);
+            resolved = safeFetch(javaNameToYamlName(simpleDirective), null);
         }
         
         return resolved;
@@ -437,12 +437,23 @@ public class FakeValuesService {
         return directive.contains(".");
     }
 
+    /**
+     * @return a yaml style name from the classname of the supplied object (PhoneNumber => phone_number) 
+     */
     private String classNameToYamlName(Object current) {
-        return current.getClass().getSimpleName()
-                .replaceAll("([A-Z])", "_$1")
+        return javaNameToYamlName(current.getClass().getSimpleName());
+    }
+
+    /**
+     * @return a yaml style name like 'phone_number' from a java style name like 'PhoneNumber' 
+     */
+    private String javaNameToYamlName(String expression) {
+        return expression.replaceAll("([A-Z])", "_$1")
                 .substring(1)
                 .toLowerCase();
     }
+
+
 
     /**
      * Given a directive like 'firstName', attempts to resolve it to a method.  For example if obj is an instance of
