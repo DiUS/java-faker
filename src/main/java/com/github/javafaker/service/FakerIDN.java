@@ -12,6 +12,11 @@ public class FakerIDN {
      * fix but it appears to fix the issue.
      */
     public static final String toASCII(String in) {
+        try {
+            return IDN.toASCII(in);
+        } catch (Exception e) {
+            // let's continue with the character by character encoding hack.
+        }
         final StringBuilder sb = new StringBuilder();
         for (int i=0;i<in.length();i++) {
             try {

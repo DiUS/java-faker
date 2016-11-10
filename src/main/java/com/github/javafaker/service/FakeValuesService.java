@@ -387,9 +387,10 @@ public class FakeValuesService {
     /**
      * <h1>Search Order</h1>
      * <ul>
-     *     <li>First search local keys</li>
      *     <li>Search for methods on the current object</li>
+     *     <li>local keys in Yaml File</li>
      *     <li>Search for methods on faker child objects</li>
+     *     <li>Search for keys in yaml file by transforming object reference to yaml reference</li>
      * </ul>
      * @return null if unable to resolve
      */
@@ -400,15 +401,18 @@ public class FakeValuesService {
                 ? directive 
                 : classNameToYamlName(current) + "." + directive;
         
+        String resolved = null;
+        // resolve method references on CURRENT object like #{number_between '1','10'} on Number or
+        // #{ssn_valid} on IdNumber
+        if (!isDotDirective(directive)) {
+            resolved = resolveFromMethodOn(current, directive, args);
+        }
+
         // simple fetch of a value from the yaml file. the directive may have been mutated
         // such that if the current yml object is car: and directive is #{wheel} then 
         // car.wheel will be looked up in the YAML file.
-        String resolved = safeFetch(simpleDirective, null);
-
-        // resolve method references on CURRENT object like #{number_between '1','10'} on Number or
-        // #{ssn_valid} on IdNumber
-        if (resolved == null && !isDotDirective(directive)) {
-            resolved = resolveFromMethodOn(current, directive, args);
+        if (resolved == null) {
+            resolved = safeFetch(simpleDirective, null);
         }
 
         // resolve method references on faker object like #{regexify '[a-z]'}

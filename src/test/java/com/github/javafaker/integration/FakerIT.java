@@ -130,7 +130,7 @@ public class FakerIT {
                 continue;
             }
             final Object returnValue = method.invoke(object);
-            logger.info(String.format("Invoked %s.%s = %s", object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
+            logger.info(String.format("%s %s.%s = %s", locale, object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
             assertThat(method + " on " + object, returnValue, is(notNullValue()));
             assertThat(method + " on " + object, (String) returnValue, not(isEmptyString()));
         }

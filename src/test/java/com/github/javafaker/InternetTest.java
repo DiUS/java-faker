@@ -1,6 +1,8 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -8,6 +10,7 @@ import org.junit.Test;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Locale;
 
 import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
@@ -232,5 +235,29 @@ public class InternetTest extends AbstractFakerTest {
             assertThat(parseInt(faker.internet().ipV6Cidr().split("\\/")[1]),
                     both(greaterThanOrEqualTo(1)).and(lessThan(128)));
         }
+    }
+
+    @Test
+    @Repeat(times=10)
+    public void testSlugWithParams() {
+        assertThat(faker.internet().slug(ImmutableList.of("a", "b"), "-"), matchesRegularExpression("[a-zA-Z]+\\-[a-zA-Z]+"));
+    }
+
+    @Test
+    @Repeat(times=10)
+    public void testSlug() {
+        assertThat(faker.internet().slug(), matchesRegularExpression("[a-zA-Z]+\\_[a-zA-Z]+"));
+    }
+    
+    @Test
+    @Repeat(times=100)
+    public void testFarsiIDNs() {
+        // in this case, we're just making sure Farsi doesn't blow up.
+        // there have been issues with Farsi not being produced.
+        final Faker f = new Faker(new Locale("fa"));
+        assertThat(f.internet().domainName(), not(isEmptyOrNullString()));
+        assertThat(f.internet().emailAddress(), not(isEmptyOrNullString()));
+        assertThat(f.internet().safeEmailAddress(), not(isEmptyOrNullString()));
+        assertThat(f.internet().url(), not(isEmptyOrNullString()));
     }
 }
