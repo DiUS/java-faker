@@ -84,6 +84,7 @@ Fakers
 * File
 * Finance
 * Food
+* GameOfThrones
 * Hacker
 * IdNumber
 * Internet
