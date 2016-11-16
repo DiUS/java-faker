@@ -40,4 +40,14 @@ public class CommerceTest extends AbstractFakerTest {
     public void testPriceMinMax() {
         assertThat(faker.commerce().price(100, 1000), matchesRegularExpression("\\d{3,4}\\" + decimalSeparator + "\\d{2}"));
     }
+
+    @Test
+    public void testPromotionCode() {
+        assertThat(faker.commerce().promotionCode(), matchesRegularExpression("[A-Z][a-z]+[A-Z][a-z]+\\d{6}"));
+    }
+
+    @Test
+    public void testPromotionCodeDigits() {
+        assertThat(faker.commerce().promotionCode(3), matchesRegularExpression("[A-Z][a-z]+[A-Z][a-z]+\\d{3}"));
+    }
 }
