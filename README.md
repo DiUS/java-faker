@@ -81,6 +81,7 @@ Fakers
 * Crypto
 * DateAndTime
 * Educator
+* File
 * Finance
 * Food
 * Hacker
