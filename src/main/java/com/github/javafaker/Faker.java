@@ -18,6 +18,7 @@ public class Faker {
 
     private final App app;
     private final Lorem lorem;
+    private final Music music;
     private final Name name;
     private final Number number;
     private final Internet internet;
@@ -66,6 +67,7 @@ public class Faker {
 
         this.app = new App(this);
         this.lorem = new Lorem(this);
+        this.music = new Music(this);
         this.name = new Name(this);
         this.number = new Number(this);
         this.internet = new Internet(this);
@@ -178,10 +180,13 @@ public class Faker {
         return app;
     }
 
+    public Music music() {
+        return music;
+    }
+
     public Name name() {
         return name;
     }
-
 
     public Number number() {
         return number;

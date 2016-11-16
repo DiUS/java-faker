@@ -89,6 +89,7 @@ Fakers
 * IdNumber
 * Internet
 * Lorem
+* Music
 * Name
 * Number
 * Options
