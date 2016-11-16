@@ -83,6 +83,7 @@ Fakers
 * Educator
 * Finance
 * Food
+* GameOfThrones
 * Hacker
 * IdNumber
 * Internet
