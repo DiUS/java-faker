@@ -27,8 +27,8 @@ public class MostSpecificLocaleIT {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void resolvesTheMostSpecificLocale() {
-        
         final List<String> enDefaultCountries = (List<String>) en.fetchObject("address.default_country");
         final List<String> enUsDefaultCountries = (List<String>) en_US.fetchObject("address.default_country");
         

@@ -117,7 +117,7 @@ public class FakeValuesService {
 
         final Locale normalized = normalizeLocale(from);
 
-        final List<Locale> chain = new ArrayList(3);
+        final List<Locale> chain = new ArrayList<Locale>(3);
         chain.add(normalized);
         if (!"".equals(normalized.getCountry()) && !Locale.ENGLISH.getLanguage().equals(normalized.getLanguage())) {
             chain.add(new Locale(normalized.getLanguage()));
@@ -157,7 +157,7 @@ public class FakeValuesService {
      * @return
      */
     public Object fetch(String key) {
-        List valuesArray = (List) fetchObject(key);
+        List<Object> valuesArray = (List) fetchObject(key);
         return valuesArray == null ? null : valuesArray.get(randomService.nextInt(valuesArray.size()));
     }
 
@@ -183,7 +183,7 @@ public class FakeValuesService {
      * @param key
      * @return
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings("unchecked")
     public String safeFetch(String key, String defaultIfNull) {
         Object o = fetchObject(key);
         if (o == null) return defaultIfNull;
@@ -205,7 +205,7 @@ public class FakeValuesService {
      *            dot. E.g. name.first_name
      * @return
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings("unchecked")
     public Object fetchObject(String key) {
         String[] path = key.split("\\.");
 
