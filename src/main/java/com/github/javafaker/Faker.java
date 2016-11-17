@@ -41,6 +41,7 @@ public class Faker {
     private final DateAndTime dateAndTime;
     private final Educator educator;
     private final Shakespeare shakespeare;
+    private final Space space;
     private final Superhero superhero;
     private final Bool bool;
     private final Team team;
@@ -91,6 +92,7 @@ public class Faker {
         this.dateAndTime = new DateAndTime(this);
         this.educator = new Educator(this);
         this.shakespeare = new Shakespeare(this);
+        this.space = new Space(this);
         this.superhero = new Superhero(this);
         this.team = new Team(this);
         this.bool = new Bool(this);
@@ -278,6 +280,10 @@ public class Faker {
 
     public Shakespeare shakespeare() {
         return shakespeare;
+    }
+
+    public Space space() {
+        return space;
     }
 
     public Superhero superhero() {
