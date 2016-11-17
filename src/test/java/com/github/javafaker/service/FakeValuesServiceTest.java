@@ -267,10 +267,4 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
             return "Hello";
         }
     }
-
-    private static class AnotherDummyService {
-        public String firstName() {
-            return "John";
-        }
-    }
 }
