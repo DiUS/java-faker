@@ -95,6 +95,7 @@ Fakers
 * Options
 * PhoneNumber
 * Shakespeare
+* Space
 * Superhero
 * Team
 * University
