@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 public class Code {
 
     private final Faker faker;
@@ -89,4 +91,44 @@ public class Code {
 
     private static final String [] REPORTING_BODY_IDENTIFIERS 
         = {"01", "10", "30", "33", "35", "44", "45", "49", "50", "51", "52", "53", "54", "86", "91", "98", "99"};
+
+    public String ean8() {
+        return gtin8();
+    }
+
+    public String gtin8() {
+        char[] values = faker.regexify("\\d{7}").toCharArray();
+        int sum = 0;
+        for (int i = 0; i < values.length; i++) {
+            sum += Character.getNumericValue(values[i]) * GTIN_8_CHECK_DIGITS[i];
+        }
+        int checkDigit = 10 - sum % 10;
+        if (checkDigit == 10) {
+            return new String(ArrayUtils.add(values, Character.forDigit(0, 10)));
+        } else {
+            return new String(ArrayUtils.add(values, Character.forDigit(checkDigit, 10)));
+        }
+    }
+
+    public String ean13() {
+        return gtin13();
+    }
+
+    public String gtin13() {
+        char[] values = faker.regexify("\\d{12}").toCharArray();
+        int sum = 0;
+        for (int i = 0; i < values.length; i++) {
+            sum += Character.getNumericValue(values[i]) * GTIN_13_CHECK_DIGITS[i];
+        }
+        int checkDigit = 10 - sum % 10;
+        if (checkDigit == 10) {
+            return new String(ArrayUtils.add(values, Character.forDigit(0, 10)));
+        } else {
+            return new String(ArrayUtils.add(values, Character.forDigit(checkDigit, 10)));
+        }
+    }
+
+    private static final int[] GTIN_8_CHECK_DIGITS = { 3, 1, 3, 1, 3, 1, 3 };
+    private static final int[] GTIN_13_CHECK_DIGITS = { 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3 };
+
 }
