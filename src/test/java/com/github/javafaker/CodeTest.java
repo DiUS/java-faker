@@ -7,6 +7,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
+import org.apache.commons.validator.routines.ISBNValidator;
+
 public class CodeTest extends AbstractFakerTest{
 
     @Test
@@ -28,6 +30,7 @@ public class CodeTest extends AbstractFakerTest{
                 }
             }
             assertThat(sum % 11, is(0L));
+            assertThat(new ISBNValidator().isValidISBN10(isbn10), is(true));
         }
     }
 
@@ -48,6 +51,7 @@ public class CodeTest extends AbstractFakerTest{
                 }
             }
             assertThat(sum % 10, is(0L));
+            assertThat(new ISBNValidator().isValidISBN13(isbn13), is(true));
         }
     }
 }
