@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FakeValuesService {
-    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-zA-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*\\}");
+    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*\\}");
 
     private final Logger log = Logger.getLogger("faker");
     
