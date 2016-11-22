@@ -1,5 +1,9 @@
 test:
   faker:
+    code:
+      isbn_gs1: ["333","444"]
+      isbn_group: ["9971"]
+      isbn_registrant: ["#{numerify '#-####'}"]
     property:
        dummy: [x, y, z]
        simple: "hello"
