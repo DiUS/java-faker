@@ -7,8 +7,6 @@ import static org.junit.Assert.assertThat;
 
 public class AppTest  extends AbstractFakerTest{
 
-    
-
     @Test
     public void testName() {
         assertThat(faker.app().name(), matchesRegularExpression("([\\w-]+ ?)+"));
@@ -21,6 +19,6 @@ public class AppTest  extends AbstractFakerTest{
 
     @Test
     public void testAuthor() {
-        assertThat(faker.app().author(), matchesRegularExpression("([\\w']+[-& ]?){2,9}"));
+        assertThat(faker.app().author(), matchesRegularExpression("([\\w']+[-&,\\.]? ?){2,9}"));
     }
 }
