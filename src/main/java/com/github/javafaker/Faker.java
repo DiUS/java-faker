@@ -41,6 +41,7 @@ public class Faker {
     private final DateAndTime dateAndTime;
     private final Educator educator;
     private final Shakespeare shakespeare;
+    private final SlackEmoji slackEmoji;
     private final Space space;
     private final Superhero superhero;
     private final Bool bool;
@@ -92,6 +93,7 @@ public class Faker {
         this.dateAndTime = new DateAndTime(this);
         this.educator = new Educator(this);
         this.shakespeare = new Shakespeare(this);
+        this.slackEmoji = new SlackEmoji(this);
         this.space = new Space(this);
         this.superhero = new Superhero(this);
         this.team = new Team(this);
@@ -276,6 +278,10 @@ public class Faker {
 
     public Educator educator() {
         return educator;
+    }
+
+    public SlackEmoji slackEmoji() {
+        return slackEmoji;
     }
 
     public Shakespeare shakespeare() {

@@ -95,6 +95,7 @@ Fakers
 * Options
 * PhoneNumber
 * Shakespeare
+* SlackEmoji
 * Space
 * Superhero
 * Team
