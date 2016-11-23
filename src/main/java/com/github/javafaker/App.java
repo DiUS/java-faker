@@ -16,6 +16,6 @@ public class App {
     }
 
     public String author() {
-        return faker.fakeValuesService().resolve("app.name", this, faker);
+        return faker.fakeValuesService().resolve("app.author", this, faker);
     }
 }
