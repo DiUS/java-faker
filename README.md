@@ -94,6 +94,7 @@ Fakers
 * Number
 * Options
 * PhoneNumber
+* Pokemon
 * Shakespeare
 * Space
 * Superhero

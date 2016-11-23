@@ -23,6 +23,7 @@ public class Faker {
     private final Number number;
     private final Internet internet;
     private final PhoneNumber phoneNumber;
+    private final Pokemon pokemon;
     private final Address address;
     private final Business business;
     private final Book book;
@@ -73,6 +74,7 @@ public class Faker {
         this.number = new Number(this);
         this.internet = new Internet(this);
         this.phoneNumber = new PhoneNumber(this);
+        this.pokemon = new Pokemon(this);
         this.address = new Address(this);
         this.book = new Book(this);
         this.business = new Business(this);
@@ -200,6 +202,10 @@ public class Faker {
 
     public PhoneNumber phoneNumber() {
         return phoneNumber;
+    }
+
+    public Pokemon pokemon() {
+        return pokemon;
     }
 
     public Lorem lorem() {
