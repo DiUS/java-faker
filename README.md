@@ -96,6 +96,7 @@ Fakers
 * PhoneNumber
 * Pokemon
 * Shakespeare
+* SlackEmoji
 * Space
 * Superhero
 * Team

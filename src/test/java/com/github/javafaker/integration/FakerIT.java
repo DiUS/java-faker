@@ -115,6 +115,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.hacker());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.idNumber());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.shakespeare());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.slackEmoji());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.space());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.superhero());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.team());
