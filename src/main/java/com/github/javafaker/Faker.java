@@ -51,6 +51,7 @@ public class Faker {
     private final University university;
     private final Cat cat;
     private final File file;
+    private final Stock stock;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -103,6 +104,7 @@ public class Faker {
         this.beer = new Beer(this);
         this.university = new University(this);
         this.cat = new Cat(this);
+        this.stock = new Stock(this);
     }
 
     /**
@@ -320,6 +322,10 @@ public class Faker {
 
     public Cat cat() {
         return cat;
+    }
+    
+    public Stock stock() {
+        return stock;
     }
 
     public String resolve(String key) {
