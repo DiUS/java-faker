@@ -1,57 +1,81 @@
 package com.github.javafaker;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-
+import com.github.javafaker.repeating.Repeat;
+import org.apache.commons.validator.routines.ISBNValidator;
 import org.apache.commons.validator.routines.checkdigit.EAN13CheckDigit;
 import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
 import org.junit.Test;
 
-public class CodeTest extends AbstractFakerTest{
+import java.util.Locale;
 
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+
+public class CodeTest extends AbstractFakerTest{
     @Test
-    public void testIsbn10() {
-        String isbn10;
-        long sum;
-        int i, n;
-        for (int j = 0; j < 1000; j++) {
-            isbn10 = faker.code().isbn10();
-            assertNotNull(isbn10);
-            assertEquals(11, isbn10.length());
-            sum = 0;
-            i = 10;
-            for (char c : isbn10.toCharArray()) {
-                if (c != '-') {
-                    n = c != 'X' ? Integer.valueOf("" + c) : 10;
-                    sum += i * n;
-                    i = i - 1;
-                }
-            }
-            assertThat(sum % 11, is(0L));
-        }
+    @Repeat(times = 1000)
+    public void isbn10DefaultIsNoSeparator() {
+        assertThat(faker.code().isbn10(), not(containsString("-")));
     }
 
     @Test
+    @Repeat(times = 1000)
+    public void isbn13DefaultIsNoSeparator() {
+        assertThat(faker.code().isbn13(), not(containsString("-")));
+    }
+
+    @Test
+    @Repeat(times = 1000)
+    public void testIsbn10() {
+        final ISBNValidator v = new ISBNValidator();
+        final String isbn10NoSep = faker.code().isbn10(false);
+        final String isbn10Sep = faker.code().isbn10(true);
+
+        assertThat(isbn10NoSep + " is not null", isbn10NoSep, is(not(nullValue())));
+        assertThat(isbn10NoSep + " has length of 10", isbn10NoSep.length(), is(10));
+        assertThat(isbn10NoSep + " is valid", v.isValidISBN10(isbn10NoSep), is(true));
+
+        assertThat(isbn10Sep + " is not null", isbn10Sep, is(not(nullValue())));
+        assertThat(isbn10Sep + " has length of 13", isbn10Sep.length(), is(13));
+        assertThat(isbn10Sep + " is valid", v.isValidISBN10(isbn10Sep), is(true));
+    }
+
+    @Test
+    @Repeat(times = 1000)
     public void testIsbn13() {
-        String isbn13;
-        long sum;
-        for (int j = 0; j < 1000; j++) {
-            isbn13 = faker.code().isbn13();
-            assertNotNull(isbn13);
-            assertEquals(17, isbn13.length());
-            sum = 0;
-            int multiplier = 1;
-            for (char c : isbn13.toCharArray()) {
-                if (c != '-') {
-                    sum += multiplier * Integer.valueOf("" + c);
-                    multiplier = multiplier == 1 ? 3 : 1;
-                }
-            }
-            assertThat(sum % 10, is(0L));
-        }
+        final ISBNValidator v = new ISBNValidator();
+
+        final String isbn13NoSep = faker.code().isbn13(false);
+        final String isbn13Sep = faker.code().isbn13(true);
+
+        assertThat(isbn13NoSep + " is not null", isbn13NoSep, is(not(nullValue())));
+        assertThat(isbn13NoSep + " has length of 13", isbn13NoSep.length(), is(13));
+        assertThat(isbn13NoSep + " is valid", v.isValidISBN13(isbn13NoSep), is(true));
+
+        assertThat(isbn13Sep + " is not null", isbn13Sep, is(not(nullValue())));
+        assertThat(isbn13Sep + " has length of 17", isbn13Sep.length(), is(17));
+        assertThat(isbn13Sep + " is valid", v.isValidISBN13(isbn13Sep), is(true));
+    }
+
+
+    @Test
+    @Repeat(times = 100)
+    public void testOverrides() {
+        Faker faker = new Faker(new Locale("test"));
+        
+        final ISBNValidator v = new ISBNValidator();
+        
+        final String isbn10Sep = faker.code().isbn10(true);
+        final String isbn13Sep = faker.code().isbn13(true);
+
+        assertThat("Uses overridden expressions from test.yml", 
+                isbn10Sep, 
+                matchesRegularExpression("9971-\\d-\\d{4}-(\\d|X)"));
+        
+        assertThat("Uses overridden expressions from test.yml",
+                isbn13Sep, 
+                matchesRegularExpression("(333|444)-9971-\\d-\\d{4}-\\d"));
     }
 
     @Test
