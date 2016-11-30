@@ -18,18 +18,7 @@ In pom.xml, add the following xml stanza between `<dependencies> ... </dependenc
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.11</version>
-</dependency>
-```
-
-Since version 0.11, the ```snake-yaml``` files are no longer included in the main jar.  If you still wish 
-to use the shaded jar, you need to use the 'deps' classifier in the Maven coordinates (shown below).
-```xml
-<dependency>
-    <groupId>com.github.javafaker</groupId>
-    <artifactId>javafaker</artifactId>
-    <version>0.11</version>
-    <classifier>deps</classifier>
+    <version>0.12</version>
 </dependency>
 ```
 
