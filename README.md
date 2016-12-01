@@ -87,6 +87,7 @@ Fakers
 * Shakespeare
 * SlackEmoji
 * Space
+* Stock
 * Superhero
 * Team
 * University
