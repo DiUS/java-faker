@@ -12,60 +12,71 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
-public class CodeTest extends AbstractFakerTest{
+public class CodeTest extends AbstractFakerTest {
+
+    private static final ISBNValidator ISBN_VALIDATOR = ISBNValidator.getInstance(false);
+
     @Test
     @Repeat(times = 1000)
     public void isbn10DefaultIsNoSeparator() {
-        assertThat(faker.code().isbn10(), not(containsString("-")));
+        String isbn10 = faker.code().isbn10();
+
+        assertIsValidISBN10(isbn10);
+        assertThat(isbn10, not(containsString("-")));
     }
 
     @Test
     @Repeat(times = 1000)
     public void isbn13DefaultIsNoSeparator() {
-        assertThat(faker.code().isbn13(), not(containsString("-")));
+        String isbn13 = faker.code().isbn13();
+
+        assertIsValidISBN13(isbn13);
+        assertThat(isbn13, not(containsString("-")));
     }
 
     @Test
     @Repeat(times = 1000)
     public void testIsbn10() {
-        final ISBNValidator v = new ISBNValidator();
         final String isbn10NoSep = faker.code().isbn10(false);
         final String isbn10Sep = faker.code().isbn10(true);
 
         assertThat(isbn10NoSep + " is not null", isbn10NoSep, is(not(nullValue())));
         assertThat(isbn10NoSep + " has length of 10", isbn10NoSep.length(), is(10));
-        assertThat(isbn10NoSep + " is valid", v.isValidISBN10(isbn10NoSep), is(true));
+        assertIsValidISBN10(isbn10NoSep);
 
         assertThat(isbn10Sep + " is not null", isbn10Sep, is(not(nullValue())));
         assertThat(isbn10Sep + " has length of 13", isbn10Sep.length(), is(13));
-        assertThat(isbn10Sep + " is valid", v.isValidISBN10(isbn10Sep), is(true));
+        assertIsValidISBN10(isbn10Sep);
     }
 
     @Test
     @Repeat(times = 1000)
     public void testIsbn13() {
-        final ISBNValidator v = new ISBNValidator();
-
         final String isbn13NoSep = faker.code().isbn13(false);
         final String isbn13Sep = faker.code().isbn13(true);
 
         assertThat(isbn13NoSep + " is not null", isbn13NoSep, is(not(nullValue())));
         assertThat(isbn13NoSep + " has length of 13", isbn13NoSep.length(), is(13));
-        assertThat(isbn13NoSep + " is valid", v.isValidISBN13(isbn13NoSep), is(true));
+        assertIsValidISBN13(isbn13NoSep);
 
         assertThat(isbn13Sep + " is not null", isbn13Sep, is(not(nullValue())));
         assertThat(isbn13Sep + " has length of 17", isbn13Sep.length(), is(17));
-        assertThat(isbn13Sep + " is valid", v.isValidISBN13(isbn13Sep), is(true));
+        assertIsValidISBN13(isbn13Sep);
     }
 
+    private void assertIsValidISBN10(String isbn10) {
+        assertThat(isbn10 + " is valid", ISBN_VALIDATOR.isValidISBN10(isbn10), is(true));
+    }
+
+    private void assertIsValidISBN13(String isbn13) {
+        assertThat(isbn13 + " is valid", ISBN_VALIDATOR.isValidISBN13(isbn13), is(true));
+    }
 
     @Test
     @Repeat(times = 100)
     public void testOverrides() {
         Faker faker = new Faker(new Locale("test"));
-        
-        final ISBNValidator v = new ISBNValidator();
-        
+
         final String isbn10Sep = faker.code().isbn10(true);
         final String isbn13Sep = faker.code().isbn13(true);
 
