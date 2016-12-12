@@ -13,6 +13,7 @@ import java.util.Random;
  * @author ren
  */
 public class Faker {
+    private Locale locale;
     private final RandomService randomService;
     private final FakeValuesService fakeValuesService;
 
@@ -68,6 +69,7 @@ public class Faker {
     public Faker(Locale locale, Random random) {
         this.randomService = new RandomService(random);
         this.fakeValuesService = new FakeValuesService(locale, randomService);
+        this.locale = locale;
 
         this.app = new App(this);
         this.lorem = new Lorem(this);
@@ -323,7 +325,7 @@ public class Faker {
     public Cat cat() {
         return cat;
     }
-    
+
     public Stock stock() {
         return stock;
     }
@@ -335,7 +337,7 @@ public class Faker {
     /**
      * Allows the evaluation of native YML expressions to allow you to build your own.
      *
-     * The following are valid expressions: 
+     * The following are valid expressions:
      * <ul>
      *     <li>#{regexify '(a|b){2,3}'}</li>
      *     <li>#{regexify '\\.\\*\\?\\+'}</li>
@@ -351,4 +353,12 @@ public class Faker {
         return this.fakeValuesService.expression(expression, this);
     }
 
+    /**
+     * Allow fakers to choose implementation based on locale
+     *
+     * @return the current locale
+     */
+    Locale getLocale() {
+        return locale;
+    }
 }
