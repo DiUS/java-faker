@@ -8,7 +8,6 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.junit.Assert.assertThat;
 
 public class IdNumberTest extends AbstractFakerTest {
-
     @Test
     public void testValid() {
         assertThat(faker.idNumber().valid(), matchesRegularExpression("[0-8]\\d{2}-\\d{2}-\\d{4}"));
@@ -21,7 +20,7 @@ public class IdNumberTest extends AbstractFakerTest {
 
     @Test
     public void testSsnValid() {
-        assertThat(faker.idNumber().ssnValid(), matchesRegularExpression("[0-8]\\d{2}-\\d{2}-\\d{4}"));
+        assertThat(faker.idNumber().valid(), matchesRegularExpression("[0-8]\\d{2}-\\d{2}-\\d{4}"));
     }
 
     @Test
@@ -29,7 +28,6 @@ public class IdNumberTest extends AbstractFakerTest {
         final Faker f = new Faker(new Locale("sv_SE"));
         for (int i = 0; i < 100; i++) {
             assertThat(f.idNumber().valid(), matchesRegularExpression("\\d{6}[-+]\\d{4}"));
-            assertThat(f.idNumber().ssnValid(), matchesRegularExpression("\\d{6}[-+]\\d{4}"));
         }
     }
 

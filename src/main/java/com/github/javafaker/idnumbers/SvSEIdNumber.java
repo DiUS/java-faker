@@ -1,4 +1,7 @@
-package com.github.javafaker;
+package com.github.javafaker.idnumbers;
+
+import com.github.javafaker.Faker;
+import com.github.javafaker.service.RandomService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,24 +13,32 @@ import java.util.Date;
  * and the description at
  * https://en.wikipedia.org/wiki/Personal_identity_number_(Sweden)
  */
-class SwedishIdNumber {
+public class SvSEIdNumber {
+    private RandomService randomService = new RandomService();
+    private static final String[] validPatterns = {"######-####", "######+####"};
 
-    String getValidSwedishSsn(Faker f) {
+    public String getValidSsn(Faker f) {
         String candidate = "";
         while (!validSwedishSsn(candidate)) {
-            candidate = f.numerify(f.fakeValuesService().resolve("id_number.valid", this, f));
+            String pattern = getPattern();
+            candidate = f.numerify(pattern);
         }
 
         return candidate;
     }
 
-    String getInvalidSwedishSsn(Faker f) {
+    public String getInvalidSsn(Faker f) {
         String candidate = "121212-1212"; // Seed with a valid number
         while (validSwedishSsn(candidate)) {
-            candidate = f.numerify(f.fakeValuesService().resolve("id_number.valid", this, f));
+            String pattern = getPattern();
+            candidate = f.numerify(pattern);
         }
 
         return candidate;
+    }
+
+    private String getPattern() {
+        return validPatterns[randomService.nextInt(2)];
     }
 
     boolean validSwedishSsn(String ssn) {
@@ -97,6 +108,5 @@ class SwedishIdNumber {
         }
         return sum;
     }
-
 
 }

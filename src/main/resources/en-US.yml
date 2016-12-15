@@ -86,7 +86,7 @@ en-US:
         - "#{area_code}.#{exchange_code}.#{subscriber_number} x#{extension}"
 
     id_number:
-      valid: "#{IDNumber.ssn_valid}"
+      valid: "#{IDNumber.valid_en_us_ssn}"
       invalid: ['000-##-####', '###-00-####', '###-##-0000', '666-##-####', '9##-##-####']
 
     cell_phone:

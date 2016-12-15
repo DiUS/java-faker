@@ -1,6 +1,7 @@
 package com.github.javafaker;
 
-import java.util.Locale;
+import com.github.javafaker.idnumbers.EnIdNumber;
+import com.github.javafaker.idnumbers.SvSEIdNumber;
 
 public class IdNumber {
     private final Faker faker;
@@ -9,60 +10,43 @@ public class IdNumber {
         this.faker = faker;
     }
 
-    private static final String[] invalidSSNPatterns = {
-            "0{3}-\\\\d{2}-\\\\d{4}",
-            "\\d{3}-0{2}-\\d{4}",
-            "\\d{3}-\\d{2}-0{4}",
-            "666-\\d{2}-\\d{4}",
-            "9\\d{2}-\\d{2}-\\d{4}"};
-
     public String valid() {
-        if (faker.getLocale().equals(new Locale("sv_SE"))) {
-            return ssnValidSwedish();
-        }
-
         return faker.fakeValuesService().resolve("id_number.valid", this, faker);
     }
 
     public String invalid() {
-        if (faker.getLocale().equals(new Locale("sv_SE"))) {
-            return ssnInvalidSwedish();
-        }
-
         return faker.numerify(faker.fakeValuesService().resolve("id_number.invalid", this, faker));
     }
 
-    public String ssnValid() {
-        if (faker.getLocale().equals(new Locale("sv_SE"))) {
-            return ssnValidSwedish();
-        }
-
-        return getValindEnSsn();
+    /**
+     * Specified as #{IDNumber.valid_en_ssn} in en.yml
+     */
+    public String validEnSsn() {
+        EnIdNumber enIdNumber = new EnIdNumber();
+        return enIdNumber.getValidSsn(faker);
     }
 
-    private String getValindEnSsn() {
-        String ssn = faker.regexify("[0-8]\\d{2}-\\d{2}-\\d{4}");
-
-        boolean isValid = true;
-        for (int i = 0; i < invalidSSNPatterns.length; i++) {
-            if (ssn.matches(invalidSSNPatterns[i])) {
-                isValid = false;
-                break;
-            }
-        }
-        if (!isValid) {
-            ssn = ssnValid();
-        }
-        return ssn;
+    /**
+     * Specified as #{IDNumber.valid_en_ssn} in en-US.yml
+     */
+    public String validEnUsSsn() {
+        EnIdNumber enIdNumber = new EnIdNumber();
+        return enIdNumber.getValidSsn(faker);
     }
 
-    private String ssnValidSwedish() {
-        SwedishIdNumber swedishIdNumber = new SwedishIdNumber();
-        return swedishIdNumber.getValidSwedishSsn(faker);
+    /**
+     * Specified as #{IDNumber.valid_sv_se_ssn} in sv-SE.yml
+     */
+    public String validSvSeSsn() {
+        SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
+        return svSEIdNumber.getValidSsn(faker);
     }
 
-    private String ssnInvalidSwedish() {
-        SwedishIdNumber swedishIdNumber = new SwedishIdNumber();
-        return swedishIdNumber.getInvalidSwedishSsn(faker);
+    /**
+     * Specified as #{IDNumber.invalid_sv_se_ssn} in sv-SE.yml
+     */
+    public String invalidSvSeSsn() {
+        SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
+        return svSEIdNumber.getInvalidSsn(faker);
     }
 }
