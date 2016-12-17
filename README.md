@@ -55,6 +55,7 @@ http://dius.github.io/java-faker/apidocs/index.html
 
 Fakers
 -----
+* Ancient
 * Address
 * App
 * Beer

@@ -16,6 +16,7 @@ public class Faker {
     private final RandomService randomService;
     private final FakeValuesService fakeValuesService;
 
+    private final Ancient ancient;
     private final App app;
     private final Lorem lorem;
     private final Music music;
@@ -69,6 +70,7 @@ public class Faker {
         this.randomService = new RandomService(random);
         this.fakeValuesService = new FakeValuesService(locale, randomService);
 
+        this.ancient = new Ancient(this);
         this.app = new App(this);
         this.lorem = new Lorem(this);
         this.music = new Music(this);
@@ -182,6 +184,10 @@ public class Faker {
 
     FakeValuesService fakeValuesService() {
         return this.fakeValuesService;
+    }
+
+    public Ancient ancient() {
+        return ancient;
     }
 
     public App app() {
