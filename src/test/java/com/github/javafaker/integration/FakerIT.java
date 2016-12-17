@@ -92,6 +92,7 @@ public class FakerIT {
     @Test
     public void testAllFakerMethodsThatReturnStrings() throws Exception {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker);
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.ancient());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.address());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.app());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.business());
