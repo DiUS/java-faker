@@ -45,7 +45,7 @@ public class FakerIT {
     static {
         // 'it' has an empty suffix list so it never returns a value
         exceptions.put(new Locale("it"), Arrays.asList("Name.suffix"));
-        
+        exceptions.put(new Locale("es-mx"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
         exceptions.put(new Locale("pt"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
         exceptions.put(new Locale("uk"), Arrays.asList("Address.stateAbbr", "Address.streetSuffix",
                 "Address.cityPrefix", "Address.citySuffix"));
