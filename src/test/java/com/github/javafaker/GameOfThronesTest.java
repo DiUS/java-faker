@@ -21,4 +21,9 @@ public class GameOfThronesTest extends AbstractFakerTest {
     public void city() {
         assertThat(faker.gameOfThrones().city(), matchesRegularExpression("[A-Za-z' ]+"));
     }
+
+    @Test
+    public void dragon() {
+        assertThat(faker.gameOfThrones().dragon(), matchesRegularExpression("\\w+"));
+    }
 }

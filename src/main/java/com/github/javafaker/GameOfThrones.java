@@ -9,14 +9,18 @@ public class GameOfThrones {
     }
 
     public String character() {
-        return faker.fakeValuesService().resolve("game_of_thrones.characters", this, faker);
+        return faker.resolve("game_of_thrones.characters");
     }
 
     public String house() {
-        return faker.fakeValuesService().resolve("game_of_thrones.houses", this, faker);
+        return faker.resolve("game_of_thrones.houses");
     }
 
     public String city() {
-        return faker.fakeValuesService().resolve("game_of_thrones.cities", this, faker);
+        return faker.resolve("game_of_thrones.cities");
+    }
+
+    public String dragon() {
+        return faker.resolve("game_of_thrones.dragons");
     }
 }
