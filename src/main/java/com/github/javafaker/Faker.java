@@ -329,7 +329,7 @@ public class Faker {
     public Cat cat() {
         return cat;
     }
-    
+
     public Stock stock() {
         return stock;
     }
@@ -341,7 +341,7 @@ public class Faker {
     /**
      * Allows the evaluation of native YML expressions to allow you to build your own.
      *
-     * The following are valid expressions: 
+     * The following are valid expressions:
      * <ul>
      *     <li>#{regexify '(a|b){2,3}'}</li>
      *     <li>#{regexify '\\.\\*\\?\\+'}</li>
@@ -356,5 +356,4 @@ public class Faker {
     public String expression(String expression) {
         return this.fakeValuesService.expression(expression, this);
     }
-
 }

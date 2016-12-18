@@ -1,18 +1,14 @@
 package com.github.javafaker;
 
+import com.github.javafaker.idnumbers.EnIdNumber;
+import com.github.javafaker.idnumbers.SvSEIdNumber;
+
 public class IdNumber {
     private final Faker faker;
 
     IdNumber(Faker faker) {
         this.faker = faker;
     }
-
-    private static final String[] invalidSSNPatterns = {
-            "0{3}-\\\\d{2}-\\\\d{4}",
-            "\\d{3}-0{2}-\\d{4}",
-            "\\d{3}-\\d{2}-0{4}",
-            "666-\\d{2}-\\d{4}",
-            "9\\d{2}-\\d{2}-\\d{4}" };
 
     public String valid() {
         return faker.fakeValuesService().resolve("id_number.valid", this, faker);
@@ -22,19 +18,35 @@ public class IdNumber {
         return faker.numerify(faker.fakeValuesService().resolve("id_number.invalid", this, faker));
     }
 
-    public String ssnValid() {
-        String ssn = faker.regexify("[0-8]\\d{2}-\\d{2}-\\d{4}");
+    /**
+     * Specified as #{IDNumber.valid_en_ssn} in en.yml
+     */
+    public String validEnSsn() {
+        EnIdNumber enIdNumber = new EnIdNumber();
+        return enIdNumber.getValidSsn(faker);
+    }
 
-        boolean isValid = true;
-        for (int i = 0; i < invalidSSNPatterns.length; i++) {
-            if (ssn.matches(invalidSSNPatterns[i])) {
-                isValid = false;
-                break;
-            }
-        }
-        if (!isValid) {
-            ssn = ssnValid();
-        }
-        return ssn;
+    /**
+     * Specified as #{IDNumber.valid_en_ssn} in en-US.yml
+     */
+    public String validEnUsSsn() {
+        EnIdNumber enIdNumber = new EnIdNumber();
+        return enIdNumber.getValidSsn(faker);
+    }
+
+    /**
+     * Specified as #{IDNumber.valid_sv_se_ssn} in sv-SE.yml
+     */
+    public String validSvSeSsn() {
+        SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
+        return svSEIdNumber.getValidSsn(faker);
+    }
+
+    /**
+     * Specified as #{IDNumber.invalid_sv_se_ssn} in sv-SE.yml
+     */
+    public String invalidSvSeSsn() {
+        SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
+        return svSEIdNumber.getInvalidSsn(faker);
     }
 }

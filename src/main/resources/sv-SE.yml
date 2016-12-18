@@ -1,0 +1,7 @@
+sv-SE:
+  faker:
+
+    id_number:
+      valid: "#{IDNumber.valid_sv_se_ssn}"
+      invalid: "#{IDNumber.invalid_sv_se_ssn}"
+
