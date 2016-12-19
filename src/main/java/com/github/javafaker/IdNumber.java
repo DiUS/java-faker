@@ -18,18 +18,7 @@ public class IdNumber {
         return faker.numerify(faker.fakeValuesService().resolve("id_number.invalid", this, faker));
     }
 
-    /**
-     * Specified as #{IDNumber.valid_en_ssn} in en.yml
-     */
-    public String validEnSsn() {
-        EnIdNumber enIdNumber = new EnIdNumber();
-        return enIdNumber.getValidSsn(faker);
-    }
-
-    /**
-     * Specified as #{IDNumber.valid_en_ssn} in en-US.yml
-     */
-    public String validEnUsSsn() {
+    public String ssnValid() {
         EnIdNumber enIdNumber = new EnIdNumber();
         return enIdNumber.getValidSsn(faker);
     }

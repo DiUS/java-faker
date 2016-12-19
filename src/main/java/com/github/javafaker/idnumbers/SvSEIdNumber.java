@@ -14,13 +14,12 @@ import java.util.Date;
  * https://en.wikipedia.org/wiki/Personal_identity_number_(Sweden)
  */
 public class SvSEIdNumber {
-    private RandomService randomService = new RandomService();
     private static final String[] validPatterns = {"######-####", "######+####"};
 
     public String getValidSsn(Faker f) {
         String candidate = "";
         while (!validSwedishSsn(candidate)) {
-            String pattern = getPattern();
+            String pattern = getPattern(f);
             candidate = f.numerify(pattern);
         }
 
@@ -30,15 +29,15 @@ public class SvSEIdNumber {
     public String getInvalidSsn(Faker f) {
         String candidate = "121212-1212"; // Seed with a valid number
         while (validSwedishSsn(candidate)) {
-            String pattern = getPattern();
+            String pattern = getPattern(f);
             candidate = f.numerify(pattern);
         }
 
         return candidate;
     }
 
-    private String getPattern() {
-        return validPatterns[randomService.nextInt(2)];
+    private String getPattern(Faker faker) {
+        return validPatterns[faker.random().nextInt(2)];
     }
 
     boolean validSwedishSsn(String ssn) {
@@ -55,9 +54,7 @@ public class SvSEIdNumber {
         }
 
         int calculatedChecksum = calculateChecksum(ssn);
-
         int checksum = Integer.parseInt(ssn.substring(10, 11));
-
         return checksum == calculatedChecksum;
     }
 

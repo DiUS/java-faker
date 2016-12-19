@@ -178,7 +178,7 @@ public class Faker {
         return fakeValuesService.regexify(regex);
     }
 
-    RandomService random() {
+    public RandomService random() {
         return this.randomService;
     }
 

@@ -8,6 +8,7 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.junit.Assert.assertThat;
 
 public class IdNumberTest extends AbstractFakerTest {
+
     @Test
     public void testValid() {
         assertThat(faker.idNumber().valid(), matchesRegularExpression("[0-8]\\d{2}-\\d{2}-\\d{4}"));
