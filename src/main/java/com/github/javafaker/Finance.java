@@ -81,8 +81,7 @@ public class Finance {
 
         StringBuilder sb = new StringBuilder();
         char[] characters = basis.toLowerCase().toCharArray();
-        for (int i = 0; i < characters.length; i++) {
-            char c = characters[i];
+        for (char c : characters) {
             if (Character.isLetter(c)) {
                 sb.append(String.valueOf((c - 'a') + 10));
             } else {
