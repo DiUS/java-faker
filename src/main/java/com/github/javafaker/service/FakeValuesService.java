@@ -56,14 +56,12 @@ public class FakeValuesService {
 
         final List<Locale> locales = localeChain(locale);
         final List<Map<String,Object>> all = new ArrayList(locales.size());
-        for (int i=0;i< locales.size();i++) {
-            final Locale l = locales.get(i);
-            
+        for (final Locale l : locales) {
             final StringBuilder filename = new StringBuilder(language(l));
             if (!"".equals(l.getCountry())) {
                 filename.append("-").append(l.getCountry());
             }
-            
+        
             final InputStream stream = findStream(filename.toString());
             if (stream != null) {
                 all.add(fakerFromStream(stream, filename.toString()));
@@ -99,7 +97,7 @@ public class FakeValuesService {
      */
     protected Map fakerFromStream(InputStream stream, String localeName) {
         final Map valuesMap = new Yaml().loadAs(stream, Map.class);
-        final Map localeBased = (Map) valuesMap.get(localeName.toString());
+        final Map localeBased = (Map) valuesMap.get(localeName);
         return (Map) localeBased.get("faker");
     }
 

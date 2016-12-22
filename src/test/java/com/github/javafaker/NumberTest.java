@@ -72,7 +72,7 @@ public class NumberTest extends AbstractFakerTest {
     public void testRandomNumberWithZeroDigitsStrict() {
         for (int i = 0; i < 100; ++i) {
             long value = faker.number().randomNumber(0, true);
-            assertThat(value, is(0l));
+            assertThat(value, is(0L));
         }
     }
 
@@ -141,11 +141,11 @@ public class NumberTest extends AbstractFakerTest {
     public void numberBetweenLongLongZeroMinMax() {
         assertThat("Calling numberBetween with min==max yields min, with 0", 
                 faker.number().numberBetween((long)0,(long)0), 
-                is(0l));
+                is(0L));
         
         assertThat("Calling numberBetween with min==max yields min", 
                 faker.number().numberBetween((long)2,(long)2), 
-                is(2l));
+                is(2L));
     }
 
     /**
@@ -287,8 +287,7 @@ public class NumberTest extends AbstractFakerTest {
      * @return percent of percentUniqueRunner's results greater than the threshold
      */
     private double randomizationQualityTest(final double threshold, 
-                                            final Function<Pair<Long,Long>,Double> percentUniqueRunner) 
-            throws InterruptedException {
+                                            final Function<Pair<Long,Long>,Double> percentUniqueRunner) {
         
         final int rangeEnd = RANDOMIZATION_QUALITY_RANGE_END;
         final int rangeStep = RANDOMIZATION_QUALITY_RANGE_STEP;
