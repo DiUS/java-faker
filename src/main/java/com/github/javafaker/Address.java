@@ -98,4 +98,8 @@ public class Address {
     public String buildingNumber() {
         return faker.numerify(faker.fakeValuesService().resolve("address.building_number", this, faker));
     }
+
+    public String fullAddress() {
+      return faker.fakeValuesService().resolve("address.full_address", this, faker);
+    }
 }

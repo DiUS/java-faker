@@ -96,4 +96,9 @@ public class AddressTest extends AbstractFakerTest {
         Faker secondFaker = new Faker(Locale.FRANCE, new Random(seed));
         assertThat(firstFaker.address().city(), is(secondFaker.address().city()));
     }
+
+    @Test
+    public void testFullAddress() {
+        assertThat(faker.address().fullAddress(), not(isEmptyOrNullString()));
+    }
 }
