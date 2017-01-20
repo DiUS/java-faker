@@ -75,7 +75,7 @@ public class Lorem {
     }
 
     public String sentence(int wordCount) {
-        return capitalize(join(words(wordCount/* + faker.random().nextInt(wordCount))*/), " ") + ".");
+        return capitalize(join(words(wordCount), " ") + ".");
     }
 
     public String sentence() {
