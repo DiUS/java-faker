@@ -72,4 +72,18 @@ public class LoremTest extends AbstractFakerTest {
     public void testCharactersMinimumMaximumLengthIncludeUppercase() {
         assertThat(faker.lorem().characters(1, 10), matchesRegularExpression("[a-zA-Z\\d]{1,10}"));
     }
+
+    @Test
+    public void testSentence() {
+            int randomSentenceLength = faker.random().nextInt(20);
+            String currentSentence = faker.lorem().sentence(randomSentenceLength);
+            int count = 0;
+
+            for (int i = 0; i < currentSentence.length(); i++) {
+                if (currentSentence.charAt(i) == ' ') {
+                    count++;
+                }
+            }
+            assert(count == randomSentenceLength-1);
+    }
 }
