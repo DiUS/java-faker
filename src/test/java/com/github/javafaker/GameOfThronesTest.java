@@ -1,6 +1,8 @@
 package com.github.javafaker;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
@@ -25,5 +27,10 @@ public class GameOfThronesTest extends AbstractFakerTest {
     @Test
     public void dragon() {
         assertThat(faker.gameOfThrones().dragon(), matchesRegularExpression("\\w+"));
+    }
+
+    @Test
+    public void quote() {
+        assertThat(faker.gameOfThrones().quote(), not(isEmptyOrNullString()));
     }
 }
