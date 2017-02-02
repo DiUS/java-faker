@@ -74,12 +74,34 @@ public class Lorem {
         return faker.fakeValuesService().resolve("lorem.words", this, faker);
     }
 
-    public String sentence(int wordCount) {
-        return capitalize(join(words(wordCount + faker.random().nextInt(6)), " ") + ".");
-    }
-
+    /**
+     * Create a sentence with a random number of words within the range 4..10.
+     * @return a random sentence
+     */
     public String sentence() {
         return sentence(3);
+    }
+
+    /**
+     * Create a sentence with a random number of words within the range (wordCount+1)..(wordCount+6).
+     * @param wordCount
+     * @return a random sentence
+     */
+    public String sentence(int wordCount) {
+        return sentence(wordCount, 6);
+    }
+
+    /**
+     * Create a sentence with a random number of words within the range (wordCount+1)..(wordCount+randomWordsToAdd).</p>
+     * 
+     * Set {@code randomWordsToAdd} to 0 to generate sentences with a fixed number of words.
+     * @param wordCount
+     * @param randomWordsToAdd
+     * @return a random sentence
+     */
+    public String sentence(int wordCount, int randomWordsToAdd) {
+        int numberOfWordsToAdd = randomWordsToAdd == 0 ? 0 : faker.random().nextInt(randomWordsToAdd);
+        return capitalize(join(words(wordCount + numberOfWordsToAdd), " ") + ".");
     }
 
     public List<String> sentences(int sentenceCount) {
