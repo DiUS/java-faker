@@ -24,7 +24,7 @@ public class AncientTest extends AbstractFakerTest {
 
     @Test
     public void hero() {
-        assertThat(faker.ancient().hero(), matchesRegularExpression("\\w+"));
+        assertThat(faker.ancient().hero(), matchesRegularExpression("(?U)\\w+"));
     }
 
 }
