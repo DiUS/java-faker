@@ -11,6 +11,7 @@ test:
        advancedResolution: "#{Superhero.name}"
        regexify1: "#{regexify '[45]{2}'}"
        regexify_cell: "#{regexify '4[57]9'}"
+       regexify_slash_format: /[45]{2}/
        bothify_2: "#{bothify '??##','true'}"
        multipleResolution: "#{hello} #{Superhero.descriptor}"
        resolutionWithList:
