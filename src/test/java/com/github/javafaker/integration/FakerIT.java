@@ -17,7 +17,7 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -141,6 +141,10 @@ public class FakerIT {
             logger.info(String.format("%s %s.%s = %s", locale, object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
             assertThat(method + " on " + object, returnValue, is(notNullValue()));
             assertThat(method + " on " + object, (String) returnValue, not(isEmptyString()));
+            assertThat(method + " on " + object + " is not a slash encoded regex", 
+                    ((String) returnValue).endsWith("/") & ((String) returnValue).startsWith("/"),
+                    is(false));
+                    
         }
     }
 

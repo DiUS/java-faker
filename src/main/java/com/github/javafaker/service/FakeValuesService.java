@@ -171,15 +171,19 @@ public class FakeValuesService {
 
     /**
      * Safely fetches a key.
-     *
+     * <p>
      * If the value is null, it will return an empty string.
-     *
+     * <p>
      * If it is a list, it will assume it is a list of strings and select a random value from it.
-     *
+     * <p>
+     * If the retrieved value is an slash encoded regular expression such as {@code /[a-b]/} then
+     * the regex will be converted to a regexify expression and returned (ex. {@code #regexify '[a-b]'})
+     * <p>
      * Otherwise it will just return the value as a string.
      *
-     * @param key
-     * @return
+     * @param key           the key to fetch from the YML structure.
+     * @param defaultIfNull the value to return if the fetched value is null
+     * @return see above
      */
     @SuppressWarnings("unchecked")
     public String safeFetch(String key, String defaultIfNull) {
@@ -191,6 +195,8 @@ public class FakeValuesService {
                 return defaultIfNull;
             }
             return values.get(randomService.nextInt(values.size()));
+        } else if (isSlashDelimitedRegex(o.toString())) {
+            return String.format("#{regexify '%s'}", trimRegexSlashes(o.toString()));
         } else {
             return (String) o;
         }
@@ -433,6 +439,24 @@ public class FakeValuesService {
         }
         
         return resolved;
+    }
+
+
+    /**
+     * @param expression input expression
+     * @return true if s is non null and is a slash delimited regex (ex. {@code /[ab]/})
+     */
+    private boolean isSlashDelimitedRegex(String expression) {
+        return expression != null && expression.startsWith("/") && expression.endsWith("/");
+    }
+
+    /**
+     * Given a {@code slashDelimitedRegex} such as {@code /[ab]/}, removes the slashes and returns only {@code [ab]}
+     * @param slashDelimitedRegex a non null slash delimited regex (ex. {@code /[ab]/})
+     * @return the regex without the slashes (ex. {@code [ab]})
+     */
+    private String trimRegexSlashes(String slashDelimitedRegex) {
+        return slashDelimitedRegex.substring(1, slashDelimitedRegex.length() - 1);
     }
 
     private boolean isDotDirective(String directive) {

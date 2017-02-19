@@ -94,6 +94,16 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         verify(faker).regexify("[45]{2}");
     }
 
+
+    @Test
+    public void regexifySlashFormatDirective() {
+        final DummyService dummy = mock(DummyService.class);
+
+        String value = fakeValuesService.resolve("property.regexify_slash_format", dummy, faker);
+        assertThat(value, either(is("55")).or(is("44")).or(is("45")).or(is("54")));
+        verify(faker).regexify("[45]{2}");
+    }
+
     @Test
     public void regexifyDirective2() {
         final DummyService dummy = mock(DummyService.class);
