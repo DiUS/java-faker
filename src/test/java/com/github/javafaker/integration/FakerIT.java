@@ -11,12 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -126,7 +124,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.cat());
     }
 
-    private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws IllegalAccessException, InvocationTargetException {
+    private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
         @SuppressWarnings("unchecked")
         Set<Method> methodsThatReturnStrings = getAllMethods(object.getClass(),
                 withModifier(Modifier.PUBLIC),
@@ -138,13 +136,13 @@ public class FakerIT {
                 continue;
             }
             final Object returnValue = method.invoke(object);
-            logger.info(String.format("%s %s.%s = %s", locale, object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue));
-            assertThat(method + " on " + object, returnValue, is(notNullValue()));
-            assertThat(method + " on " + object, (String) returnValue, not(isEmptyString()));
-            assertThat(method + " on " + object + " is not a slash encoded regex", 
-                    ((String) returnValue).endsWith("/") & ((String) returnValue).startsWith("/"),
-                    is(false));
-                    
+            logger.info("{} {}.{} = {}", locale, object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue);
+            String failureReason = method + " on " + object;
+            assertThat(failureReason, returnValue, is(instanceOf(String.class)));
+            final String returnValueAsString = (String) returnValue;
+            assertThat(failureReason, returnValueAsString, not(isEmptyOrNullString()));
+            assertThat(failureReason + " is a slash encoded regex", returnValueAsString,
+                       not(allOf(startsWith("/"), endsWith("/"))));
         }
     }
 
@@ -155,7 +153,7 @@ public class FakerIT {
     }
 
     @Test
-    public void testExceptionsNotCoveredInAboveTest() throws Exception {
+    public void testExceptionsNotCoveredInAboveTest() {
         assertThat(faker.bothify("####???"), is(notNullValue()));
         assertThat(faker.letterify("????"), is(notNullValue()));
         assertThat(faker.numerify("####"), is(notNullValue()));
