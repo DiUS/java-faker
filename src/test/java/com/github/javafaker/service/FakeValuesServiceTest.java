@@ -16,7 +16,6 @@ import java.util.Locale;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
@@ -90,17 +89,16 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final DummyService dummy = mock(DummyService.class);
 
         String value = fakeValuesService.resolve("property.regexify1", dummy, faker);
-        assertThat(value, either(is("55")).or(is("44")).or(is("45")).or(is("54")));
+        assertThat(value, isOneOf("55", "44", "45", "54"));
         verify(faker).regexify("[45]{2}");
     }
-
 
     @Test
     public void regexifySlashFormatDirective() {
         final DummyService dummy = mock(DummyService.class);
 
         String value = fakeValuesService.resolve("property.regexify_slash_format", dummy, faker);
-        assertThat(value, either(is("55")).or(is("44")).or(is("45")).or(is("54")));
+        assertThat(value, isOneOf("55", "44", "45", "54"));
         verify(faker).regexify("[45]{2}");
     }
 
@@ -109,10 +107,9 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final DummyService dummy = mock(DummyService.class);
 
         String value = fakeValuesService.resolve("property.regexify_cell", dummy, faker);
-        assertThat(value, either(is("479")).or(is("459")));
+        assertThat(value, isOneOf("479", "459"));
         verify(faker).regexify("4[57]9");
     }
-
 
     @Test
     public void resolveKeyToPropertyWithAPropertyWithoutAnObject() {
@@ -190,31 +187,23 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     @Test
     public void testLocaleChain() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.SIMPLIFIED_CHINESE);
-        
-        assertThat(chain, hasSize(3));
-        assertThat(chain.get(0), is(Locale.SIMPLIFIED_CHINESE));
-        assertThat(chain.get(1), is(Locale.CHINESE));
-        assertThat(chain.get(2), is(Locale.ENGLISH));
-        
+
+        assertThat(chain, contains(Locale.SIMPLIFIED_CHINESE, Locale.CHINESE, Locale.ENGLISH));
     }
     
     @Test
     public void testLocaleChainEnglish() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.ENGLISH);
 
-        assertThat(chain, hasSize(1));
-        assertThat(chain.get(0), is(Locale.ENGLISH));
+        assertThat(chain, contains(Locale.ENGLISH));
     }
     
     @Test
     public void testLocaleChainLanguageOnly() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.CHINESE);
 
-        assertThat(chain, hasSize(2));
-        assertThat(chain.get(0), is(Locale.CHINESE));
-        assertThat(chain.get(1), is(Locale.ENGLISH));
+        assertThat(chain, contains(Locale.CHINESE, Locale.ENGLISH));
     }
-    
     
     @Test
     public void expressionWithInvalidFakerObject() {
