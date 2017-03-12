@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
@@ -163,7 +162,7 @@ public class NumberTest extends AbstractFakerTest {
     
         Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = new Function<Pair<Long, Long>, Double>() {
             @Override
-            public Double apply(@Nullable Pair<Long, Long> minMax) {
+            public Double apply(Pair<Long, Long> minMax) {
                 final int min = minMax.getLeft().intValue(),
                         max = minMax.getRight().intValue();
                 long numbersToGet = calculateNumbersToGet(min, max);
@@ -205,7 +204,7 @@ public class NumberTest extends AbstractFakerTest {
         
         Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = new Function<Pair<Long, Long>, Double>() {
             @Override
-            public Double apply(@Nullable Pair<Long, Long> minMax) {
+            public Double apply(Pair<Long, Long> minMax) {
                 final int min = minMax.getLeft().intValue(), 
                         max = minMax.getRight().intValue();
                 long numbersToGet = calculateNumbersToGet(min, max);
@@ -248,7 +247,7 @@ public class NumberTest extends AbstractFakerTest {
 
         Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = new Function<Pair<Long, Long>, Double>() {
             @Override
-            public Double apply(@Nullable Pair<Long, Long> minMax) {
+            public Double apply(Pair<Long, Long> minMax) {
                 final long min = minMax.getLeft(), max = minMax.getRight();
                 long numbersToGet = calculateNumbersToGet(min, max);
 

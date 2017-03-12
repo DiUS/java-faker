@@ -1,14 +1,12 @@
 package com.github.javafaker;
 
 import com.github.javafaker.repeating.Repeat;
-import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,7 +30,6 @@ public class InternetTest extends AbstractFakerTest {
         assertThat(EmailValidator.getInstance().isValid(emailAddress), is(true));
     }
 
-
     @Test
     public void testSafeEmailAddress() {
         List<String> emails = Lists.newArrayList();
@@ -42,13 +39,9 @@ public class InternetTest extends AbstractFakerTest {
             emails.add(emailAddress);
         }
         final String safeDomain = faker.resolve("internet.safe_email");
-        boolean foundSafeDomainEmail = Iterables.any(emails, new Predicate<String>() {
-            @Override
-            public boolean apply(@Nullable String s) {
-                return s.endsWith("@" + safeDomain);
-            }});
-        
-        assertThat("Should find at least one email from " + safeDomain, foundSafeDomainEmail, is(true));
+
+        assertThat("Should find at least one email from " + safeDomain, emails,
+                Matchers.hasItem(Matchers.endsWith("@" + safeDomain)));
     }
 
     @Test
@@ -61,13 +54,9 @@ public class InternetTest extends AbstractFakerTest {
             emails.add(emailAddress);
         }
         final String safeDomain = faker.resolve("internet.safe_email");
-        boolean foundSafeDomainEmail = Iterables.any(emails, new Predicate<String>() {
-            @Override
-            public boolean apply(@Nullable String s) {
-                return s.endsWith("@" + safeDomain);
-            }});
 
-        assertThat("Should find at least one email from " + safeDomain, foundSafeDomainEmail, is(true));
+        assertThat("Should find at least one email from " + safeDomain, emails,
+                Matchers.hasItem(Matchers.endsWith("@" + safeDomain)));
     }
 
     @Test
