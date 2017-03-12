@@ -16,4 +16,9 @@ public class MusicTest extends AbstractFakerTest {
     public void key() {
         assertThat(faker.music().key(), matchesRegularExpression("([A-Z])+(b|#){0,1}"));
     }
+
+    @Test
+    public void chord() {
+        assertThat(faker.music().chord(), matchesRegularExpression("([A-Z])+(b|#){0,1}+(-?[a-zA-Z0-9]{0,4})"));
+    }
 }
