@@ -16,7 +16,7 @@ public class Issue194SlashFormatRegexIT {
 
         final String postalCode = new Faker(uk).address().zipCode();
         
-        assertThat(postalCode, matchesRegularExpression("[A-PR-UWYZ][A-HK-Y]?[0-9][ABEHMNPRVWXY0-9]? [0-9][ABD-HJLNP-UW-Z]{2}"));
+        assertThat(postalCode, matchesRegularExpression("[A-PR-UWYZ]([A-HK-Y][0-9][ABEHMNPRVWXY0-9]?|[0-9][ABCDEFGHJKPSTUW0-9]?) [0-9][ABD-HJLNP-UW-Z]{2}"));
     }
     
     @Test
