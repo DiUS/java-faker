@@ -70,6 +70,7 @@ Fakers
 * Company
 * Crypto
 * DateAndTime
+* Demographic
 * Educator
 * File
 * Finance
