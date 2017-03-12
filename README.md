@@ -58,6 +58,7 @@ Fakers
 * Ancient
 * Address
 * App
+* Artist
 * Beer
 * Book
 * Bool
