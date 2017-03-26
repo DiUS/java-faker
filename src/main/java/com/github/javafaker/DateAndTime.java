@@ -3,7 +3,9 @@
  */
 package com.github.javafaker;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,12 +15,14 @@ import java.util.concurrent.TimeUnit;
  *
  */
 public class DateAndTime {
+    private static final int DEFAULT_MIN_AGE = 18;
+    private static final int DEFAULT_MAX_AGE = 65;
+
     private final Faker faker;
 
     DateAndTime(Faker faker) {
         this.faker = faker;
     }
-
 
     /**
      * Generates a future date from now. Note that there is a 1 second slack to avoid generating a past date.
@@ -108,6 +112,34 @@ public class DateAndTime {
 
         long offsetMillis = faker.random().nextLong(to.getTime() - from.getTime());
         return new Date(from.getTime() + offsetMillis);
+    }
+
+    /**
+     * Generates a random birthday between 65 and 18 years ago.
+     *
+     * @return a random birthday between 65 and 18 years ago.
+     */
+    public java.util.Date birthday() {
+        return birthday(DEFAULT_MIN_AGE, DEFAULT_MAX_AGE);
+    }
+
+    /**
+     * Generates a random birthday between two ages.
+     *
+     * @param minAge
+     *            the minimal age
+     * @param maxAge
+     *            the maximal age
+     * @return a random birthday between {@code minAge} and {@code maxAge} years ago.
+     * @throws IllegalArgumentException
+     *             if the {@code maxAge} is lower than {@code minAge}.
+     */
+    public java.util.Date birthday(int minAge, int maxAge) {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        Calendar from = new GregorianCalendar(currentYear - maxAge, 0, 1);
+        Calendar to = new GregorianCalendar(currentYear - minAge, 12, 31);
+
+        return between(from.getTime(), to.getTime());
     }
 
 }
