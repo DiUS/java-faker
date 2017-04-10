@@ -4,7 +4,7 @@ public class Food {
 
     private final Faker faker;
 
-    Food(Faker faker) {
+    protected Food(Faker faker) {
         this.faker = faker;
     }
 

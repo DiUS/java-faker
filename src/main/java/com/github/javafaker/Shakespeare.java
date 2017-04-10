@@ -58,7 +58,7 @@ public class Shakespeare {
 
     private final Faker faker;
 
-    Shakespeare(Faker faker) {
+    protected Shakespeare(Faker faker) {
         this.faker = faker;
     }
 

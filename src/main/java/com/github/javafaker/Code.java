@@ -10,7 +10,7 @@ public class Code {
 
     private final Faker faker;
 
-    Code(Faker faker) {
+    protected Code(Faker faker) {
         this.faker = faker;
     }
 

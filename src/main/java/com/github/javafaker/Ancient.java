@@ -4,7 +4,7 @@ public class Ancient {
 
     private final Faker faker;
 
-    Ancient(Faker faker) {
+    protected Ancient(Faker faker) {
         this.faker = faker;
     }
 

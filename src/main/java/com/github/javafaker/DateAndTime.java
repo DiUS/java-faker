@@ -20,7 +20,7 @@ public class DateAndTime {
 
     private final Faker faker;
 
-    DateAndTime(Faker faker) {
+    protected DateAndTime(Faker faker) {
         this.faker = faker;
     }
 

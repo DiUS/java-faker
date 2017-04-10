@@ -4,7 +4,7 @@ public class Demographic {
 
     private final Faker faker;
 
-    Demographic(Faker faker) {
+    protected Demographic(Faker faker) {
         this.faker = faker;
     }
 

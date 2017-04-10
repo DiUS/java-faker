@@ -11,8 +11,8 @@ import static org.apache.commons.lang3.StringUtils.join;
 
 public class Internet {
     private final Faker faker;
-    
-    Internet(Faker faker) {
+
+    protected Internet(Faker faker) {
         this.faker = faker;
     }
 

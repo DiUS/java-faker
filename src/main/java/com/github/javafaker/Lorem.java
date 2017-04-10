@@ -11,7 +11,7 @@ import static org.apache.commons.lang3.StringUtils.join;
 public class Lorem {
     private final Faker faker;
 
-    Lorem(Faker faker) {
+    protected Lorem(Faker faker) {
         this.faker = faker;
     }
     

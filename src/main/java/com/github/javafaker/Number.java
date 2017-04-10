@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Number {
     private final Faker faker;
 
-    Number(Faker faker) {
+    protected Number(Faker faker) {
         this.faker = faker;
     }
 
