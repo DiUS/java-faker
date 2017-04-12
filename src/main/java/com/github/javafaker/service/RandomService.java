@@ -59,8 +59,7 @@ public class RandomService {
      * @param <E>   The type of the elements in the array.
      * @return A randomly selected element from the array.
      */
-    public <E> E nextElement(E[] array)
-    {
+    public <E> E nextElement(E[] array) {
         return array[this.nextInt(array.length)];
     }
 
@@ -71,20 +70,18 @@ public class RandomService {
      * @param <E>  The type of the elements in the list.
      * @return A randomly selected element from the list.
      */
-    public <E> E nextElement(List<E> list)
-    {
+    public <E> E nextElement(List<E> list) {
         return list.get(this.nextInt(list.size()));
     }
 
     /**
      * Returns a random enumeration value
      *
-     * @param enumeration The enumberation to take a random value from
+     * @param enumeration The enumeration to take a random value from
      * @param <E>         The type of the enumeration
-     * @return A randomly selected emumeration value
+     * @return A randomly selected enumeration value
      */
-    public <E extends Enum<E>> E nextEnumValue(Class<E> enumeration)
-    {
+    public <E extends Enum<E>> E nextEnumValue(Class<E> enumeration) {
         return nextElement(enumeration.getEnumConstants());
     }
 }
