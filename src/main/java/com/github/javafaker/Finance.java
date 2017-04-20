@@ -11,7 +11,7 @@ import java.util.Map;
 public class Finance {
     private final Faker faker;
 
-    Finance(Faker faker) {
+    protected Finance(Faker faker) {
         this.faker = faker;
     }
 

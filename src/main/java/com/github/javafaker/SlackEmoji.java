@@ -4,7 +4,7 @@ public class SlackEmoji {
 
     private final Faker faker;
 
-    SlackEmoji(Faker faker) {
+    protected SlackEmoji(Faker faker) {
         this.faker = faker;
     }
 

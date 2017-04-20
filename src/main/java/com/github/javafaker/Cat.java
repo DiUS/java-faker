@@ -4,7 +4,7 @@ public class Cat {
 
     private final Faker faker;
 
-    Cat(Faker faker) {
+    protected Cat(Faker faker) {
         this.faker = faker;
     }
 

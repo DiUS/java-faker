@@ -10,7 +10,7 @@ public class Name {
      * Internal constructor, not to be used by clients.  Instances of {@link Name} should be accessed via 
      * {@link Faker#name()}.
      */
-    Name(Faker faker) {
+    protected Name(Faker faker) {
         this.faker = faker;
     }
 

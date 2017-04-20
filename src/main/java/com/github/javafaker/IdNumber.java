@@ -6,7 +6,7 @@ import com.github.javafaker.idnumbers.SvSEIdNumber;
 public class IdNumber {
     private final Faker faker;
 
-    IdNumber(Faker faker) {
+    protected IdNumber(Faker faker) {
         this.faker = faker;
     }
 

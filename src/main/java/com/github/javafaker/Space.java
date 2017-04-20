@@ -4,7 +4,7 @@ public class Space {
 
     private final Faker faker;
 
-    Space(Faker faker) {
+    protected Space(Faker faker) {
         this.faker = faker;
     }
 

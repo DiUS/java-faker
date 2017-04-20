@@ -3,7 +3,7 @@ package com.github.javafaker;
 public class Hacker {
     private final Faker faker;
 
-    Hacker(Faker faker) {
+    protected Hacker(Faker faker) {
         this.faker = faker;
     }
 

@@ -9,7 +9,7 @@ import java.util.TreeSet;
 public class Commerce {
     private final Faker faker;
 
-    Commerce(Faker faker) {
+    protected Commerce(Faker faker) {
         this.faker = faker;
     }
 

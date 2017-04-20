@@ -4,7 +4,7 @@ public class Pokemon {
 
     private final Faker faker;
 
-    Pokemon(Faker faker) {
+    protected Pokemon(Faker faker) {
         this.faker = faker;
     }
 

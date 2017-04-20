@@ -8,7 +8,7 @@ public class Music {
 
     private final Faker faker;
 
-    Music(Faker faker) {
+    protected Music(Faker faker) {
         this.faker = faker;
     }
 

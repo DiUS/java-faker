@@ -4,7 +4,7 @@ public class Stock {
 
 	private final Faker faker;
 
-	Stock(Faker faker) {
+	protected Stock(Faker faker) {
 		this.faker = faker;
 	}
 

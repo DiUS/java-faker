@@ -12,7 +12,7 @@ public class Company {
 
     private final Faker faker;
 
-    Company(Faker faker) {
+    protected Company(Faker faker) {
         this.faker = faker;
     }
 

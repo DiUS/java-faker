@@ -4,7 +4,7 @@ public class Artist {
 
     private final Faker faker;
 
-    Artist(Faker faker) {
+    protected Artist(Faker faker) {
         this.faker = faker;
     }
 

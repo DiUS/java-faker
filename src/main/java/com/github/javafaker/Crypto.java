@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 public class Crypto {
     private final Faker faker;
 
-    Crypto(Faker faker) {
+    protected Crypto(Faker faker) {
         this.faker = faker;
     }
 
