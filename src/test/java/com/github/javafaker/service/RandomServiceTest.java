@@ -57,31 +57,6 @@ public class RandomServiceTest extends AbstractFakerTest {
         assertThat(randomService.nextLong(Long.MAX_VALUE), lessThan(Long.MAX_VALUE));
     }
 
-    @Test
-    public void testNextArrayElement() {
-        Integer[] array = new Integer[] { 1, 2, 3, 5, 8, 13, 21 };
-
-        for (int i = 1; i < 10; i++) {
-            assertThat(randomService.nextElement(array), isIn(array));
-        }
-    }
-
-    @Test
-    public void testNextListElement() {
-        List<Integer> list = Arrays.asList(new Integer[] { 1, 2, 3, 5, 8, 13, 21 });
-
-        for (int i = 1; i < 10; i++) {
-            assertThat(randomService.nextElement(list), isIn(list));
-        }
-    }
-
-    @Test
-    public void testNextEnumValue() {
-        for (int i = 1; i < 10; i++) {
-            assertThat(randomService.nextEnumValue(TestEnum.class), isIn(TestEnum.values()));
-        }
-    }
-
     private enum TestEnum {
         ONE,
         TWO,
