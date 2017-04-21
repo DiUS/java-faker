@@ -1,16 +1,17 @@
 package com.github.javafaker.service;
 
 import com.github.javafaker.AbstractFakerTest;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
 
@@ -54,5 +55,36 @@ public class RandomServiceTest extends AbstractFakerTest {
     public void testLongMaxBoundary() {
         assertThat(randomService.nextLong(Long.MAX_VALUE), greaterThan(0L));
         assertThat(randomService.nextLong(Long.MAX_VALUE), lessThan(Long.MAX_VALUE));
+    }
+
+    @Test
+    public void testNextArrayElement() {
+        Integer[] array = new Integer[] { 1, 2, 3, 5, 8, 13, 21 };
+
+        for (int i = 1; i < 10; i++) {
+            assertThat(randomService.nextElement(array), isIn(array));
+        }
+    }
+
+    @Test
+    public void testNextListElement() {
+        List<Integer> list = Arrays.asList(new Integer[] { 1, 2, 3, 5, 8, 13, 21 });
+
+        for (int i = 1; i < 10; i++) {
+            assertThat(randomService.nextElement(list), isIn(list));
+        }
+    }
+
+    @Test
+    public void testNextEnumValue() {
+        for (int i = 1; i < 10; i++) {
+            assertThat(randomService.nextEnumValue(TestEnum.class), isIn(TestEnum.values()));
+        }
+    }
+
+    private enum TestEnum {
+        ONE,
+        TWO,
+        THREE
     }
 }
