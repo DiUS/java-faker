@@ -9,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -119,6 +122,21 @@ public class NumberTest extends AbstractFakerTest {
         assertThat(v1, is(greaterThan((long) min1)));
         assertThat(v1, is(lessThan(980000000L)));
     }
+
+    @Test
+    public void testNumberBetweenOneAndThree() {
+        Set<Integer> nums = Sets.newHashSet();
+        final int lowerLimit = 0;
+        final int upperLimit = 3;
+        for (int i = 0; i < 1000; ++i) {
+            int value = faker.number().numberBetween(lowerLimit, upperLimit);
+            assertThat(value, is(lessThan(upperLimit)));
+            assertThat(value, is(greaterThanOrEqualTo(lowerLimit)));
+            nums.add(value);
+        }
+        assertThat("Verify all numbers 0-3 were represented", nums,hasSize(3));
+    }
+
 
     /**
      * @see Number#numberBetween(int, int) 

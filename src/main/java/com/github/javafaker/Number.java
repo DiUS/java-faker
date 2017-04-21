@@ -27,7 +27,7 @@ public class Number {
      * @see Number#numberBetween(long, long) 
      */
     public int numberBetween(int min, int max) {
-        return decimalBetween(min,max).intValue();
+        return decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_DOWN).intValue();
     }
 
     /**
