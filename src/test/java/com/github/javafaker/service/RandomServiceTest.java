@@ -56,10 +56,4 @@ public class RandomServiceTest extends AbstractFakerTest {
         assertThat(randomService.nextLong(Long.MAX_VALUE), greaterThan(0L));
         assertThat(randomService.nextLong(Long.MAX_VALUE), lessThan(Long.MAX_VALUE));
     }
-
-    private enum TestEnum {
-        ONE,
-        TWO,
-        THREE
-    }
 }
