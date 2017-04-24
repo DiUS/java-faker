@@ -1,0 +1,7 @@
+pt-BR:
+  faker:
+    address:
+      city_prefix: [Norte, Sul, Sudeste, Nordeste, Centro-Oeste]
+      city_suffix: []
+      country: [Afeganistao, Albania, Algeria, American Samoa, Andorra, Angola, Anguilla, Antarctica]
+      
