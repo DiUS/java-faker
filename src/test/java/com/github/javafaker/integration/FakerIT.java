@@ -124,6 +124,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.beer());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.university());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.cat());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lordOfTheRings());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
