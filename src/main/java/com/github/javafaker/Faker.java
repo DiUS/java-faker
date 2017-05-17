@@ -56,6 +56,7 @@ public class Faker {
     private final File file;
     private final Stock stock;
     private final LordOfTheRings lordOfTheRings;
+    private final Zelda zelda;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -113,6 +114,7 @@ public class Faker {
         this.cat = new Cat(this);
         this.stock = new Stock(this);
         this.lordOfTheRings = new LordOfTheRings(this);
+        this.zelda = new Zelda(this);
     }
 
     /**
@@ -350,6 +352,10 @@ public class Faker {
 
     public LordOfTheRings lordOfTheRings() {
         return lordOfTheRings;
+    }
+
+    public Zelda zelda() {
+        return zelda;
     }
 
     public String resolve(String key) {
