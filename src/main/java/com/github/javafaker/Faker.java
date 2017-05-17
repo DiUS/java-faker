@@ -57,6 +57,7 @@ public class Faker {
     private final Stock stock;
     private final LordOfTheRings lordOfTheRings;
     private final Zelda zelda;
+    private final HarryPotter harryPotter;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -115,6 +116,7 @@ public class Faker {
         this.stock = new Stock(this);
         this.lordOfTheRings = new LordOfTheRings(this);
         this.zelda = new Zelda(this);
+        this.harryPotter = new HarryPotter(this);
     }
 
     /**
@@ -356,6 +358,10 @@ public class Faker {
 
     public Zelda zelda() {
         return zelda;
+    }
+
+    public HarryPotter harryPotter() {
+        return harryPotter;
     }
 
     public String resolve(String key) {
