@@ -77,8 +77,10 @@ Fakers
 * Food
 * GameOfThrones
 * Hacker
+* HarryPotter
 * IdNumber
 * Internet
+* LordOfTheRings
 * Lorem
 * Music
 * Name
@@ -93,6 +95,7 @@ Fakers
 * Superhero
 * Team
 * University
+* Zelda
 
 Usage with Locales
 -----
