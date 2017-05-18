@@ -88,6 +88,7 @@ Fakers
 * Options
 * PhoneNumber
 * Pokemon
+* RockBand
 * Shakespeare
 * SlackEmoji
 * Space
