@@ -9,6 +9,6 @@ public class RockBand {
     }
 
     public String name() {
-        return faker.resolve("rock_band.names");
+        return faker.resolve("rock_band.name");
     }
 }
