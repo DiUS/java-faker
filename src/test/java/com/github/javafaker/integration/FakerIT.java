@@ -128,6 +128,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.zelda());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.harryPotter());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.rockBand());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.esports());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
