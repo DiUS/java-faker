@@ -72,6 +72,7 @@ Fakers
 * DateAndTime
 * Demographic
 * Educator
+* Esports
 * File
 * Finance
 * Food

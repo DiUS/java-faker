@@ -59,6 +59,7 @@ public class Faker {
     private final Zelda zelda;
     private final HarryPotter harryPotter;
     private final RockBand rockBand;
+    private final Esports esports;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -119,6 +120,7 @@ public class Faker {
         this.zelda = new Zelda(this);
         this.harryPotter = new HarryPotter(this);
         this.rockBand = new RockBand(this);
+        this.esports = new Esports(this);
     }
 
     /**
@@ -368,6 +370,10 @@ public class Faker {
 
     public RockBand rockBand() {
         return rockBand;
+    }
+
+    public Esports esports() {
+        return esports;
     }
 
     public String resolve(String key) {
