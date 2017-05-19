@@ -9,6 +9,6 @@ public class RockBandTest extends AbstractFakerTest {
 
     @Test
     public void name() throws Exception {
-        assertThat(faker.pokemon().name(), matchesRegularExpression("([\\w'\\./ ]+ ?)+"));
+        assertThat(faker.rockBand().name(), matchesRegularExpression("([\\w'/.,&]+ ?)+"));
     }
 }
