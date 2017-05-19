@@ -76,6 +76,7 @@ Fakers
 * File
 * Finance
 * Food
+* Friends
 * GameOfThrones
 * Hacker
 * HarryPotter
