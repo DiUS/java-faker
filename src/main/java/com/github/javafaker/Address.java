@@ -35,6 +35,8 @@ public class Address {
         return faker.bothify(faker.fakeValuesService().resolve("address.postcode", this,faker));
     }
 
+    public String zipCodeByState(String stateAbbr) { return faker.fakeValuesService().resolve("address.postcode_by_state." + stateAbbr, this, faker); }
+
     public String streetSuffix() {
         return faker.fakeValuesService().resolve("address.street_suffix", this, faker);
     }
@@ -100,6 +102,6 @@ public class Address {
     }
 
     public String fullAddress() {
-      return faker.fakeValuesService().resolve("address.full_address", this, faker);
+        return faker.fakeValuesService().resolve("address.full_address", this, faker);
     }
 }
