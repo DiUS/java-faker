@@ -81,7 +81,7 @@ Fakers
 * HarryPotter
 * IdNumber
 * Internet
-* Jobs
+* Job
 * LordOfTheRings
 * Lorem
 * Music
