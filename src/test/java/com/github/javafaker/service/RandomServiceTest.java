@@ -3,7 +3,6 @@ package com.github.javafaker.service;
 import com.github.javafaker.AbstractFakerTest;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Random;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +10,6 @@ import org.junit.runners.Parameterized;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
 

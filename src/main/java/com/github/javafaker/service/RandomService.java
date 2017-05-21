@@ -1,6 +1,5 @@
 package com.github.javafaker.service;
 
-import java.util.List;
 import java.util.Random;
 
 public class RandomService {
