@@ -1,6 +1,5 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.RandomServiceTest;
 import org.junit.Before;
 import org.junit.Test;
 

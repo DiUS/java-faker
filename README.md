@@ -76,6 +76,7 @@ Fakers
 * File
 * Finance
 * Food
+* Friends
 * GameOfThrones
 * Hacker
 * HarryPotter
@@ -109,6 +110,7 @@ Faker faker = new Faker(new Locale("{YOUR_LOCALE}"));
 
 Supported Locales
 -----
+* bg
 * ca
 * ca-CAT
 * da-DK
