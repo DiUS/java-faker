@@ -61,6 +61,7 @@ public class Faker {
     private final RockBand rockBand;
     private final Esports esports;
     private final Friends friends;
+    private final Hipster hipster;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -123,6 +124,7 @@ public class Faker {
         this.rockBand = new RockBand(this);
         this.esports = new Esports(this);
         this.friends = new Friends(this);
+        this.hipster = new Hipster(this);
     }
 
     /**
@@ -380,6 +382,10 @@ public class Faker {
 
     public Friends friends() {
         return friends;
+    }
+
+    public Hipster hipster() {
+        return hipster;
     }
 
     public String resolve(String key) {
