@@ -130,6 +130,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.rockBand());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.esports());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.friends());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.hipster());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.job());
     }
 

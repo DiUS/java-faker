@@ -61,8 +61,9 @@ public class Faker {
     private final RockBand rockBand;
     private final Esports esports;
     private final Friends friends;
+    private final Hipster hipster;
     private final Job job;
-
+  
     public Faker() {
         this(Locale.ENGLISH);
     }
@@ -124,6 +125,7 @@ public class Faker {
         this.rockBand = new RockBand(this);
         this.esports = new Esports(this);
         this.friends = new Friends(this);
+        this.hipster = new Hipster(this);
         this.job = new Job(this);
     }
 
@@ -384,6 +386,10 @@ public class Faker {
         return friends;
     }
 
+    public Hipster hipster() {
+        return hipster;
+    }
+  
     public Job job() {
         return job;
     }
