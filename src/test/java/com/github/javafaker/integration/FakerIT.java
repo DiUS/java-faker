@@ -132,6 +132,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.friends());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.hipster());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.job());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.twinPeaks());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {

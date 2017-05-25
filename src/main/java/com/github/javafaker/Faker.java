@@ -63,6 +63,7 @@ public class Faker {
     private final Friends friends;
     private final Hipster hipster;
     private final Job job;
+    private final TwinPeaks twinPeaks;
   
     public Faker() {
         this(Locale.ENGLISH);
@@ -127,6 +128,7 @@ public class Faker {
         this.friends = new Friends(this);
         this.hipster = new Hipster(this);
         this.job = new Job(this);
+        this.twinPeaks = new TwinPeaks(this);
     }
 
     /**
@@ -392,6 +394,10 @@ public class Faker {
   
     public Job job() {
         return job;
+    }
+
+    public TwinPeaks twinPeaks() {
+        return twinPeaks;
     }
 
     public String resolve(String key) {
