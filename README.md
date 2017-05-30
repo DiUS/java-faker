@@ -102,6 +102,7 @@ Fakers
 * Team
 * TwinPeaks
 * University
+* Yoda
 * Zelda
 
 Usage with Locales
