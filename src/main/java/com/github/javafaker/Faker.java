@@ -64,6 +64,7 @@ public class Faker {
     private final Hipster hipster;
     private final Job job;
     private final TwinPeaks twinPeaks;
+    private final RickAndMorty rickAndMorty;
     private final Yoda yoda;
   
     public Faker() {
@@ -130,6 +131,7 @@ public class Faker {
         this.hipster = new Hipster(this);
         this.job = new Job(this);
         this.twinPeaks = new TwinPeaks(this);
+        this.rickAndMorty = new RickAndMorty(this);
         this.yoda = new Yoda(this);
     }
 
@@ -402,6 +404,10 @@ public class Faker {
         return twinPeaks;
     }
 
+    public RickAndMorty rickAndMorty() {
+        return rickAndMorty;
+    }
+  
     public Yoda yoda() {
         return yoda;
     }

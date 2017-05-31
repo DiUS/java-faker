@@ -92,6 +92,7 @@ Fakers
 * Options
 * PhoneNumber
 * Pokemon
+* RickAndMorty
 * RockBand
 * Shakespeare
 * SlackEmoji

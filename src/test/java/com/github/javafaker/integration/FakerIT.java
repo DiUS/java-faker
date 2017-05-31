@@ -133,6 +133,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.hipster());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.job());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.twinPeaks());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.rickAndMorty());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.yoda());
     }
 
