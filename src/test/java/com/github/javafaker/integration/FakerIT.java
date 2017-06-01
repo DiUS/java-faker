@@ -135,6 +135,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.twinPeaks());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.rickAndMorty());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.yoda());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.matz());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
