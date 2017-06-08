@@ -67,7 +67,7 @@ public class Faker {
     private final RickAndMorty rickAndMorty;
     private final Yoda yoda;
     private final Matz matz;
-  
+
     public Faker() {
         this(Locale.ENGLISH);
     }
@@ -135,6 +135,46 @@ public class Faker {
         this.rickAndMorty = new RickAndMorty(this);
         this.yoda = new Yoda(this);
         this.matz = new Matz(this);
+    }
+
+    /**
+     * Constructs Faker instance with default argument.
+     *
+     * @return {@link Faker#Faker()}
+     */
+    public static Faker instance() {
+        return new Faker();
+    }
+
+    /**
+     * Constructs Faker instance with provided {@link Locale}.
+     *
+     * @param locale - {@link Locale}
+     * @return {@link Faker#Faker(Locale)}
+     */
+    public static Faker instance(Locale locale) {
+        return new Faker(locale);
+    }
+
+    /**
+     * Constructs Faker instance with provided {@link Random}.
+     *
+     * @param random - {@link Random}
+     * @return {@link Faker#Faker(Random)}
+     */
+    public static Faker instance(Random random) {
+        return new Faker(random);
+    }
+
+    /**
+     * Constructs Faker instance with provided {@link Locale} and {@link Random}.
+     *
+     * @param locale - {@link Locale}
+     * @param random - {@link Random}
+     * @return {@link Faker#Faker(Locale, Random)}
+     */
+    public static Faker instance(Locale locale, Random random) {
+        return new Faker(locale, random);
     }
 
     /**
@@ -397,7 +437,7 @@ public class Faker {
     public Hipster hipster() {
         return hipster;
     }
-  
+
     public Job job() {
         return job;
     }
@@ -409,7 +449,7 @@ public class Faker {
     public RickAndMorty rickAndMorty() {
         return rickAndMorty;
     }
-  
+
     public Yoda yoda() {
         return yoda;
     }
