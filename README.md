@@ -143,7 +143,6 @@ Supported Locales
 * fi-FI
 * fr
 * he
-* id
 * in-ID
 * it
 * ja
