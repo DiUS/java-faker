@@ -2,6 +2,7 @@ package com.github.javafaker;
 
 import org.junit.Test;
 
+import java.util.Locale;
 import java.util.Random;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
@@ -152,5 +153,13 @@ public class FakerTest extends AbstractFakerTest {
     public void resolveShouldThrowExceptionWhenPropertyDoesntExist() {
         final String resolve = faker.resolve("address.nothing");
         assertThat(resolve, is(nullValue()));
+    }
+
+    @Test
+    public void fakerInstanceCanBeAcquiredViaUtilityMethods() {
+        assertThat(Faker.instance(), is(instanceOf(Faker.class)));
+        assertThat(Faker.instance(Locale.CANADA), is(instanceOf(Faker.class)));
+        assertThat(Faker.instance(new Random(1)), is(instanceOf(Faker.class)));
+        assertThat(Faker.instance(Locale.CHINA, new Random(2)), is(instanceOf(Faker.class)));
     }
 }
