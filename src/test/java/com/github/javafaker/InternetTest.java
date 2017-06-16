@@ -17,6 +17,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class InternetTest extends AbstractFakerTest {
+
     @Test
     public void testEmailAddress() {
         String emailAddress = faker.internet().emailAddress();
@@ -139,7 +140,6 @@ public class InternetTest extends AbstractFakerTest {
         }
     }
 
-
     @Test
     public void testIpV4Address() {
         assertThat(faker.internet().ipV4Address(), countOf('.', is(3)));
@@ -237,7 +237,7 @@ public class InternetTest extends AbstractFakerTest {
     public void testSlug() {
         assertThat(faker.internet().slug(), matchesRegularExpression("[a-zA-Z]+\\_[a-zA-Z]+"));
     }
-    
+
     @Test
     @Repeat(times=100)
     public void testFarsiIDNs() {

@@ -12,6 +12,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class AbstractFakerTest {
+
     @Rule
     public RepeatRule repeatRule = new RepeatRule();
 

@@ -18,6 +18,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class NumberTest extends AbstractFakerTest {
+
     private static final Logger logger = LoggerFactory.getLogger(NumberTest.class);
     public static final int RANDOMIZATION_QUALITY_RANGE_END = 1000;
     public static final int RANDOMIZATION_QUALITY_RANGE_STEP = 25;

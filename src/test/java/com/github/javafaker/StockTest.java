@@ -8,15 +8,14 @@ import org.junit.Test;
 
 public class StockTest extends AbstractFakerTest {
 
+    @Test
+    public void testNasdaq() {
+        assertThat(faker.stock().nsdqSymbol(), not(isEmptyOrNullString()));
+    }
 
-	@Test
-	public void testNasdaq() {
-		assertThat(faker.stock().nsdqSymbol(), not(isEmptyOrNullString()));
-	}
-	
-	@Test
-	public void testNYSE() {
-		assertThat(faker.stock().nyseSymbol(), not(isEmptyOrNullString()));
-	}
+    @Test
+    public void testNYSE() {
+        assertThat(faker.stock().nyseSymbol(), not(isEmptyOrNullString()));
+    }
 
 }

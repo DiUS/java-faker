@@ -6,6 +6,7 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.junit.Assert.assertThat;
 
 public class EducatorTest extends AbstractFakerTest {
+
     @Test
     public void testUniversity() {
         assertThat(faker.educator().university(), matchesRegularExpression("(\\w+ ?){2,3}"));

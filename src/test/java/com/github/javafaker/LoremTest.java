@@ -10,6 +10,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 public class LoremTest extends AbstractFakerTest {
+
     @Test
     public void shouldCreateFixedLengthString() {
         assertEquals(10, faker.lorem().fixedString(10).length());
