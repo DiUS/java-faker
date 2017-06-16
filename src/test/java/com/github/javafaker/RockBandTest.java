@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class RockBandTest extends AbstractFakerTest {
 
     @Test
-    public void name() throws Exception {
+    public void name() {
         assertThat(faker.rockBand().name(), matchesRegularExpression("([\\w'/.,&]+ ?)+"));
     }
 }

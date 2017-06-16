@@ -10,17 +10,17 @@ import static org.junit.Assert.assertThat;
 public class FriendsTest extends AbstractFakerTest {
 
     @Test
-    public void character() throws Exception {
+    public void character() {
         assertThat(faker.friends().character(), matchesRegularExpression("[A-Za-z ]+"));
     }
 
     @Test
-    public void location() throws Exception {
+    public void location() {
         assertThat(faker.friends().location(), matchesRegularExpression("[\\w., ]+"));
     }
 
     @Test
-    public void quote() throws Exception {
+    public void quote() {
         assertThat(faker.friends().quote(), not(isEmptyOrNullString()));
     }
 }

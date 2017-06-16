@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat;
 public class MatzTest extends AbstractFakerTest {
 
     @Test
-    public void quote() throws Exception {
+    public void quote() {
         assertThat(faker.matz().quote(), not(isEmptyOrNullString()));
     }
 }

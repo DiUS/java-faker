@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class HipsterTest extends AbstractFakerTest {
 
     @Test
-    public void word() throws Exception {
+    public void word() {
         assertThat(faker.hipster().word(), matchesRegularExpression("^([\\w-+&']+ ?)+$"));
     }
 }

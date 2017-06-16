@@ -11,12 +11,12 @@ import static org.junit.Assert.assertThat;
 public class LordOfTheRingsTest extends AbstractFakerTest {
 
     @Test
-    public void character() throws Exception {
+    public void character() {
         assertThat(faker.lordOfTheRings().character(), matchesRegularExpression("(?U)([\\w ]+ ?)+"));
     }
 
     @Test
-    public void location() throws Exception {
+    public void location() {
         assertThat(faker.lordOfTheRings().location(), matchesRegularExpression("(?U)([\\w'\\- ]+ ?)+"));
     }
 }

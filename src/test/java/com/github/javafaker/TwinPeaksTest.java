@@ -10,17 +10,17 @@ import static org.junit.Assert.assertThat;
 public class TwinPeaksTest extends AbstractFakerTest {
 
     @Test
-    public void character() throws Exception {
+    public void character() {
         assertThat(faker.twinPeaks().character(), matchesRegularExpression("^([\\w']+ ?){2,}$"));
     }
 
     @Test
-    public void location() throws Exception {
+    public void location() {
         assertThat(faker.twinPeaks().location(), matchesRegularExpression("^[A-Za-z0-9'&,\\- ]+$"));
     }
 
     @Test
-    public void quote() throws Exception {
+    public void quote() {
         assertThat(faker.twinPeaks().quote(), not(isEmptyOrNullString()));
     }
 }
