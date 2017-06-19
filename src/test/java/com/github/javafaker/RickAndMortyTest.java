@@ -10,17 +10,17 @@ import static org.junit.Assert.assertThat;
 public class RickAndMortyTest extends AbstractFakerTest {
 
     @Test
-    public void character() throws Exception {
+    public void character() {
         assertThat(faker.rickAndMorty().character(), matchesRegularExpression("^([\\w'-.]+ ?){2,}$"));
     }
 
     @Test
-    public void location() throws Exception {
+    public void location() {
         assertThat(faker.rickAndMorty().location(), matchesRegularExpression("^([\\w-.]+ ?){2,}$"));
     }
 
     @Test
-    public void quote() throws Exception {
+    public void quote() {
         assertThat(faker.rickAndMorty().quote(), not(isEmptyOrNullString()));
     }
 }

@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 public class YodaTest extends AbstractFakerTest {
 
     @Test
-    public void quote() throws Exception {
+    public void quote() {
         assertThat(faker.yoda().quote(), not(isEmptyOrNullString()));
     }
 }

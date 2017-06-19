@@ -10,22 +10,22 @@ import static org.junit.Assert.assertThat;
 public class HarryPotterTest extends AbstractFakerTest {
 
     @Test
-    public void character() throws Exception {
+    public void character() {
         assertThat(faker.harryPotter().character(), matchesRegularExpression("[A-Za-z,\\-\\.\\(\\) ]+"));
     }
 
     @Test
-    public void location() throws Exception {
+    public void location() {
         assertThat(faker.harryPotter().location(), matchesRegularExpression("[A-Za-z0-9'\\. &,/]+"));
     }
 
     @Test
-    public void quote() throws Exception {
+    public void quote() {
         assertThat(faker.harryPotter().quote(), not(isEmptyOrNullString()));
     }
 
     @Test
-    public void book() throws Exception {
+    public void book() {
         assertThat(faker.harryPotter().book(), matchesRegularExpression("Harry Potter and the ([A-Za-z'\\-]+ ?)+"));
     }
 }
