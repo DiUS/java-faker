@@ -40,7 +40,7 @@ da-DK:
       prefix: ["Dr.", "Prof.", "Cand.mag.", "Cand.jur."]
 
       title:
-        descriptor: [Leder, Senior, Fremtid, Produkt, National, Regional, Distrikt, Central, Global, Investor, Dynamic, International, Legacy, Forward, Intern, HR, Direktør, Rektor]
+        descriptor: [Leder, Senior, Fremtid, Produkt, National, Regional, Distrikt, Central, Global, Kunde, Investor, Dynamic, International, Legacy, Forward, Intern, HR, Direktør, Rektor]
         level: [Solutions, Program, Brand, Sikkerhed, Research, Marketing, Directives, Implementering, Integration, Funktionalitet, Respons, Paradigme, Taktik, Identitet, Markeder, Gruppe, Division, Applikationer, Optimering, Operationer, Infrastruktur, Intranet, Kommunikation, Web, Branding, Kvalitet, Kontrol, Mobilitet, Regnskab, Data, Kreativ, Konfiguration, Interaktioner, Faktorer, Anvendelighed, Metrik]
         job: [Supervisor, Officer, Manager, Ingeniør, Specialist, Direktør, Koordinator, Administrator, Arkitekt, Analytiker, Designer, Planner, Tekniker, Udvikler, Producer, Konsultant, Assistant, Agent, Tillidsrepræsentant, Strateg]
       name:
