@@ -7,6 +7,7 @@ import org.junit.Test;
 
 
 public class CryptoTest extends AbstractFakerTest {
+
     @Test
     public void testMd5() {
         assertThat(faker.crypto().md5(), matchesRegularExpression("[a-z\\d]+"));

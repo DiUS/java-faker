@@ -7,7 +7,6 @@ import static org.junit.Assert.assertThat;
 
 public class CatTest extends AbstractFakerTest {
 
-
     @Test
     public void name() {
         assertThat(faker.cat().name(), matchesRegularExpression("[A-Za-z'() 0-9-]+"));

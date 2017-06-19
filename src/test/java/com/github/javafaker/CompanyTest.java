@@ -7,7 +7,6 @@ import static org.junit.Assert.assertThat;
 
 public class CompanyTest extends AbstractFakerTest {
 
-
     @Test
     public void testName() {
         assertThat(faker.company().name(), matchesRegularExpression("[A-Za-z\\-&', ]+"));

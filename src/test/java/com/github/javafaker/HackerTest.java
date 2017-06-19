@@ -5,7 +5,8 @@ import org.junit.Test;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertThat;
 
-public class HackerTest  extends AbstractFakerTest{
+public class HackerTest extends AbstractFakerTest {
+
     @Test
     public void testAbbreviation() {
         assertThat(faker.hacker().abbreviation(), matchesRegularExpression("[A-Z]{2,4}"));

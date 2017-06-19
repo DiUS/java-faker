@@ -5,7 +5,8 @@ import org.junit.Test;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertThat;
 
-public class SuperheroTest  extends AbstractFakerTest{
+public class SuperheroTest extends AbstractFakerTest {
+
     @Test
     public void testName() {
         assertThat(faker.superhero().name(), matchesRegularExpression("[A-Za-z' -/]+"));

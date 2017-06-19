@@ -7,7 +7,7 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.junit.Assert.assertThat;
 
 public class FileTest extends AbstractFakerTest {
-    
+
     @Test
     @Repeat(times=10)
     public void testExtension() {
@@ -32,16 +32,19 @@ public class FileTest extends AbstractFakerTest {
         assertThat(faker.file().fileName(null, null, "txt", null), 
                 matchesRegularExpression("([a-z\\-_]+)(\\\\|\\/)([a-z\\-_]+)\\.txt"));
     }
+
     @Test
     public void testFileNameSpecifyDir() {
         assertThat(faker.file().fileName("my_dir", null, null, null),
                 matchesRegularExpression("my_dir(\\\\|\\/)([a-z\\-_]+)\\.([a-z0-9]+)"));
     }
+
     @Test
     public void testFileNameSpecifySeparator() {
         assertThat(faker.file().fileName(null,null,null,"\\"), 
                 matchesRegularExpression("([a-z\\-_]+)\\\\([a-z\\-_]+)\\.([a-z0-9]+)"));
     }
+
     @Test
     public void testFileNameSpecifyName() {
         assertThat(faker.file().fileName(null,"da_name",null,null),

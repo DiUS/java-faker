@@ -7,7 +7,6 @@ import static org.junit.Assert.assertThat;
 
 public class TeamTest extends AbstractFakerTest {
 
-    
     @Test
     public void testName() {
         assertThat(faker.team().name(), matchesRegularExpression("(\\w+( )?){2,4}"));

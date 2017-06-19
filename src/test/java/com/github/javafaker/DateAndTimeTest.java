@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
  * @author pmiklos
  */
 public class DateAndTimeTest extends AbstractFakerTest {
-    
+
     @Test
     public void testFutureDate() {
         Date now = new Date();
