@@ -520,9 +520,9 @@ public class FakeValuesService {
             String nestedMethodName = classAndMethod[1].replaceAll("_", "");
             final MethodAndCoercedArgs accessor = accessor(objectWithMethodToInvoke, classAndMethod[1].replaceAll("_", ""), args);
             if (accessor == null) {
-                log.fine("Can't find method on " 
-                    + objectWithMethodToInvoke.getClass().getSimpleName() 
-                    + " called " + nestedMethodName + ".");
+                throw new Exception("Can't find method on "
+                        + objectWithMethodToInvoke.getClass().getSimpleName()
+                        + " called " + nestedMethodName + ".");
             }
 
             return string(accessor.invoke(objectWithMethodToInvoke));
