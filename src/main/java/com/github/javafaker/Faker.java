@@ -67,6 +67,7 @@ public class Faker {
     private final RickAndMorty rickAndMorty;
     private final Yoda yoda;
     private final Matz matz;
+    private final Witcher witcher;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -135,6 +136,7 @@ public class Faker {
         this.rickAndMorty = new RickAndMorty(this);
         this.yoda = new Yoda(this);
         this.matz = new Matz(this);
+        this.witcher = new Witcher(this);
     }
 
     /**
@@ -456,6 +458,10 @@ public class Faker {
 
     public Matz matz() {
         return matz;
+    }
+
+    public Witcher witcher() {
+        return witcher;
     }
 
     public String resolve(String key) {
