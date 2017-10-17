@@ -43,12 +43,6 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -56,9 +50,10 @@
             <version>3.5</version>
         </dependency>
         <dependency>
-            <groupId>com.github.bmoliveira</groupId>
-            <artifactId>snake-yaml</artifactId>
-            <version>v1.18-android</version>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.19</version>
+            <classifier>android</classifier>
         </dependency>
         <dependency>
             <groupId>com.github.mifmif</groupId>
@@ -152,37 +147,5 @@
                 </plugin>
 			</plugins>
 		</pluginManagement>
-        <plugins>
-            <!-- Shade com.github.bmoliveira:snake-yaml because it is not available in maven central
-                and therefore forces (gradle) users to add https://jitpack.io as a repo. This workaround
-                is not possible for companies with strict policies regarding maven repos. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4.3</version>
-                <configuration>
-                    <artifactSet>
-                        <includes>
-                            <include>com.github.bmoliveira:snake-yaml</include>
-                        </includes>
-                    </artifactSet>
-                    <!-- use package rewriting to prevent conflicts with different snakeyaml versions -->
-                    <relocations>
-                        <relocation>
-                            <pattern>org.yaml.snakeyaml</pattern>
-                            <shadedPattern>com.github.javafaker.shaded.snakeyaml</shadedPattern>
-                        </relocation>
-                    </relocations>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
 	</build>
 </project>
