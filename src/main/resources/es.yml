@@ -58,9 +58,9 @@ es:
       prefix: [Sr., Sra., Sta.]
       suffix: [Jr., Sr., I, II, III, IV, V, MD, DDS, PhD, DVM]
       title:
-        descriptor: [Jefe, Senior, Directo, Corporativo, Dinánmico, Futuro, Producto, Nacional, Regional, Distrito, Central, Global, Cliente, Inversor, International, Heredado, Adelante, Interno, Humano, Gerente, Director]
-        level: [Soluciones, Programa, Marca, Seguridada, Investigación, Marketing, Normas, Implementación, Integración, Funcionalidad, Respuesta, Paradigma, Tácticas, Identidad, Mercados, Grupo, División, Aplicaciones, Optimización, Operaciones, Infraestructura, Intranet, Comunicaciones, Web, Calidad, Seguro, Mobilidad, Cuentas, Datos, Creativo, Configuración, Contabilidad, Interacciones, Factores, Usabilidad, Métricas]
-        job: [Supervisor, Asociado, Ejecutivo, Relacciones, Oficial, Gerente, Ingeniero, Especialista, Director, Coordinador, Administrador, Arquitecto, Analista, Diseñador, Planificador, Técnico, Funcionario, Desarrollador, Productor, Consultor, Asistente, Facilitador, Agente, Representante, Estratega]
+        descriptor: [Jefe, Senior, Director, Corporativo, Dinámico, Futuro, Producto, Nacional, Regional, Distrito, Central, Global, Cliente, Inversor, Internacional, Heredado, Adelante, Interno, Humano, Gerente, Director]
+        level: [Soluciones, Programa, Marca, Seguridad, Investigación, Marketing, Normas, Implementación, Integración, Funcionalidad, Respuesta, Paradigma, Tácticas, Identidad, Mercados, Grupo, División, Aplicaciones, Optimización, Operaciones, Infraestructura, Intranet, Comunicaciones, Web, Calidad, Seguro, Mobilidad, Cuentas, Datos, Creativo, Configuración, Contabilidad, Interacciones, Factores, Usabilidad, Métricas]
+        job: [Supervisor, Asociado, Ejecutivo, Relaciones, Oficial, Gerente, Ingeniero, Especialista, Director, Coordinador, Administrador, Arquitecto, Analista, Diseñador, Planificador, Técnico, Funcionario, Desarrollador, Productor, Consultor, Asistente, Facilitador, Agente, Representante, Estratega]
       name:
         - "#{prefix} #{first_name} #{last_name} #{last_name}"
         - "#{first_name} #{last_name} #{last_name}"
