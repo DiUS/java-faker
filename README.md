@@ -130,6 +130,7 @@ Supported Locales
 * en-CA
 * en-GB
 * en-IND
+* en-MS
 * en-NEP
 * en-NG
 * en-NZ
