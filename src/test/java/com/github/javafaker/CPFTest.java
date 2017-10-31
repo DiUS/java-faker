@@ -28,7 +28,7 @@ public class CPFTest extends AbstractFakerTest {
 
     /*
      * A valid CPF is either a real number or a generated valid number.
-     * @see com.github.javafaker.shared.CPFUtils.calculateVerificationDigit#String
+     * @see com.github.javafaker.shared.CPFUtils#calculateVerificationDigit(String)
      */
     @Test
     public void isValidCPF() {
@@ -60,7 +60,7 @@ public class CPFTest extends AbstractFakerTest {
      * CPF generator could generate a valid or invalid because, somentimes, we need to test a
      * registration with invalid number
      *
-     * @see com.github.javafaker.shared.CPFUtils.calculateVerificationDigit#String
+     * @see com.github.javafaker.shared.CPFUtils#calculateVerificationDigit(String)
      */
     private static Boolean isCPFValid(String cpf) {
         cpf = CPFUtils.unformatCPF(cpf);

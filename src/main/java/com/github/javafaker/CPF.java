@@ -46,8 +46,9 @@ public class CPF {
         if(valid) {
             cpf = partial + CPFUtils.calculateVerificationDigit(partial);
         } else {
-            String twoFakeDigits = String.valueOf(new Random().nextInt(9 + 1)) + String.valueOf(new Random().nextInt(9 + 1));
-            cpf = partial + twoFakeDigits;
+            Random random = new Random();
+            long elevenDigits = (random.nextInt(1000000000) + (random.nextInt(90) + 10) * 1000000000L);
+            cpf = String.valueOf(elevenDigits);
         }
 
         return formatCPF(cpf);
