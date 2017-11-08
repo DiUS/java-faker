@@ -13,9 +13,13 @@ public class FinanceTest extends AbstractFakerTest {
     public void creditCard() {
         for (int i = 0; i < 100; i++) {
             final String creditCard = faker.finance().creditCard();
-            final String creditCardStripped = creditCard.replaceAll("-", "");
-            assertThat(LuhnCheckDigit.LUHN_CHECK_DIGIT.isValid(creditCardStripped), is(true));
+            assertCardLuhnDigit(creditCard);
         }
+    }
+
+    private void assertCardLuhnDigit(String creditCard) {
+        final String creditCardStripped = creditCard.replaceAll("-", "");
+        assertThat(LuhnCheckDigit.LUHN_CHECK_DIGIT.isValid(creditCardStripped), is(true));
     }
 
     @Test
@@ -31,5 +35,15 @@ public class FinanceTest extends AbstractFakerTest {
     @Test
     public void ibanWithCountryCode() {
         assertThat(faker.finance().iban("DE"), matchesRegularExpression("DE\\d{20}"));
+    }
+
+    @Test
+    public void creditCardWithType()
+    {
+        for(CreditCardType type : CreditCardType.values())
+        {
+            final String creditCard = faker.finance().creditCard(type);
+            assertCardLuhnDigit(creditCard);
+        }
     }
 }
