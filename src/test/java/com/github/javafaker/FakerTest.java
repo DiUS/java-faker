@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.Locale;
 import java.util.Random;
 
+import static com.github.javafaker.Faker.*;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -157,9 +158,9 @@ public class FakerTest extends AbstractFakerTest {
 
     @Test
     public void fakerInstanceCanBeAcquiredViaUtilityMethods() {
-        assertThat(Faker.instance(), is(instanceOf(Faker.class)));
-        assertThat(Faker.instance(Locale.CANADA), is(instanceOf(Faker.class)));
-        assertThat(Faker.instance(new Random(1)), is(instanceOf(Faker.class)));
-        assertThat(Faker.instance(Locale.CHINA, new Random(2)), is(instanceOf(Faker.class)));
+        assertThat(faker(), is(instanceOf(Faker.class)));
+        assertThat(faker(Locale.CANADA), is(instanceOf(Faker.class)));
+        assertThat(faker(new Random(1)), is(instanceOf(Faker.class)));
+        assertThat(faker(Locale.CHINA, new Random(2)), is(instanceOf(Faker.class)));
     }
 }

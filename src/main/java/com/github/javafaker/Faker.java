@@ -144,7 +144,7 @@ public class Faker {
      *
      * @return {@link Faker#Faker()}
      */
-    public static Faker instance() {
+    public static Faker faker() {
         return new Faker();
     }
 
@@ -154,7 +154,7 @@ public class Faker {
      * @param locale - {@link Locale}
      * @return {@link Faker#Faker(Locale)}
      */
-    public static Faker instance(Locale locale) {
+    public static Faker faker(Locale locale) {
         return new Faker(locale);
     }
 
@@ -164,7 +164,7 @@ public class Faker {
      * @param random - {@link Random}
      * @return {@link Faker#Faker(Random)}
      */
-    public static Faker instance(Random random) {
+    public static Faker faker(Random random) {
         return new Faker(random);
     }
 
@@ -175,7 +175,7 @@ public class Faker {
      * @param random - {@link Random}
      * @return {@link Faker#Faker(Locale, Random)}
      */
-    public static Faker instance(Locale locale, Random random) {
+    public static Faker faker(Locale locale, Random random) {
         return new Faker(locale, random);
     }
 
