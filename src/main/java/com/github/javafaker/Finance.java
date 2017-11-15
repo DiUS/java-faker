@@ -19,8 +19,7 @@ public class Finance {
     private static final Map<String, String> countryCodeToBasicBankAccountNumberPattern =
             createCountryCodeToBasicBankAccountNumberPatternMap();
 
-    public String creditCard(CreditCardType creditCardType)
-    {
+    public String creditCard(CreditCardType creditCardType) {
         final String key = String.format("credit_card.%s", creditCardType.toString().toLowerCase());
         String value = faker.fakeValuesService().resolve(key, this, faker);
         final String template = faker.numerify(value);
