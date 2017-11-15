@@ -38,8 +38,7 @@ public class FinanceTest extends AbstractFakerTest {
     }
 
     @Test
-    public void creditCardWithType()
-    {
+    public void creditCardWithType() {
         for(CreditCardType type : CreditCardType.values())
         {
             final String creditCard = faker.finance().creditCard(type);
