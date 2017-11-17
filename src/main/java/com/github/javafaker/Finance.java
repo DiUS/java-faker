@@ -18,10 +18,9 @@ public class Finance {
 
     private static final Map<String, String> countryCodeToBasicBankAccountNumberPattern =
             createCountryCodeToBasicBankAccountNumberPatternMap();
-//
-    public String creditCard() {
-        CreditCardType type = randomCreditCardType();
-        final String key = String.format("credit_card.%s", type.toString().toLowerCase());
+
+    public String creditCard(CreditCardType creditCardType) {
+        final String key = String.format("credit_card.%s", creditCardType.toString().toLowerCase());
         String value = faker.fakeValuesService().resolve(key, this, faker);
         final String template = faker.numerify(value);
 
@@ -41,6 +40,11 @@ public class Finance {
         }
         int luhnDigit = (10 - (luhnSum % 10)) % 10;
         return template.replace('\\', ' ').replace('/', ' ').trim().replace('L', String.valueOf(luhnDigit).charAt(0));
+    }
+
+    public String creditCard() {
+        CreditCardType type = randomCreditCardType();
+        return creditCard(type);
     }
 
     /**
