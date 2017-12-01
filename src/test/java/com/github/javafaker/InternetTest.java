@@ -13,7 +13,16 @@ import java.util.Locale;
 import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static java.lang.Integer.parseInt;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.both;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
 
 public class InternetTest extends AbstractFakerTest {
@@ -236,6 +245,12 @@ public class InternetTest extends AbstractFakerTest {
     @Repeat(times=10)
     public void testSlug() {
         assertThat(faker.internet().slug(), matchesRegularExpression("[a-zA-Z]+\\_[a-zA-Z]+"));
+    }
+
+    @Test
+    @Repeat(times=10)
+    public void testUuid() {
+        assertThat(faker.internet().uuid(), matchesRegularExpression("/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i"));
     }
 
     @Test
