@@ -285,6 +285,10 @@ public class Internet {
         return slug.toString();
     }
 
+    /**
+     * Returns a UUID (type 4) as String.
+     * @return A UUID as String.
+     */
     public String uuid() {
         return UUID.randomUUID().toString();
     }
