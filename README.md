@@ -58,6 +58,7 @@ Fakers
 * Address
 * App
 * Artist
+* Avatar
 * Beer
 * Book
 * Bool
