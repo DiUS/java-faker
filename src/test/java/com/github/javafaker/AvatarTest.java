@@ -1,15 +1,15 @@
 package com.github.javafaker;
 
-import org.apache.commons.validator.routines.UrlValidator;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.junit.Assert.assertThat;
 
 public class AvatarTest extends AbstractFakerTest {
 
     @Test
     public void testAvatar() {
-        UrlValidator urlValidator = new UrlValidator();
-        assertTrue(urlValidator.isValid(faker.avatar().image()));
+        String avatar = faker.avatar().image();
+        assertThat(avatar, matchesRegularExpression("^https:\\/\\/s3.amazonaws\\.com\\/uifaces\\/faces\\/twitter\\/[a-zA-Z0-9_]+\\/128\\.jpg$"));
     }
 }
