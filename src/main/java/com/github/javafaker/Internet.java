@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static org.apache.commons.lang3.StringUtils.join;
 
@@ -282,6 +283,14 @@ public class Internet {
             slug.append(words.get(i));
         }
         return slug.toString();
+    }
+
+    /**
+     * Returns a UUID (type 4) as String.
+     * @return A UUID as String.
+     */
+    public String uuid() {
+        return UUID.randomUUID().toString();
     }
           
     private <T> T random(T[] src) {
