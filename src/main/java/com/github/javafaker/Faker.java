@@ -69,6 +69,15 @@ public class Faker {
     private final Yoda yoda;
     private final Matz matz;
     private final Witcher witcher;
+    private final DragonBall dragonBall;
+    private final FunnyName funnyName;
+    private final HitchhikersGuideToTheGalaxy hitchhikersGuideToTheGalaxy;
+    private final Hobbit hobbit;
+    private final HowIMetYourMother howIMetYourMother;
+    private final LeagueOfLegends leagueOfLegends;
+    private final Overwatch overwatch;
+    private final Robin robin;
+    private final StarTrek starTrek;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -139,6 +148,15 @@ public class Faker {
         this.yoda = new Yoda(this);
         this.matz = new Matz(this);
         this.witcher = new Witcher(this);
+        this.dragonBall = new DragonBall(this);
+        this.funnyName = new FunnyName(this);
+        this.hitchhikersGuideToTheGalaxy = new HitchhikersGuideToTheGalaxy(this);
+        this.hobbit = new Hobbit(this);
+        this.howIMetYourMother = new HowIMetYourMother(this);
+        this.leagueOfLegends = new LeagueOfLegends(this);
+        this.overwatch = new Overwatch(this);
+        this.robin = new Robin(this);
+        this.starTrek = new StarTrek(this);
     }
 
     /**
@@ -468,6 +486,42 @@ public class Faker {
 
     public Witcher witcher() {
         return witcher;
+    }
+
+    public DragonBall dragonBall() {
+        return dragonBall;
+    }
+
+    public FunnyName funnyName() {
+        return funnyName;
+    }
+
+    public HitchhikersGuideToTheGalaxy hitchhikersGuideToTheGalaxy() {
+        return hitchhikersGuideToTheGalaxy;
+    }
+
+    public Hobbit hobbit() {
+        return hobbit;
+    }
+
+    public HowIMetYourMother howIMetYourMother() {
+        return howIMetYourMother;
+    }
+
+    public LeagueOfLegends leagueOfLegends() {
+        return leagueOfLegends;
+    }
+
+    public Overwatch overwatch() {
+        return overwatch;
+    }
+
+    public Robin robin() {
+        return robin;
+    }
+
+    public StarTrek starTrek() {
+        return starTrek;
     }
 
     public String resolve(String key) {
