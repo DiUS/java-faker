@@ -25,6 +25,10 @@ pt-BR:
                  "Turquia", "Turcomenistão", "Ilhas Turcas e Caicos", "Tuvalu", "Uganda", "Ucrânia", "Emirados Árabes Unidos", "Reino Unido", "Estados Unidos da América",
                  "Estados Unidos das Ilhas Virgens", "Uruguai", "Uzbequistão", "Vanuatu", "Venezuela", "Vietnã", "Wallis e Futuna", "Saara Ocidental", "Iémen", "Zâmbia", "Zimbábue"]
       building_number: ["#####", "####", "###", "s/n"]
+      full_address:
+       - "#{street_name}, #{building_number} - #{city}/#{state_abbr} - CEP: #{zip_code}"
+       - "#{street_name}, #{building_number} #{secondary_address} - #{city}/#{state_abbr} - CEP: #{zip_code}"
+      street_suffix: ["Rua", "Avenida", "Travessa", "Ponte", "Alameda", "Marginal", "Viela", "Rodovia"]
       street_suffix: ["Rua", "Avenida", "Travessa", "Ponte", "Alameda", "Marginal", "Viela", "Rodovia"]
       street_name:
         - "#{street_suffix} #{Name.first_name}"
