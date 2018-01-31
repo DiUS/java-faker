@@ -112,7 +112,7 @@ Usage with Locales
 -----
 
 ```java
-Faker faker = new Faker(new Locale("{YOUR_LOCALE}"));
+Faker faker = new Faker(new Locale("YOUR_LOCALE"));
 ```
 
 Supported Locales
