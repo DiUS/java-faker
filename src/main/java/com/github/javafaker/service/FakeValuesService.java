@@ -236,7 +236,7 @@ public class FakeValuesService {
      * @return
      */
     public String numerify(String numberString) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < numberString.length(); i++) {
             if (numberString.charAt(i) == '#') {
                 sb.append(randomService.nextInt(10));
@@ -308,7 +308,7 @@ public class FakeValuesService {
     }
 
     private String letterHelper(int baseChar, String letterString) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < letterString.length(); i++) {
             if (letterString.charAt(i) == '?') {
                 sb.append((char) (baseChar + randomService.nextInt(26))); // a-z
