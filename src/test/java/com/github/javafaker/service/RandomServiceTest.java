@@ -1,16 +1,17 @@
 package com.github.javafaker.service;
 
 import com.github.javafaker.AbstractFakerTest;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Random;
+
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.core.CombinableMatcher.both;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -53,5 +54,12 @@ public class RandomServiceTest extends AbstractFakerTest {
     public void testLongMaxBoundary() {
         assertThat(randomService.nextLong(Long.MAX_VALUE), greaterThan(0L));
         assertThat(randomService.nextLong(Long.MAX_VALUE), lessThan(Long.MAX_VALUE));
+    }
+
+    @Test
+    public void testIntInRange() {
+        for (int i = 1; i < 100; i++) {
+            assertThat(randomService.nextInt(-5, 5), both(lessThanOrEqualTo(5)).and(greaterThanOrEqualTo(-5)));
+        }
     }
 }
