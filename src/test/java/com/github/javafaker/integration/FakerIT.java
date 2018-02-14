@@ -137,6 +137,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.yoda());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.matz());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.witcher());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.weather());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
