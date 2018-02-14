@@ -104,6 +104,7 @@ Fakers
 * Team
 * TwinPeaks
 * University
+* Weather
 * Witcher
 * Yoda
 * Zelda
