@@ -7,7 +7,7 @@ Java Faker
 [![Dependency Status](https://www.versioneye.com/user/projects/572c2f11a0ca35004baf861a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/572c2f11a0ca35004baf861a)
 [![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
+This library is a port of Ruby's [faker](https://github.com/stympy/faker) gem (as well as Perl's Data::Faker library) that generates fake data.
 It's useful when you're developing a new project and need some pretty data for showcase.
 
 Usage
