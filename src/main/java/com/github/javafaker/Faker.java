@@ -33,6 +33,7 @@ public class Faker {
     private final ChuckNorris chuckNorris;
     private final Color color;
     private final Commerce commerce;
+    private final Currency currency;
     private final Company company;
     private final Crypto crypto;
     private final IdNumber idNumber;
@@ -108,6 +109,7 @@ public class Faker {
         this.company = new Company(this);
         this.crypto = new Crypto(this);
         this.commerce = new Commerce(this);
+        this.currency = new Currency(this);
         this.options = new Options(this);
         this.code = new Code(this);
         this.file = new File(this);
@@ -254,6 +256,11 @@ public class Faker {
 
     public RandomService random() {
         return this.randomService;
+    }
+
+    public Currency currency() {
+        return currency;
+
     }
 
     FakeValuesService fakeValuesService() {
