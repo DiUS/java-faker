@@ -17,14 +17,14 @@ by:
         - "#{Address.street_title} #{street_suffix}"
       street_address:
         - "#{street_name}, #{building_number}"
-      default_country: [Россия]
+      default_country: [Беларусь]
       full_address:
         - "#{postcode} #{default_country}, #{city}, #{street_address}"
         - "#{postcode} #{default_country}, #{city}, #{street_address} #{secondary_address}"
 
     internet:
       free_email: [yandex.ru, ya.ru, mail.ru, gmail.com, yahoo.com, hotmail.com]
-      domain_suffix: [com, ru, info, рф, net, org, by]
+      domain_suffix: [com, ru, info, бел, net, org, by]
 
     name:
       male_first_name: [Аляксандр, Аляксей, Альберт, Анатоль, Андрэй, Антон, Аркадзь, Арсеній, Арцём, Барыс, Вадзім, Валянцін, Валерый, Васіль, Віктар, Віталь, Уладзімір, Уладзіслаў, Вячаслаў, Генадзь, Георгій, Герман, Рыгор, Данііл, Дзяніс, Дзмітрый, Яўген, Ягор, Іван, Ігнат, Ігар, Ілля, Канстанцін, Лаўрэнцій, Леанід, Лука, Макар, Максім, Мацвей, Міхаіл, Мікіта, Мікалай, Алег, Раман, Сямён, Сяргей, Станіслаў, Сцяпан, Фёдар, Эдуард, Юрый, Яраслаў]
