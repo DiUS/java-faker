@@ -71,6 +71,7 @@ public class Faker {
     private final Matz matz;
     private final Witcher witcher;
     private final Weather weather;
+    private final Lebowski lebowski;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -143,6 +144,7 @@ public class Faker {
         this.matz = new Matz(this);
         this.witcher = new Witcher(this);
         this.weather = new Weather(this);
+        this.lebowski = new Lebowski(this);
     }
 
     /**
@@ -481,6 +483,10 @@ public class Faker {
 
     public Weather weather() {
         return weather;
+    }
+
+    public Lebowski lebowski() {
+        return lebowski;
     }
 
     public String resolve(String key) {
