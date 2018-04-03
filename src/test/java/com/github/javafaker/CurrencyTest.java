@@ -7,10 +7,9 @@ import org.junit.Test;
 
 public class CurrencyTest extends AbstractFakerTest {
 
-
     @Test
     public void testName() {
-        assertThat(faker.currency().name(), matchesRegularExpression("[\\w\\' ]+"));
+        assertThat(faker.currency().name(), matchesRegularExpression("[\\w\\'\\.\\-\\(\\) ]+"));
     }
 
     @Test
