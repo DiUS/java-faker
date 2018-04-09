@@ -119,7 +119,7 @@ public class DateAndTime {
      *
      * @return a random birthday between 65 and 18 years ago.
      */
-    public java.util.Date birthday() {
+    public Date birthday() {
         return birthday(DEFAULT_MIN_AGE, DEFAULT_MAX_AGE);
     }
 
@@ -134,10 +134,10 @@ public class DateAndTime {
      * @throws IllegalArgumentException
      *             if the {@code maxAge} is lower than {@code minAge}.
      */
-    public java.util.Date birthday(int minAge, int maxAge) {
+    public Date birthday(int minAge, int maxAge) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         Calendar from = new GregorianCalendar(currentYear - maxAge, 0, 1);
-        Calendar to = new GregorianCalendar(currentYear - minAge, 12, 31);
+        Calendar to = new GregorianCalendar(currentYear - minAge, 11, 31);
 
         return between(from.getTime(), to.getTime());
     }
