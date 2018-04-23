@@ -2,12 +2,13 @@ package com.github.javafaker;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.junit.Assert.assertThat;
 
 public class RobinTest extends AbstractFakerTest {
 
     @Test
-    public void testQuote() {
-        assertFalse(faker.robin().quote().isEmpty());
+    public void quote() {
+        assertThat(faker.robin().quote(), matchesRegularExpression("^(\\w+\\.?-?'?\\s?)+(\\(?)?(\\w+\\s?\\.?)+(\\))?$"));
     }
 }

@@ -2,12 +2,13 @@ package com.github.javafaker;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.junit.Assert.assertThat;
 
 public class FunnyNameTest extends AbstractFakerTest {
 
     @Test
-    public void testName() {
-        assertFalse(faker.funnyName().name().isEmpty());
+    public void name() {
+        assertThat(faker.funnyName().name(), matchesRegularExpression("^(\\w+\\.?\\s?'?-?)+$"));
     }
 }

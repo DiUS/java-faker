@@ -2,27 +2,29 @@ package com.github.javafaker;
 
 import org.junit.Test;
 
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 
 public class HobbitTest extends AbstractFakerTest {
 
     @Test
-    public void testCharacter() {
-        assertFalse(faker.hobbit().character().isEmpty());
+    public void character() {
+        assertThat(faker.hobbit().character(), matchesRegularExpression("^(\\(?\\w+\\.?\\s?\\)?)+$"));
     }
 
     @Test
-    public void testThorinsCompany() {
-        assertFalse(faker.hobbit().thorinsCompany().isEmpty());
+    public void thorinsCompany() {
+        assertThat(faker.hobbit().thorinsCompany(), matchesRegularExpression("^(\\w+\\s?)+$"));
     }
 
     @Test
-    public void testQuote() {
+    public void quote() {
         assertFalse(faker.hobbit().quote().isEmpty());
     }
 
     @Test
-    public void testLocation() {
-        assertFalse(faker.hobbit().location().isEmpty());
+    public void location() {
+        assertThat(faker.hobbit().location(), matchesRegularExpression("^(\\w+'?-?\\s?)+$"));
     }
 }

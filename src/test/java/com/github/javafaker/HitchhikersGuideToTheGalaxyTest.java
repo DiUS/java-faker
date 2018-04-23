@@ -2,37 +2,39 @@ package com.github.javafaker;
 
 import org.junit.Test;
 
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 
 public class HitchhikersGuideToTheGalaxyTest extends AbstractFakerTest {
 
     @Test
-    public void testCharacter() {
-        assertFalse(faker.hitchhikersGuideToTheGalaxy().character().isEmpty());
+    public void character() {
+        assertThat(faker.hitchhikersGuideToTheGalaxy().character(), matchesRegularExpression("^(\\w+(\\.?\\s?'?))+$"));
     }
 
     @Test
-    public void testLocation() {
-        assertFalse(faker.hitchhikersGuideToTheGalaxy().location().isEmpty());
+    public void location() {
+        assertThat(faker.hitchhikersGuideToTheGalaxy().location(), matchesRegularExpression("^(\\w+\\S?\\.?\\s?'?-?)+$"));
     }
 
     @Test
-    public void testMarvinQuote() {
+    public void marvinQuote() {
         assertFalse(faker.hitchhikersGuideToTheGalaxy().marvinQuote().isEmpty());
     }
 
     @Test
-    public void testPlanet() {
-        assertFalse(faker.hitchhikersGuideToTheGalaxy().planet().isEmpty());
+    public void planet() {
+        assertThat(faker.hitchhikersGuideToTheGalaxy().planet(), matchesRegularExpression("^(\\w+-?\\s?)+$"));
     }
 
     @Test
-    public void testQuote() {
+    public void quote() {
         assertFalse(faker.hitchhikersGuideToTheGalaxy().quote().isEmpty());
     }
 
     @Test
-    public void testSpecie() {
-        assertFalse(faker.hitchhikersGuideToTheGalaxy().specie().isEmpty());
+    public void specie() {
+        assertThat(faker.hitchhikersGuideToTheGalaxy().specie(), matchesRegularExpression("^(\\w+'?\\s?)+$"));
     }
 }

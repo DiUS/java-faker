@@ -2,12 +2,13 @@ package com.github.javafaker;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.junit.Assert.assertThat;
 
 public class DragonBallTest extends AbstractFakerTest {
 
     @Test
-    public void testCharacter() {
-        assertFalse(faker.dragonBall().character().isEmpty());
+    public void character() {
+        assertThat(faker.dragonBall().character(), matchesRegularExpression("^(\\w+\\.?\\s?-?)+$"));
     }
 }

@@ -2,27 +2,29 @@ package com.github.javafaker;
 
 import org.junit.Test;
 
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 
 public class HowIMetYourMotherTest extends AbstractFakerTest {
 
     @Test
-    public void testCharacter() {
-        assertFalse(faker.howIMetYourMother().character().isEmpty());
+    public void character() {
+        assertThat(faker.howIMetYourMother().character(), matchesRegularExpression("^(\\w+\\.?\\s?)+$"));
     }
 
     @Test
-    public void testCatchPhrase() {
+    public void catchPhrase() {
         assertFalse(faker.howIMetYourMother().catchPhrase().isEmpty());
     }
 
     @Test
-    public void testHighFive() {
-        assertFalse(faker.howIMetYourMother().highFive().isEmpty());
+    public void highFive() {
+        assertThat(faker.howIMetYourMother().highFive(), matchesRegularExpression("^(\\w+-?\\s?)+$"));
     }
 
     @Test
-    public void testQuote() {
+    public void quote() {
         assertFalse(faker.howIMetYourMother().quote().isEmpty());
     }
 }

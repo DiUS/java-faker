@@ -2,27 +2,28 @@ package com.github.javafaker;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.junit.Assert.assertThat;
 
 public class StarTrekTest extends AbstractFakerTest {
 
     @Test
-    public void testCharacter() {
-        assertFalse(faker.starTrek().character().isEmpty());
+    public void character() {
+        assertThat(faker.starTrek().character(), matchesRegularExpression("^(\\w+-?'?\\.?\\s?)+$"));
     }
 
     @Test
-    public void testLocation() {
-        assertFalse(faker.starTrek().location().isEmpty());
+    public void location() {
+        assertThat(faker.starTrek().location(), matchesRegularExpression("^(\\w+'?\\s?)+$"));
     }
 
     @Test
-    public void testSpecie() {
-        assertFalse(faker.starTrek().specie().isEmpty());
+    public void specie() {
+        assertThat(faker.starTrek().specie(), matchesRegularExpression("^(\\w+-?'?\\s?)+$"));
     }
 
     @Test
-    public void testVillain() {
-        assertFalse(faker.starTrek().villain().isEmpty());
+    public void villain() {
+        assertThat(faker.starTrek().villain(), matchesRegularExpression("^(\\w+'?\\.?\\s?)+$"));
     }
 }
