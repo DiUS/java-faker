@@ -33,6 +33,7 @@ public class Faker {
     private final ChuckNorris chuckNorris;
     private final Color color;
     private final Commerce commerce;
+    private final Currency currency;
     private final Company company;
     private final Crypto crypto;
     private final IdNumber idNumber;
@@ -78,6 +79,8 @@ public class Faker {
     private final Overwatch overwatch;
     private final Robin robin;
     private final StarTrek starTrek;
+    private final Weather weather;
+    private final Lebowski lebowski;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -116,6 +119,7 @@ public class Faker {
         this.company = new Company(this);
         this.crypto = new Crypto(this);
         this.commerce = new Commerce(this);
+        this.currency = new Currency(this);
         this.options = new Options(this);
         this.code = new Code(this);
         this.file = new File(this);
@@ -157,6 +161,8 @@ public class Faker {
         this.overwatch = new Overwatch(this);
         this.robin = new Robin(this);
         this.starTrek = new StarTrek(this);
+        this.weather = new Weather(this);
+        this.lebowski = new Lebowski(this);
     }
 
     /**
@@ -270,6 +276,11 @@ public class Faker {
 
     public RandomService random() {
         return this.randomService;
+    }
+
+    public Currency currency() {
+        return currency;
+
     }
 
     FakeValuesService fakeValuesService() {
@@ -522,6 +533,14 @@ public class Faker {
 
     public StarTrek starTrek() {
         return starTrek;
+    }
+
+    public Weather weather() {
+        return weather;
+    }
+
+    public Lebowski lebowski() {
+        return lebowski;
     }
 
     public String resolve(String key) {

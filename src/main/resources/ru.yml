@@ -72,3 +72,9 @@ ru:
         - "#{prefix} #{Address.city_name}#{suffix}"
         - "#{prefix} #{Address.city_name}#{suffix}#{suffix}"
         - "#{prefix} #{Address.city_name}#{suffix}#{suffix}#{suffix}"
+
+    weather:
+      description: ["Ясно","Солнечно","Хмарно з проясненнями","Мінлива хмарність","Переважно хмарно","Пасмурно","Злива","Дощ","Мряка","Грози","Сніг","Мокрий сніг","Град"]
+      temperature:
+        celsius: °C
+        fahrenheit: °F

@@ -4,7 +4,7 @@ en:
       us: "%m/%d/%Y %I:%M %p"
     am: "AM"
     pm: "PM"
-
+en:
   faker:
     separator: ' & '
     address:
@@ -127,6 +127,10 @@ en:
         - "#{ordinal_azimuth}"
         - "#{half_wind_azimuth}"
         - "#{quarter_wind_azimuth}"
+
+    currency:
+      code: [AED, AFN, ALL, AMD, ANG, AOA, ARS, AUD, AWG, AZN, BAM, BBD, BDT, BGN, BHD, BIF, BMD, BND, BOB, BRL, BSD, BWP, BYR, BZD, CAD, CDF, CHF, CLP, CNY, COP, CRC, CUP, CVE, CZK, DJF, DKK, DOP, DZD, EEK, EGP, ERN, ETB, EUR, FJD, FKP, GBP, GEL, GHS, GIP, GMD, GNF, GTQ, GYD, HKD, HNL, HRK, HTG, HUF, IDR, ILS, INR, INR, IQD, IRR, ISK, JMD, JOD, JPY, KES, KGS, KHR, KMF, KPW, KRW, KWD, KYD, KZT, LAK, LBP, LKR, LRD, LTL, LVL, LYD, MAD, MDL, MGA, MKD, MMK, MNT, MOP, MRO, MUR, MVR, MWK, MXN, MYR, MZN, NGN, NIO, NOK, NPR, NZD, OMR, PAB, PEN, PGK, PHP, PKR, PLN, PYG, QAR, RON, RSD, RUB, RWF, SAR, SBD, SCR, SDG, SEK, SGD, SHP, SLL, SOS, SRD, STD, SVC, SYP, SZL, THB, TJS, TMT, TND, TOP, TRY, TTD, TWD, TZS, UAH, UGX, USD, UYU, UZS, VEF, VND, VUV, WST, XAF, XAG, XAU, XBA, XBB, XBC, XBD, XCD, XDR, XFU, XOF, XPD, XPF, XPT, XTS, YER, ZAR, ZAR, ZAR, ZMK, ZWL]
+      name: ["UAE Dirham", "Afghani", "Lek", "Armenian Dram", "Netherlands Antillian Guilder", "Kwanza", "Argentine Peso", "Australian Dollar", "Aruban Guilder", "Azerbaijanian Manat", "Convertible Marks", "Barbados Dollar", "Taka", "Bulgarian Lev", "Bahraini Dinar", "Burundi Franc", "Bermudian Dollar (customarily known as Bermuda Dollar)", "Brunei Dollar", "Boliviano Mvdol", "Brazilian Real", "Bahamian Dollar", "Pula", "Belarussian Ruble", "Belize Dollar", "Canadian Dollar", "Congolese Franc", "Swiss Franc", "Chilean Peso Unidades de fomento", "Yuan Renminbi", "Colombian Peso Unidad de Valor Real", "Costa Rican Colon", "Cuban Peso Peso Convertible", "Cape Verde Escudo", "Czech Koruna", "Djibouti Franc", "Danish Krone", "Dominican Peso", "Algerian Dinar", "Kroon", "Egyptian Pound", "Nakfa", "Ethiopian Birr", "Euro", "Fiji Dollar", "Falkland Islands Pound", "Pound Sterling", "Lari", "Cedi", "Gibraltar Pound", "Dalasi", "Guinea Franc", "Quetzal", "Guyana Dollar", "Hong Kong Dollar", "Lempira", "Croatian Kuna", "Gourde US Dollar", "Forint", "Rupiah", "New Israeli Sheqel", "Indian Rupee", "Indian Rupee Ngultrum", "Iraqi Dinar", "Iranian Rial", "Iceland Krona", "Jamaican Dollar", "Jordanian Dinar", "Yen", "Kenyan Shilling", "Som", "Riel", "Comoro Franc", "North Korean Won", "Won", "Kuwaiti Dinar", "Cayman Islands Dollar", "Tenge", "Kip", "Lebanese Pound", "Sri Lanka Rupee", "Liberian Dollar", "Lithuanian Litas", "Latvian Lats", "Libyan Dinar", "Moroccan Dirham", "Moldovan Leu", "Malagasy Ariary", "Denar", "Kyat", "Tugrik", "Pataca", "Ouguiya", "Mauritius Rupee", "Rufiyaa", "Kwacha", "Mexican Peso Mexican Unidad de Inversion (UDI)", "Malaysian Ringgit", "Metical", "Naira", "Cordoba Oro", "Norwegian Krone", "Nepalese Rupee", "New Zealand Dollar", "Rial Omani", "Balboa US Dollar", "Nuevo Sol", "Kina", "Philippine Peso", "Pakistan Rupee", "Zloty", "Guarani", "Qatari Rial", "New Leu", "Serbian Dinar", "Russian Ruble", "Rwanda Franc", "Saudi Riyal", "Solomon Islands Dollar", "Seychelles Rupee", "Sudanese Pound", "Swedish Krona", "Singapore Dollar", "Saint Helena Pound", "Leone", "Somali Shilling", "Surinam Dollar", "Dobra", "El Salvador Colon US Dollar", "Syrian Pound", "Lilangeni", "Baht", "Somoni", "Manat", "Tunisian Dinar", "Pa'anga", "Turkish Lira", "Trinidad and Tobago Dollar", "New Taiwan Dollar", "Tanzanian Shilling", "Hryvnia", "Uganda Shilling", "US Dollar", "Peso Uruguayo Uruguay Peso en Unidades Indexadas", "Uzbekistan Sum", "Bolivar Fuerte", "Dong", "Vatu", "Tala", "CFA Franc BEAC", "Silver", "Gold", "Bond Markets Units European Composite Unit (EURCO)", "European Monetary Unit (E.M.U.-6)", "European Unit of Account 9(E.U.A.-9)", "European Unit of Account 17(E.U.A.-17)", "East Caribbean Dollar", "SDR", "UIC-Franc", "CFA Franc BCEAO", "Palladium", "CFP Franc", "Platinum", "Codes specifically reserved for testing purposes", "Yemeni Rial", "Rand", "Rand Loti", "Rand Namibia Dollar", "Zambian Kwacha", "Zimbabwe Dollar"]
 
     university:
       prefix: [The, Northern, North, Western, West, Southern, South, Eastern, East]
@@ -782,3 +786,49 @@ en:
       locations: ["Aedd Gynvael","Aldersberg","Beauclair","Cidaris","Cintra","Gors Velen","Maribor","Novigrad","Oxenfurt","Tretogor","Vengerberg","Vizima","Ard Carraigh","Bremervoord","Brugge","Claremont","Creyden","Fen Aspra","Hengfors","Lan Exeter","Pont Vanis","Lyria","Maecht","Malleore","Metinna","Nilfgaard","Neunreuth","Rakverelin","Rivia","Thurn","Acorn Bay","Anchor","Assengard","Attre","Ban Ard","Ban Gleán","Barefield","Belhaven","Blaviken","Brenna","Breza","Burdorff","Caelf","Carreras","Craag An","Crinfrid","Daevon","Dillingen","Dorian","Druigh","Dudno","Duén Canell","Dun Dâre","Ellander","Eysenlaan","Fano","Foam","Forgeham","Fox Hollow","Ghelibol","Glyswen","Gulet","Hochebuz","Jealousy","Kaczan","Kagen","Kerack","Kernow","Klucz","Knotweed Meadow","Little Marsh","Lower Posada","Malhoun","Mirt","Murivel","New Ironworks","Porog","Riedbrune","Rinde","Roggeveen","Tegamo","Tigg","Tridam","Tyffi","Unicorn","Upper Posada","Vattweir","Vole","White Bridge","Zavada","Armeria","Baldhorn","Ban Gleán","Beauclair","Bodrog","Carcano","Castel Ravello","Darn Dyffra","Darn Rowan","Darn Ruach","Dillingen","Dorndal","Drakenborg","Fen Aspra","Glevitzingen","Gwendeith","Hagge","Houtborg","Kaer Morhen","Kaer Trolde","Leyda","Loc Grim","Mayena","Mirt","Montecalvo","Montsalvat","Nastrog","Razwan","Red Binduga","Rocayne","Rhys-Rhun","Riedbrune","Rozrog","Sarda","Scala","Schwemmland","Spalla","Stygga","Tigg","Vartburg","Vedette","Vidort","Winneburg","Zurbarran","Est Haemlet","Loc Muinne","Shaerrawedd"]
       quotes: ["Just five more minutes… Is it 1358 yet? No? Then fuck off!","Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.","Hide the wenches, Witcher's coming!!","Oh year... the Elder Blood can be fiery","Damn, Eskel... you got an hourglass figure","No Lollygagin'!","You get what you get and be happy with it","I'll stick me boot so far up yer arse your tongue'll taste like wench twat"]
       monsters: ["Archespore","Berserker","Botchling","Lubberkin","Ulfhedinn","Werewolf","The Toad Prince","Basilisk","Cockatrice","Forktail","Royal Wyvern","Shrieker","Silver Basilisk","Slyzard Matriarch","Slyzard","Dragon of Fyresdal","Wyvern","Djinn","Earth Elemental","Fire Elemental","Gargoyle","Golem","Hound of the Wild Hunt","Ice Elemental","Pixie","Apiarian Phantom","Therazane","Ekhidnae","Erynias","Griffin","Harpy","Melusine","Opinicus","Salma","Siren","Succubus","Arachas","Arachnomorph","Endrega Drone","Endrega Warrior","Endrega Worker","Giant Centipede","Kikimore","Kikimore Worker","Pale Widow","Abaya","Alghoul","Drowner","Foglet","Ghoul","Grave Hag","Ignis Fatuus","Mourntart","Mucknixer","Rotfiend","Scurver","Spotted Wight","Water Hag","Wight","Cloud Giant","Cyclopse","Golyat","Hagubman","Ice Giant","Ice Troll","Nekker","Rock Troll","Wham-a-Wham","Chort","Crone","Doppler","Fiend","Fugas","Godling","Grottore","Howler","Imp","Kernun","Leshen","Morvudd","Shaelmaar","Spriggan","Sylvan","The Caretaker","Barghests","Ethereal","Hym","Longlocks","Nightwraith","Noonwraith","Penitent","Plague Maiden","Umbra","Wraith","Alp","Bruxa","Ekimmara","Gael","Garkain","Higher Vampire","Katakan"]
+    weather:
+      description: ["Fine","Sunny","Clear skies","Cloudy periods","Partly cloudy","Mostly cloudy","Overcast","Showers","Rain","Drizzle","Thunderstorms","Thunder falls","Snow","Sleet","Hail"]
+      temperature:
+        celsius: °C
+        fahrenheit: °F
+    lebowski:
+      actors: ['Jeff Bridges', 'John Goodman', 'Julianne Moore', 'Steve Buscemi', 'David Huddleston', 'Philip Seymour Hoffman', 'Tara Reid',
+                'Flea', 'Peter Stormare', 'John Turturro', 'Ben Gazzara']
+      characters: ['The Dude', 'Walter Sobchak', 'Maude Lebowski', 'Donny', 'The Big Lebowski', 'Brandt', 'Bunny Lebowski', 'Karl Hungus', 'Jesus Quintana',
+                    'Jackie Treehorn']
+      quotes: [
+        "He's a good man...and thorough.",
+        "Hey, I know that guy. He's a nihilist. Karl Hungus.",
+        "Mr. Treehorn treats objects like women, man.",
+        "Is this your homework, Larry?",
+        "Yeah, well, that's just, like, your opinion, man.",
+        "Mark it zero!",
+        "So then you have no frame of reference here Donny. You're like a child who wonders into the middle of a movie.",
+        "You want a toe? I can get you a toe, believe me. There are ways, Dude. You don't wanna know about it, believe me.",
+        "Hell, I can get you a toe by 3 o'clock this afternoon...with nail polish.",
+        "Calmer than you are.",
+        "I'm perfectly calm, Dude.",
+        "You are entering a world of pain.",
+        "This aggression will not stand, man.",
+        "Obviously, you're not a golfer",
+        "Mind if I do a J?",
+        "This is not 'Nam. This is bowling. There are rules.",
+        "Look, let me explain something to you. I'm not Mr. Lebowski. You're Mr. Lebowski. I'm the Dude.",
+        "I'm the dude, so that's what you call me. That or, uh His Dudeness, or uh Duder, or El Duderino, if you're not into the whole brevity thing.",
+        "This is a very complicated case Maude. You know, a lotta ins, a lotta outs, lotta what-have-yous.",
+        "Eight-year-olds, Dude.",
+        "Careful man, there's a beverage here!",
+        "The Dude abides.",
+        "That rug really tied the room together.",
+        "I mean, say what you want about the tenets of National Socialism, Dude, at least it's an ethos.",
+        "Forget it, Donny, you're out of your element!",
+        "I don't like your jerk-off name. I don't like your jerk-off face. And I don't like you...jerk-off.",
+        "Three thousand years of beautiful tradition, from Moses to Sandy Koufax.",
+        "I am the walrus",
+        "V.I. Lenin. Vladimir! Ilyich! Ulyanov!",
+        "Oh, the usual. I bowl. Drive around. The occasional acid flashback.",
+        "So what are you saying? When you get divorced you turn in your library card? You get a new license? You stop being Jewish?",
+        "You know, Dude, I myself dabbled in pacifism once. Not in 'Nam of course.",
+        "Stay away from my special lady friend, man.",
+        "I don't roll on Shabbos!"
+      ]

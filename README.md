@@ -7,7 +7,7 @@ Java Faker
 [![Dependency Status](https://www.versioneye.com/user/projects/572c2f11a0ca35004baf861a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/572c2f11a0ca35004baf861a)
 [![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
+This library is a port of Ruby's [faker](https://github.com/stympy/faker) gem (as well as Perl's Data::Faker library) that generates fake data.
 It's useful when you're developing a new project and need some pretty data for showcase.
 
 Usage
@@ -18,7 +18,7 @@ In pom.xml, add the following xml stanza between `<dependencies> ... </dependenc
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.14</version>
+    <version>0.15</version>
 </dependency>
 ```
 
@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.14'
+    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.15'
 }
 
 ```
@@ -91,6 +91,7 @@ Fakers
 * Internet
 * Job
 * LeagueOfLegends
+* Lebowski
 * LordOfTheRings
 * Lorem
 * Matz
@@ -113,6 +114,7 @@ Fakers
 * Team
 * TwinPeaks
 * University
+* Weather
 * Witcher
 * Yoda
 * Zelda
@@ -121,7 +123,7 @@ Usage with Locales
 -----
 
 ```java
-Faker faker = new Faker(new Locale("{YOUR_LOCALE}"));
+Faker faker = new Faker(new Locale("YOUR_LOCALE"));
 ```
 
 Supported Locales

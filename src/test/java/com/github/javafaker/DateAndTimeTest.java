@@ -63,7 +63,7 @@ public class DateAndTimeTest extends AbstractFakerTest {
     public void testBirthday() {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         long from = new GregorianCalendar(currentYear - 65, 0, 1).getTime().getTime();
-        long to = new GregorianCalendar(currentYear - 18, 12, 31).getTime().getTime();
+        long to = new GregorianCalendar(currentYear - 18, 11, 31).getTime().getTime();
 
         for (int i = 0; i < 1000; i++) {
             Date birthday = faker.date().birthday();
@@ -81,7 +81,7 @@ public class DateAndTimeTest extends AbstractFakerTest {
             int maxAge = faker.number().numberBetween(minAge, 100);
 
             long from = new GregorianCalendar(currentYear - maxAge, 0, 1).getTime().getTime();
-            long to = new GregorianCalendar(currentYear - minAge, 12, 31).getTime().getTime();
+            long to = new GregorianCalendar(currentYear - minAge, 11, 31).getTime().getTime();
 
             Date birthday = faker.date().birthday(minAge, maxAge);
             assertThat("birthday is after upper bound", birthday.getTime(), lessThan(to));
