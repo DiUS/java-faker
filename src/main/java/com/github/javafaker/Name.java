@@ -3,11 +3,11 @@ package com.github.javafaker;
 import org.apache.commons.lang3.StringUtils;
 
 public class Name {
-
+    
     private final Faker faker;
 
     /**
-     * Internal constructor, not to be used by clients.  Instances of {@link Name} should be accessed via
+     * Internal constructor, not to be used by clients.  Instances of {@link Name} should be accessed via 
      * {@link Faker#name()}.
      */
     protected Name(Faker faker) {
@@ -32,7 +32,7 @@ public class Name {
     /**
      * <p>
      *      A multipart name composed of an optional prefix, a given and family name,
-     *      another 'firstname' for the middle name and an optional suffix such as Jr.
+     *      another 'firstname' for the middle name and an optional suffix such as Jr. 
      *      Examples:
      *      <ul>
      *          <li>Mrs. Ella Geraldine Fitzgerald</li>
@@ -48,7 +48,7 @@ public class Name {
 
     /**
      * <p>Returns the same value as {@link #name()}</p>
-     * @see Name#name()
+     * @see Name#name() 
      */
     public String fullName() {
         return name();
@@ -100,8 +100,8 @@ public class Name {
      */
     public String title() {
         return StringUtils.join(new String[] {
-            faker.fakeValuesService().resolve("name.title.descriptor", this, faker),
-            faker.fakeValuesService().resolve("name.title.level", this, faker),
+            faker.fakeValuesService().resolve("name.title.descriptor", this, faker), 
+            faker.fakeValuesService().resolve("name.title.level", this, faker), 
             faker.fakeValuesService().resolve("name.title.job", this, faker) }, " ");
     }
 
@@ -116,7 +116,7 @@ public class Name {
      *     </ul>
      * </p>
      * @return a random two part user name.
-     * @see Name#firstName()
+     * @see Name#firstName() 
      * @see Name#lastName()
      */
     public String username() {
