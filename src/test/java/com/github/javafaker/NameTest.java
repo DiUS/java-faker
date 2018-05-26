@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
+
 
 public class NameTest  extends AbstractFakerTest{
 
@@ -51,4 +54,13 @@ public class NameTest  extends AbstractFakerTest{
     public void testUsername() {
         assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
     }
+
+    @Test
+    public void testUsernameWithSpaces() {
+        final Name name = spy(new Name(faker));
+        doReturn("Compound Name").when(name).firstName();
+        doReturn(name).when(faker).name();
+        assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+    }
+
 }
