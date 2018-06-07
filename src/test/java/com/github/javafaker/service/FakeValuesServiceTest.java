@@ -188,23 +188,44 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     public void testLocaleChain() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.SIMPLIFIED_CHINESE);
 
-        assertThat(chain, contains(Locale.SIMPLIFIED_CHINESE, Locale.CHINESE, Locale.ENGLISH));
+        assertThat(chain, hasItems(Locale.SIMPLIFIED_CHINESE, Locale.CHINESE, Locale.ENGLISH));
+    }
+
+    @Test
+    public void testLocaleChainPlugin() {
+        final List<Locale> chain = fakeValuesService.localeChain(Locale.SIMPLIFIED_CHINESE);
+
+        assertThat(chain, contains(Locale.SIMPLIFIED_CHINESE, Locale.CHINESE, Locale.ENGLISH, new Locale("plugin")));
     }
     
     @Test
     public void testLocaleChainEnglish() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.ENGLISH);
 
-        assertThat(chain, contains(Locale.ENGLISH));
+        assertThat(chain, hasItem(Locale.ENGLISH));
     }
-    
+
+    @Test
+    public void testLocaleChainEnglishPlugin() {
+        final List<Locale> chain = fakeValuesService.localeChain(Locale.ENGLISH);
+
+        assertThat(chain, contains(Locale.ENGLISH, new Locale("plugin")));
+    }
+
     @Test
     public void testLocaleChainLanguageOnly() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.CHINESE);
 
-        assertThat(chain, contains(Locale.CHINESE, Locale.ENGLISH));
+        assertThat(chain, hasItems(Locale.CHINESE, Locale.ENGLISH));
     }
-    
+
+    @Test
+    public void testLocaleChainLanguageOnlyPlugin() {
+        final List<Locale> chain = fakeValuesService.localeChain(Locale.CHINESE);
+
+        assertThat(chain, contains(Locale.CHINESE, Locale.ENGLISH, new Locale("plugin")));
+    }
+
     @Test
     public void expressionWithInvalidFakerObject() {
         expressionShouldFailWith("#{ObjectNotOnFaker.methodName}", 

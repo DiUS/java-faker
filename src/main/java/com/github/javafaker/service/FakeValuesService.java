@@ -21,9 +21,9 @@ public class FakeValuesService {
     private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*\\}");
 
     private final Logger log = Logger.getLogger("faker");
-    
+
     private final List<Map<String, Object>> fakeValuesMaps;
-    
+
     private final RandomService randomService;
 
     /**
@@ -61,7 +61,7 @@ public class FakeValuesService {
             if (!"".equals(l.getCountry())) {
                 filename.append("-").append(l.getCountry());
             }
-        
+
             final InputStream stream = findStream(filename.toString());
             if (stream != null) {
                 all.add(fakerFromStream(stream, filename.toString()));
@@ -103,27 +103,28 @@ public class FakeValuesService {
 
     /**
      * Convert the specified locale into a chain of locales used for message resolution. For example:
-     * 
+     *
      * {@link Locale#FRANCE} (fr_FR) -> [ fr_FR, fr, en ]
-     * 
+     *
      * @return a list of {@link Locale} instances
      */
     protected List<Locale> localeChain(Locale from) {
-        if (Locale.ENGLISH.equals(from)) {
-            return Collections.singletonList(Locale.ENGLISH);
-        }
-
-        final Locale normalized = normalizeLocale(from);
-
         final List<Locale> chain = new ArrayList<Locale>(3);
-        chain.add(normalized);
-        if (!"".equals(normalized.getCountry()) && !Locale.ENGLISH.getLanguage().equals(normalized.getLanguage())) {
-            chain.add(new Locale(normalized.getLanguage()));
+
+        if (!Locale.ENGLISH.equals(from)) {
+            final Locale normalized = normalizeLocale(from);
+
+            chain.add(normalized);
+            if (!"".equals(normalized.getCountry()) && !Locale.ENGLISH.getLanguage().equals(normalized.getLanguage())) {
+                chain.add(new Locale(normalized.getLanguage()));
+            }
         }
+
         chain.add(Locale.ENGLISH); // default
+        chain.add(new Locale("plugin")); // plugin
         return chain;
     }
-   
+
     /**
      * @return a proper {@link Locale} instance with language and country code set regardless of how
      *         it was instantiated.  new Locale("pt-br") will be normalized to a locale constructed
@@ -131,7 +132,7 @@ public class FakeValuesService {
      */
     private Locale normalizeLocale(Locale locale) {
         final String[] parts = locale.toString().split("[-\\_]");
-        
+
         if (parts.length == 1) {
             return new Locale(parts[0]);
         } else {
@@ -375,7 +376,7 @@ public class FakeValuesService {
             for (int i=2;i < matcher.groupCount()+1 && matcher.group(i) != null;i++) {
                 args.add(matcher.group(i));
             }
-            
+
             // resolve the expression and reprocess it to handle recursive templates
             String resolved = resolveExpression(directive, args, current, root);
             if (resolved == null) {
@@ -401,10 +402,10 @@ public class FakeValuesService {
     private String resolveExpression(String directive, List<String> args, Object current, Faker root) {
         // name.name (resolve locally)
         // Name.first_name (resolve to faker.name().firstName())
-        final String simpleDirective = (isDotDirective(directive) || current == null) 
-                ? directive 
+        final String simpleDirective = (isDotDirective(directive) || current == null)
+                ? directive
                 : classNameToYamlName(current) + "." + directive;
-        
+
         String resolved = null;
         // resolve method references on CURRENT object like #{number_between '1','10'} on Number or
         // #{ssn_valid} on IdNumber
@@ -428,7 +429,7 @@ public class FakeValuesService {
         if (resolved == null && isDotDirective(directive)) {
             resolved = resolveFakerObjectAndMethod(root, directive, args);
         }
-        
+
         // last ditch effort.  Due to Ruby's dynamic nature, something like 'Address.street_title' will resolve
         // because 'street_title' is a dynamic method on the Address object.  We can't do this in Java so we go 
         // thru the normal resolution above, but if we will can't resolve it, we once again do a 'safeFetch' as we
@@ -437,7 +438,7 @@ public class FakeValuesService {
         if (resolved == null && isDotDirective(directive)) {
             resolved = safeFetch(javaNameToYamlName(simpleDirective), null);
         }
-        
+
         return resolved;
     }
 
@@ -500,7 +501,7 @@ public class FakeValuesService {
             return null;
         }
     }
-    
+
     /**
      * Accepts a {@link Faker} instance and a name.firstName style 'key' which is resolved to the return value of:
      * {@link Faker#name()}'s {@link Name#firstName()} method.
@@ -508,7 +509,7 @@ public class FakeValuesService {
      */
     private String resolveFakerObjectAndMethod(Faker faker, String key, List<String> args) {
         final String[] classAndMethod = key.split("\\.", 2);
-        
+
         try {
             String fakerMethodName = classAndMethod[0].replaceAll("_", "");
             MethodAndCoercedArgs fakerAccessor = accessor(faker, fakerMethodName, Collections.<String>emptyList());
@@ -532,15 +533,15 @@ public class FakeValuesService {
         }
     }
 
-    
+
     /**
      * Find an accessor by name ignoring case.
      */
     private MethodAndCoercedArgs accessor(Object onObject, String name, List<String> args) {
         log.log(Level.FINE, "Find accessor named " + name + " on " + onObject.getClass().getSimpleName() + " with args " + args);
-        
+
         for (Method m : onObject.getClass().getMethods()) {
-            if (m.getName().equalsIgnoreCase(name) 
+            if (m.getName().equalsIgnoreCase(name)
                     && m.getParameterTypes().length == args.size()) {
                 final List<Object> coercedArguments = coerceArguments(m, args);
                 if (coercedArguments != null) {
@@ -578,7 +579,7 @@ public class FakeValuesService {
         }
         return coerced;
     }
-    
+
     private String string(Object obj) {
         return (obj == null) ? null : obj.toString();
     }
@@ -591,14 +592,14 @@ public class FakeValuesService {
     private class MethodAndCoercedArgs {
 
         private final Method method;
-        
+
         private final List<Object> coerced;
 
         private MethodAndCoercedArgs(Method m, List<Object> coerced) {
             this.method = requireNonNull(m, "method cannot be null");
             this.coerced = requireNonNull(coerced, "coerced arguments cannot be null");
         }
-        
+
         private Object invoke(Object on) throws InvocationTargetException, IllegalAccessException {
             return method.invoke(on, coerced.toArray());
         }
