@@ -104,6 +104,7 @@ Fakers
 * Pokemon
 * RickAndMorty
 * Robin
+* Rajinikanth
 * RockBand
 * Shakespeare
 * SlackEmoji
