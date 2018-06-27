@@ -31,6 +31,7 @@ public class Faker {
     private final Business business;
     private final Book book;
     private final ChuckNorris chuckNorris;
+    private final Rajinikanth rajinikanth;
     private final Color color;
     private final Commerce commerce;
     private final Currency currency;
@@ -113,6 +114,7 @@ public class Faker {
         this.book = new Book(this);
         this.business = new Business(this);
         this.chuckNorris = new ChuckNorris(this);
+        this.rajinikanth = new Rajinikanth(this);
         this.color = new Color(this);
         this.idNumber = new IdNumber(this);
         this.hacker = new Hacker(this);
@@ -343,6 +345,10 @@ public class Faker {
         return business;
     }
 
+    public Rajinikanth rajinikanth() {
+        return rajinikanth;
+    }
+
     public ChuckNorris chuckNorris() {
         return chuckNorris;
     }
@@ -565,4 +571,5 @@ public class Faker {
     public String expression(String expression) {
         return this.fakeValuesService.expression(expression, this);
     }
+
 }
