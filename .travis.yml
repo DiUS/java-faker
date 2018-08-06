@@ -1,14 +1,14 @@
 language: java
-dist: precise
+dist: trusty
 jdk:
 - oraclejdk7
 - oraclejdk8
 - openjdk7
-script: "mvn -Dhttps.protocols=TLSv1.2 verify failsafe:integration-test failsafe:verify"
+script: "mvn verify failsafe:integration-test failsafe:verify"
 branches:
   except:
   - travis
 notifications:
   email: false
 after_success:
-- mvn -Dhttps.protocols=TLSv1.2 clean cobertura:cobertura coveralls:cobertura
+- mvn clean cobertura:cobertura coveralls:cobertura
