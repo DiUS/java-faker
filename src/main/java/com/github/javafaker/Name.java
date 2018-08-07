@@ -120,10 +120,13 @@ public class Name {
      * @see Name#lastName()
      */
     public String username() {
-        return StringUtils.join(new String[]{
+
+        String username = StringUtils.join(new String[]{
                 firstName().replaceAll("'", "").toLowerCase(),
                 ".",
                 lastName().replaceAll("'", "").toLowerCase()}
         );
+
+        return StringUtils.deleteWhitespace(username);
     }
 }
