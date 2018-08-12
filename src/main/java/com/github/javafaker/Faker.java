@@ -45,6 +45,7 @@ public class Faker {
     private final GameOfThrones gameOfThrones;
     private final DateAndTime dateAndTime;
     private final Demographic demographic;
+    private final Dog dog;
     private final Educator educator;
     private final Shakespeare shakespeare;
     private final SlackEmoji slackEmoji;
@@ -128,6 +129,7 @@ public class Faker {
         this.gameOfThrones = new GameOfThrones(this);
         this.dateAndTime = new DateAndTime(this);
         this.demographic = new Demographic(this);
+        this.dog = new Dog(this);
         this.educator = new Educator(this);
         this.shakespeare = new Shakespeare(this);
         this.slackEmoji = new SlackEmoji(this);
@@ -401,6 +403,10 @@ public class Faker {
 
     public Demographic demographic() {
         return demographic;
+    }
+
+    public Dog dog() {
+        return dog;
     }
 
     public Educator educator() {
