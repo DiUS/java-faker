@@ -72,6 +72,7 @@ Fakers
 * Crypto
 * DateAndTime
 * Demographic
+* Dog
 * DragonBall
 * Educator
 * Esports
