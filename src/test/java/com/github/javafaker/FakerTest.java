@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
 import org.junit.Test;
 
 import java.util.Locale;
@@ -122,6 +123,7 @@ public class FakerTest extends AbstractFakerTest {
     }
 
     @Test
+    @Repeat(times = 100)
     public void expression() {
         assertThat(faker.expression("#{regexify '(a|b){2,3}'}"), matchesRegularExpression("(a|b){2,3}"));
         assertThat(faker.expression("#{regexify '\\.\\*\\?\\+'}"), matchesRegularExpression("\\.\\*\\?\\+"));
