@@ -14,28 +14,28 @@ public class MedicalTest extends AbstractFakerTest {
 
     @Test
     public void testDiseaseName() {
-        assertThat(faker.medical().diseaseName(), matchesRegularExpression("([\\w']+\\.?( )?){2,4}"));
+        assertThat(faker.medical().diseaseName(), matchesRegularExpression("([\\w']+\\.?( )?){2,8}"));
     }
 
     @Test
     public void testHospitalName() {
-        assertThat(faker.medical().hospitalName(), matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,8}"));
+        assertThat(faker.medical().hospitalName(), matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,10}"));
     }
 
     @Test
     public void testSymptom() {
-        assertThat(faker.medical().symptoms(), matchesRegularExpression("([\\w']+\\.?.\\(?[\\w']\\)?( )?){2,4}"));
+        assertThat(faker.medical().symptoms(), matchesRegularExpression("([\\w']+\\.?.\\(?[\\w']\\)?( )?){2,5}"));
     }
 
 
     @Test
     public void testSymptomStatic() {
-        assertThat("Infertility (Female)", matchesRegularExpression("([\\w']+\\.?.\\(?[\\w']\\)?( )?){2,4}"));
+        assertThat("Infertility (Female)", matchesRegularExpression("([\\w']+\\.?.\\(?[\\w']\\)?( )?){2,15}"));
     }
 
     @Test
     public void testHospitalStatic() {
-        assertThat("LSU BOGALUSA MEDICAL CENTER (OUTPATIENT CAMPUS)", matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,4}"));
+        assertThat("LSU BOGALUSA MEDICAL CENTER (OUTPATIENT CAMPUS)", matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,10}"));
     }
 
 }
