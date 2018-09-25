@@ -35,7 +35,7 @@ public class MedicalTest extends AbstractFakerTest {
 
     @Test
     public void testHospitalStatic() {
-        assertThat("ST VINCENT SALEM HOSPITAL INC", matchesRegularExpression("([\\w']+\\.?.\\(?[\\w']\\)?( )?){2,5}"));
+        assertThat("IREDELL MEMORIAL HOSPITAL, INCORPORATED", matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,4}"));
     }
 
 }
