@@ -19,7 +19,7 @@ public class MedicalTest extends AbstractFakerTest {
 
     @Test
     public void testHospitalName() {
-        assertThat(faker.medical().hospitalName(), matchesRegularExpression("([\\w']+\\.?( )?){2,8}"));
+        assertThat(faker.medical().hospitalName(), matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,8}"));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class MedicalTest extends AbstractFakerTest {
 
     @Test
     public void testHospitalStatic() {
-        assertThat("IREDELL MEMORIAL HOSPITAL, INCORPORATED", matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,4}"));
+        assertThat("LSU BOGALUSA MEDICAL CENTER (OUTPATIENT CAMPUS)", matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,4}"));
     }
 
 }
