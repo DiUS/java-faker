@@ -28,14 +28,4 @@ public class MedicalTest extends AbstractFakerTest {
     }
 
 
-    @Test
-    public void testSymptomStatic() {
-        assertThat("Infertility (Female)", matchesRegularExpression("([\\w']+\\.?.\\(?[\\w']\\)?( )?){2,15}"));
-    }
-
-    @Test
-    public void testHospitalStatic() {
-        assertThat("LSU BOGALUSA MEDICAL CENTER (OUTPATIENT CAMPUS)", matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,10}"));
-    }
-
 }
