@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.apache.commons.lang3.StringUtils.join;
+import static org.apache.commons.lang3.StringUtils.stripAccents;
 
 public class Internet {
     private final Faker faker;
@@ -22,9 +23,7 @@ public class Internet {
     }
 
     public String emailAddress(String localPart) {
-        return join(localPart,
-                "@",
-                FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker)));
+        return emailAddress(localPart, FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker)));
     }
 
     public String safeEmailAddress() {
@@ -32,9 +31,11 @@ public class Internet {
     }
 
     public String safeEmailAddress(String localPart) {
-        return join(localPart, 
-                "@",
-                FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.safe_email", this, faker)));
+        return emailAddress(localPart, FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.safe_email", this, faker)));
+    }
+
+    private String emailAddress(String localPart, String domain) {
+        return join(stripAccents(localPart), "@", domain);
     }
 
     public String domainName() {

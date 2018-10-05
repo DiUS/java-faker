@@ -70,6 +70,18 @@ public class InternetTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testEmailAddressDoesNotIncludeAccentsInTheLocalPart() {
+        String emailAddress = faker.internet().emailAddress("áéíóú");
+        assertThat(emailAddress, startsWith("aeiou@"));
+    }
+
+    @Test
+    public void testSafeEmailAddressDoesNotIncludeAccentsInTheLocalPart() {
+        String emailAddress = faker.internet().safeEmailAddress("áéíóú");
+        assertThat(emailAddress, startsWith("aeiou@"));
+    }
+
+    @Test
     public void testUrl() {
         assertThat(faker.internet().url(), matchesRegularExpression("www\\.(\\w|-)+\\.\\w+"));
     }
