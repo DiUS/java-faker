@@ -1,9 +1,9 @@
 package com.github.javafaker;
 
+import org.junit.Test;
+
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertThat;
-
-import org.junit.Test;
 
 public class MusicTest extends AbstractFakerTest {
 
@@ -20,5 +20,10 @@ public class MusicTest extends AbstractFakerTest {
     @Test
     public void chord() {
         assertThat(faker.music().chord(), matchesRegularExpression("([A-Z])+(b|#){0,1}+(-?[a-zA-Z0-9]{0,4})"));
+    }
+
+    @Test
+    public void genre() {
+        assertThat(faker.music().genre(), matchesRegularExpression("\\w+ ?\\w+"));
     }
 }
