@@ -45,6 +45,15 @@ public class NameTest  extends AbstractFakerTest {
     }
 
     @Test
+    public void testLastNameLength() {
+        for (int i = 4; i < 14; i++) {
+            String lastName = faker.name().lastName(i);
+            System.out.println("Last Name: \"" + lastName + "\" Length: " + lastName.length());
+            assertThat(lastName, matchesRegularExpression("[A-Za-z']{" + i +"}"));
+        }
+    }
+    
+    @Test
     public void testPrefix() {
         assertThat(faker.name().prefix(), matchesRegularExpression("\\w+\\.?"));
     }

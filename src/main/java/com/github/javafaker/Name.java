@@ -1,11 +1,6 @@
 package com.github.javafaker;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
-
-import com.github.javafaker.service.RandomService;
 
 public class Name {
     
@@ -67,17 +62,8 @@ public class Name {
         return faker.fakeValuesService().resolve("name.first_name", this, faker);
     }
     
-    @SuppressWarnings("unchecked")
 	public String firstName(int length) {
-    	Object o = faker.fakeValuesService().fetchObject("name.first_name");
-    	List<String> values = (List<String>) o;
-    	List<String> subset = new ArrayList<String>();
-    	for (int i = 0; i < values.size(); i++) {
-    		if (values.get(i).length() == length)
-    			subset.add(values.get(i));
-    	}
-    	if (subset.size() == 0) return null;
-    	return subset.get((new RandomService()).nextInt(subset.size()));
+        return faker.fakeValuesService().resolve("name.first_name", this, faker, length);
     }
 
     /**
@@ -88,6 +74,10 @@ public class Name {
         return faker.fakeValuesService().resolve("name.last_name", this, faker);
     }
 
+    public String lastName(int length) {
+        return faker.fakeValuesService().resolve("name.last_name", this, faker, length);
+    }
+    
     /**
      * <p>Returns a name prefix such as Mr., Mrs., Ms., Miss, or Dr.</p>
      * @return a name prefix such as Mr., Mrs., Ms., Miss, or Dr.
