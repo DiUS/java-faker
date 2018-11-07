@@ -34,12 +34,10 @@ public class CountOfCharactersMatcher extends TypeSafeMatcher<String> {
     return count;
   }
 
-  @Override
   public void describeTo(Description description) {
     description.appendText("count of " + character + " ").appendDescriptionOf(matcher);
   }
 
-  @Override
   protected void describeMismatchSafely(String item, Description mismatchDescription) {
     mismatchDescription.appendText("count of " + character + " ");
     matcher.describeMismatch(count(item), mismatchDescription);

@@ -46,7 +46,6 @@ public class FakeValuesService {
      * @param locale
      * @param randomService
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public FakeValuesService(Locale locale, RandomService randomService) {
         if (locale == null) {
             throw new IllegalArgumentException("locale is required");
@@ -55,7 +54,7 @@ public class FakeValuesService {
         locale = normalizeLocale(locale);
 
         final List<Locale> locales = localeChain(locale);
-        final List<Map<String,Object>> all = new ArrayList(locales.size());
+        final List<Map<String,Object>> all = new ArrayList<Map<String, Object>>(locales.size());
         for (final Locale l : locales) {
             final StringBuilder filename = new StringBuilder(language(l));
             if (!"".equals(l.getCountry())) {
@@ -95,10 +94,11 @@ public class FakeValuesService {
     /**
      * @return the embedded faker: clause from the loaded Yml by the localeName, so .yml > en-us: > faker: 
      */
-    protected Map fakerFromStream(InputStream stream, String localeName) {
-        final Map valuesMap = new Yaml().loadAs(stream, Map.class);
-        final Map localeBased = (Map) valuesMap.get(localeName);
-        return (Map) localeBased.get("faker");
+    @SuppressWarnings("unchecked")
+	protected Map<String, Object> fakerFromStream(InputStream stream, String localeName) {
+        final Map<String, Object> valuesMap = new Yaml().loadAs(stream, Map.class);
+        final Map<String, Object> localeBased = ((Map<String, Object>)valuesMap.get(localeName));
+        return (Map<String, Object>) localeBased.get("faker");
     }
 
     /**
@@ -154,8 +154,9 @@ public class FakeValuesService {
      * @param key
      * @return
      */
-    public Object fetch(String key) {
-        List<Object> valuesArray = (List) fetchObject(key);
+    @SuppressWarnings("unchecked")
+	public Object fetch(String key) {
+        List<Object> valuesArray = (List<Object>)fetchObject(key);
         return valuesArray == null ? null : valuesArray.get(randomService.nextInt(valuesArray.size()));
     }
 

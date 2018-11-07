@@ -27,7 +27,6 @@ public class RepeatRule implements TestRule {
     }
   }
 
-  @Override
   public Statement apply( Statement statement, Description description ) {
     Statement result = statement;
     Repeat repeat = description.getAnnotation( Repeat.class );
