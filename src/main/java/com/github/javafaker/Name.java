@@ -69,7 +69,7 @@ public class Name {
     
     @SuppressWarnings("unchecked")
 	public String firstName(int length) {
-    	Object o = faker.fakeValuesService().safeFetch("name.first_name", null);
+    	Object o = faker.fakeValuesService().fetchObject("name.first_name");
     	List<String> values = (List<String>) o;
     	List<String> subset = new ArrayList<String>();
     	for (int i = 0; i < values.size(); i++) {

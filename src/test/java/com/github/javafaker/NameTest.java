@@ -8,7 +8,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
 
-public class NameTest  extends AbstractFakerTest{
+public class NameTest  extends AbstractFakerTest {
 
     @Test
     public void testName() {
@@ -30,6 +30,15 @@ public class NameTest  extends AbstractFakerTest{
         assertThat(faker.name().firstName(), matchesRegularExpression("\\w+"));
     }
 
+    @Test
+    public void testFirstNameLength() {
+        for (int i = 2; i < 12; i++) {
+            String firstName = faker.name().firstName(i);
+            System.out.println("First Name: \"" + firstName + "\" Length: " + firstName.length());
+            assertThat(firstName, matchesRegularExpression("\\w{" + i + "}"));
+        }
+    }
+    
     @Test
     public void testLastName() {
         assertThat(faker.name().lastName(), matchesRegularExpression("[A-Za-z']+"));
