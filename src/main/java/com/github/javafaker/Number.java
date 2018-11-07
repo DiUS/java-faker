@@ -1,6 +1,7 @@
 package com.github.javafaker;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Number {
     private final Faker faker;
@@ -27,7 +28,7 @@ public class Number {
      * @see Number#numberBetween(long, long) 
      */
     public int numberBetween(int min, int max) {
-        return decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_DOWN).intValue();
+        return decimalBetween(min,max).setScale(0, RoundingMode.HALF_EVEN).intValue();
     }
 
     /**
@@ -76,7 +77,7 @@ public class Number {
      */
     public double randomDouble(int maxNumberOfDecimals, long min, long max) {
         return decimalBetween(min,max)
-                .setScale(maxNumberOfDecimals, BigDecimal.ROUND_HALF_DOWN)
+                .setScale(maxNumberOfDecimals, RoundingMode.HALF_EVEN)
                 .doubleValue();
     }
 

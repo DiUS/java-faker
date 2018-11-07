@@ -10,14 +10,13 @@ public class IsANumber extends TypeSafeMatcher<String> {
     @Override
     protected boolean matchesSafely(String item) {
         try {
-            new Double(item);
+            Double.parseDouble(item);
         } catch (NumberFormatException nfe) {
             return false;
         }
         return true;
     }
 
-    @Override
     public void describeTo(Description description) {
         description.appendText("is a number");
     }

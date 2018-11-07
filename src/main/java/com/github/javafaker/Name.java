@@ -1,6 +1,11 @@
 package com.github.javafaker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
+
+import com.github.javafaker.service.RandomService;
 
 public class Name {
     
@@ -60,6 +65,19 @@ public class Name {
      */
     public String firstName() {
         return faker.fakeValuesService().resolve("name.first_name", this, faker);
+    }
+    
+    @SuppressWarnings("unchecked")
+	public String firstName(int length) {
+    	Object o = faker.fakeValuesService().safeFetch("name.first_name", null);
+    	List<String> values = (List<String>) o;
+    	List<String> subset = new ArrayList<String>();
+    	for (int i = 0; i < values.size(); i++) {
+    		if (values.get(i).length() == length)
+    			subset.add(values.get(i));
+    	}
+    	if (subset.size() == 0) return null;
+    	return subset.get((new RandomService()).nextInt(subset.size()));
     }
 
     /**

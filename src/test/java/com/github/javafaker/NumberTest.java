@@ -166,13 +166,11 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     public void randomDoubleRandomizationQuality() {
         Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = new Function<Pair<Long, Long>, Double>() {
-            @Override
             public Double apply(Pair<Long, Long> minMax) {
                 final int min = minMax.getLeft().intValue(), max = minMax.getRight().intValue();
                 long numbersToGet = calculateNumbersToGet(min, max);
 
                 return uniquePercentageOfResults(numbersToGet, new Callable<Double>() {
-                    @Override
                     public Double call() throws Exception {
                         return faker.number().randomDouble(0, min, max);
                     }
@@ -203,14 +201,12 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     public void numberBetweenIntIntRandomizationQuality() {
         Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = new Function<Pair<Long, Long>, Double>() {
-            @Override
             public Double apply(Pair<Long, Long> minMax) {
                 final int min = minMax.getLeft().intValue();
                 final int max = minMax.getRight().intValue();
                 long numbersToGet = calculateNumbersToGet(min, max);
 
                 return uniquePercentageOfResults(numbersToGet, new Callable<Integer>() {
-                    @Override
                     public Integer call() throws Exception {
                         return faker.number().numberBetween(min, max);
                     }
@@ -241,13 +237,11 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     public void numberBetweenLongLongRandomizationQuality() {
         Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = new Function<Pair<Long, Long>, Double>() {
-            @Override
             public Double apply(Pair<Long, Long> minMax) {
                 final long min = minMax.getLeft(), max = minMax.getRight();
                 long numbersToGet = calculateNumbersToGet(min, max);
 
                 return uniquePercentageOfResults(numbersToGet, new Callable<Long>() {
-                    @Override
                     public Long call() throws Exception {
                         return faker.number().numberBetween(min, max);
                     }

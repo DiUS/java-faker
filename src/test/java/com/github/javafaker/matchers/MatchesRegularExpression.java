@@ -18,7 +18,6 @@ public class MatchesRegularExpression extends TypeSafeMatcher<String> {
         return item.matches(regularExpression);
     }
 
-    @Override
     public void describeTo(Description description) {
         description.appendText("to match the regular expression " + regularExpression);
     }
