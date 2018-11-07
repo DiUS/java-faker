@@ -62,6 +62,11 @@ public class Name {
         return faker.fakeValuesService().resolve("name.first_name", this, faker);
     }
     
+    /**
+     * <p>REturns a random 'given' name of given length</p>
+     * @param length 
+     * @return a 'given' name of a certain length
+     */
 	public String firstName(int length) {
         return faker.fakeValuesService().resolve("name.first_name", this, faker, length);
     }
