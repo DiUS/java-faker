@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 import com.mifmif.common.regex.Generex;
 import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
@@ -214,7 +215,7 @@ public class FakeValuesService {
             }
             List<String> subset = new ArrayList<String>();
             for (int i = 0; i < values.size(); i++)
-                if (values.get(i).length() == size)
+                if (values.get(i).length() == size && StringUtils.isNoneEmpty(values.get(i)))
                     subset.add(values.get(i));
             if (subset.size() == 0) {
                 return defaultIfNull;
@@ -365,7 +366,7 @@ public class FakeValuesService {
     public String resolve(String key, Object current, Faker root, int size) {
         final String expression = safeFetch(key, null, size);
         if (expression == null) {
-            throw new RuntimeException(key + "with size " + size + " resulted in null expression");
+            throw new RuntimeException(key + " with size " + size + " resulted in null expression");
         }
 
         return resolveExpression(expression, current, root);
