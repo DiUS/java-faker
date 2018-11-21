@@ -5,4 +5,5 @@ target
 .idea/
 *.iml
 .java-version
+bin/
 /dependency-reduced-pom.xml
