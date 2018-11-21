@@ -1,15 +1,16 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.RepeatRule;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
+import com.github.javafaker.repeating.RepeatRule;
 
 public class AbstractFakerTest {
 

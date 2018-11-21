@@ -1,10 +1,10 @@
 package com.github.javafaker;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.text.DecimalFormat;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class Commerce {
     private final Faker faker;
