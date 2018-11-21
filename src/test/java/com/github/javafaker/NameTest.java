@@ -41,7 +41,7 @@ public class NameTest  extends AbstractFakerTest {
     public void testFirstNameGivenLength() {
         for (int i = 2; i < 12; i++) {
             String firstName = faker.name().firstName(7);
-            System.out.println("First Name: \"" + firstName + "\".");
+            System.out.println("First Name: \"" + firstName + "\" Length: [" + firstName.length() + "].");
             assertThat(firstName, matchesRegularExpression("\\w{7}"));
         }
     }

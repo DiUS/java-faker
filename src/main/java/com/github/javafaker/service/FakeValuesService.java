@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -141,12 +143,12 @@ public class FakeValuesService {
     }
 
     private InputStream findStream(String filename) {
-        String filenameWithExtension =  "/" + filename + ".yml";
-        InputStream streamOnClass = getClass().getResourceAsStream(filenameWithExtension);
+    	String filenameWithExtension =  "/" + filename + ".yml";
+        InputStream streamOnClass = this.getClass().getResourceAsStream(filenameWithExtension);
         if (streamOnClass != null) {
             return streamOnClass;
         }
-        return getClass().getClassLoader().getResourceAsStream(filenameWithExtension);
+        return ClassLoader.getSystemResourceAsStream(filenameWithExtension);
     }
 
     /**
