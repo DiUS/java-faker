@@ -1,2 +1,6 @@
 Manifest-Version: 1.0
-
+Name: javaFaker
+Built-Originally-By: ricky
+Updated-By: sachsgit
+Build-Jdk: 11.0.1
+Created-By: Apache Maven 3.5.4
