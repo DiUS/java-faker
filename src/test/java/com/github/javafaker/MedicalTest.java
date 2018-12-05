@@ -1,5 +1,8 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
+import org.junit.Test;
+
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -19,7 +22,7 @@ public class MedicalTest extends AbstractFakerTest {
 
     @Test
     public void testHospitalName() {
-        assertThat(faker.medical().hospitalName(), matchesRegularExpression("([\\w',]+\\.?.\\(?[\\w']\\)?( )?){2,10}"));
+        assertThat(faker.medical().hospitalName(), matchesRegularExpression("[A-Z ,./&'()]+"));
     }
 
     @Test

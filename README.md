@@ -182,4 +182,4 @@ TODO
 
 LICENSE
 -------
-Copyright (c) 2014 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.
+Copyright (c) 2018 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.
