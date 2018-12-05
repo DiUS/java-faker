@@ -1,12 +1,12 @@
 package com.github.javafaker.service;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.core.CombinableMatcher.both;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 import java.util.Collection;

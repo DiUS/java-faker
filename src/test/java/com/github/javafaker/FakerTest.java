@@ -1,12 +1,12 @@
 package com.github.javafaker;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Locale;
 import java.util.Random;
@@ -150,7 +150,7 @@ public class FakerTest extends AbstractFakerTest {
 
     @Test
     public void resolveShouldReturnValueThatExists() {
-        assertThat(faker.resolve("address.city_prefix"), not(isEmptyString()));
+        assertThat(faker.resolve("address.city_prefix"), not(emptyString()));
     }
 
     @Test(expected = RuntimeException.class)

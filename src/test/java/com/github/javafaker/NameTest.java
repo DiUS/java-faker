@@ -2,16 +2,14 @@ package com.github.javafaker;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
-import com.github.javafaker.repeating.Repeat;
-import org.junit.Test;
-
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
 import org.junit.Test;
+
+import com.github.javafaker.repeating.Repeat;
 
 
 public class NameTest  extends AbstractFakerTest {

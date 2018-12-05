@@ -1,12 +1,12 @@
 package com.github.javafaker;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.math.BigDecimal;
 import java.util.List;

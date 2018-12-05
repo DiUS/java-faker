@@ -1,13 +1,5 @@
 package com.github.javafaker.service;
 
-import com.github.javafaker.Address;
-import com.github.javafaker.Faker;
-import com.github.javafaker.Name;
-import com.mifmif.common.regex.Generex;
-import org.apache.commons.lang3.ClassUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.yaml.snakeyaml.Yaml;
-
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
