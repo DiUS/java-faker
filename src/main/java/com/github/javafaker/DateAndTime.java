@@ -53,7 +53,7 @@ public class DateAndTime {
     public Date future(int atMost, int minimum, TimeUnit unit) {
         Date now = new Date();
         Date minimumDate = new Date(now.getTime() + unit.toMillis(minimum));
-        return future(atMost, unit, minimumDate);
+        return future(atMost - minimum, unit, minimumDate);
     }
 
     /**
@@ -105,7 +105,7 @@ public class DateAndTime {
     public Date past(int atMost, int minimum, TimeUnit unit) {
         Date now = new Date();
         Date minimumDate = new Date(now.getTime() - unit.toMillis(minimum));
-        return past(atMost, unit, minimumDate);
+        return past(atMost - minimum, unit, minimumDate);
     }
 
     /**
