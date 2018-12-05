@@ -252,6 +252,21 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
             assertThat(re.getMessage(), is(errorMessage));
         }
     }
+    @Test
+    public void resolveUsingTheSameKeyTwice() {
+        // #{hello} -> DummyService.hello
+
+        // given
+        final DummyService dummy = mock(DummyService.class);
+        when(dummy.hello()).thenReturn("1").thenReturn("2");
+
+        // when
+        final String actual = fakeValuesService.resolve("property.sameResolution", dummy, faker);
+
+        // then
+        assertThat(actual, is("1 2"));
+        verifyZeroInteractions(faker);
+    }
 
     public static class DummyService {
         public String firstName() {
