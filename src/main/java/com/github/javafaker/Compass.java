@@ -10,4 +10,9 @@ public class Compass {
     public String directions() {
         return faker.expression("#{compass.direction}");
     }
+
+    public String physicalDescription() {
+    // 2 miles east of the Washington and Jefferson intersection
+    }
+
 }
