@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
@@ -15,7 +16,7 @@ public class OverwatchTest extends AbstractFakerTest {
 
     @Test
     public void location() {
-        assertThat(faker.overwatch().location(), matchesRegularExpression("^(\\w+'?:?\\s?)+$"));
+        assertThat(faker.overwatch().location(), matchesRegularExpression("^(.+'?:?\\s?)+$"));
     }
 
     @Test
