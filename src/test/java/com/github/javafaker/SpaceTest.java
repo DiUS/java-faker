@@ -59,7 +59,7 @@ public class SpaceTest extends AbstractFakerTest {
 
     @Test
     public void company() {
-        assertThat(faker.space().company(), matchesRegularExpression("(\\w+ ?){1,4}"));
+        assertThat(faker.space().company(), matchesRegularExpression("((\\w|')+ ?){2,4}"));
     }
 
     @Test
