@@ -16,7 +16,7 @@ public class Options {
      * @param <E>   The type of the elements in the varargs.
      * @return A randomly selected element from the varargs.
      */
-    public <E> E option(@SuppressWarnings("unchecked") E... options) {
+    public <E> E option(E... options) {
         return options[faker.random().nextInt(options.length)];
     }
 

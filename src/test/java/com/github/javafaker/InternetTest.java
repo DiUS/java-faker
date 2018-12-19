@@ -3,17 +3,17 @@ package com.github.javafaker;
 import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static java.lang.Integer.parseInt;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.both;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.startsWith;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 import java.util.Locale;
@@ -272,9 +272,9 @@ public class InternetTest extends AbstractFakerTest {
         // in this case, we're just making sure Farsi doesn't blow up.
         // there have been issues with Farsi not being produced.
         final Faker f = new Faker(new Locale("fa"));
-        assertThat(f.internet().domainName(), not(isEmptyOrNullString()));
-        assertThat(f.internet().emailAddress(), not(isEmptyOrNullString()));
-        assertThat(f.internet().safeEmailAddress(), not(isEmptyOrNullString()));
-        assertThat(f.internet().url(), not(isEmptyOrNullString()));
+        assertThat(f.internet().domainName(), not(emptyOrNullString()));
+        assertThat(f.internet().emailAddress(), not(emptyOrNullString()));
+        assertThat(f.internet().safeEmailAddress(), not(emptyOrNullString()));
+        assertThat(f.internet().url(), not(emptyOrNullString()));
     }
 }

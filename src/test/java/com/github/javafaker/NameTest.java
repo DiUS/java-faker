@@ -2,16 +2,14 @@ package com.github.javafaker;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
-import com.github.javafaker.repeating.Repeat;
-import org.junit.Test;
-
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
 import org.junit.Test;
+
+import com.github.javafaker.repeating.Repeat;
 
 
 public class NameTest  extends AbstractFakerTest {
@@ -49,15 +47,6 @@ public class NameTest  extends AbstractFakerTest {
     public void testFirstNameLength() {
         for (int i = 2; i < 12; i++) {
             assertThat(faker.name().firstName(i), matchesRegularExpression("\\w{" + i + "}"));
-        }
-    }
-    
-    @Test
-    public void testFirstNameGivenLength() {
-        for (int i = 2; i < 12; i++) {
-            String firstName = faker.name().firstName(7);
-            System.out.println("First Name: \"" + firstName + "\" Length: [" + firstName.length() + "].");
-            assertThat(firstName, matchesRegularExpression("\\w{7}"));
         }
     }
     
@@ -101,4 +90,11 @@ public class NameTest  extends AbstractFakerTest {
         assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
     }
 
+    @Test
+    public void testUsernameAlt() {
+        for (int i = 4; i < 12; i++) {
+            assertThat(faker.name().username(i), 
+                matchesRegularExpression("[a-z][a-z]\\d{2," + (i - 2) + "}"));
+        }
+    }
 }

@@ -2,8 +2,8 @@ package com.github.javafaker;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.emptyOrNullString;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ public class WeatherTest extends AbstractFakerTest {
 
     @Test
     public void description() {
-        assertThat(faker.weather().description(), not(isEmptyOrNullString()));
+        assertThat(faker.weather().description(), not(emptyOrNullString()));
     }
 
     @Test

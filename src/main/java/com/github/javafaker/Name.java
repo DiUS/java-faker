@@ -2,9 +2,12 @@ package com.github.javafaker;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.github.javafaker.service.RandomService;
+
 public class Name {
     
     private final Faker faker;
+    private final RandomService random = new RandomService();
 
     /**
      * Internal constructor, not to be used by clients.  Instances of {@link Name} should be accessed via 
@@ -141,5 +144,33 @@ public class Name {
         );
 
         return StringUtils.deleteWhitespace(username);
+    }
+    
+    /**
+     * <p>
+     *     A lowercase username composed of the first_name initial and last_name initial followed by
+     *     some random numbers. 
+     *     
+     *     Some examples are:
+     *     <ul>
+     *         <li>(template) {@link #firstName()[0]}{@link #lastName()[0]}{@link RandomNumberString</li>
+     *         <li>jj01611</li>
+     *         <li>jl94416</li>
+     *         <li>tj82614</li>
+     *     </ul>
+     * </p>
+     * @return a random two part user name.
+     * @see Name#firstName() 
+     * @see Name#lastName()
+     */
+    public String username(int length) {
+        int rLength = random.nextInt(2, length);
+        String numString = random.randomNumbersString(rLength);
+        if (numString.length() > (length - 2)) {
+            numString = numString.substring(0, length - 2);
+        }
+        numString = StringUtils.leftPad(numString, length - 2, '0');
+        String username = firstName().substring(0, 1) + lastName().substring(0, 1) + numString;
+        return username.toLowerCase();
     }
 }
