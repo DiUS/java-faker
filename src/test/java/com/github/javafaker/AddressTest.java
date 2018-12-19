@@ -17,7 +17,8 @@ import java.util.Random;
 import org.junit.Test;
 
 public class AddressTest extends AbstractFakerTest {
-
+    private final static String EXPRESSION = "(north|east|west|south)+\\s{0,1}"
+        + "((by|-)\\s{0,1}(north|east|west|south)+){0,1}";
     private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
 
     @Test
@@ -111,4 +112,12 @@ public class AddressTest extends AbstractFakerTest {
         faker = new Faker(new Locale("en-US"));
         assertThat(faker.address().zipCodeByState(faker.address().stateAbbr()), matchesRegularExpression("[0-9]{5}"));
     }
+    
+    @Test
+    public void testPhysicalDescription() {
+        assertThat(faker.address().physicalDescription(), 
+            matchesRegularExpression("[1-5] miles " + EXPRESSION 
+                + " of the \\w+ \\w+ and \\w+ \\w+ intersection"));
+    }
+    
 }

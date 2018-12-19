@@ -11,8 +11,12 @@ public class Compass {
         return faker.expression("#{compass.direction}");
     }
 
-    public String physicalDescription() {
-    // 2 miles east of the Washington and Jefferson intersection
+    public String abbreviation() {
+        return faker.expression("#{compass.abbreviation}");
     }
-
+    
+    public String azimuth() {
+        return faker.expression("#{compass.azimuth}");
+    }
+    
 }
