@@ -16,7 +16,7 @@ public class FriendsTest extends AbstractFakerTest {
 
     @Test
     public void location() {
-        assertThat(faker.friends().location(), matchesRegularExpression("[\\w., ]+"));
+        assertThat(faker.friends().location(), matchesRegularExpression("[\\w.', ]+"));
     }
 
     @Test

@@ -8,10 +8,12 @@ import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,19 +59,36 @@ public class FakeValuesService {
 
         final List<Locale> locales = localeChain(locale);
         final List<Map<String,Object>> all = new ArrayList(locales.size());
+        final Set<Locale> loadedLocales = new HashSet<Locale>();
+
         for (final Locale l : locales) {
             final StringBuilder filename = new StringBuilder(language(l));
             if (!"".equals(l.getCountry())) {
                 filename.append("-").append(l.getCountry());
             }
-        
+
+
+            // list the files on the classpath... so if we pass in "en"
+            // it will look for a folder "en" and list all the files underneath it
+            File[] files = listFilesInDirectoryOnClasspath(filename.toString());
+            for (File resourceFolderFile : files) {
+                String fileToLoad = filename + "/"  + resourceFolderFile.getName();
+                final InputStream stream = getClass().getClassLoader().getResourceAsStream(fileToLoad);
+                if (stream != null) {
+                    Map map = fakerFromStream(stream, filename.toString());
+                    all.add(map);
+                    loadedLocales.add(l);
+                }
+            }
+
             final InputStream stream = findStream(filename.toString());
             if (stream != null) {
                 all.add(fakerFromStream(stream, filename.toString()));
+                loadedLocales.add(l);
             }
         }
 
-        if (all.size() == 1 && !locale.equals(Locale.ENGLISH)) {
+        if (loadedLocales.size() == 1 && loadedLocales.contains(Locale.ENGLISH) && !locale.equals(Locale.ENGLISH)) {
             // if we have only successfully loaded ENGLISH and the requested locale
             // wasn't english that means we were unable to load the requested locale
             // in that case we vomit.
@@ -80,6 +99,12 @@ public class FakeValuesService {
         }
 
         this.fakeValuesMaps = Collections.unmodifiableList(all);
+    }
+
+    private File[] listFilesInDirectoryOnClasspath(String dir) {
+        ClassLoader loader = getClass().getClassLoader();
+        URL url = loader.getResource(dir);
+        return (url != null) ? new File(url.getPath()).listFiles() : new File[0];
     }
 
     /**
