@@ -25,7 +25,7 @@ public class MedicalTest extends AbstractFakerTest {
 
     @Test
     public void testSymptom() {
-        assertThat(faker.medical().symptoms(), matchesRegularExpression("([\\w']+\\.?.\\(?[\\w']\\)?( )?){2,5}"));
+        assertThat(faker.medical().symptoms(), matchesRegularExpression("[\\w'\\s\\(\\)]+"));
     }
 
 
