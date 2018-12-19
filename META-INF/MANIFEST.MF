@@ -5,4 +5,4 @@ Updated-By: sachsgit
 Build-Jdk: 11.0.1
 Created-By: Apache Maven 3.5.4
 Specification-Title: Java Faker Classes
-Specification-Version: 0.17
+Specification-Version: SS-0.2
