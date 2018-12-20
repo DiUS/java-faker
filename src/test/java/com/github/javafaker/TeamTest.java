@@ -24,6 +24,6 @@ public class TeamTest extends AbstractFakerTest {
 
     @Test
     public void testSport() {
-        assertThat(faker.team().sport(), matchesRegularExpression("(\\w|\\s)+"));
+        assertThat(faker.team().sport(), matchesRegularExpression("(\\p{L}|\\s)+"));
     }
 }
