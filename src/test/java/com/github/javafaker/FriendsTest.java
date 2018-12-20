@@ -11,7 +11,7 @@ public class FriendsTest extends AbstractFakerTest {
 
     @Test
     public void character() {
-        assertThat(faker.friends().character(), matchesRegularExpression("[A-Za-z ]+"));
+        assertThat(faker.friends().character(), matchesRegularExpression("[A-Za-z .,]+"));
     }
 
     @Test
