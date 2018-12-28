@@ -291,4 +291,16 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
             return "Hello";
         }
     }
+
+    @Test
+    public void resolveWithLocaleSimpleValuesInAnotherFile() {
+        assertThat(fakeValuesService.safeFetch("other1.simple", null), is("hello"));
+        assertThat(fakeValuesService.safeFetch("other2.simple", null), is("goodbye"));
+    }
+
+    @Test
+    public void resolveWithLocaleSimpleArrayValuesInAnotherFile() {
+        assertThat(fakeValuesService.fetchObject("other1.dummy"), Is.<Object>is(Arrays.asList("x", "y", "z")));
+        assertThat(fakeValuesService.fetchObject("other2.dummy"), Is.<Object>is(Arrays.asList(1, 2, 3)));
+    }
 }

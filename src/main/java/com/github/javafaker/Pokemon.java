@@ -9,10 +9,10 @@ public class Pokemon {
     }
 
     public String name() {
-        return faker.resolve("pokemon.names");
+        return faker.resolve("games.pokemon.names");
     }
 
     public String location() {
-        return faker.resolve("pokemon.locations");
+        return faker.resolve("games.pokemon.locations");
     }
 }

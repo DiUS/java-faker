@@ -8,14 +8,14 @@ public class Overwatch {
     }
 
     public String hero() {
-        return faker.fakeValuesService().resolve("overwatch.heroes", this, faker);
+        return faker.fakeValuesService().resolve("games.overwatch.heroes", this, faker);
     }
 
     public String location() {
-        return faker.fakeValuesService().resolve("overwatch.locations", this, faker);
+        return faker.fakeValuesService().resolve("games.overwatch.locations", this, faker);
     }
 
     public String quote() {
-        return faker.fakeValuesService().resolve("overwatch.quotes", this, faker);
+        return faker.fakeValuesService().resolve("games.overwatch.quotes", this, faker);
     }
 }

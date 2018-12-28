@@ -24,6 +24,6 @@ public class MusicTest extends AbstractFakerTest {
 
     @Test
     public void genre() {
-        assertThat(faker.music().genre(), matchesRegularExpression("\\w+ ?\\w+"));
+        assertThat(faker.music().genre(), matchesRegularExpression("[[ -]?\\w+]+"));
     }
 }

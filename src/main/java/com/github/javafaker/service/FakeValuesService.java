@@ -1,14 +1,18 @@
 package com.github.javafaker.service;
 
+import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -60,20 +64,37 @@ public class FakeValuesService {
         locale = normalizeLocale(locale);
 
         final List<Locale> locales = localeChain(locale);
-        final List<Map<String,Object>> all = new ArrayList<Map<String, Object>>(locales.size());
+        final List<Map<String,Object>> all = new ArrayList<Map<String, Object>>();
+        final Set<Locale> loadedLocales = new HashSet<Locale>();
+
         for (final Locale l : locales) {
             final StringBuilder filename = new StringBuilder(language(l));
             if (!"".equals(l.getCountry())) {
                 filename.append("-").append(l.getCountry());
             }
-        
+
+
+            // list the files on the classpath... so if we pass in "en"
+            // it will look for a folder "en" and list all the files underneath it
+            File[] files = listFilesInDirectoryOnClasspath(filename.toString());
+            for (File resourceFolderFile : files) {
+                String fileToLoad = filename + "/"  + resourceFolderFile.getName();
+                final InputStream stream = getClass().getClassLoader().getResourceAsStream(fileToLoad);
+                if (stream != null) {
+                    Map<String, Object> map = fakerFromStream(stream, filename.toString());
+                    all.add(map);
+                    loadedLocales.add(l);
+                }
+            }
+
             final InputStream stream = findStream(filename.toString());
             if (stream != null) {
                 all.add(fakerFromStream(stream, filename.toString()));
+                loadedLocales.add(l);
             }
         }
 
-        if (all.size() == 1 && !locale.equals(Locale.ENGLISH)) {
+        if (loadedLocales.size() == 1 && loadedLocales.contains(Locale.ENGLISH) && !locale.equals(Locale.ENGLISH)) {
             // if we have only successfully loaded ENGLISH and the requested locale
             // wasn't english that means we were unable to load the requested locale
             // in that case we vomit.
@@ -84,6 +105,12 @@ public class FakeValuesService {
         }
 
         this.fakeValuesMaps = Collections.unmodifiableList(all);
+    }
+
+    private File[] listFilesInDirectoryOnClasspath(String dir) {
+        ClassLoader loader = getClass().getClassLoader();
+        URL url = loader.getResource(dir);
+        return (url != null) ? new File(url.getPath()).listFiles() : new File[0];
     }
 
     /**
