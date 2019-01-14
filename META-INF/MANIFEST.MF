@@ -1,5 +1,8 @@
 Manifest-Version: 1.0
-Built-By: ricky
-Build-Jdk: 1.7.0_45
-Created-By: Apache Maven 3.2.1
-Archiver-Version: Plexus Archiver
+Name: javaFaker
+Built-Originally-By: ricky
+Updated-By: sachsgit
+Build-Jdk: 11.0.1
+Created-By: Apache Maven 3.5.4
+Specification-Title: Java Faker Classes
+Specification-Version: SS-0.2
