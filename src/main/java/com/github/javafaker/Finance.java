@@ -20,7 +20,7 @@ public class Finance {
             createCountryCodeToBasicBankAccountNumberPatternMap();
 
     public String creditCard(CreditCardType creditCardType) {
-        final String key = String.format("credit_card.%s", creditCardType.toString().toLowerCase());
+        final String key = String.format("finance.credit_card.%s", creditCardType.toString().toLowerCase());
         String value = faker.fakeValuesService().resolve(key, this, faker);
         final String template = faker.numerify(value);
 

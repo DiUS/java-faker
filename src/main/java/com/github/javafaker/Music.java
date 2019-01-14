@@ -25,6 +25,6 @@ public class Music {
     }
 
     public String genre() {
-        return faker.resolve("music.genre");
+        return faker.resolve("music.genres");
     }
 }

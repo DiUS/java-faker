@@ -1,0 +1,7 @@
+en:
+  faker:
+    weather:
+      description: ["Fine","Sunny","Clear skies","Cloudy periods","Partly cloudy","Mostly cloudy","Overcast","Showers","Rain","Drizzle","Thunderstorms","Thunder falls","Snow","Sleet","Hail"]
+      temperature:
+        celsius: °C
+        fahrenheit: °F
