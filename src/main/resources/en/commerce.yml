@@ -7,5 +7,5 @@ en:
         material: [Steel, Wooden, Concrete, Plastic, Cotton, Granite, Rubber, Leather, Silk, Wool, Linen, Marble, Iron, Bronze, Copper, Aluminum, Paper]
         product: [Chair, Car, Computer, Gloves, Pants, Shirt, Table, Shoes, Hat, Plate, Knife, Bottle, Coat, Lamp, Keyboard, Bag, Bench, Clock, Watch, Wallet]
       promotion_code:
-        adjective: ['Amazing', 'Awesome', 'Cool', 'Good', 'Great', 'Incredible', 'Killer', 'Premium', 'Special', 'Stellar', 'Sweet']
-        noun: ['Code', 'Deal', 'Discount', 'Price', 'Promo', 'Promotion', 'Sale', 'Savings']
+        adjective: ['Amazing', 'Awesome', 'Cool', 'Good', 'Great', 'Incredible', 'Special', 'Surprising', 'Wonderful', 'Marvelous', 'Unbelievable', 'Stunning', 'Spectacular', 'Breathtaking', 'Exciting', 'Impressive', 'Overwhelming', 'Thrilling', 'First-Class']
+        noun: ['Code', 'Deal', 'Discount', 'Price', 'Promo', 'Promotion', 'Sale', 'Savings', 'Rebate', 'Bonus', 'Benefit', 'Bounty', 'Perk', 'Reward', 'Winning']
