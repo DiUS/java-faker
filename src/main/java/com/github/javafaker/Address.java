@@ -111,9 +111,13 @@ public class Address {
     public String physicalDescription() {
         // Example: 2 miles east of the Washington and Jefferson intersection
         String distance = Integer.toString(random.nextInt(1, 5));
+        if (distance.equals("1"))
+        	distance = distance + " mile ";
+        else
+        	distance = distance + " miles ";
         String direction = faker.expression("#{compass.direction}");
         String intersection = streetName() + " and " + streetName() + " intersection";
-        return distance + " miles " + direction + " of the " + intersection; 
+        return distance + direction + " of the " + intersection; 
     }
     
 }

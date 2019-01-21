@@ -115,7 +115,9 @@ public class AddressTest extends AbstractFakerTest {
     
     @Test
     public void testPhysicalDescription() {
-        assertThat(faker.address().physicalDescription(), 
+    	String physicalDescription = faker.address().physicalDescription();
+    	System.out.println("Physical Description: \"" + physicalDescription + "\"");
+        assertThat(physicalDescription, 
             matchesRegularExpression("[1-5] miles " + EXPRESSION 
                 + " of the \\w+ \\w+ and \\w+ \\w+ intersection"));
     }

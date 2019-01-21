@@ -4,6 +4,7 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
@@ -45,9 +46,14 @@ public class NameTest  extends AbstractFakerTest {
 
     @Test
     public void testFirstNameLength() {
-        for (int i = 2; i < 12; i++) {
-            assertThat(faker.name().firstName(i), matchesRegularExpression("\\w{" + i + "}"));
-        }
+    	for (int i = 2; i < 14; i++) {
+    		try {
+    			assertThat(faker.name().firstName(i), matchesRegularExpression("\\w{" + i + "}"));
+    		} catch(RuntimeException re) {
+    			String message = "name.first_name with size " + i + " resulted in null expression";
+    			assertEquals(message, re.getMessage());
+    		}
+    	}
     }
     
     @Test
