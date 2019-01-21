@@ -18,17 +18,17 @@ en:
         abbreviation:  ['NbE', 'NEbN', 'NEbE', 'EbN', 'EbS', 'SEbE', 'SEbS', 'SbE', 'SbW', 'SWbS', 'SWbW', 'WbS', 'WbN', 'NWbW', 'NWbN', 'NbW']
         azimuth:  ['11.25', '33.75', '56.25', '78.75', '101.25', '123.75', '146.25', '168.75', '191.25', '213.75', '236.25', '258.75', '281.25', '303.75', '326.25', '348.75']
       direction:
-        - "#{compass.cardinal.word}"
-        - "#{compass.ordinal.word}"
-        - "#{compass.half-wind.word}"
-        - "#{compass.quarter-wind.word}"
+        - "#{Compass.cardinal.word}"
+        - "#{Compass.ordinal.word}"
+        - "#{Compass.half-wind.word}"
+        - "#{Compass.quarter-wind.word}"
       abbreviation:
-        - "#{compass.cardinal.abbreviation}"
-        - "#{compass.ordinal.abbreviation}"
-        - "#{compass.half-wind.abbreviation}"
-        - "#{compass.quarter-wind.abbreviation}"
+        - "#{Compass.cardinal.abbreviation}"
+        - "#{Compass.ordinal.abbreviation}"
+        - "#{Compass.half-wind.abbreviation}"
+        - "#{Compass.quarter-wind.abbreviation}"
       azimuth:
-        - "#{compass.cardinal.azimuth}"
-        - "#{compass.ordinal.azimuth}"
-        - "#{compass.half-wind.azimuth}"
-        - "#{compass.quarter-wind.azimuth}"
+        - "#{Compass.cardinal.azimuth}"
+        - "#{Compass.ordinal.azimuth}"
+        - "#{Compass.half-wind.azimuth}"
+        - "#{Compass.quarter-wind.azimuth}"
