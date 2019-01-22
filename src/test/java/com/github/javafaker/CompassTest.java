@@ -26,7 +26,7 @@ public class CompassTest extends AbstractFakerTest {
         Double expected = Double.parseDouble(faker.compass().azimuth());
         Double remainer = 0.0;
         Double epilison = 1.0;
-        assertEquals(expected % 22.5, remainer, epilison);
+        assertEquals(expected % 11.25, remainer, epilison);
     }
     
 }
