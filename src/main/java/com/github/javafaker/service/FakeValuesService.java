@@ -9,12 +9,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.JarURLConnection;
 import java.net.URL;
 import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -24,28 +28,29 @@ public class FakeValuesService {
     private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*\\}");
 
     private final Logger log = Logger.getLogger("faker");
-    
+
     private final List<Map<String, Object>> fakeValuesMaps;
-    
+
     private final RandomService randomService;
 
     /**
      * <p>
-     *     Resolves YAML file using the most specific path first based on language and country code.
-     *      'en_US' would resolve in the following order:
-     *      <ol>
-     *          <li>/en-US.yml</li>
-     *          <li>/en.yml</li>
-     *      </ol>
-     *      The search is case-insensitive, so the following will all resolve correctly.  Also, either a hyphen or
-     *      an underscore can be used when constructing a {@link Locale} instance.  This is legacy behavior and not
-     *      condoned, but it will work.
-     *      <ul>
-     *          <li>EN_US</li>
-     *          <li>En-Us</li>
-     *          <li>eN_uS</li>
-     *      </ul>
+     * Resolves YAML file using the most specific path first based on language and country code.
+     * 'en_US' would resolve in the following order:
+     * <ol>
+     * <li>/en-US.yml</li>
+     * <li>/en.yml</li>
+     * </ol>
+     * The search is case-insensitive, so the following will all resolve correctly.  Also, either a hyphen or
+     * an underscore can be used when constructing a {@link Locale} instance.  This is legacy behavior and not
+     * condoned, but it will work.
+     * <ul>
+     * <li>EN_US</li>
+     * <li>En-Us</li>
+     * <li>eN_uS</li>
+     * </ul>
      * </p>
+     *
      * @param locale
      * @param randomService
      */
@@ -58,7 +63,7 @@ public class FakeValuesService {
         locale = normalizeLocale(locale);
 
         final List<Locale> locales = localeChain(locale);
-        final List<Map<String,Object>> all = new ArrayList(locales.size());
+        final List<Map<String, Object>> all = new ArrayList(locales.size());
         final Set<Locale> loadedLocales = new HashSet<Locale>();
 
         for (final Locale l : locales) {
@@ -67,24 +72,27 @@ public class FakeValuesService {
                 filename.append("-").append(l.getCountry());
             }
 
-
-            // list the files on the classpath... so if we pass in "en"
-            // it will look for a folder "en" and list all the files underneath it
-            File[] files = listFilesInDirectoryOnClasspath(filename.toString());
-            for (File resourceFolderFile : files) {
-                String fileToLoad = filename + "/"  + resourceFolderFile.getName();
-                final InputStream stream = getClass().getClassLoader().getResourceAsStream(fileToLoad);
+            // need to treat jar files differently
+            if (isJarFile(filename.toString())) {
+                loadFromJarFile(all, loadedLocales, l, filename);
+            } else {
+                // list the files on the classpath... so if we pass in "en"
+                // it will look for a folder "en" and list all the files underneath it
+                File[] files = listFilesInDirectoryOnClasspath(filename.toString());
+                for (File resourceFolderFile : files) {
+                    String fileToLoad = filename + "/" + resourceFolderFile.getName();
+                    final InputStream stream = getClass().getClassLoader().getResourceAsStream(fileToLoad);
+                    if (stream != null) {
+                        Map map = fakerFromStream(stream, filename.toString());
+                        all.add(map);
+                        loadedLocales.add(l);
+                    }
+                }
+                final InputStream stream = findStream(filename.toString());
                 if (stream != null) {
-                    Map map = fakerFromStream(stream, filename.toString());
-                    all.add(map);
+                    all.add(fakerFromStream(stream, filename.toString()));
                     loadedLocales.add(l);
                 }
-            }
-
-            final InputStream stream = findStream(filename.toString());
-            if (stream != null) {
-                all.add(fakerFromStream(stream, filename.toString()));
-                loadedLocales.add(l);
             }
         }
 
@@ -101,10 +109,44 @@ public class FakeValuesService {
         this.fakeValuesMaps = Collections.unmodifiableList(all);
     }
 
+    private void loadFromJarFile(List<Map<String, Object>> all, Set<Locale> loadedLocales, Locale locale, StringBuilder filename) {
+        try {
+            ClassLoader loader = getClass().getClassLoader();
+            URL url = loader.getResource(filename.toString());
+            JarURLConnection connection = (JarURLConnection) url.openConnection();
+            JarFile jarFile = connection.getJarFile();
+            Enumeration<JarEntry> entries = jarFile.entries();
+            while (entries.hasMoreElements()) {
+                JarEntry jarEntry = entries.nextElement();
+                String jarEntryName = jarEntry.getName();
+                if (jarEntryName.contains(filename.toString() + "/") && jarEntryName.endsWith(".yml")) {
+                    InputStream inputStream = jarFile.getInputStream(jarEntry);
+                    if (inputStream != null) {
+                        Map map = fakerFromStream(inputStream, filename.toString());
+                        all.add(map);
+                        loadedLocales.add(locale);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new LocaleDoesNotExistException(filename.toString());
+        }
+    }
+
+    private boolean isJarFile(String fileName) {
+        ClassLoader loader = getClass().getClassLoader();
+        URL url = loader.getResource(fileName);
+        return url != null && url.getProtocol().equals("jar");
+    }
+
     private File[] listFilesInDirectoryOnClasspath(String dir) {
         ClassLoader loader = getClass().getClassLoader();
         URL url = loader.getResource(dir);
-        return (url != null) ? new File(url.getPath()).listFiles() : new File[0];
+        if (url == null) {
+            return new File[0];
+        } else {
+            return new File(url.getPath()).listFiles();
+        }
     }
 
     /**
@@ -119,7 +161,7 @@ public class FakeValuesService {
     }
 
     /**
-     * @return the embedded faker: clause from the loaded Yml by the localeName, so .yml > en-us: > faker: 
+     * @return the embedded faker: clause from the loaded Yml by the localeName, so .yml > en-us: > faker:
      */
     protected Map fakerFromStream(InputStream stream, String localeName) {
         final Map valuesMap = new Yaml().loadAs(stream, Map.class);
@@ -129,9 +171,9 @@ public class FakeValuesService {
 
     /**
      * Convert the specified locale into a chain of locales used for message resolution. For example:
-     * 
-     * {@link Locale#FRANCE} (fr_FR) -> [ fr_FR, fr, en ]
-     * 
+     * <p>
+     * {@link Locale#FRANCE} (fr_FR) -> [ fr_FR, anotherTest, en ]
+     *
      * @return a list of {@link Locale} instances
      */
     protected List<Locale> localeChain(Locale from) {
@@ -149,24 +191,24 @@ public class FakeValuesService {
         chain.add(Locale.ENGLISH); // default
         return chain;
     }
-   
+
     /**
      * @return a proper {@link Locale} instance with language and country code set regardless of how
-     *         it was instantiated.  new Locale("pt-br") will be normalized to a locale constructed
-     *         with new Locale("pt","BR").
+     * it was instantiated.  new Locale("pt-br") will be normalized to a locale constructed
+     * with new Locale("pt","BR").
      */
     private Locale normalizeLocale(Locale locale) {
         final String[] parts = locale.toString().split("[-\\_]");
-        
+
         if (parts.length == 1) {
             return new Locale(parts[0]);
         } else {
-            return new Locale(parts[0],parts[1]);
+            return new Locale(parts[0], parts[1]);
         }
     }
 
     private InputStream findStream(String filename) {
-        String filenameWithExtension =  "/" + filename + ".yml";
+        String filenameWithExtension = "/" + filename + ".yml";
         InputStream streamOnClass = getClass().getResourceAsStream(filenameWithExtension);
         if (streamOnClass != null) {
             return streamOnClass;
@@ -286,7 +328,7 @@ public class FakeValuesService {
     }
 
     /**
-     * Applies both a {@link #numerify(String)} and a {@link #letterify(String,boolean)}
+     * Applies both a {@link #numerify(String)} and a {@link #letterify(String, boolean)}
      * over the incoming string.
      *
      * @param string
@@ -326,7 +368,7 @@ public class FakeValuesService {
      * For example, the string "12??34" could be replaced with a string like "12AB34".
      *
      * @param letterString
-     * @param isUpper specifies whether or not letters should be upper case
+     * @param isUpper      specifies whether or not letters should be upper case
      * @return
      */
     public String letterify(String letterString, boolean isUpper) {
@@ -348,11 +390,10 @@ public class FakeValuesService {
 
     /**
      * Resolves a key to a method on an object.
-     *
+     * <p>
      * #{hello} with result in a method call to current.hello();
-     *
+     * <p>
      * #{Person.hello_someone} will result in a method call to person.helloSomeone();
-     *
      */
     public String resolve(String key, Object current, Faker root) {
         final String expression = safeFetch(key, null);
@@ -365,6 +406,7 @@ public class FakeValuesService {
 
     /**
      * resolves an expression using the current faker.
+     *
      * @param expression
      * @param faker
      * @return
@@ -372,22 +414,23 @@ public class FakeValuesService {
     public String expression(String expression, Faker faker) {
         return resolveExpression(expression, null, faker);
     }
+
     /**
      * <p>processes a expression in the style #{X.y} using the current objects as the 'current' location
      * within the yml file (or the {@link Faker} object hierarchy as it were).
      * </p>
      * <p>
-     *     #{Address.streetName} would get resolved to {@link Faker#address()}'s {@link Address#streetName()}
+     * #{Address.streetName} would get resolved to {@link Faker#address()}'s {@link Address#streetName()}
      * </p>
      * <p>
-     *     #{address.street} would get resolved to the YAML > locale: faker: address: street:
+     * #{address.street} would get resolved to the YAML > locale: faker: address: street:
      * </p>
      * <p>
-     *     Combinations are supported as well: "#{x} #{y}"
+     * Combinations are supported as well: "#{x} #{y}"
      * </p>
      * <p>
-     *     Recursive templates are supported.  if "#{x}" resolves to "#{Address.streetName}" then "#{x}" resolves to
-     *     {@link Faker#address()}'s {@link Address#streetName()}.
+     * Recursive templates are supported.  if "#{x}" resolves to "#{Address.streetName}" then "#{x}" resolves to
+     * {@link Faker#address()}'s {@link Address#streetName()}.
      * </p>
      */
     protected String resolveExpression(String expression, Object current, Faker root) {
@@ -398,10 +441,10 @@ public class FakeValuesService {
             final String escapedDirective = matcher.group(0);
             final String directive = matcher.group(1);
             List<String> args = new ArrayList<String>();
-            for (int i=2;i < matcher.groupCount()+1 && matcher.group(i) != null;i++) {
+            for (int i = 2; i < matcher.groupCount() + 1 && matcher.group(i) != null; i++) {
                 args.add(matcher.group(i));
             }
-            
+
             // resolve the expression and reprocess it to handle recursive templates
             String resolved = resolveExpression(directive, args, current, root);
             if (resolved == null) {
@@ -417,20 +460,21 @@ public class FakeValuesService {
     /**
      * <h1>Search Order</h1>
      * <ul>
-     *     <li>Search for methods on the current object</li>
-     *     <li>local keys in Yaml File</li>
-     *     <li>Search for methods on faker child objects</li>
-     *     <li>Search for keys in yaml file by transforming object reference to yaml reference</li>
+     * <li>Search for methods on the current object</li>
+     * <li>local keys in Yaml File</li>
+     * <li>Search for methods on faker child objects</li>
+     * <li>Search for keys in yaml file by transforming object reference to yaml reference</li>
      * </ul>
+     *
      * @return null if unable to resolve
      */
     private String resolveExpression(String directive, List<String> args, Object current, Faker root) {
         // name.name (resolve locally)
         // Name.first_name (resolve to faker.name().firstName())
-        final String simpleDirective = (isDotDirective(directive) || current == null) 
-                ? directive 
+        final String simpleDirective = (isDotDirective(directive) || current == null)
+                ? directive
                 : classNameToYamlName(current) + "." + directive;
-        
+
         String resolved = null;
         // resolve method references on CURRENT object like #{number_between '1','10'} on Number or
         // #{ssn_valid} on IdNumber
@@ -439,7 +483,7 @@ public class FakeValuesService {
         }
 
         // simple fetch of a value from the yaml file. the directive may have been mutated
-        // such that if the current yml object is car: and directive is #{wheel} then 
+        // such that if the current yml object is car: and directive is #{wheel} then
         // car.wheel will be looked up in the YAML file.
         if (resolved == null) {
             resolved = safeFetch(simpleDirective, null);
@@ -454,16 +498,16 @@ public class FakeValuesService {
         if (resolved == null && isDotDirective(directive)) {
             resolved = resolveFakerObjectAndMethod(root, directive, args);
         }
-        
+
         // last ditch effort.  Due to Ruby's dynamic nature, something like 'Address.street_title' will resolve
-        // because 'street_title' is a dynamic method on the Address object.  We can't do this in Java so we go 
+        // because 'street_title' is a dynamic method on the Address object.  We can't do this in Java so we go
         // thru the normal resolution above, but if we will can't resolve it, we once again do a 'safeFetch' as we
         // did first but FIRST we change the Object reference Class.method_name with a yml style internal refernce ->
         // class.method_name (lowercase)
         if (resolved == null && isDotDirective(directive)) {
             resolved = safeFetch(javaNameToYamlName(simpleDirective), null);
         }
-        
+
         return resolved;
     }
 
@@ -478,6 +522,7 @@ public class FakeValuesService {
 
     /**
      * Given a {@code slashDelimitedRegex} such as {@code /[ab]/}, removes the slashes and returns only {@code [ab]}
+     *
      * @param slashDelimitedRegex a non null slash delimited regex (ex. {@code /[ab]/})
      * @return the regex without the slashes (ex. {@code [ab]})
      */
@@ -490,21 +535,20 @@ public class FakeValuesService {
     }
 
     /**
-     * @return a yaml style name from the classname of the supplied object (PhoneNumber => phone_number) 
+     * @return a yaml style name from the classname of the supplied object (PhoneNumber => phone_number)
      */
     private String classNameToYamlName(Object current) {
         return javaNameToYamlName(current.getClass().getSimpleName());
     }
 
     /**
-     * @return a yaml style name like 'phone_number' from a java style name like 'PhoneNumber' 
+     * @return a yaml style name like 'phone_number' from a java style name like 'PhoneNumber'
      */
     private String javaNameToYamlName(String expression) {
         return expression.replaceAll("([A-Z])", "_$1")
                 .substring(1)
                 .toLowerCase();
     }
-
 
 
     /**
@@ -526,15 +570,16 @@ public class FakeValuesService {
             return null;
         }
     }
-    
+
     /**
      * Accepts a {@link Faker} instance and a name.firstName style 'key' which is resolved to the return value of:
      * {@link Faker#name()}'s {@link Name#firstName()} method.
+     *
      * @throws RuntimeException if there's a problem invoking the method or it doesn't exist.
      */
     private String resolveFakerObjectAndMethod(Faker faker, String key, List<String> args) {
         final String[] classAndMethod = key.split("\\.", 2);
-        
+
         try {
             String fakerMethodName = classAndMethod[0].replaceAll("_", "");
             MethodAndCoercedArgs fakerAccessor = accessor(faker, fakerMethodName, Collections.<String>emptyList());
@@ -558,15 +603,15 @@ public class FakeValuesService {
         }
     }
 
-    
+
     /**
      * Find an accessor by name ignoring case.
      */
     private MethodAndCoercedArgs accessor(Object onObject, String name, List<String> args) {
         log.log(Level.FINE, "Find accessor named " + name + " on " + onObject.getClass().getSimpleName() + " with args " + args);
-        
+
         for (Method m : onObject.getClass().getMethods()) {
-            if (m.getName().equalsIgnoreCase(name) 
+            if (m.getName().equalsIgnoreCase(name)
                     && m.getParameterTypes().length == args.size()) {
                 final List<Object> coercedArguments = coerceArguments(m, args);
                 if (coercedArguments != null) {
@@ -584,6 +629,7 @@ public class FakeValuesService {
     /**
      * Coerce arguments in <em>args</em> into the appropriate types (if possible) for the parameter arguments
      * to <em>accessor</em>.
+     *
      * @return array of coerced values if successful, null otherwise
      * @throws Exception if unable to coerce
      */
@@ -604,7 +650,7 @@ public class FakeValuesService {
         }
         return coerced;
     }
-    
+
     private String string(Object obj) {
         return (obj == null) ? null : obj.toString();
     }
@@ -617,14 +663,14 @@ public class FakeValuesService {
     private class MethodAndCoercedArgs {
 
         private final Method method;
-        
+
         private final List<Object> coerced;
 
         private MethodAndCoercedArgs(Method m, List<Object> coerced) {
             this.method = requireNonNull(m, "method cannot be null");
             this.coerced = requireNonNull(coerced, "coerced arguments cannot be null");
         }
-        
+
         private Object invoke(Object on) throws InvocationTargetException, IllegalAccessException {
             return method.invoke(on, coerced.toArray());
         }
