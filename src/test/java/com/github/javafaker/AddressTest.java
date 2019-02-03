@@ -114,6 +114,12 @@ public class AddressTest extends AbstractFakerTest {
     }
     
     @Test
+    public void testCountyByZipCode() {
+        faker = new Faker(new Locale("en-US"));
+        assertThat(faker.address().countyByZipCode(faker.address().zipCodeByState(faker.address().stateAbbr())), not(emptyOrNullString()));
+    }
+    
+    @Test
     public void testPhysicalDescription() {
     	String physicalDescription = faker.address().physicalDescription();
     	System.out.println("Physical Description: \"" + physicalDescription + "\"");
