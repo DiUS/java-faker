@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lifecycleMappingMetadata>
+    <lifecycleMappings>
+        <lifecycleMapping>
+            <packagingType>war</packagingType>
+            <lifecycleMappingId>org.eclipse.m2e.jdt.JarLifecycleMapping</lifecycleMappingId>
+        </lifecycleMapping>
+    </lifecycleMappings>
+
+    <pluginExecutions>
+        <!-- standard maven plugins -->
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <goals>
+                    <goal>resources</goal>
+                    <goal>testResources</goal>
+                    <goal>copy-resources</goal>
+                </goals>
+                <versionRange>[2.4,)</versionRange>
+            </pluginExecutionFilter>
+            <action>
+                <execute>
+                    <runOnIncremental>true</runOnIncremental>
+                </execute>
+            </action>
+        </pluginExecution>
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <goals>
+                    <goal>resources</goal>
+                    <goal>testResources</goal>
+                    <goal>copy-resources</goal>
+                </goals>
+                <versionRange>[0.0.1,2.4)</versionRange>
+            </pluginExecutionFilter>
+            <action>
+                <error>
+                    <message>maven-resources-plugin prior to 2.4 is not supported by m2e. Use
+                        maven-resources-plugin version 2.4 or later.
+                    </message>
+                </error>
+            </action>
+        </pluginExecution>
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <versionRange>[1.0.0,)</versionRange>
+                <goals>
+                    <goal>enforce</goal>
+                </goals>
+            </pluginExecutionFilter>
+            <action>
+                <ignore />
+            </action>
+        </pluginExecution>
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <goals>
+                    <goal>install</goal>
+                </goals>
+                <versionRange>[1.6-SONATYPE-r940877,)</versionRange>
+            </pluginExecutionFilter>
+            <action>
+                <ignore>
+                    <message>maven-invoker-plugin (goal "install") is ignored by m2e.</message>
+                </ignore>
+            </action>
+        </pluginExecution>
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-remote-resources-plugin</artifactId>
+                <versionRange>[1.0,)</versionRange>
+                <goals>
+                    <goal>process</goal>
+                </goals>
+            </pluginExecutionFilter>
+            <action>
+                <ignore>
+                    <message>maven-remote-resources-plugin (goal "process") is ignored by m2e.
+                    </message>
+                </ignore>
+            </action>
+        </pluginExecution>
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <versionRange>[0,)</versionRange>
+                <goals>
+                    <goal>configure-workspace</goal>
+                    <goal>eclipse</goal>
+                    <goal>clean</goal>
+
+                    <goal>to-maven</goal>
+                    <goal>install-plugins</goal>
+                    <goal>make-artifacts</goal>
+
+                    <goal>myeclipse</goal>
+                    <goal>myeclipse-clean</goal>
+
+                    <goal>rad</goal>
+                    <goal>rad-clean</goal>
+                </goals>
+            </pluginExecutionFilter>
+            <action>
+                <error>
+                    <message>maven-eclipse-plugin is not compatible with m2e</message>
+                </error>
+            </action>
+        </pluginExecution>
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <versionRange>[2.0,)</versionRange>
+                <goals>
+                    <goal>jar-no-fork</goal>
+                    <goal>test-jar-no-fork</goal>
+                    <!-- theoretically, the following goals should not be bound to lifecycle, but ignore 
+                        them just in case -->
+                    <goal>jar</goal>
+                    <goal>aggregate</goal>
+                    <goal>test-jar</goal>
+                </goals>
+            </pluginExecutionFilter>
+            <action>
+                <ignore />
+            </action>
+        </pluginExecution>
+
+        <!-- commonly used codehaus plugins -->
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-maven-plugin</artifactId>
+                <versionRange>[1.0,)</versionRange>
+                <goals>
+                    <goal>check</goal>
+                </goals>
+            </pluginExecutionFilter>
+            <action>
+                <ignore />
+            </action>
+        </pluginExecution>
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <versionRange>[1.0-beta-1,)</versionRange>
+                <goals>
+                    <goal>create</goal>
+                </goals>
+            </pluginExecutionFilter>
+            <action>
+                <ignore />
+            </action>
+        </pluginExecution>
+    </pluginExecutions>
+</lifecycleMappingMetadata>
