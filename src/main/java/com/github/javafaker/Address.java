@@ -38,7 +38,13 @@ public class Address {
         return faker.bothify(faker.fakeValuesService().resolve("address.postcode", this,faker));
     }
 
-    public String zipCodeByState(String stateAbbr) { return faker.fakeValuesService().resolve("address.postcode_by_state." + stateAbbr, this, faker); }
+    public String zipCodeByState(String stateAbbr) {
+        return faker.fakeValuesService().resolve("address.postcode_by_state." + stateAbbr, this, faker);
+    }
+
+    public String countyByZipCode(String postCode) {
+        return faker.fakeValuesService().resolve("address.county_by_postcode." + postCode, this, faker);
+    }
 
     public String streetSuffix() {
         return faker.fakeValuesService().resolve("address.street_suffix", this, faker);
