@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.16'
+    implementation group: 'com.github.javafaker', name: 'javafaker', version: '0.16'
 }
 
 ```
