@@ -34,7 +34,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
         // always return the first element
         when(randomService.nextInt(anyInt())).thenReturn(0);
-        
+
         fakeValuesService = spy(new FakeValuesService(new Locale("test"), randomService));
     }
 
@@ -73,11 +73,11 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     public void safeFetchShouldReturnEmptyStringWhenPropertyDoesntExist() {
         assertThat(fakeValuesService.safeFetch("property.dummy2", ""), isEmptyString());
     }
-    
+
     @Test
     public void bothify2Args() {
         final DummyService dummy = mock(DummyService.class);
-        
+
         Faker f = new Faker();
 
         String value = fakeValuesService.resolve("property.bothify_2", dummy, f);
@@ -190,30 +190,30 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
         assertThat(chain, contains(Locale.SIMPLIFIED_CHINESE, Locale.CHINESE, Locale.ENGLISH));
     }
-    
+
     @Test
     public void testLocaleChainEnglish() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.ENGLISH);
 
         assertThat(chain, contains(Locale.ENGLISH));
     }
-    
+
     @Test
     public void testLocaleChainLanguageOnly() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.CHINESE);
 
         assertThat(chain, contains(Locale.CHINESE, Locale.ENGLISH));
     }
-    
+
     @Test
     public void expressionWithInvalidFakerObject() {
-        expressionShouldFailWith("#{ObjectNotOnFaker.methodName}", 
+        expressionShouldFailWith("#{ObjectNotOnFaker.methodName}",
                 "Unable to resolve #{ObjectNotOnFaker.methodName} directive.");
     }
-    
+
     @Test
     public void expressionWithValidFakerObjectButInvalidMethod() {
-        expressionShouldFailWith("#{Name.nonExistentMethod}", 
+        expressionShouldFailWith("#{Name.nonExistentMethod}",
                 "Unable to resolve #{Name.nonExistentMethod} directive.");
     }
 
@@ -227,15 +227,15 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
      */
     @Test
     public void expressionWithValidFakerObjectValidMethodInvalidArgs() {
-        expressionShouldFailWith("#{Number.number_between 'x','y'}", 
+        expressionShouldFailWith("#{Number.number_between 'x','y'}",
                 "Unable to resolve #{Number.number_between 'x','y'} directive.");
     }
-    
+
     /**
      * Two things are important here:
      * 1) the message in the exception should be USEFUL
      * 2) a {@link RuntimeException} should be thrown.
-     * 
+     *
      * if the message changes, it's ok to update the test provided
      * the two conditions above are still true.
      */
@@ -243,7 +243,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     public void expressionCompletelyUnresolvable() {
         expressionShouldFailWith("#{x}", "Unable to resolve #{x} directive.");
     }
-    
+
     private void expressionShouldFailWith(String expression, String errorMessage) {
         try {
             fakeValuesService.expression(expression, faker);
@@ -276,21 +276,9 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         public String lastName() {
             return "Smith";
         }
-        
+
         public String hello() {
             return "Hello";
         }
-    }
-
-    @Test
-    public void resolveWithLocaleSimpleValuesInAnotherFile() {
-        assertThat(fakeValuesService.safeFetch("other1.simple", null), is("hello"));
-        assertThat(fakeValuesService.safeFetch("other2.simple", null), is("goodbye"));
-    }
-
-    @Test
-    public void resolveWithLocaleSimpleArrayValuesInAnotherFile() {
-        assertThat(fakeValuesService.fetchObject("other1.dummy"), Is.<Object>is(Arrays.asList("x", "y", "z")));
-        assertThat(fakeValuesService.fetchObject("other2.dummy"), Is.<Object>is(Arrays.asList(1, 2, 3)));
     }
 }

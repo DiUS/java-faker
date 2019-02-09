@@ -1,5 +1,0 @@
-test:
-  faker:
-    other1:
-      dummy: [x, y, z]
-      simple: "hello"

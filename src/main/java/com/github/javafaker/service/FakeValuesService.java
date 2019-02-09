@@ -3,22 +3,17 @@ package com.github.javafaker.service;
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
+import com.github.javafaker.service.files.En;
 import com.mifmif.common.regex.Generex;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.JarURLConnection;
-import java.net.URL;
 import java.util.*;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -72,23 +67,17 @@ public class FakeValuesService {
                 filename.append("-").append(l.getCountry());
             }
 
-            // need to treat jar files differently
-            if (isJarFile(filename.toString())) {
-                loadFromJarFile(all, loadedLocales, l, filename);
-            } else {
-                // list the files on the classpath... so if we pass in "en"
-                // it will look for a folder "en" and list all the files underneath it
-                File[] files = listFilesInDirectoryOnClasspath(filename.toString());
-                for (File resourceFolderFile : files) {
-                    String fileToLoad = filename + "/" + resourceFolderFile.getName();
-                    final InputStream stream = getClass().getClassLoader().getResourceAsStream(fileToLoad);
+            boolean isEnglish = l.equals(Locale.ENGLISH);
+            if (isEnglish) {
+                for (String file : En.FILES) {
+                    final InputStream stream = findStream("/en/" + file.toString());
                     if (stream != null) {
-                        Map map = fakerFromStream(stream, filename.toString());
-                        all.add(map);
-                        loadedLocales.add(l);
+                        all.add(fakerFromStream(stream, filename.toString()));
                     }
                 }
-                final InputStream stream = findStream(filename.toString());
+                loadedLocales.add(l);
+            } else {
+                final InputStream stream = findStream("/" + filename.toString() + ".yml");
                 if (stream != null) {
                     all.add(fakerFromStream(stream, filename.toString()));
                     loadedLocales.add(l);
@@ -107,46 +96,6 @@ public class FakeValuesService {
         }
 
         this.fakeValuesMaps = Collections.unmodifiableList(all);
-    }
-
-    private void loadFromJarFile(List<Map<String, Object>> all, Set<Locale> loadedLocales, Locale locale, StringBuilder filename) {
-        try {
-            ClassLoader loader = getClass().getClassLoader();
-            URL url = loader.getResource(filename.toString());
-            JarURLConnection connection = (JarURLConnection) url.openConnection();
-            JarFile jarFile = connection.getJarFile();
-            Enumeration<JarEntry> entries = jarFile.entries();
-            while (entries.hasMoreElements()) {
-                JarEntry jarEntry = entries.nextElement();
-                String jarEntryName = jarEntry.getName();
-                if (jarEntryName.contains(filename.toString() + "/") && jarEntryName.endsWith(".yml")) {
-                    InputStream inputStream = jarFile.getInputStream(jarEntry);
-                    if (inputStream != null) {
-                        Map map = fakerFromStream(inputStream, filename.toString());
-                        all.add(map);
-                        loadedLocales.add(locale);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            throw new LocaleDoesNotExistException(filename.toString());
-        }
-    }
-
-    private boolean isJarFile(String fileName) {
-        ClassLoader loader = getClass().getClassLoader();
-        URL url = loader.getResource(fileName);
-        return url != null && url.getProtocol().equals("jar");
-    }
-
-    private File[] listFilesInDirectoryOnClasspath(String dir) {
-        ClassLoader loader = getClass().getClassLoader();
-        URL url = loader.getResource(dir);
-        if (url == null) {
-            return new File[0];
-        } else {
-            return new File(url.getPath()).listFiles();
-        }
     }
 
     /**
@@ -208,12 +157,11 @@ public class FakeValuesService {
     }
 
     private InputStream findStream(String filename) {
-        String filenameWithExtension = "/" + filename + ".yml";
-        InputStream streamOnClass = getClass().getResourceAsStream(filenameWithExtension);
+        InputStream streamOnClass = getClass().getResourceAsStream(filename);
         if (streamOnClass != null) {
             return streamOnClass;
         }
-        return getClass().getClassLoader().getResourceAsStream(filenameWithExtension);
+        return getClass().getClassLoader().getResourceAsStream(filename);
     }
 
     /**
