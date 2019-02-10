@@ -33,6 +33,7 @@ public class Faker {
     private final ChuckNorris chuckNorris;
     private final Color color;
     private final Commerce commerce;
+    private final Country country;
     private final Currency currency;
     private final Company company;
     private final Crypto crypto;
@@ -167,6 +168,7 @@ public class Faker {
         this.weather = new Weather(this);
         this.lebowski = new Lebowski(this);
         this.medical = new Medical(this);
+        this.country = new Country(this);
     }
 
     /**
@@ -552,6 +554,8 @@ public class Faker {
     }
 
     public Medical medical(){return medical;}
+
+    public Country country(){ return country;}
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
