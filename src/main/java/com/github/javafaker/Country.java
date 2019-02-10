@@ -13,11 +13,11 @@ public class Country {
         return flagUrl + faker.fakeValuesService().resolve("country.code2", this, faker) + ".png";
     }
 
-    public String country_code2() {
+    public String countryCode2() {
         return faker.fakeValuesService().resolve("country.code2", this, faker);
     }
 
-    public String country_code3() {
+    public String countryCode3() {
         return faker.fakeValuesService().resolve("country.code3", this, faker);
     }
 
@@ -29,7 +29,7 @@ public class Country {
         return faker.fakeValuesService().resolve("country.currency", this, faker);
     }
 
-    public String currency_code() {
+    public String currencyCode() {
         return faker.fakeValuesService().resolve("country.currency_code", this, faker);
     }
 

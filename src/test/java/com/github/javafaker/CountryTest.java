@@ -18,12 +18,12 @@ public class CountryTest extends AbstractFakerTest {
 
     @Test
     public void testCode2() {
-        assertThat(faker.country().country_code2(), matchesRegularExpression("([a-z]{2})"));
+        assertThat(faker.country().countryCode2(), matchesRegularExpression("([a-z]{2})"));
     }
 
     @Test
     public void testCode3() {
-        assertThat(faker.country().country_code3(), matchesRegularExpression("([a-z]{3})"));
+        assertThat(faker.country().countryCode3(), matchesRegularExpression("([a-z]{3})"));
     }
 
     @Test
@@ -38,6 +38,6 @@ public class CountryTest extends AbstractFakerTest {
 
     @Test
     public void testCurrencyCode() {
-        assertThat(faker.country().currency_code(), matchesRegularExpression("([\\w-]+ ?)+"));
+        assertThat(faker.country().currencyCode(), matchesRegularExpression("([\\w-]+ ?)+"));
     }
 }
