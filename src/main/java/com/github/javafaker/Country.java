@@ -24,4 +24,13 @@ public class Country {
     public String capital() {
         return faker.fakeValuesService().resolve("country.capital", this, faker);
     }
+
+    public String currency() {
+        return faker.fakeValuesService().resolve("country.currency", this, faker);
+    }
+
+    public String currency_code() {
+        return faker.fakeValuesService().resolve("country.currency_code", this, faker);
+    }
+
 }
