@@ -1,10 +1,10 @@
 package com.github.javafaker;
 
-import java.util.Locale;
-import java.util.Random;
-
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
+
+import java.util.Locale;
+import java.util.Random;
 
 /**
  * Provides utility methods for generating fake strings, such as names, phone
@@ -34,6 +34,7 @@ public class Faker {
     private final Color color;
     private final Commerce commerce;
     private final Compass compass;
+    private final Country country;
     private final Currency currency;
     private final Company company;
     private final Crypto crypto;
@@ -169,6 +170,7 @@ public class Faker {
         this.lebowski = new Lebowski(this);
         this.medical = new Medical(this);
         this.compass = new Compass(this);
+        this.country = new Country(this);
     }
 
     /**
@@ -553,11 +555,17 @@ public class Faker {
         return lebowski;
     }
 
-    public Medical medical(){return medical;}
-    
+    public Medical medical(){
+    	return medical;
+    }
+
     public Compass compass() {
         return compass;
     }
+
+	public Country country(){
+		return country;
+	}
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
@@ -582,4 +590,5 @@ public class Faker {
     public String expression(String expression) {
         return this.fakeValuesService.expression(expression, this);
     }
+
 }
