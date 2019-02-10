@@ -33,6 +33,7 @@ public class En {
             "compass.yml",
             "construction.yml",
             "cosmere.yml",
+            "country.yml",
             "crypto_coin.yml",
             "currency.yml",
             "dc_comics.yml",
