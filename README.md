@@ -17,19 +17,15 @@ In pom.xml, add the following xml stanza between `<dependencies> ... </dependenc
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.16</version>
+    <version>0.17.2</version>
 </dependency>
 ```
 
 For gradle users, add the following to your build.gradle file.
 
 ```groovy
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.16'
+    implementation 'com.github.javafaker:javafaker:0.17.2'
 }
 
 ```
