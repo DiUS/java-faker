@@ -1,10 +1,5 @@
 package com.github.javafaker.service;
 
-import com.github.javafaker.Address;
-import com.github.javafaker.Faker;
-import com.github.javafaker.Name;
-import com.github.javafaker.service.files.En;
-import com.mifmif.common.regex.Generex;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,9 +22,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.yaml.snakeyaml.Yaml;
+
+import com.github.javafaker.Address;
+import com.github.javafaker.Faker;
+import com.github.javafaker.Name;
+import com.github.javafaker.service.files.En;
+import com.mifmif.common.regex.Generex;
 
 public class FakeValuesService {
     private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*\\}");
@@ -110,7 +112,7 @@ public class FakeValuesService {
         this.fakeValuesMaps = Collections.unmodifiableList(all);
     }
 
-    private void loadFromJarFile(List<Map<String, Object>> all, Set<Locale> loadedLocales, Locale locale, StringBuilder filename) {
+    public void loadFromJarFile(List<Map<String, Object>> all, Set<Locale> loadedLocales, Locale locale, StringBuilder filename) {
         try {
             ClassLoader loader = getClass().getClassLoader();
             URL url = loader.getResource(filename.toString());
@@ -133,13 +135,13 @@ public class FakeValuesService {
         }
     }
 
-    private boolean isJarFile(String fileName) {
+    public boolean isJarFile(String fileName) {
         ClassLoader loader = getClass().getClassLoader();
         URL url = loader.getResource(fileName);
         return url != null && url.getProtocol().equals("jar");
     }
 
-    private File[] listFilesInDirectoryOnClasspath(String dir) {
+    public File[] listFilesInDirectoryOnClasspath(String dir) {
         ClassLoader loader = getClass().getClassLoader();
         URL url = loader.getResource(dir);
         if (url == null) {
@@ -213,7 +215,7 @@ public class FakeValuesService {
         if (streamOnClass != null) {
             return streamOnClass;
         }
-        return ClassLoader.getSystemResourceAsStream(filenameWithExtension);
+        return ClassLoader.getSystemResourceAsStream(filename);
     }
 
     /**
