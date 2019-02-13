@@ -217,6 +217,30 @@ public class FakeValuesService {
             return (String) o;
         }
     }
+    
+    @SuppressWarnings("unchecked")
+    public String safeFetch(String key, String defaultIfNull, int size) {
+        Object o = fetchObject(key);
+        if (o == null) return defaultIfNull;
+        if (o instanceof List) {
+            List<String> values = (List<String>) o;
+            if (values.size() == 0) {
+                return defaultIfNull;
+            }
+            List<String> subset = new ArrayList<String>();
+            for (int i = 0; i < values.size(); i++)
+                if (values.get(i).length() == size && StringUtils.isNoneEmpty(values.get(i)))
+                    subset.add(values.get(i));
+            if (subset.size() == 0) {
+                return defaultIfNull;
+            }
+            return subset.get(randomService.nextInt(subset.size()));
+        } else if (isSlashDelimitedRegex(o.toString())) {
+            return String.format("#{regexify '%s'}", trimRegexSlashes(o.toString()));
+        } else {
+            return (String) o;
+        }
+    }
 
     /**
      * Return the object selected by the key from yaml file.
@@ -347,6 +371,15 @@ public class FakeValuesService {
         final String expression = safeFetch(key, null);
         if (expression == null) {
             throw new RuntimeException(key + " resulted in null expression");
+        }
+
+        return resolveExpression(expression, current, root);
+    }
+    
+    public String resolve(String key, Object current, Faker root, int size) {
+        final String expression = safeFetch(key, null, size);
+        if (expression == null) {
+            throw new RuntimeException(key + " with size " + size + " resulted in null expression");
         }
 
         return resolveExpression(expression, current, root);
