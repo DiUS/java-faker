@@ -33,6 +33,7 @@ public class Faker {
     private final ChuckNorris chuckNorris;
     private final Color color;
     private final Commerce commerce;
+    private final Compass compass;
     private final Country country;
     private final Currency currency;
     private final Company company;
@@ -168,6 +169,7 @@ public class Faker {
         this.weather = new Weather(this);
         this.lebowski = new Lebowski(this);
         this.medical = new Medical(this);
+        this.compass = new Compass(this);
         this.country = new Country(this);
     }
 
@@ -553,9 +555,17 @@ public class Faker {
         return lebowski;
     }
 
-    public Medical medical(){return medical;}
+    public Medical medical(){
+    	return medical;
+    }
 
-    public Country country(){ return country;}
+    public Compass compass() {
+        return compass;
+    }
+
+	public Country country(){
+		return country;
+	}
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
@@ -580,4 +590,5 @@ public class Faker {
     public String expression(String expression) {
         return this.fakeValuesService.expression(expression, this);
     }
+
 }
