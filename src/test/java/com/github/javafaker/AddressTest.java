@@ -12,7 +12,8 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class AddressTest extends AbstractFakerTest {
-
+    private final static String EXPRESSION = "(north|east|west|south)+\\s{0,1}"
+        + "((by|-)\\s{0,1}(north|east|west|south)+){0,1}";
     private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
 
     @Test
@@ -112,4 +113,14 @@ public class AddressTest extends AbstractFakerTest {
         faker = new Faker(new Locale("en-US"));
         assertThat(faker.address().countyByZipCode(faker.address().zipCodeByState(faker.address().stateAbbr())), not(isEmptyOrNullString()));
     }
+    
+    @Test
+    public void testPhysicalDescription() {
+    	String physicalDescription = faker.address().physicalDescription();
+    	System.out.println("Physical Description: \"" + physicalDescription + "\"");
+        assertThat(physicalDescription, 
+            matchesRegularExpression("[1-5] mile(s){0,1} " + EXPRESSION 
+                + " of the \\w+ \\w+ and \\w+ \\w+ intersection"));
+    }
+    
 }
