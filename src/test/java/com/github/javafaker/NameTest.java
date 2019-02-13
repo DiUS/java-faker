@@ -43,10 +43,29 @@ public class NameTest  extends AbstractFakerTest{
     }
 
     @Test
+    public void testFirstNameLength() {
+    	for (int i = 2; i < 14; i++) {
+    		try {
+    			assertThat(faker.name().firstName(i), matchesRegularExpression("\\w{" + i + "}"));
+    		} catch(RuntimeException re) {
+    			String message = "name.first_name with size " + i + " resulted in null expression";
+    			assertEquals(message, re.getMessage());
+    		}
+    	}
+    }
+    
+    @Test
     public void testLastName() {
         assertThat(faker.name().lastName(), matchesRegularExpression("[A-Za-z']+"));
     }
 
+    @Test
+    public void testLastNameLength() {
+        for (int i = 4; i < 14; i++) {
+            assertThat(faker.name().lastName(i), matchesRegularExpression("[A-Za-z']{" + i +"}"));
+        }
+    }
+    
     @Test
     public void testPrefix() {
         assertThat(faker.name().prefix(), matchesRegularExpression("\\w+\\.?"));
@@ -75,4 +94,11 @@ public class NameTest  extends AbstractFakerTest{
         assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
     }
 
+    @Test
+    public void testUsernameAlt() {
+        for (int i = 4; i < 12; i++) {
+            assertThat(faker.name().username(i), 
+                matchesRegularExpression("[a-z][a-z]\\d{2," + (i - 2) + "}"));
+        }
+    }
 }
