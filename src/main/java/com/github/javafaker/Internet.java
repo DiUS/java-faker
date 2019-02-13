@@ -297,4 +297,47 @@ public class Internet {
     private <T> T random(T[] src) {
         return src[faker.random().nextInt(src.length)];
     }
+
+    public String userAgent(USER_AGENT userAgent){
+        USER_AGENT agent = userAgent;
+
+        if(agent == null) {
+            agent = USER_AGENT.any();
+        }
+
+        String userAgentKey = "internet.user_agent." + agent.toString();
+        return faker.fakeValuesService().resolve(userAgentKey, this, faker);
+    }
+
+    public String userAgentAny(){
+        return userAgent(null);
+    }
+
+    public enum USER_AGENT {
+        AOL("aol"),
+        CHROME("chrome"),
+        FIREFOX("firefox"),
+        INTERNET_EXPLORER("internet_explorer"),
+        NETSCAPE("netscape"),
+        OPERA("opera"),
+        SAFARI("safari");
+
+        //Browser's name in corresponding yaml (internet.yml) file.
+        private String browserName;
+
+        USER_AGENT(String browserName){
+            this.browserName = browserName;
+        }
+
+        private static USER_AGENT any(){
+            USER_AGENT[] agents = USER_AGENT.values();
+            int randomIndex = (int)(Math.random() * agents.length);
+            return agents[randomIndex];
+        }
+
+        @Override
+        public String toString(){
+            return browserName;
+        }
+    }
 }
