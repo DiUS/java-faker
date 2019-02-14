@@ -298,22 +298,22 @@ public class Internet {
         return src[faker.random().nextInt(src.length)];
     }
 
-    public String userAgent(USER_AGENT userAgent){
-        USER_AGENT agent = userAgent;
+    public String userAgent(UserAgent userAgent) {
+        UserAgent agent = userAgent;
 
         if(agent == null) {
-            agent = USER_AGENT.any();
+            agent = UserAgent.any();
         }
 
         String userAgentKey = "internet.user_agent." + agent.toString();
         return faker.fakeValuesService().resolve(userAgentKey, this, faker);
     }
 
-    public String userAgentAny(){
+    public String userAgentAny() {
         return userAgent(null);
     }
 
-    public enum USER_AGENT {
+    public enum UserAgent {
         AOL("aol"),
         CHROME("chrome"),
         FIREFOX("firefox"),
@@ -325,18 +325,18 @@ public class Internet {
         //Browser's name in corresponding yaml (internet.yml) file.
         private String browserName;
 
-        USER_AGENT(String browserName){
+        UserAgent(String browserName) {
             this.browserName = browserName;
         }
 
-        private static USER_AGENT any(){
-            USER_AGENT[] agents = USER_AGENT.values();
+        private static UserAgent any() {
+            UserAgent[] agents = UserAgent.values();
             int randomIndex = (int)(Math.random() * agents.length);
             return agents[randomIndex];
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return browserName;
         }
     }

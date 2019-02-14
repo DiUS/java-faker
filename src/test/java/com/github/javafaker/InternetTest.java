@@ -280,13 +280,12 @@ public class InternetTest extends AbstractFakerTest {
 
     @Test
     public void testUserAgent() {
-        Internet.USER_AGENT[] agents = Internet.USER_AGENT.values();
-        for(Internet.USER_AGENT agent : agents){
-            assertThat(faker.internet().userAgent(agent), IsNot.not(isEmptyOrNullString()));
-            assertThat(faker.resolve("internet.user_agent." + agent.toString()), IsNot.not(isEmptyOrNullString()));
+        Internet.UserAgent[] agents = Internet.UserAgent.values();
+        for(Internet.UserAgent agent : agents) {
+            assertThat(faker.internet().userAgent(agent), not(isEmptyOrNullString()));
         }
 
         //Test faker.internet().userAgentAny() for random user_agent retrieval.
-        assertThat(faker.internet().userAgentAny(), IsNot.not(isEmptyOrNullString()));
+        assertThat(faker.internet().userAgentAny(), not(isEmptyOrNullString()));
     }
 }
