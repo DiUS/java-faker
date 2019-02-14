@@ -1,10 +1,7 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.RandomService;
-
 public class Address {
     private final Faker faker;
-    private final RandomService random = new RandomService();
 
     protected Address(Faker faker) {
         this.faker = faker;
@@ -116,7 +113,7 @@ public class Address {
 
     public String physicalDescription() {
         // Example: 2 miles east of the Washington and Jefferson intersection
-        String distance = Integer.toString(random.nextInt(1, 5));
+        String distance = Integer.toString(faker.random().nextInt(1, 5));
         if (distance.equals("1"))
         	distance = distance + " mile ";
         else
