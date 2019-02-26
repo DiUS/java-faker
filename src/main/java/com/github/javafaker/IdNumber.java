@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import com.github.javafaker.idnumbers.DNIIdNumber;
 import com.github.javafaker.idnumbers.EnIdNumber;
 import com.github.javafaker.idnumbers.SvSEIdNumber;
 
@@ -37,5 +38,13 @@ public class IdNumber {
     public String invalidSvSeSsn() {
         SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
         return svSEIdNumber.getInvalidSsn(faker);
+    }
+
+    /**
+     * Specified as #{IDNumber.dni} in es.yml
+     */
+    public String dni() {
+        DNIIdNumber dniIdNumber = new DNIIdNumber(faker.number());
+        return dniIdNumber.generate();
     }
 }
