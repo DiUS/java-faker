@@ -125,6 +125,12 @@ public class InternetTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testPasswordIncludeDigit() {
+        assertThat(faker.internet().password(), matchesRegularExpression("[a-z\\d]{8,16}"));
+        assertThat(faker.internet().password(false), matchesRegularExpression("[a-z]{8,16}"));
+    }
+
+    @Test
     public void testPasswordMinLengthMaxLength() {
         assertThat(faker.internet().password(10, 25), matchesRegularExpression("[a-z\\d]{10,25}"));
     }
@@ -140,6 +146,14 @@ public class InternetTest extends AbstractFakerTest {
         assertThat(faker.internet().password(10, 25, false, false), matchesRegularExpression("[a-z\\d]{10,25}"));
         assertThat(faker.internet().password(10, 25, false, true), matchesRegularExpression("[a-z\\d!@#$%^&*]{10,25}"));
         assertThat(faker.internet().password(10, 25, true, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{10,25}"));
+    }
+
+    @Test
+    public void testPasswordMinLengthMaxLengthIncludeUpperCaseIncludeSpecialIncludeDigit() {
+        assertThat(faker.internet().password(10, 25, false, false, false), matchesRegularExpression("[a-z]{10,25}"));
+        assertThat(faker.internet().password(10, 25, false, true, true), matchesRegularExpression("[a-z\\d!@#$%^&*]{10,25}"));
+        assertThat(faker.internet().password(10, 25, true, true, false), matchesRegularExpression("[a-zA-Z!@#$%^&*]{10,25}"));
+        assertThat(faker.internet().password(10, 25, true, true, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{10,25}"));
     }
 
     @Test
