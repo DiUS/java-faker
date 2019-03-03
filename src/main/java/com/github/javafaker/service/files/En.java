@@ -12,6 +12,7 @@ public class En {
             "aqua_teen_hunger_force.yml",
             "artist.yml",
             "back_to_the_future.yml",
+            "barcode.yml",
             "bank.yml",
             "beer.yml",
             "bojack_horseman.yml",
