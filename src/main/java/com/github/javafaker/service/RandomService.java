@@ -67,7 +67,7 @@ public class RandomService {
     public String hex(int length) {
         StringBuilder hexString = new StringBuilder();
         for(int i = 0; i < length; i++) {
-            hexString.append(hexValues[nextInt(16)]);
+            hexString.append(hexValues[nextInt(hexValues.length)]);
         }
         return hexString.toString();
     }
