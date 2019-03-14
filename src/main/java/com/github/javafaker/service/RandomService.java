@@ -4,7 +4,12 @@ import java.util.Random;
 
 public class RandomService {
     private static final Random SHARED_RANDOM = new Random();
+    private static final char[] hexValues;
     private final Random random;
+
+    static {
+        hexValues = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    }
 
     /**
      * Uses a default shared random.
@@ -53,5 +58,17 @@ public class RandomService {
 
     public Integer nextInt(int min, int max) {
         return random.nextInt((max - min) + 1) + min;
+    }
+
+    public String hex() {
+        return hex(8);
+    }
+
+    public String hex(int length) {
+        StringBuilder hexString = new StringBuilder();
+        for(int i = 0; i < length; i++) {
+            hexString.append(hexValues[nextInt(16)]);
+        }
+        return hexString.toString();
     }
 }
