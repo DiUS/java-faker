@@ -10,6 +10,8 @@ public class DNIIdNumber {
     private static final Integer MOD_NUMBER = 23;
 
     private static final int NUMBER_OF_DIGITS = 8;
+    
+    private static final String DNI_FORMAT_VALUE = "%s-%s";
 
     private final Number number;
 
@@ -20,7 +22,7 @@ public class DNIIdNumber {
     public String generate() {
         Long randomNumber = number.randomNumber(NUMBER_OF_DIGITS, true);
         Long mod = randomNumber % MOD_NUMBER;
-        return String.format("%s-%s", randomNumber, ID_VALID_CHARS.charAt(mod.intValue()));
+        return String.format(DNI_FORMAT_VALUE, randomNumber, ID_VALID_CHARS.charAt(mod.intValue()));
     }
 
 }
