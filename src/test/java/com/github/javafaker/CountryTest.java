@@ -28,7 +28,7 @@ public class CountryTest extends AbstractFakerTest {
 
     @Test
     public void testCapital() {
-        assertThat(faker.country().capital(), matchesRegularExpression("([\\w-]+ ?)+"));
+        assertThat(faker.country().capital(), matchesRegularExpression("([\\w'-]+ ?)+"));
     }
 
     @Test
