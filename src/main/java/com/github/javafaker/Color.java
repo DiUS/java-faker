@@ -12,13 +12,13 @@ public class Color {
     }
 
     public String hex() {
-        return hex(false);
+        return hex(true);
     }
 
-    public String hex(boolean excludeHashSign) {
+    public String hex(boolean includeHashSign) {
         String hexString = faker.random().hex(6);
-        if(excludeHashSign)
-            return hexString;
-        return "#" + hexString;
+        if(includeHashSign)
+            return "#" + hexString;
+        return hexString;
     }
 }

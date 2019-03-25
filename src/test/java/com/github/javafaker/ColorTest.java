@@ -19,6 +19,6 @@ public class ColorTest extends AbstractFakerTest {
 
     @Test
     public void testHexNoHashSign() {
-        assertThat(faker.color().hex(true), matchesRegularExpression("^[0-9A-F]{6}$"));
+        assertThat(faker.color().hex(false), matchesRegularExpression("^[0-9A-F]{6}$"));
     }
 }
