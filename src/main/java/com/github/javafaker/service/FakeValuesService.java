@@ -7,7 +7,6 @@ import com.github.javafaker.service.files.En;
 import com.mifmif.common.regex.Generex;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
@@ -24,8 +23,7 @@ public class FakeValuesService {
 
     private final Logger log = Logger.getLogger("faker");
 
-    private final List<Map<String, Object>> fakeValuesMaps;
-
+    private final List<FakeValuesInterface> fakeValuesList;
     private final RandomService randomService;
 
     /**
@@ -58,7 +56,7 @@ public class FakeValuesService {
         locale = normalizeLocale(locale);
 
         final List<Locale> locales = localeChain(locale);
-        final List<Map<String, Object>> all = new ArrayList(locales.size());
+        final List<FakeValuesInterface> all = new ArrayList(locales.size());
         final Set<Locale> loadedLocales = new HashSet<Locale>();
 
         for (final Locale l : locales) {
@@ -69,19 +67,15 @@ public class FakeValuesService {
 
             boolean isEnglish = l.equals(Locale.ENGLISH);
             if (isEnglish) {
+                FakeValuesGrouping fakeValuesGrouping = new FakeValuesGrouping();
                 for (String file : En.FILES) {
-                    final InputStream stream = findStream("/en/" + file.toString());
-                    if (stream != null) {
-                        all.add(fakerFromStream(stream, filename.toString()));
-                    }
+                    fakeValuesGrouping.add(new FakeValues(locale, file));
                 }
+                all.add(fakeValuesGrouping);
                 loadedLocales.add(l);
             } else {
-                final InputStream stream = findStream("/" + filename.toString() + ".yml");
-                if (stream != null) {
-                    all.add(fakerFromStream(stream, filename.toString()));
-                    loadedLocales.add(l);
-                }
+                all.add(new FakeValues(locale, filename.toString()));
+                loadedLocales.add(l);
             }
         }
 
@@ -95,7 +89,7 @@ public class FakeValuesService {
             throw new LocaleDoesNotExistException(locale.toString() + " does not exist");
         }
 
-        this.fakeValuesMaps = Collections.unmodifiableList(all);
+        this.fakeValuesList = Collections.unmodifiableList(all);
     }
 
     /**
@@ -107,15 +101,6 @@ public class FakeValuesService {
             return "he";
         }
         return l.getLanguage();
-    }
-
-    /**
-     * @return the embedded faker: clause from the loaded Yml by the localeName, so .yml > en-us: > faker:
-     */
-    protected Map fakerFromStream(InputStream stream, String localeName) {
-        final Map valuesMap = new Yaml().loadAs(stream, Map.class);
-        final Map localeBased = (Map) valuesMap.get(localeName);
-        return (Map) localeBased.get("faker");
     }
 
     /**
@@ -230,10 +215,15 @@ public class FakeValuesService {
         String[] path = key.split("\\.");
 
         Object result = null;
-        for (Map<String, Object> fakeValuesMap : fakeValuesMaps) {
-            Object currentValue = fakeValuesMap;
+        for (FakeValuesInterface fakeValuesInterface : fakeValuesList) {
+            Object currentValue = fakeValuesInterface;
             for (int p = 0; currentValue != null && p < path.length; p++) {
-                currentValue = ((Map<String, Object>) currentValue).get(path[p]);
+                String currentPath = path[p];
+                if (currentValue instanceof Map) {
+                    currentValue = ((Map) currentValue).get(currentPath);
+                } else  {
+                    currentValue = ((FakeValuesInterface) currentValue).get(currentPath);
+                }
             }
             result = currentValue;
             if (result != null) {
