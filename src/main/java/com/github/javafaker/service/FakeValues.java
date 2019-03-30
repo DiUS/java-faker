@@ -9,22 +9,24 @@ import java.util.Map;
 public class FakeValues implements FakeValuesInterface {
     private final Locale locale;
     private final String filename;
+    private final String path;
     private Map values;
 
-    public FakeValues(Locale locale, String filename) {
+    public FakeValues(Locale locale, String filename, String path) {
         this.locale = locale;
         this.filename = filename;
+        this.path = path;
     }
 
     @Override
     public Object get(String key) {
         if (values == null) {
-            loadValues();
+            values = loadValues();
         }
-        return values.get(key);
+        return values == null ? null : values.get(key);
     }
 
-    private void loadValues() {
+    private Map loadValues() {
         String path = "/" + locale.getLanguage() + "/" + this.filename;
         InputStream stream = findStream(path);
         if (stream == null) {
@@ -34,7 +36,8 @@ public class FakeValues implements FakeValuesInterface {
                 String pathWithLocale = "/" + locale.getLanguage() + ".yml";
                 stream = findStream(pathWithLocale);
                 if (stream == null) {
-                    throw new RuntimeException("Couldn't load from " + path + ", " + pathWithFilename + " and " + pathWithLocale);
+                    // TODO
+                    return null;
                 }
             }
         }
@@ -44,7 +47,7 @@ public class FakeValues implements FakeValuesInterface {
         if (localeBased == null) {
             localeBased = (Map) valuesMap.get(filename);
         }
-        values = (Map) localeBased.get("faker");
+        return (Map) localeBased.get("faker");
     }
 
     private InputStream findStream(String filename) {
@@ -56,6 +59,6 @@ public class FakeValues implements FakeValuesInterface {
     }
 
     public boolean supportsPath(String path) {
-        return filename.replaceAll(".yml", "").equals(path);
+        return this.path.equals(path);
     }
 }

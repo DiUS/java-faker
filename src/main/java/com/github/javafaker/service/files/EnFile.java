@@ -1,10 +1,32 @@
 package com.github.javafaker.service.files;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class En {
-    public static  List<String> FILES = Arrays.asList("address.yml",
+public class EnFile {
+    private final String file;
+    private final String path;
+
+    private EnFile(String file) {
+        this(file, file.replaceFirst(".yml", ""));
+    }
+
+    private EnFile(String file, String path) {
+        this.file = file;
+        this.path = path;
+    }
+
+
+    public String getFile() {
+        return file;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    private static List<String> FILES = Arrays.asList("address.yml",
             "ancient.yml",
             "animal.yml",
             "app.yml",
@@ -21,7 +43,6 @@ public class En {
             "buffy.yml",
             "business.yml",
             "cannabis.yml",
-            "cat.yml",
             "chuck_norris.yml",
             "code.yml",
             "coffee.yml",
@@ -40,7 +61,6 @@ public class En {
             "demographic.yml",
             "dessert.yml",
             "device.yml",
-            "dog.yml",
             "dota.yml",
             "dr_who.yml",
             "dragon_ball.yml",
@@ -82,7 +102,6 @@ public class En {
             "invoice.yml",
             "job.yml",
             "kpop.yml",
-            "league_of_legends.yml",
             "lebowski.yml",
             "lord_of_the_rings.yml",
             "lorem.yml",
@@ -154,4 +173,26 @@ public class En {
             "world_of_warcraft.yml",
             "yoda.yml",
             "zelda.yml");
+
+    // files where the search path can't be derived from the filename
+    private static List<EnFile> FILES_WITH_A_DIFFERENT_PATH = Arrays.asList(
+            new EnFile("cat.yml", "creature"),
+            new EnFile("dog.yml", "creature"),
+            new EnFile("league_of_legends.yml", "games"),
+            new EnFile("overwatch.yml", "games"),
+            new EnFile("pokemon.yml", "games"),
+            new EnFile("witcher.yml", "games"),
+            new EnFile("zelda.yml", "games"),
+            new EnFile("phone_number.yml", "cell_phone")); // load phone number again with a differen path
+
+
+    public static List<EnFile> getFiles() {
+        List<EnFile> files = new ArrayList<EnFile>();
+        for (String file : FILES) {
+            files.add(new EnFile(file));
+        }
+        files.addAll(FILES_WITH_A_DIFFERENT_PATH);
+
+        return files;
+    }
 }

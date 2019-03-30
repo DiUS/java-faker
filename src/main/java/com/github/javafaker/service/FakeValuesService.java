@@ -3,16 +3,21 @@ package com.github.javafaker.service;
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
-import com.github.javafaker.service.files.En;
+import com.github.javafaker.service.files.EnFile;
 import com.mifmif.common.regex.Generex;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -57,7 +62,6 @@ public class FakeValuesService {
 
         final List<Locale> locales = localeChain(locale);
         final List<FakeValuesInterface> all = new ArrayList(locales.size());
-        final Set<Locale> loadedLocales = new HashSet<Locale>();
 
         for (final Locale l : locales) {
             final StringBuilder filename = new StringBuilder(language(l));
@@ -68,25 +72,13 @@ public class FakeValuesService {
             boolean isEnglish = l.equals(Locale.ENGLISH);
             if (isEnglish) {
                 FakeValuesGrouping fakeValuesGrouping = new FakeValuesGrouping();
-                for (String file : En.FILES) {
-                    fakeValuesGrouping.add(new FakeValues(locale, file));
+                for (EnFile file : EnFile.getFiles()) {
+                    fakeValuesGrouping.add(new FakeValues(l, file.getFile(), file.getPath()));
                 }
                 all.add(fakeValuesGrouping);
-                loadedLocales.add(l);
             } else {
-                all.add(new FakeValues(locale, filename.toString()));
-                loadedLocales.add(l);
+                all.add(new FakeValues(locale, filename.toString(), filename.toString()));
             }
-        }
-
-        if (loadedLocales.size() == 1 && loadedLocales.contains(Locale.ENGLISH) && !locale.equals(Locale.ENGLISH)) {
-            // if we have only successfully loaded ENGLISH and the requested locale
-            // wasn't english that means we were unable to load the requested locale
-            // in that case we vomit.
-            // If someone requests FRANCE ("fr","FR") and we can't load fr_FR but we
-            // load "fr", then that's ok. we picked up a variant. only if we ONLY pick up
-            // the default do we throw that exception.
-            throw new LocaleDoesNotExistException(locale.toString() + " does not exist");
         }
 
         this.fakeValuesList = Collections.unmodifiableList(all);
@@ -139,14 +131,6 @@ public class FakeValuesService {
         } else {
             return new Locale(parts[0], parts[1]);
         }
-    }
-
-    private InputStream findStream(String filename) {
-        InputStream streamOnClass = getClass().getResourceAsStream(filename);
-        if (streamOnClass != null) {
-            return streamOnClass;
-        }
-        return getClass().getClassLoader().getResourceAsStream(filename);
     }
 
     /**
@@ -335,6 +319,7 @@ public class FakeValuesService {
      */
     public String resolve(String key, Object current, Faker root) {
         final String expression = safeFetch(key, null);
+
         if (expression == null) {
             throw new RuntimeException(key + " resulted in null expression");
         }
