@@ -1,5 +1,7 @@
 package com.github.javafaker.service;
 
+import java.util.Map;
+
 public interface FakeValuesInterface {
-    Object get(String key);
+    Map get(String key);
 }

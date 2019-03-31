@@ -19,11 +19,12 @@ public class FakeValues implements FakeValuesInterface {
     }
 
     @Override
-    public Object get(String key) {
+    public Map get(String key) {
         if (values == null) {
             values = loadValues();
         }
-        return values == null ? null : values.get(key);
+
+        return values == null ? null : (Map) values.get(key);
     }
 
     private Map loadValues() {
