@@ -38,11 +38,6 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         fakeValuesService = spy(new FakeValuesService(new Locale("test"), randomService));
     }
 
-    @Test(expected = LocaleDoesNotExistException.class)
-    public void localeShouldThrowException() {
-        new FakeValuesService(new Locale("Does not exist"), randomService);
-    }
-
     @Test
     public void fetchStringShouldReturnValue() {
         assertThat(fakeValuesService.fetchString("property.dummy"), is("x"));
