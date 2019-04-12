@@ -3,6 +3,8 @@ package com.github.javafaker.service;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -12,7 +14,30 @@ public class FakeValues implements FakeValuesInterface {
     private final String path;
     private Map values;
 
-    public FakeValues(Locale locale, String filename, String path) {
+    FakeValues(Locale locale) {
+        this(locale, getFilename(locale), getFilename(locale));
+    }
+
+    private static String getFilename(Locale locale) {
+        final StringBuilder filename = new StringBuilder(language(locale));
+        if (!"".equals(locale.getCountry())) {
+            filename.append("-").append(locale.getCountry());
+        }
+        return filename.toString();
+    }
+
+    /**
+     * If you new up a locale with "he", it gets converted to "iw" which is old.
+     * This addresses that unfortunate condition.
+     */
+    private static String language(Locale l) {
+        if (l.getLanguage().equals("iw")) {
+            return "he";
+        }
+        return l.getLanguage();
+    }
+
+    FakeValues(Locale locale, String filename, String path) {
         this.locale = locale;
         this.filename = filename;
         this.path = path;
@@ -28,19 +53,21 @@ public class FakeValues implements FakeValuesInterface {
     }
 
     private Map loadValues() {
-        String path = "/" + locale.getLanguage() + "/" + this.filename;
-        InputStream stream = findStream(path);
-        if (stream == null) {
-            String pathWithFilename = "/" + filename + ".yml";
-            stream = findStream(pathWithFilename);
-            if (stream == null) {
-                String pathWithLocale = "/" + locale.getLanguage() + ".yml";
-                stream = findStream(pathWithLocale);
-                if (stream == null) {
-                    // TODO
-                    return null;
-                }
+        String pathWithLocaleAndFilename = "/" + locale.getLanguage() + "/" + this.filename;
+        String pathWithFilename = "/" + filename + ".yml";
+        String pathWithLocale = "/" + locale.getLanguage() + ".yml";
+
+        List<String> paths = Arrays.asList(pathWithLocaleAndFilename, pathWithFilename, pathWithLocale);
+        InputStream stream = null;
+        for (String path : paths) {
+            stream = findStream(path);
+            if (stream != null) {
+                break;
             }
+        }
+
+        if (stream == null) {
+            return null;
         }
 
         final Map valuesMap = new Yaml().loadAs(stream, Map.class);
@@ -59,7 +86,7 @@ public class FakeValues implements FakeValuesInterface {
         return getClass().getClassLoader().getResourceAsStream(filename);
     }
 
-    public boolean supportsPath(String path) {
+    boolean supportsPath(String path) {
         return this.path.equals(path);
     }
 }

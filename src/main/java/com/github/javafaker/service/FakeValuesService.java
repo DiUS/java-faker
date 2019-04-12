@@ -64,11 +64,6 @@ public class FakeValuesService {
         final List<FakeValuesInterface> all = new ArrayList(locales.size());
 
         for (final Locale l : locales) {
-            final StringBuilder filename = new StringBuilder(language(l));
-            if (!"".equals(l.getCountry())) {
-                filename.append("-").append(l.getCountry());
-            }
-
             boolean isEnglish = l.equals(Locale.ENGLISH);
             if (isEnglish) {
                 FakeValuesGrouping fakeValuesGrouping = new FakeValuesGrouping();
@@ -77,22 +72,11 @@ public class FakeValuesService {
                 }
                 all.add(fakeValuesGrouping);
             } else {
-                all.add(new FakeValues(locale, filename.toString(), filename.toString()));
+                all.add(new FakeValues(locale));
             }
         }
 
         this.fakeValuesList = Collections.unmodifiableList(all);
-    }
-
-    /**
-     * If you new up a locale with "he", it gets converted to "iw" which is old.
-     * This addresses that unfortunate condition.
-     */
-    private String language(Locale l) {
-        if (l.getLanguage().equals("iw")) {
-            return "he";
-        }
-        return l.getLanguage();
     }
 
     /**
