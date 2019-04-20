@@ -16,8 +16,7 @@ import java.util.Locale;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class FakeValuesServiceTest extends AbstractFakerTest {
@@ -86,6 +85,17 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         String value = fakeValuesService.resolve("property.regexify1", dummy, faker);
         assertThat(value, isOneOf("55", "44", "45", "54"));
         verify(faker).regexify("[45]{2}");
+    }
+
+    @Test
+    public void regexifyInRange() {
+        Faker f = new Faker();
+        // somehow "#{regexify '\\w','3','12'}" reads only the last argument
+//        final DummyService dummy = mock(DummyService.class);
+//        String value = fakeValuesService.resolve("property.regexifyInRange", dummy, faker);
+        String value = f.regexify("[a-zA-Z]+", 3, 12);
+        System.out.println(value);
+        assertTrue("not within range", value.length() >= 3 && value.length() <= 12 );
     }
 
     @Test

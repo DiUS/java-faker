@@ -255,6 +255,19 @@ public class FakeValuesService {
     }
 
     /**
+     * Generates a String that matches the given regular expression
+     * with length defined by minLength and maxLength.
+     * @param regex
+     * @param minLength
+     * @param maxLength
+     */
+    public String regexify(String regex, int minLength, int maxLength) {
+        Generex generex = new Generex(regex);
+        generex.setSeed(randomService.nextLong());
+        return generex.random(minLength, maxLength);
+    }
+
+    /**
      * Returns a string with the '?' characters in the parameter replaced with random alphabetic
      * characters.
      * <p/>

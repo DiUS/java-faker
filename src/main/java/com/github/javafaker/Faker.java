@@ -280,6 +280,14 @@ public class Faker {
         return fakeValuesService.regexify(regex);
     }
 
+    /**
+     * Generates a String that matches the given regular expression
+     * with a given minLength and a given maxLength.
+     */
+    public String regexify(String regex, int minLength, int maxLength) {
+        return fakeValuesService.regexify(regex, minLength, maxLength);
+    }
+
     public RandomService random() {
         return this.randomService;
     }
