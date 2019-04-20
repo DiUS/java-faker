@@ -10,7 +10,7 @@ test:
        simpleResolution: "#{hello}"
        advancedResolution: "#{Superhero.name}"
        regexify1: "#{regexify '[45]{2}'}"
-       regexifyInRange: "#{regexify '\\w','1','3','12'}"
+       regexifyInRange: "#{regexify '[a-zA-Z]+','3','12'}"
        regexify_cell: "#{regexify '4[57]9'}"
        regexify_slash_format: /[45]{2}/
        bothify_2: "#{bothify '??##','true'}"
