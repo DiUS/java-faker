@@ -75,6 +75,12 @@ public class LoremTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testCharactersMinimumMaximumLengthIncludeUppercaseIncludeDigit() {
+        assertThat(faker.lorem().characters(1, 10, false, false), matchesRegularExpression("[a-zA-Z]{1,10}"));
+        assertThat(faker.lorem().characters(1, 10, true, true), matchesRegularExpression("[a-zA-Z\\d]{1,10}"));
+    }
+
+    @Test
     public void testSentence() {
         assertThat(faker.lorem().sentence(), matchesRegularExpression("(\\w+\\s?){4,10}\\."));
     }
