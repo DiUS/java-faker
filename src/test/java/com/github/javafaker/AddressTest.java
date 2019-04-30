@@ -12,7 +12,8 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class AddressTest extends AbstractFakerTest {
-
+    private final static String EXPRESSION = "(north|east|west|south)+\\s{0,1}"
+        + "((by|-)\\s{0,1}(north|east|west|south)+){0,1}";
     private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
 
     @Test
@@ -34,7 +35,7 @@ public class AddressTest extends AbstractFakerTest {
         for (int i = 0; i < 100; i++) {
             latStr = faker.address().latitude().replace(decimalSeparator, '.');
             assertThat(latStr, isANumber());
-            lat = new Double(latStr);
+            lat = Double.valueOf(latStr);
             assertThat("Latitude is less then -90", lat, greaterThanOrEqualTo(-90.0));
             assertThat("Latitude is greater than 90", lat, lessThanOrEqualTo(90.0));
         }
@@ -47,7 +48,7 @@ public class AddressTest extends AbstractFakerTest {
         for (int i = 0; i < 100; i++) {
             longStr = faker.address().longitude().replace(decimalSeparator, '.');
             assertThat(longStr, isANumber());
-            lon = new Double(longStr);
+            lon = Double.valueOf(longStr);
             assertThat("Longitude is less then -180", lon, greaterThanOrEqualTo(-180.0));
             assertThat("Longitude is greater than 180", lon, lessThanOrEqualTo(180.0));
         }
@@ -112,4 +113,14 @@ public class AddressTest extends AbstractFakerTest {
         faker = new Faker(new Locale("en-US"));
         assertThat(faker.address().countyByZipCode(faker.address().zipCodeByState(faker.address().stateAbbr())), not(isEmptyOrNullString()));
     }
+    
+    @Test
+    public void testPhysicalDescription() {
+    	String physicalDescription = faker.address().physicalDescription();
+    	System.out.println("Physical Description: \"" + physicalDescription + "\"");
+        assertThat(physicalDescription, 
+            matchesRegularExpression("[1-5] mile(s){0,1} " + EXPRESSION 
+                + " of the \\w+ \\w+ and \\w+ \\w+ intersection"));
+    }
+    
 }

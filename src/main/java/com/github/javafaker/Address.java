@@ -110,4 +110,17 @@ public class Address {
     public String fullAddress() {
         return faker.fakeValuesService().resolve("address.full_address", this, faker);
     }
+
+    public String physicalDescription() {
+        // Example: 2 miles east of the Washington and Jefferson intersection
+        String distance = Integer.toString(faker.random().nextInt(1, 5));
+        if (distance.equals("1"))
+        	distance = distance + " mile ";
+        else
+        	distance = distance + " miles ";
+        String direction = faker.expression("#{compass.direction}");
+        String intersection = streetName() + " and " + streetName() + " intersection";
+        return distance + direction + " of the " + intersection; 
+    }
+    
 }
