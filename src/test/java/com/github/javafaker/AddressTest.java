@@ -1,6 +1,6 @@
 package com.github.javafaker;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -8,8 +8,13 @@ import java.util.Random;
 
 import static com.github.javafaker.matchers.IsANumber.isANumber;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.emptyOrNullString;
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
 public class AddressTest extends AbstractFakerTest {
 
@@ -34,7 +39,7 @@ public class AddressTest extends AbstractFakerTest {
         for (int i = 0; i < 100; i++) {
             latStr = faker.address().latitude().replace(decimalSeparator, '.');
             assertThat(latStr, isANumber());
-            lat = new Double(latStr);
+            lat = Double.parseDouble(latStr);
             assertThat("Latitude is less then -90", lat, greaterThanOrEqualTo(-90.0));
             assertThat("Latitude is greater than 90", lat, lessThanOrEqualTo(90.0));
         }
@@ -47,7 +52,7 @@ public class AddressTest extends AbstractFakerTest {
         for (int i = 0; i < 100; i++) {
             longStr = faker.address().longitude().replace(decimalSeparator, '.');
             assertThat(longStr, isANumber());
-            lon = new Double(longStr);
+            lon = Double.parseDouble(longStr);
             assertThat("Longitude is less then -180", lon, greaterThanOrEqualTo(-180.0));
             assertThat("Longitude is greater than 180", lon, lessThanOrEqualTo(180.0));
         }
@@ -85,7 +90,7 @@ public class AddressTest extends AbstractFakerTest {
 
     @Test
     public void testStreetAddressIncludeSecondary() {
-        assertThat(faker.address().streetAddress(true), not(isEmptyString()));
+        assertThat(faker.address().streetAddress(true), not(is(emptyString())));
     }
 
     @Test
@@ -98,7 +103,7 @@ public class AddressTest extends AbstractFakerTest {
 
     @Test
     public void testFullAddress() {
-        assertThat(faker.address().fullAddress(), not(isEmptyOrNullString()));
+        assertThat(faker.address().fullAddress(), not(is(emptyOrNullString())));
     }
 
     @Test
@@ -110,6 +115,6 @@ public class AddressTest extends AbstractFakerTest {
     @Test
     public void testCountyByZipCode() {
         faker = new Faker(new Locale("en-US"));
-        assertThat(faker.address().countyByZipCode(faker.address().zipCodeByState(faker.address().stateAbbr())), not(isEmptyOrNullString()));
+        assertThat(faker.address().countyByZipCode(faker.address().zipCodeByState(faker.address().stateAbbr())), not(is(emptyOrNullString())));
     }
 }

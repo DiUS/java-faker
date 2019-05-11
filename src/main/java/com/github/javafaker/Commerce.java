@@ -19,7 +19,7 @@ public class Commerce {
 
     public String department() {
         int numberOfDepartments = Math.max(faker.random().nextInt(4), 1);
-        SortedSet<String> departments = new TreeSet<String>();
+        SortedSet<String> departments = new TreeSet<>();
         while (departments.size() < numberOfDepartments) {
             departments.add(faker.fakeValuesService().resolve("commerce.department", this, faker));
         }

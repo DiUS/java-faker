@@ -25,7 +25,7 @@ public class Finance {
         final String template = faker.numerify(value);
 
         String[] split = template.replaceAll("[^0-9]", "").split("");
-        List<Integer> reversedAsInt = new ArrayList<Integer>();
+        List<Integer> reversedAsInt = new ArrayList<>();
         for (int i = 0; i < split.length; i++) {
             final String current = split[split.length - 1 - i];
             if (!current.isEmpty()) {
@@ -55,7 +55,7 @@ public class Finance {
     }
 
     public String iban() {
-        List<String> countryCodes = new ArrayList<String>(countryCodeToBasicBankAccountNumberPattern.keySet());
+        List<String> countryCodes = new ArrayList<>(countryCodeToBasicBankAccountNumberPattern.keySet());
         String randomCountryCode = countryCodes.get(faker.random().nextInt(countryCodes.size()));
         return iban(randomCountryCode);
     }
@@ -99,7 +99,7 @@ public class Finance {
 
     private static Map<String, String> createCountryCodeToBasicBankAccountNumberPatternMap() {
         // source: https://www.swift.com/standards/data-standards/iban
-        Map<String, String> ibanFormats = new HashMap<String, String>();
+        Map<String, String> ibanFormats = new HashMap<>();
         ibanFormats.put("AL", "\\d{8}[0-9A-Za-z]{16}");
         ibanFormats.put("AD", "\\d{4}\\d{4}[0-9A-Za-z]{12}");
         ibanFormats.put("AT", "\\d{5}\\d{11}");

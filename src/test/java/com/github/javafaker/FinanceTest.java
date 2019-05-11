@@ -1,11 +1,11 @@
 package com.github.javafaker;
 
 import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class FinanceTest extends AbstractFakerTest {
 
@@ -19,6 +19,7 @@ public class FinanceTest extends AbstractFakerTest {
 
     private void assertCardLuhnDigit(String creditCard) {
         final String creditCardStripped = creditCard.replaceAll("-", "");
+
         assertThat(LuhnCheckDigit.LUHN_CHECK_DIGIT.isValid(creditCardStripped), is(true));
     }
 

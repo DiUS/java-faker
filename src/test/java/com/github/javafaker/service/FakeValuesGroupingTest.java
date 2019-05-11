@@ -1,20 +1,20 @@
 package com.github.javafaker.service;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class FakeValuesGroupingTest {
 
     private FakeValuesGrouping fakeValuesGrouping;
     private FakeValues addressValues;
 
-    @Before
+    @BeforeEach
     public void before() {
         fakeValuesGrouping = new FakeValuesGrouping();
         addressValues = new FakeValues(Locale.ENGLISH, "address.yml", "address");

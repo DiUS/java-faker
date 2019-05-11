@@ -74,7 +74,7 @@ public class Lorem {
     }
 
     public List<String> words(int num) {
-        List<String> returnList = new ArrayList<String>();
+        List<String> returnList = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             returnList.add(word());
         }
@@ -120,7 +120,7 @@ public class Lorem {
     }
 
     public List<String> sentences(int sentenceCount) {
-        List<String> sentences = new ArrayList<String>(sentenceCount);
+        List<String> sentences = new ArrayList<>(sentenceCount);
         for (int i = 0; i < sentenceCount; i++) {
             sentences.add(sentence());
         }
@@ -136,7 +136,7 @@ public class Lorem {
     }
 
     public List<String> paragraphs(int paragraphCount) {
-        List<String> paragraphs = new ArrayList<String>(paragraphCount);
+        List<String> paragraphs = new ArrayList<>(paragraphCount);
         for (int i = 0; i < paragraphCount; i++) {
             paragraphs.add(paragraph());
         }

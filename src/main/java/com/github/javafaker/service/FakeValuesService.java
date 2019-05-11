@@ -13,11 +13,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -52,7 +50,7 @@ public class FakeValuesService {
      * @param locale
      * @param randomService
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({"unchecked"})
     public FakeValuesService(Locale locale, RandomService randomService) {
         if (locale == null) {
             throw new IllegalArgumentException("locale is required");
@@ -93,7 +91,7 @@ public class FakeValuesService {
 
         final Locale normalized = normalizeLocale(from);
 
-        final List<Locale> chain = new ArrayList<Locale>(3);
+        final List<Locale> chain = new ArrayList<>(3);
         chain.add(normalized);
         if (!"".equals(normalized.getCountry()) && !Locale.ENGLISH.getLanguage().equals(normalized.getLanguage())) {
             chain.add(new Locale(normalized.getLanguage()));
@@ -178,7 +176,6 @@ public class FakeValuesService {
      *            dot. E.g. name.first_name
      * @return
      */
-    @SuppressWarnings("unchecked")
     public Object fetchObject(String key) {
         String[] path = key.split("\\.");
 
@@ -347,7 +344,7 @@ public class FakeValuesService {
         while (matcher.find()) {
             final String escapedDirective = matcher.group(0);
             final String directive = matcher.group(1);
-            List<String> args = new ArrayList<String>();
+            List<String> args = new ArrayList<>();
             for (int i = 2; i < matcher.groupCount() + 1 && matcher.group(i) != null; i++) {
                 args.add(matcher.group(i));
             }
@@ -489,7 +486,7 @@ public class FakeValuesService {
 
         try {
             String fakerMethodName = classAndMethod[0].replaceAll("_", "");
-            MethodAndCoercedArgs fakerAccessor = accessor(faker, fakerMethodName, Collections.<String>emptyList());
+            MethodAndCoercedArgs fakerAccessor = accessor(faker, fakerMethodName, Collections.emptyList());
             if (fakerAccessor == null) {
                 log.fine("Can't find top level faker object named " + fakerMethodName + ".");
                 return null;
@@ -541,7 +538,7 @@ public class FakeValuesService {
      * @throws Exception if unable to coerce
      */
     private List<Object> coerceArguments(Method accessor, List<String> args) {
-        final List<Object> coerced = new ArrayList<Object>();
+        final List<Object> coerced = new ArrayList<>();
         for (int i = 0; i < accessor.getParameterTypes().length; i++) {
 
             Class<?> toType = ClassUtils.primitiveToWrapper(accessor.getParameterTypes()[i]);

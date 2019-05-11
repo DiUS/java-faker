@@ -1,7 +1,6 @@
 package com.github.javafaker.matchers;
 
 import org.hamcrest.Description;
-import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
@@ -15,8 +14,7 @@ public class CountOfCharactersMatcher extends TypeSafeMatcher<String> {
     this.matcher = matcher;
   }
 
-  @Factory
-  public static <T> Matcher<String> countOf(char character, Matcher<Integer> matcher) {
+  public static Matcher<String> countOf(char character, Matcher<Integer> matcher) {
     return new CountOfCharactersMatcher(character, matcher);
   }
 

@@ -1,13 +1,17 @@
 package com.github.javafaker;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 import java.util.Random;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.Matchers.not;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FakerTest extends AbstractFakerTest {
 
@@ -106,19 +110,19 @@ public class FakerTest extends AbstractFakerTest {
         assertThat(faker.regexify("\\.\\*\\?\\+"), matchesRegularExpression("\\.\\*\\?\\+"));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void badExpressionTooManyArgs() {
-        faker.expression("#{regexify 'a','a'}");
+        assertThrows(RuntimeException.class, () -> faker.expression("#{regexify 'a','a'}"));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void badExpressionTooFewArgs() {
-        faker.expression("#{regexify}");
+        assertThrows(RuntimeException.class, () -> faker.expression("#{regexify}"));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void badExpressionCouldntCoerce() {
-        faker.expression("#{number.number_between 'x','10'}");
+        assertThrows(RuntimeException.class, () -> faker.expression("#{number.number_between 'x','10'}"));
     }
 
     @Test
@@ -146,13 +150,12 @@ public class FakerTest extends AbstractFakerTest {
 
     @Test
     public void resolveShouldReturnValueThatExists() {
-        assertThat(faker.resolve("address.city_prefix"), not(isEmptyString()));
+        assertThat(faker.resolve("address.city_prefix"), not(is(emptyString())));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void resolveShouldThrowExceptionWhenPropertyDoesntExist() {
-        final String resolve = faker.resolve("address.nothing");
-        assertThat(resolve, is(nullValue()));
+        assertThrows(RuntimeException.class, () -> faker.resolve("address.nothing"));
     }
 
     @Test

@@ -51,17 +51,13 @@ public class Internet {
     }
 
     public String url() {
-        return join(new Object[]{
-                "www",
-                ".",
+        return join("www", ".",
                 FakerIDN.toASCII(
                         faker.name().firstName().toLowerCase().replaceAll("'", "") +
                                 "-" +
                                 domainWord()
                 ),
-                ".",
-                domainSuffix()
-        });
+                ".", domainSuffix());
     }
 
     /**
@@ -230,10 +226,7 @@ public class Internet {
      * @return a valid IPV4 CIDR
      */
     public String ipV4Cidr() {
-        return new StringBuilder(ipV4Address())
-          .append('/')
-          .append(faker.random().nextInt(31) + 1)
-          .toString();
+        return ipV4Address() + '/' + (faker.random().nextInt(31) + 1);
     }
 
     /**
@@ -258,10 +251,7 @@ public class Internet {
      * @return a valid IPV6 CIDR
      */
     public String ipV6Cidr() {
-        return new StringBuilder(ipV6Address())
-          .append('/')
-          .append(faker.random().nextInt(127) + 1)
-          .toString();
+        return ipV6Address() + '/' + (faker.random().nextInt(127) + 1);
     }
 
     /**

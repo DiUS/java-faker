@@ -4,8 +4,8 @@ import com.github.javafaker.AbstractFakerTest;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Superhero;
 import org.hamcrest.core.Is;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -19,8 +19,8 @@ import java.util.Locale;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 public class FakeValuesServiceTest extends AbstractFakerTest {
@@ -33,7 +33,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     private FakeValuesService fakeValuesService;
 
-    @Before
+    @BeforeEach
     public void before() {
         super.before();
         MockitoAnnotations.initMocks(this);
@@ -51,12 +51,12 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     @Test
     public void fetchShouldReturnValue() {
-        assertThat(fakeValuesService.fetch("property.dummy"), Is.<Object>is("x"));
+        assertThat(fakeValuesService.fetch("property.dummy"), Is.is("x"));
     }
 
     @Test
     public void fetchObjectShouldReturnValue() {
-        assertThat(fakeValuesService.fetchObject("property.dummy"), Is.<Object>is(Arrays.asList("x", "y", "z")));
+        assertThat(fakeValuesService.fetchObject("property.dummy"), Is.is(Arrays.asList("x", "y", "z")));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     @Test
     public void safeFetchShouldReturnEmptyStringWhenPropertyDoesntExist() {
-        assertThat(fakeValuesService.safeFetch("property.dummy2", ""), isEmptyString());
+        assertThat(fakeValuesService.safeFetch("property.dummy2", ""), is(emptyString()));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final DummyService dummy = mock(DummyService.class);
 
         String value = fakeValuesService.resolve("property.regexify1", dummy, faker);
-        assertThat(value, isOneOf("55", "44", "45", "54"));
+        assertThat(value, is(oneOf("55", "44", "45", "54")));
         verify(faker).regexify("[45]{2}");
     }
 
@@ -99,7 +99,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final DummyService dummy = mock(DummyService.class);
 
         String value = fakeValuesService.resolve("property.regexify_slash_format", dummy, faker);
-        assertThat(value, isOneOf("55", "44", "45", "54"));
+        assertThat(value, is(oneOf("55", "44", "45", "54")));
         verify(faker).regexify("[45]{2}");
     }
 
@@ -108,7 +108,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final DummyService dummy = mock(DummyService.class);
 
         String value = fakeValuesService.resolve("property.regexify_cell", dummy, faker);
-        assertThat(value, isOneOf("479", "459"));
+        assertThat(value, is(oneOf("479", "459")));
         verify(faker).regexify("4[57]9");
     }
 

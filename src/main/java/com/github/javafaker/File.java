@@ -24,6 +24,6 @@ public class File {
         final String dir = dirOrNull == null ? faker.internet().slug() : dirOrNull;
         final String name = nameOrNull == null ? faker.lorem().word().toLowerCase() : nameOrNull;
         final String ext = extensionOrNull == null ? extension() : extensionOrNull;
-        return new StringBuilder(dir).append(sep).append(name).append(".").append(ext).toString();
+        return dir + sep + name + "." + ext;
     }
 }

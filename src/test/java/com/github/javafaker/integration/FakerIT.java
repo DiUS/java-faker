@@ -4,9 +4,11 @@ import com.github.javafaker.Faker;
 import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsProvider;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,11 +16,17 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
+import java.util.stream.Stream;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.endsWith;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.hamcrest.Matchers.emptyOrNullString;
+import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.reflections.ReflectionUtils.*;
 
 /**
@@ -26,12 +34,11 @@ import static org.reflections.ReflectionUtils.*;
  * and that methods return values. The unit tests should ensure what the values returned
  * are correct. These tests just ensure that the methods can be invoked.
  */
-@RunWith(value = Parameterized.class)
 public class FakerIT {
 
     private static final Logger logger = LoggerFactory.getLogger(FakerIT.class);
-    private final Locale locale;
-    private final Faker faker;
+    private Locale locale;
+    private Faker faker;
 
     /**
      * a collection of Locales -> Exceptions.
@@ -42,14 +49,15 @@ public class FakerIT {
     private static final Map<Locale, List<String>> exceptions = Maps.newHashMap();
     static {
         // 'it' has an empty suffix list so it never returns a value
-        exceptions.put(new Locale("it"), Arrays.asList("Name.suffix"));
+        exceptions.put(new Locale("it"), Collections.singletonList("Name.suffix"));
         exceptions.put(new Locale("es-mx"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
         exceptions.put(new Locale("pt"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
         exceptions.put(new Locale("uk"), Arrays.asList("Address.stateAbbr", "Address.streetSuffix",
                 "Address.cityPrefix", "Address.citySuffix"));
     }
 
-    public FakerIT(Locale locale, Random random) {
+
+    private void setTestParams(Locale locale, Random random) {
         this.locale = locale;
         if (locale != null && random != null) {
             faker = new Faker(locale, random);
@@ -62,33 +70,41 @@ public class FakerIT {
         }
     }
 
-    @Parameterized.Parameters(name = "testing locale {0} and random {1}")
-    public static Collection<Object[]> data() {
-        Object[][] data = new Object[][]{
-                {Locale.ENGLISH, new Random()},
-                {new Locale("pt-BR"), null},
-                {new Locale("pt-br"), null},
-                {new Locale("Pt_br"), null},
-                {new Locale("pT_Br"), null},
-                {new Locale("pt","Br","x2"), null},
-                {null, new Random()},
-                {null, null}};
+    private static class FakerArgumentsProvider implements ArgumentsProvider {
 
-        String[] ymlFiles = new File("./src/main/resources").list();
-        int numberOfYmlFiles = ymlFiles.length;
-        Object[][] dataFromYmlFiles = new Object[numberOfYmlFiles][2];
-        for (int i = 0; i < numberOfYmlFiles; i++) {
-            String ymlFileName = ymlFiles[i];
-            dataFromYmlFiles[i][0] = new Locale(StringUtils.substringBefore(ymlFileName, "."));
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
+            Object[][] data = new Object[][]{
+                    {Locale.ENGLISH, new Random()},
+                    {new Locale("pt-BR"), null},
+                    {new Locale("pt-br"), null},
+                    {new Locale("Pt_br"), null},
+                    {new Locale("pT_Br"), null},
+                    {new Locale("pt","Br","x2"), null},
+                    {null, new Random()},
+                    {null, null}};
+
+            String[] ymlFiles = new File("./src/main/resources").list();
+            int numberOfYmlFiles = ymlFiles.length;
+            Object[][] dataFromYmlFiles = new Object[numberOfYmlFiles][2];
+            for (int i = 0; i < numberOfYmlFiles; i++) {
+                String ymlFileName = ymlFiles[i];
+                dataFromYmlFiles[i][0] = new Locale(StringUtils.substringBefore(ymlFileName, "."));
+            }
+
+            List<Object[]> allData = new ArrayList<>(Arrays.asList(data));
+            allData.addAll(Arrays.asList(dataFromYmlFiles));
+
+            return allData.stream().map(Arguments::of);
         }
 
-        List<Object[]> allData = new ArrayList<Object[]>(Arrays.asList(data));
-        allData.addAll(Arrays.asList(dataFromYmlFiles));
-        return allData;
     }
 
-    @Test
-    public void testAllFakerMethodsThatReturnStrings() throws Exception {
+    @ParameterizedTest
+    @ArgumentsSource(FakerArgumentsProvider.class)
+    public void testAllFakerMethodsThatReturnStrings(Locale locale, Random random) throws Exception {
+        setTestParams(locale, random);
+
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker);
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.ancient());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.address());
@@ -168,7 +184,7 @@ public class FakerIT {
             String failureReason = method + " on " + object;
             assertThat(failureReason, returnValue, is(instanceOf(String.class)));
             final String returnValueAsString = (String) returnValue;
-            assertThat(failureReason, returnValueAsString, not(isEmptyOrNullString()));
+            assertThat(failureReason, returnValueAsString, not(is(emptyOrNullString())));
             assertThat(failureReason + " is a slash encoded regex", returnValueAsString,
                        not(allOf(startsWith("/"), endsWith("/"))));
         }
@@ -176,12 +192,16 @@ public class FakerIT {
 
     private boolean isExcepted(Object object, Method method) {
         final List<String> classDotMethod = exceptions.get(this.locale);
-        if (classDotMethod == null) {return false;}
+        if (classDotMethod == null) {
+            return false;}
         return classDotMethod.contains(object.getClass().getSimpleName() + "." + method.getName());
     }
 
-    @Test
-    public void testExceptionsNotCoveredInAboveTest() {
+    @ParameterizedTest
+    @ArgumentsSource(FakerArgumentsProvider.class)
+    public void testExceptionsNotCoveredInAboveTest(Locale locale, Random random) {
+        setTestParams(locale, random);
+
         assertThat(faker.bothify("####???"), is(notNullValue()));
         assertThat(faker.letterify("????"), is(notNullValue()));
         assertThat(faker.numerify("####"), is(notNullValue()));

@@ -1,20 +1,18 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CountryTest extends AbstractFakerTest {
 
-    @Test
-    @Repeat(times=10)
+    @RepeatedTest(10)
     public void testFlag() {
         String flag = faker.country().flag();
         assertThat(flag, matchesRegularExpression("^http:\\/\\/flags.fmcdn\\.net\\/data\\/flags\\/w580\\/[a-zA-Z0-9_]+\\.png$"));
     }
-
 
     @Test
     public void testCode2() {

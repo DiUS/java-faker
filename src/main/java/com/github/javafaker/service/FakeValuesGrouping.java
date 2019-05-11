@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class FakeValuesGrouping implements FakeValuesInterface {
 
-    private List<FakeValues> fakeValuesList = new ArrayList<FakeValues>();
+    private List<FakeValues> fakeValuesList = new ArrayList<>();
 
     public void add(FakeValues fakeValues) {
         fakeValuesList.add(fakeValues);
