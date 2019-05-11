@@ -142,8 +142,8 @@
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>failsafe-maven-plugin</artifactId>
-                    <version>2.4.3-alpha-1</version>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.22.2</version>
                     <executions>
                         <execution>
                             <goals>
@@ -157,12 +157,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.2</version>
-                    <configuration>
-                        <includes>
-                            <include>com.github.javafaker.integration.**</include>
-                            <include>**.*Test</include>
-                        </includes>
-                    </configuration>
                 </plugin>
 			</plugins>
 		</pluginManagement>
