@@ -3,7 +3,7 @@
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
     <packaging>jar</packaging>
-    <version>0.17.3-SNAPSHOT</version>
+    <version>0.19-SNAPSHOT</version>
     <name>Java Faker</name>
     <description>
     	This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
