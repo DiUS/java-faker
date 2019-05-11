@@ -24,9 +24,9 @@ public class CountryTest extends AbstractFakerTest {
         assertThat(faker.country().countryCode3(), matchesRegularExpression("([a-z]{3})"));
     }
 
-    @Test
+    @RepeatedTest(10)
     public void testCapital() {
-        assertThat(faker.country().capital(), matchesRegularExpression("([\\w'-]+ ?)+"));
+        assertThat(faker.country().capital(), matchesRegularExpression("([\\w'-ú]+ ?)+"));
     }
 
     @Test
