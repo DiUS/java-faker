@@ -84,6 +84,7 @@ public class Faker {
     private final Weather weather;
     private final Lebowski lebowski;
     private final Medical medical;
+    private final Barcode barcode;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -169,6 +170,7 @@ public class Faker {
         this.lebowski = new Lebowski(this);
         this.medical = new Medical(this);
         this.country = new Country(this);
+        this.barcode = new Barcode(this);
     }
 
     /**
@@ -556,6 +558,10 @@ public class Faker {
     public Medical medical(){return medical;}
 
     public Country country(){ return country;}
+
+    public Barcode barcode() {
+        return barcode;
+    }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
