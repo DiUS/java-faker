@@ -50,6 +50,7 @@ http://dius.github.io/java-faker/apidocs/index.html
 Fakers
 -----
 * Ancient
+* Animal
 * Address
 * App
 * Artist

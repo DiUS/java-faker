@@ -176,6 +176,7 @@ public class EnFile {
 
     // files where the search path can't be derived from the filename
     private static List<EnFile> FILES_WITH_A_DIFFERENT_PATH = Arrays.asList(
+            new EnFile("animal.yml", "creature"),
             new EnFile("cat.yml", "creature"),
             new EnFile("dog.yml", "creature"),
             new EnFile("league_of_legends.yml", "games"),
