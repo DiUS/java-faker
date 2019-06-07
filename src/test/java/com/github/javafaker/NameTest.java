@@ -11,8 +11,11 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
+import java.util.logging.Logger;
+
 
 public class NameTest  extends AbstractFakerTest{
+    private static Logger logger = Logger.getLogger("NameTest");
 
     @Test
     public void testName() {
@@ -45,11 +48,14 @@ public class NameTest  extends AbstractFakerTest{
 
     @Test
     public void testFirstNameLength() {
-    	for (int i = 2; i < 14; i++) {
+    	for (int i = 2; i < 11; i++) {
     		try {
-    			assertThat(faker.name().firstName(i), matchesRegularExpression("\\w{" + i + "}"));
+    		    String firstName = faker.name().firstName(i);
+    		    logger.info("First Name: \"" + firstName + "\" [" + firstName.length() + "]");
+    			assertThat(firstName, matchesRegularExpression("\\w{" + i + "}"));
     		} catch(RuntimeException re) {
     			String message = "name.first_name with size " + i + " resulted in null expression";
+    			logger.info(message);
     			assertEquals(message, re.getMessage());
     		}
     	}
