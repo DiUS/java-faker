@@ -11,7 +11,7 @@ public class BackToTheFutureTest extends AbstractFakerTest {
 
     @Test
     public void character() {
-        assertThat(faker.backToTheFuture().character(), matchesRegularExpression("[A-Za-z .,]+"));
+        assertThat(faker.backToTheFuture().character(), matchesRegularExpression("[A-Za-z .-]+"));
     }
 
     @Test

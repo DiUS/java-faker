@@ -7,7 +7,6 @@ public class BackToTheFuture {
         this.faker = faker;
     }
 
-
     public String character() {
         return faker.resolve("back_to_the_future.characters");
     }
