@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="java-faker/bin/javaFaker_0.18.1.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/java-faker/META-INF/javaFaker.jardesc" exportErrors="false" exportWarnings="false" includeDirectoryEntries="true" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" manifestLocation="/java-faker/META-INF/MANIFEST.MF" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="false" exportJavaFiles="true" exportOutputFolder="true">
+        <javaElement handleIdentifier="=java-faker/src\/main\/resources"/>
+        <javaElement handleIdentifier="=java-faker/src\/main\/java"/>
+    </selectedElements>
+</jardesc>
