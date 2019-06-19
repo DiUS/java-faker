@@ -1,8 +1,5 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
-import org.junit.Test;
-
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
@@ -12,6 +9,10 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
 import java.util.logging.Logger;
+
+import org.junit.Test;
+
+import com.github.javafaker.repeating.Repeat;
 
 
 public class NameTest  extends AbstractFakerTest{

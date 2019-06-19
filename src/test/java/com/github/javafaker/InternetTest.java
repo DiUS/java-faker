@@ -1,15 +1,5 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-import org.apache.commons.validator.routines.EmailValidator;
-import org.hamcrest.Matchers;
-import org.junit.Test;
-
-import java.util.List;
-import java.util.Locale;
-
 import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static java.lang.Integer.parseInt;
@@ -24,6 +14,17 @@ import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
+
+import java.util.List;
+import java.util.Locale;
+
+import org.apache.commons.validator.routines.EmailValidator;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+
+import com.github.javafaker.repeating.Repeat;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
 public class InternetTest extends AbstractFakerTest {
 

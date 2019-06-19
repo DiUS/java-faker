@@ -1,15 +1,16 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakerIDN;
-import com.github.javafaker.service.RandomService;
-import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.join;
+import static org.apache.commons.lang3.StringUtils.stripAccents;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import static org.apache.commons.lang3.StringUtils.join;
-import static org.apache.commons.lang3.StringUtils.stripAccents;
+import org.apache.commons.lang3.StringUtils;
+
+import com.github.javafaker.service.FakerIDN;
+import com.github.javafaker.service.RandomService;
 
 public class Internet {
     private final Faker faker;
