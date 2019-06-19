@@ -1,10 +1,10 @@
 package com.github.javafaker;
 
-import org.junit.Test;
-
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
+
+import org.junit.Test;
 
 public class ChuckNorrisTest extends AbstractFakerTest {
 

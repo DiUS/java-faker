@@ -1,7 +1,8 @@
 package com.github.javafaker;
 
-import org.apache.commons.lang3.ArrayUtils;
 import static org.apache.commons.lang3.math.NumberUtils.toInt;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * ISBN Rules : https://en.wikipedia.org/wiki/International_Standard_Book_Number

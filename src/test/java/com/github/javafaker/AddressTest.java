@@ -1,15 +1,20 @@
 package com.github.javafaker;
 
-import org.junit.Test;
+import static com.github.javafaker.matchers.IsANumber.isANumber;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
 
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Random;
 
-import static com.github.javafaker.matchers.IsANumber.isANumber;
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import org.junit.Test;
 
 public class AddressTest extends AbstractFakerTest {
     private final static String EXPRESSION = "(north|east|west|south)+\\s{0,1}"

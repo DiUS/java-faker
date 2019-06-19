@@ -1,11 +1,11 @@
 package com.github.javafaker;
 
-import org.junit.Test;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.junit.Assert.assertThat;
 
 import java.text.DecimalFormatSymbols;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.junit.Assert.assertThat;
+import org.junit.Test;
 
 public class CommerceTest extends AbstractFakerTest {
 

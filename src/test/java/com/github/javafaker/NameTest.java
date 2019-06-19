@@ -1,17 +1,22 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
-import org.junit.Test;
-
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
+import java.util.logging.Logger;
+
+import org.junit.Test;
+
+import com.github.javafaker.repeating.Repeat;
+
 
 public class NameTest  extends AbstractFakerTest{
+    private static Logger logger = Logger.getLogger("NameTest");
 
     @Test
     public void testName() {
@@ -43,10 +48,32 @@ public class NameTest  extends AbstractFakerTest{
     }
 
     @Test
+    public void testFirstNameLength() {
+    	for (int i = 2; i < 11; i++) {
+    		try {
+    		    String firstName = faker.name().firstName(i);
+    		    logger.info("First Name: \"" + firstName + "\" [" + firstName.length() + "]");
+    			assertThat(firstName, matchesRegularExpression("\\w{" + i + "}"));
+    		} catch(RuntimeException re) {
+    			String message = "name.first_name with size " + i + " resulted in null expression";
+    			logger.info(message);
+    			assertEquals(message, re.getMessage());
+    		}
+    	}
+    }
+    
+    @Test
     public void testLastName() {
         assertThat(faker.name().lastName(), matchesRegularExpression("[A-Za-z']+"));
     }
 
+    @Test
+    public void testLastNameLength() {
+        for (int i = 4; i < 14; i++) {
+            assertThat(faker.name().lastName(i), matchesRegularExpression("[A-Za-z']{" + i +"}"));
+        }
+    }
+    
     @Test
     public void testPrefix() {
         assertThat(faker.name().prefix(), matchesRegularExpression("\\w+\\.?"));
@@ -75,4 +102,11 @@ public class NameTest  extends AbstractFakerTest{
         assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
     }
 
+    @Test
+    public void testUsernameAlt() {
+        for (int i = 4; i < 12; i++) {
+            assertThat(faker.name().username(i), 
+                matchesRegularExpression("[a-z][a-z]\\d{2," + (i - 2) + "}"));
+        }
+    }
 }

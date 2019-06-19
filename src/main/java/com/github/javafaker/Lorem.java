@@ -1,12 +1,12 @@
 package com.github.javafaker;
 
-import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.capitalize;
+import static org.apache.commons.lang3.StringUtils.join;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.commons.lang3.StringUtils.capitalize;
-import static org.apache.commons.lang3.StringUtils.join;
+import org.apache.commons.lang3.StringUtils;
 
 public class Lorem {
     private final Faker faker;

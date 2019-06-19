@@ -2,6 +2,8 @@ package com.github.javafaker.service;
 
 import java.util.Random;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 public class RandomService {
     private static final Random SHARED_RANDOM = new Random();
     private final Random random;
@@ -54,4 +56,13 @@ public class RandomService {
     public Integer nextInt(int min, int max) {
         return random.nextInt((max - min) + 1) + min;
     }
+    
+    public String randomAlphaNumeric(int lenght) {
+        return RandomStringUtils.randomAlphanumeric(lenght);
+    }
+    
+    public String randomNumbersString(int length) {
+        return RandomStringUtils.randomNumeric(length);
+    }
+    
 }

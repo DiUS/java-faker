@@ -1,14 +1,15 @@
 package com.github.javafaker.integration;
 
-import com.github.javafaker.Faker;
-import com.google.common.collect.Lists;
-import org.junit.Test;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import org.junit.Test;
+
+import com.github.javafaker.Faker;
+import com.google.common.collect.Lists;
 
 /**
  * The purpose of these tests is to ensure that the Locales have been properly configured
