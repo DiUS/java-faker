@@ -54,6 +54,7 @@ Fakers
 * App
 * Artist
 * Avatar
+* Back To The Future
 * Beer
 * Book
 * Bool
@@ -98,6 +99,7 @@ Fakers
 * Overwatch
 * PhoneNumber
 * Pokemon
+* Princess Bride
 * RickAndMorty
 * Robin
 * RockBand
