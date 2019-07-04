@@ -33,4 +33,8 @@ public class Country {
         return faker.fakeValuesService().resolve("country.currency_code", this, faker);
     }
 
+    public String name() {
+        return faker.fakeValuesService().resolve("country.name", this, faker);
+    }
+
 }
