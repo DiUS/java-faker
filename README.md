@@ -54,6 +54,7 @@ Fakers
 * App
 * Artist
 * Avatar
+* Aviation
 * Beer
 * Book
 * Bool
