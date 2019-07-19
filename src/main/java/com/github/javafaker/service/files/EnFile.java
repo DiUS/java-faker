@@ -33,6 +33,7 @@ public class EnFile {
             "appliance.yml",
             "aqua_teen_hunger_force.yml",
             "artist.yml",
+            "aviation.yml",
             "back_to_the_future.yml",
             "bank.yml",
             "beer.yml",
