@@ -22,7 +22,6 @@ public class AbstractFakerTest {
     @Before
     public void before() {
         MockitoAnnotations.initMocks(this);
-
         
         Logger rootLogger = LogManager.getLogManager().getLogger("");
         Handler[] handlers = rootLogger.getHandlers();
