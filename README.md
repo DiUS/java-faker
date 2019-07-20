@@ -42,6 +42,8 @@ String lastName = faker.name().lastName(); // Barton
 String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 ```
 
+This is a [demo web application](https://java-faker.herokuapp.com/) that uses the library.
+
 Javadoc
 -----
 http://dius.github.io/java-faker/apidocs/index.html
