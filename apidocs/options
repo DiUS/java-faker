@@ -1,0 +1,24 @@
+-classpath
+'/Users/ricky/.m2/repository/com/github/mifmif/generex/1.0.2/generex-1.0.2.jar:/Users/ricky/.m2/repository/org/apache/commons/commons-lang3/3.5/commons-lang3-3.5.jar:/Users/ricky/.m2/repository/dk/brics/automaton/automaton/1.11-8/automaton-1.11-8.jar:/Users/ricky/.m2/repository/org/yaml/snakeyaml/1.23/snakeyaml-1.23-android.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/ricky/projects/java-faker/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2019. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/ricky/projects/java-faker/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Java Faker 0.19-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/6/docs/api' '/Users/ricky/projects/java-faker/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Java Faker 0.19-SNAPSHOT API'
