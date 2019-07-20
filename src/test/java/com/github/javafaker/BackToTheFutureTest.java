@@ -3,15 +3,14 @@ package com.github.javafaker;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.core.IsNot.not;
+import static com.github.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static org.junit.Assert.assertThat;
 
 public class BackToTheFutureTest extends AbstractFakerTest {
 
     @Test
     public void character() {
-        assertThat(faker.backToTheFuture().character(), matchesRegularExpression("[A-Za-z .-]+"));
+        assertThat(faker.backToTheFuture().character(), isStringWithContents());
     }
 
     @Test
@@ -21,6 +20,6 @@ public class BackToTheFutureTest extends AbstractFakerTest {
 
     @Test
     public void quote() {
-        assertThat(faker.backToTheFuture().quote(), not(isEmptyOrNullString()));
+        assertThat(faker.backToTheFuture().quote(), isStringWithContents());
     }
 }
