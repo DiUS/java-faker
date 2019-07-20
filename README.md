@@ -47,6 +47,11 @@ Javadoc
 http://dius.github.io/java-faker/apidocs/index.html
 
 
+Contributions
+-------------
+See [CONTRIBUTING.md](https://github.com/DiUS/java-faker/blob/master/CONTRIBUTING.md)
+
+
 Fakers
 -----
 * Ancient
