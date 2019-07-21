@@ -152,6 +152,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.witcher());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.weather());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lebowski());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.animal());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.princessBride());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.elderScrolls());
     }

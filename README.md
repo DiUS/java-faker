@@ -57,6 +57,7 @@ See [CONTRIBUTING.md](https://github.com/DiUS/java-faker/blob/master/CONTRIBUTIN
 Fakers
 -----
 * Ancient
+* Animal
 * Address
 * App
 * Artist
