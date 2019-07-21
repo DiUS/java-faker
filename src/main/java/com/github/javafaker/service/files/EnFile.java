@@ -33,6 +33,7 @@ public class EnFile {
             "appliance.yml",
             "aqua_teen_hunger_force.yml",
             "artist.yml",
+            "aviation.yml",
             "back_to_the_future.yml",
             "bank.yml",
             "beer.yml",
@@ -184,6 +185,7 @@ public class EnFile {
             new EnFile("pokemon.yml", "games"),
             new EnFile("witcher.yml", "games"),
             new EnFile("zelda.yml", "games"),
+            new EnFile("elder_scrolls.yml", "games"),
             new EnFile("phone_number.yml", "cell_phone")); // load phone number again with a differen path
 
 
