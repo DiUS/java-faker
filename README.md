@@ -17,7 +17,7 @@ In pom.xml, add the following xml stanza between `<dependencies> ... </dependenc
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.18</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -25,7 +25,7 @@ For gradle users, add the following to your build.gradle file.
 
 ```groovy
 dependencies {
-    implementation 'com.github.javafaker:javafaker:0.18'
+    implementation 'com.github.javafaker:javafaker:1.0.0'
 }
 
 ```
