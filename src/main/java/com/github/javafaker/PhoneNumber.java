@@ -14,4 +14,16 @@ public class PhoneNumber {
     public String phoneNumber() {
         return faker.numerify(faker.fakeValuesService().resolve("phone_number.formats", this, faker));
     }
+
+    public String subscriberNumber(int length) {
+        StringBuilder subscriberNumber = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            subscriberNumber.append("#");
+        }
+        return faker.numerify(subscriberNumber.toString());
+    }
+
+    public String subscriberNumber() {
+        return subscriberNumber(4);
+    }
 }

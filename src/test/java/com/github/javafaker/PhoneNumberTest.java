@@ -25,14 +25,6 @@ public class PhoneNumberTest extends AbstractFakerTest {
     }
 
     @Test
-    public void testPhone_enZA() {
-        final Faker f = new Faker(new Locale("en_ZA"));
-        for (int i=0;i<100;i++) {
-            assertThat(f.phoneNumber().phoneNumber(), matchesRegularExpression("\\(?\\d+\\)?([- .]\\d+){1,3}"));
-        }
-    }
-
-    @Test
     public void testCellPhone() {
         assertThat(faker.phoneNumber().cellPhone(), matchesRegularExpression("\\(?\\d+\\)?([- .]\\d+){1,3}"));
     }
@@ -40,5 +32,15 @@ public class PhoneNumberTest extends AbstractFakerTest {
     @Test
     public void testPhoneNumber() {
         assertThat(faker.phoneNumber().phoneNumber(), matchesRegularExpression("\\(?\\d+\\)?([- .]x?\\d+){1,5}"));
+    }
+
+    @Test
+    public void testSubscriberNumber() {
+        assertThat(faker.phoneNumber().subscriberNumber(), matchesRegularExpression("\\d{4}"));
+    }
+
+    @Test
+    public void testSubscriberNumberWithLength() {
+        assertThat(faker.phoneNumber().subscriberNumber(10), matchesRegularExpression("\\d{10}"));
     }
 }
