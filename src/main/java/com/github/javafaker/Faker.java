@@ -49,6 +49,7 @@ public class Faker {
     private final Demographic demographic;
     private final Dog dog;
     private final Educator educator;
+    private final ElderScrolls elderScrolls;
     private final Shakespeare shakespeare;
     private final SlackEmoji slackEmoji;
     private final Space space;
@@ -125,6 +126,7 @@ public class Faker {
         this.hacker = new Hacker(this);
         this.company = new Company(this);
         this.crypto = new Crypto(this);
+        this.elderScrolls = new ElderScrolls(this);
         this.commerce = new Commerce(this);
         this.currency = new Currency(this);
         this.options = new Options(this);
@@ -405,6 +407,10 @@ public class Faker {
 
     public Food food() {
         return food;
+    }
+
+    public ElderScrolls elderScrolls() {
+        return elderScrolls;
     }
 
     public GameOfThrones gameOfThrones() {
