@@ -184,6 +184,7 @@ public class EnFile {
             new EnFile("pokemon.yml", "games"),
             new EnFile("witcher.yml", "games"),
             new EnFile("zelda.yml", "games"),
+            new EnFile("elder_scrolls.yml", "games"),
             new EnFile("phone_number.yml", "cell_phone")); // load phone number again with a differen path
 
 

@@ -153,6 +153,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.weather());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lebowski());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.princessBride());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.elderScrolls());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
