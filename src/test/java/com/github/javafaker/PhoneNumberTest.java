@@ -35,6 +35,11 @@ public class PhoneNumberTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testExtension() {
+        assertThat(faker.phoneNumber().extension(), matchesRegularExpression("\\d{4}"));
+    }
+
+    @Test
     public void testSubscriberNumber() {
         assertThat(faker.phoneNumber().subscriberNumber(), matchesRegularExpression("\\d{4}"));
     }

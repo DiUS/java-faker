@@ -138,3 +138,7 @@ en-ZA:
     # (See Faker::SouthAfrica.valid_id_number for alternative)
     id_number:
       formats: ["##########08#"]
+    team:
+      provinces: [Limpopo, Gauteng, Free State,
+       North West, Northern Cape, Western Cape,
+       KwaZulu-Natal, Mpumalanga, Eastern Cape]

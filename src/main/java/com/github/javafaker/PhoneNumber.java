@@ -15,6 +15,10 @@ public class PhoneNumber {
         return faker.numerify(faker.fakeValuesService().resolve("phone_number.formats", this, faker));
     }
 
+    public String extension() {
+        return subscriberNumber();
+    }
+
     public String subscriberNumber(int length) {
         StringBuilder subscriberNumber = new StringBuilder();
         for (int i = 0; i < length; i++) {
