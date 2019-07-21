@@ -20,6 +20,7 @@ public class Faker {
     private final App app;
     private final Artist artist;
     private final Avatar avatar;
+    private final Aviation aviation;
     private final Lorem lorem;
     private final Music music;
     private final Name name;
@@ -107,6 +108,7 @@ public class Faker {
         this.app = new App(this);
         this.artist = new Artist(this);
         this.avatar = new Avatar(this);
+        this.aviation = new Aviation(this);
         this.lorem = new Lorem(this);
         this.music = new Music(this);
         this.name = new Name(this);
@@ -311,6 +313,10 @@ public class Faker {
 
     public Avatar avatar() {
         return avatar;
+    }
+
+    public Aviation aviation() {
+        return aviation;
     }
 
     public Music music() {
