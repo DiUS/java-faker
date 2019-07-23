@@ -20,6 +20,7 @@ public class Faker {
     private final App app;
     private final Artist artist;
     private final Avatar avatar;
+    private final Aviation aviation;
     private final Lorem lorem;
     private final Music music;
     private final Name name;
@@ -48,6 +49,7 @@ public class Faker {
     private final Demographic demographic;
     private final Dog dog;
     private final Educator educator;
+    private final ElderScrolls elderScrolls;
     private final Shakespeare shakespeare;
     private final SlackEmoji slackEmoji;
     private final Space space;
@@ -84,6 +86,9 @@ public class Faker {
     private final Weather weather;
     private final Lebowski lebowski;
     private final Medical medical;
+    private final Animal animal;
+    private final BackToTheFuture backToTheFuture;
+    private final PrincessBride princessBride;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -105,6 +110,7 @@ public class Faker {
         this.app = new App(this);
         this.artist = new Artist(this);
         this.avatar = new Avatar(this);
+        this.aviation = new Aviation(this);
         this.lorem = new Lorem(this);
         this.music = new Music(this);
         this.name = new Name(this);
@@ -121,6 +127,7 @@ public class Faker {
         this.hacker = new Hacker(this);
         this.company = new Company(this);
         this.crypto = new Crypto(this);
+        this.elderScrolls = new ElderScrolls(this);
         this.commerce = new Commerce(this);
         this.currency = new Currency(this);
         this.options = new Options(this);
@@ -169,6 +176,9 @@ public class Faker {
         this.lebowski = new Lebowski(this);
         this.medical = new Medical(this);
         this.country = new Country(this);
+        this.animal = new Animal(this);
+        this.backToTheFuture = new BackToTheFuture(this);
+        this.princessBride = new PrincessBride(this);
     }
 
     /**
@@ -309,6 +319,10 @@ public class Faker {
         return avatar;
     }
 
+    public Aviation aviation() {
+        return aviation;
+    }
+
     public Music music() {
         return music;
     }
@@ -395,6 +409,10 @@ public class Faker {
 
     public Food food() {
         return food;
+    }
+
+    public ElderScrolls elderScrolls() {
+        return elderScrolls;
     }
 
     public GameOfThrones gameOfThrones() {
@@ -556,6 +574,16 @@ public class Faker {
     public Medical medical(){return medical;}
 
     public Country country(){ return country;}
+
+    public Animal animal(){ return animal; }
+
+    public BackToTheFuture backToTheFuture() {
+        return  backToTheFuture;
+    }
+
+    public PrincessBride princessBride() {
+        return princessBride;
+    }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
