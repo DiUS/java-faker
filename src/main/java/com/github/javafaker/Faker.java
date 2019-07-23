@@ -89,6 +89,7 @@ public class Faker {
     private final Animal animal;
     private final BackToTheFuture backToTheFuture;
     private final PrincessBride princessBride;
+    private final Relationships relationships;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -179,6 +180,7 @@ public class Faker {
         this.animal = new Animal(this);
         this.backToTheFuture = new BackToTheFuture(this);
         this.princessBride = new PrincessBride(this);
+        this.relationships = new Relationships(this);
     }
 
     /**
@@ -585,6 +587,10 @@ public class Faker {
         return princessBride;
     }
 
+    public Relationships relationships() {
+        return relationships;
+    }
+    
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
