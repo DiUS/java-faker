@@ -579,8 +579,11 @@ public class Faker {
 
     public Barcode barcode() {
         return barcode;
+    }
 
-      public Animal animal(){ return animal; }
+    public Animal animal() {
+        return animal;
+    }
 
     public BackToTheFuture backToTheFuture() {
         return  backToTheFuture;
