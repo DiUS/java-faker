@@ -109,6 +109,7 @@ Fakers
 * PhoneNumber
 * Pokemon
 * Princess Bride
+* Relationship Terms
 * RickAndMorty
 * Robin
 * RockBand
