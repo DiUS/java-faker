@@ -2,13 +2,11 @@ package com.github.javafaker;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.logging.Logger;
 
 import org.apache.commons.lang3.ArrayUtils;
 
 public class Relationships {
     private final Faker faker;
-    private static final Logger logger = Logger.getLogger("Relationships"); 
 
     protected Relationships(final Faker faker) {
         this.faker = faker;
