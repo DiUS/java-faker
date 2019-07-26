@@ -1,13 +1,13 @@
 package com.github.javafaker.service;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.Locale;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
+
+import java.util.Locale;
+
+import org.junit.Before;
+import org.junit.Test;
 
 public class FakeValuesGroupingTest {
 

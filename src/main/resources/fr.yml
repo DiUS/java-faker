@@ -30,17 +30,17 @@ fr:
       ordinal:
         word:  ['nord-est', 'sud-est', 'sud-ouest', 'nord-ouest']
         abbreviation:  ['NE', 'SE', 'SO', 'NO']
-      half-wind:
+      half_wind:
         word:  ['nord-nord-est', 'est-nord-est', 'est-sud-est', 'sud-sud-est', 'sud-sud-ouest', 'ouest-sud-ouest', 'ouest-nord-ouest', 'nord-nord-ouest']
         abbreviation:  ['NNE', 'ENE', 'ESE', 'SSE', 'SSO', 'OSO', 'ONO', 'NNO']
       direction:
-        - "#{cardinal}"
-        - "#{ordinal}"
-        - "#{half_wind}"
+        - "#{compass.cardinal}"
+        - "#{compass.ordinal}"
+        - "#{compass.half_wind}"
       abbreviation:
-        - "#{cardinal_abbreviation}"
-        - "#{ordinal_abbreviation}"
-        - "#{half_wind_abbreviation}"
+        - "#{compass.cardinal.abbreviation}"
+        - "#{compass.ordinal.abbreviation}"
+        - "#{compass.half_wind.abbreviation}"
 
     company:
       suffix: [SARL, SA, EURL, SAS, SEM, SCOP, GIE, EI]

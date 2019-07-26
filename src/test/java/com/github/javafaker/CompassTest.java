@@ -12,7 +12,7 @@ public class CompassTest extends AbstractFakerTest {
 
     @Test
     public void testDirections() {
-        assertThat(faker.compass().directions(), matchesRegularExpression(EXPRESSION));
+        assertThat(faker.compass().direction(), matchesRegularExpression(EXPRESSION));
     }
     
     @Test

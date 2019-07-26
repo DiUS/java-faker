@@ -7,7 +7,7 @@ public class Compass {
         this.faker = faker;
     }
 
-    public String directions() {
+    public String direction() {
         return faker.expression("#{compass.direction}");
     }
 
