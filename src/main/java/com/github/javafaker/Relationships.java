@@ -2,9 +2,13 @@ package com.github.javafaker;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 public class Relationships {
     private final Faker faker;
+    private static final Logger logger = Logger.getLogger("Relationships"); 
 
     protected Relationships(final Faker faker) {
         this.faker = faker;
@@ -18,7 +22,7 @@ public class Relationships {
         return faker.resolve("relationship.familial.extended");
     }
     
-    public String in_law() {
+    public String inLaw() {
         return faker.resolve("relationship.in_law");
     }
 
@@ -35,25 +39,24 @@ public class Relationships {
     }
     
     public String any() {
-        String[] relationships = new String[] {"direct", "extended", "in_law", "spouse", 
-                "parent", "sibling"};
-        int idx = faker.random().nextInt(relationships.length);
-        String methodName = relationships[idx];
+        Method currentMethod = Relationships.class.getClass().getEnclosingMethod();
+
         try {
-            Method m = Relationships.class.getMethod(methodName);
-            Relationships relInstance = new Relationships(faker);
-            return (String)m.invoke(relInstance);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            Method[] methods = Relationships.class.getDeclaredMethods();
+            methods = ArrayUtils.removeElement(methods, currentMethod);
+            int indx = faker.random().nextInt(methods.length);
+            Method runMethod = methods[indx];
+            Relationships relationships = new Relationships(faker);
+            return (String)runMethod.invoke(relationships);
         } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            throw new RuntimeException("SecurityException: " + e.getMessage());
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            throw new RuntimeException("IllegalArgumentException: " + e.getMessage());
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException("IllegalAccessException: " + e.getMessage());
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            throw new RuntimeException("InvocationTargetException: " + e.getMessage());
         }
-        return null;
     }
+    
 }
