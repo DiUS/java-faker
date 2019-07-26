@@ -17,7 +17,7 @@ In pom.xml, add the following xml stanza between `<dependencies> ... </dependenc
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.17.2</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -25,7 +25,7 @@ For gradle users, add the following to your build.gradle file.
 
 ```groovy
 dependencies {
-    implementation 'com.github.javafaker:javafaker:0.17.2'
+    implementation 'com.github.javafaker:javafaker:1.0.0'
 }
 
 ```
@@ -42,18 +42,28 @@ String lastName = faker.name().lastName(); // Barton
 String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 ```
 
+This is a [demo web application](https://java-faker.herokuapp.com/) that uses the library.
+
 Javadoc
 -----
 http://dius.github.io/java-faker/apidocs/index.html
 
 
+Contributions
+-------------
+See [CONTRIBUTING.md](https://github.com/DiUS/java-faker/blob/master/CONTRIBUTING.md)
+
+
 Fakers
 -----
 * Ancient
+* Animal
 * Address
 * App
 * Artist
 * Avatar
+* Back To The Future
+* Aviation
 * Beer
 * Book
 * Bool
@@ -98,6 +108,7 @@ Fakers
 * Overwatch
 * PhoneNumber
 * Pokemon
+* Princess Bride
 * RickAndMorty
 * Robin
 * RockBand
@@ -178,4 +189,4 @@ TODO
 
 LICENSE
 -------
-Copyright (c) 2018 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.
+Copyright (c) 2019 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.

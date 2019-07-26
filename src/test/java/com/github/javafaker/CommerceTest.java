@@ -11,6 +11,10 @@ public class CommerceTest extends AbstractFakerTest {
 
     private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
 
+    private static final String CAPITALIZED_WORD_REGEX = "[A-Z][a-z]+";
+
+    private static final String PROMOTION_CODE_REGEX = CAPITALIZED_WORD_REGEX + "(-" + CAPITALIZED_WORD_REGEX + ")*";
+
     @Test
     public void testColor() {
         assertThat(faker.commerce().color(), matchesRegularExpression("(\\w+ ?){1,2}"));
@@ -43,11 +47,11 @@ public class CommerceTest extends AbstractFakerTest {
 
     @Test
     public void testPromotionCode() {
-        assertThat(faker.commerce().promotionCode(), matchesRegularExpression("[A-Z][a-z]+[A-Z][a-z]+\\d{6}"));
+        assertThat(faker.commerce().promotionCode(), matchesRegularExpression(PROMOTION_CODE_REGEX + PROMOTION_CODE_REGEX + "\\d{6}"));
     }
 
     @Test
     public void testPromotionCodeDigits() {
-        assertThat(faker.commerce().promotionCode(3), matchesRegularExpression("[A-Z][a-z]+[A-Z][a-z]+\\d{3}"));
+        assertThat(faker.commerce().promotionCode(3), matchesRegularExpression(PROMOTION_CODE_REGEX + PROMOTION_CODE_REGEX + "\\d{3}"));
     }
 }

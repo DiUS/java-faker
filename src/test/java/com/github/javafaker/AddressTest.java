@@ -110,6 +110,6 @@ public class AddressTest extends AbstractFakerTest {
     @Test
     public void testCountyByZipCode() {
         faker = new Faker(new Locale("en-US"));
-        assertThat(faker.address().countyByZipCode(faker.address().zipCodeByState(faker.address().stateAbbr())), not(isEmptyOrNullString()));
+        assertThat(faker.address().countyByZipCode("47732"), not(isEmptyOrNullString()));
     }
 }

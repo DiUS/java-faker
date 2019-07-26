@@ -10,7 +10,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,6 +24,9 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
 public class FakeValuesServiceTest extends AbstractFakerTest {
+
+    private static final Long MILLIS_IN_AN_HOUR = 1000 * 60 * 60L;
+    private static final Long MILLIS_IN_A_DAY = MILLIS_IN_AN_HOUR * 24;
 
     @Mock
     private RandomService randomService;
@@ -36,11 +42,6 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         when(randomService.nextInt(anyInt())).thenReturn(0);
 
         fakeValuesService = spy(new FakeValuesService(new Locale("test"), randomService));
-    }
-
-    @Test(expected = LocaleDoesNotExistException.class)
-    public void localeShouldThrowException() {
-        new FakeValuesService(new Locale("Does not exist"), randomService);
     }
 
     @Test
@@ -229,6 +230,32 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     public void expressionWithValidFakerObjectValidMethodInvalidArgs() {
         expressionShouldFailWith("#{Number.number_between 'x','y'}",
                 "Unable to resolve #{Number.number_between 'x','y'} directive.");
+    }
+
+    @Test
+    public void futureDateExpression() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy" );
+
+        Date now = new Date();
+        Date nowPlus10Days = new Date( now.getTime() + MILLIS_IN_A_DAY * 10 );
+
+        Date date = dateFormat.parse( fakeValuesService.expression( "#{date.future '10','TimeUnit.DAYS'}", faker ));
+
+        assertThat( date.getTime(), greaterThan( now.getTime() ));
+        assertThat( date.getTime(), lessThan( nowPlus10Days.getTime() ));
+    }
+
+    @Test
+    public void pastDateExpression() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy" );
+
+        Date now = new Date();
+        Date nowMinus5Hours = new Date( now.getTime() - MILLIS_IN_AN_HOUR * 5 );
+
+        Date date = dateFormat.parse( fakeValuesService.expression( "#{date.past '5','TimeUnit.HOURS'}", faker ));
+
+        assertThat( date.getTime(), greaterThan( nowMinus5Hours.getTime() ));
+        assertThat( date.getTime(), lessThan( now.getTime() ));
     }
 
     /**
