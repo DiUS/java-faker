@@ -1,14 +1,17 @@
 package com.github.javafaker.integration;
 
-import com.github.javafaker.service.FakeValuesService;
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import java.util.Locale;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.github.javafaker.service.FakeValuesService;
 
 /**
  * The purpose of these tests is to ensure that the Locales have been properly configured

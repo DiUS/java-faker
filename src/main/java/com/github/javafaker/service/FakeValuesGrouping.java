@@ -14,7 +14,7 @@ public class FakeValuesGrouping implements FakeValuesInterface {
 
     @Override
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public Map get(String key) {
+    public Map<?,?> get(String key) {
         Map result = null;
         for (FakeValues fakeValues : fakeValuesList) {
             if (fakeValues.supportsPath(key)) {

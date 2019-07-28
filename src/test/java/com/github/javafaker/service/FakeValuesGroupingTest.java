@@ -1,13 +1,16 @@
 package com.github.javafaker.service;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 import java.util.Locale;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.google.common.collect.Maps;
 
 public class FakeValuesGroupingTest {
 
@@ -23,7 +26,7 @@ public class FakeValuesGroupingTest {
 
     @Test
     public void handlesOneFakeValue() {
-        assertThat(fakeValuesGrouping.get("address"), is(addressValues.get("address")));
+        assertThat(Maps.difference(fakeValuesGrouping.get("address"), addressValues.get("address")).areEqual(), equalTo(true));
         assertThat(fakeValuesGrouping.get("address"), is(notNullValue()));
     }
 
@@ -32,10 +35,11 @@ public class FakeValuesGroupingTest {
         FakeValues catValues = new FakeValues(Locale.ENGLISH, "cat.yml", "creature");
         fakeValuesGrouping.add(catValues);
 
-        assertThat(fakeValuesGrouping.get("address"), is(addressValues.get("address")));
+        assertThat(Maps.difference(fakeValuesGrouping.get("address"), addressValues.get("address")).areEqual(), equalTo(true));
         assertThat(fakeValuesGrouping.get("address"), is(notNullValue()));
 
-        assertThat(fakeValuesGrouping.get("creature"), is(catValues.get("creature")));
+        assertThat(Maps.difference(fakeValuesGrouping.get("creature"), catValues.get("creature")).areEqual(), equalTo(true));
         assertThat(fakeValuesGrouping.get("creature"), is(notNullValue()));
     }
+    
 }

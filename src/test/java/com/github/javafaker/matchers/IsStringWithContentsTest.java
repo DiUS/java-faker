@@ -1,10 +1,10 @@
 package com.github.javafaker.matchers;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+
+import org.junit.Before;
+import org.junit.Test;
 
 public class IsStringWithContentsTest {
 

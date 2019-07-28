@@ -1,9 +1,9 @@
 package com.github.javafaker;
 
-import org.junit.Test;
-
 import static com.github.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static org.junit.Assert.assertThat;
+
+import org.junit.Test;
 
 public class MedicalTest extends AbstractFakerTest {
 
