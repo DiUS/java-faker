@@ -1,8 +1,10 @@
-target
-.project
 .classpath
-.settings
 .idea/
-*.iml
 .java-version
+.project
+.settings
 /dependency-reduced-pom.xml
+META-INF/
+bin/
+target
+*.iml
