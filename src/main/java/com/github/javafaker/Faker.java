@@ -88,6 +88,7 @@ public class Faker {
     private final Medical medical;
     private final BackToTheFuture backToTheFuture;
     private final PrincessBride princessBride;
+    private final Buffy buffy;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -177,6 +178,7 @@ public class Faker {
         this.country = new Country(this);
         this.backToTheFuture = new BackToTheFuture(this);
         this.princessBride = new PrincessBride(this);
+        this.buffy = new Buffy(this);
     }
 
     /**
@@ -355,6 +357,10 @@ public class Faker {
 
     public Book book() {
         return book;
+    }
+
+    public Buffy buffy() {
+        return buffy;
     }
 
     public Business business() {
