@@ -89,6 +89,7 @@ public class Faker {
     private final Animal animal;
     private final BackToTheFuture backToTheFuture;
     private final PrincessBride princessBride;
+    private final Buffy buffy;
     private final Relationships relationships;
 
     public Faker() {
@@ -180,6 +181,7 @@ public class Faker {
         this.animal = new Animal(this);
         this.backToTheFuture = new BackToTheFuture(this);
         this.princessBride = new PrincessBride(this);
+        this.buffy = new Buffy(this);
         this.relationships = new Relationships(this);
     }
 
@@ -359,6 +361,10 @@ public class Faker {
 
     public Book book() {
         return book;
+    }
+
+    public Buffy buffy() {
+        return buffy;
     }
 
     public Business business() {
