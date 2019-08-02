@@ -4,10 +4,9 @@ Java Faker
 [![Maven Status](https://maven-badges.herokuapp.com/maven-central/com.github.javafaker/javafaker/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.github.javafaker/javafaker)
 [![Build Status](https://travis-ci.org/DiUS/java-faker.svg?branch=master)](https://travis-ci.org/DiUS/java-faker)
 [![Coverage Status](https://coveralls.io/repos/DiUS/java-faker/badge.svg)](https://coveralls.io/r/DiUS/java-faker)
-[![Dependency Status](https://www.versioneye.com/user/projects/572c2f11a0ca35004baf861a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/572c2f11a0ca35004baf861a)
 [![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
+This library is a port of Ruby's [faker](https://github.com/stympy/faker) gem (as well as Perl's Data::Faker library) that generates fake data.
 It's useful when you're developing a new project and need some pretty data for showcase.
 
 Usage
@@ -18,19 +17,15 @@ In pom.xml, add the following xml stanza between `<dependencies> ... </dependenc
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.13</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
 For gradle users, add the following to your build.gradle file.
 
 ```groovy
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.13'
+    implementation 'com.github.javafaker:javafaker:1.0.0'
 }
 
 ```
@@ -47,17 +42,28 @@ String lastName = faker.name().lastName(); // Barton
 String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 ```
 
+This is a [demo web application](https://java-faker.herokuapp.com/) that uses the library.
+
 Javadoc
 -----
 http://dius.github.io/java-faker/apidocs/index.html
 
 
+Contributions
+-------------
+See [CONTRIBUTING.md](https://github.com/DiUS/java-faker/blob/master/CONTRIBUTING.md)
+
+
 Fakers
 -----
 * Ancient
+* Animal
 * Address
 * App
 * Artist
+* Avatar
+* Back To The Future
+* Aviation
 * Beer
 * Book
 * Bool
@@ -71,19 +77,27 @@ Fakers
 * Crypto
 * DateAndTime
 * Demographic
+* Dog
+* DragonBall
 * Educator
 * Esports
 * File
 * Finance
 * Food
 * Friends
+* FunnyName
 * GameOfThrones
 * Hacker
 * HarryPotter
 * Hipster
+* HitchhikersGuideToTheGalaxy
+* Hobbit
+* HowIMetYourMother
 * IdNumber
 * Internet
 * Job
+* LeagueOfLegends
+* Lebowski
 * LordOfTheRings
 * Lorem
 * Matz
@@ -91,18 +105,24 @@ Fakers
 * Name
 * Number
 * Options
+* Overwatch
 * PhoneNumber
 * Pokemon
+* Princess Bride
+* Relationship Terms
 * RickAndMorty
+* Robin
 * RockBand
 * Shakespeare
 * SlackEmoji
 * Space
+* StarTrek
 * Stock
 * Superhero
 * Team
 * TwinPeaks
 * University
+* Weather
 * Witcher
 * Yoda
 * Zelda
@@ -111,7 +131,7 @@ Usage with Locales
 -----
 
 ```java
-Faker faker = new Faker(new Locale("{YOUR_LOCALE}"));
+Faker faker = new Faker(new Locale("YOUR_LOCALE"));
 ```
 
 Supported Locales
@@ -130,6 +150,7 @@ Supported Locales
 * en-CA
 * en-GB
 * en-IND
+* en-MS
 * en-NEP
 * en-NG
 * en-NZ
@@ -169,4 +190,4 @@ TODO
 
 LICENSE
 -------
-Copyright (c) 2014 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.
+Copyright (c) 2019 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.

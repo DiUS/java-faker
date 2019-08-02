@@ -25,8 +25,14 @@ public class OptionsTest extends AbstractFakerTest {
     }
 
     @Test
-    public void testOptionWithVarargs() {
+    public void testOptionWithVarargsString() {
         assertThat(faker.options().option("A", "B", "C"), isOneOf(options));
+    }
+
+    @Test
+    public void testOptionWithVarargsInteger() {
+        Integer[] integerOptions = new Integer[] { 1, 3, 4, 5};
+        assertThat(faker.options().option(1, 3, 4, 5), isOneOf(integerOptions));
     }
 
     @Test

@@ -36,7 +36,7 @@ public class FakerIT {
     /**
      * a collection of Locales -> Exceptions.
      * In the case of 'pt', city_prefix is '' by design. This test fails because it's testing that all string returning
-     * methods return a non blank string. But pt city_prefix is blank ,but the test shouldn't fail. So we add put 
+     * methods return a non blank string. But pt city_prefix is blank ,but the test shouldn't fail. So we add put
      * exceptions like this into this collection.
      */
     private static final Map<Locale, List<String>> exceptions = Maps.newHashMap();
@@ -94,19 +94,32 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.address());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.app());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.artist());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.aviation());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.backToTheFuture());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.business());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.book());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.chuckNorris());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.color());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.commerce());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.company());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.country());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.crypto());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.demographic());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.dragonBall());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.dog());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.educator());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.funnyName());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.hitchhikersGuideToTheGalaxy());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.hobbit());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.howIMetYourMother());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.internet());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.leagueOfLegends());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lorem());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.overwatch());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.phoneNumber());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.pokemon());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.robin());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.starTrek());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.music());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.name());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.file());
@@ -137,6 +150,13 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.yoda());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.matz());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.witcher());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.weather());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lebowski());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.animal());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.princessBride());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.elderScrolls());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.buffy());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.relationships());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {

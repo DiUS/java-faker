@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.hamcrest.Matchers;
+import org.hamcrest.core.IsNot;
 import org.junit.Test;
 
 import java.util.List;
@@ -13,7 +14,16 @@ import java.util.Locale;
 import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static java.lang.Integer.parseInt;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.both;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
 
 public class InternetTest extends AbstractFakerTest {
@@ -61,6 +71,18 @@ public class InternetTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testEmailAddressDoesNotIncludeAccentsInTheLocalPart() {
+        String emailAddress = faker.internet().emailAddress("áéíóú");
+        assertThat(emailAddress, startsWith("aeiou@"));
+    }
+
+    @Test
+    public void testSafeEmailAddressDoesNotIncludeAccentsInTheLocalPart() {
+        String emailAddress = faker.internet().safeEmailAddress("áéíóú");
+        assertThat(emailAddress, startsWith("aeiou@"));
+    }
+
+    @Test
     public void testUrl() {
         assertThat(faker.internet().url(), matchesRegularExpression("www\\.(\\w|-)+\\.\\w+"));
     }
@@ -103,6 +125,12 @@ public class InternetTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testPasswordIncludeDigit() {
+        assertThat(faker.internet().password(), matchesRegularExpression("[a-z\\d]{8,16}"));
+        assertThat(faker.internet().password(false), matchesRegularExpression("[a-z]{8,16}"));
+    }
+
+    @Test
     public void testPasswordMinLengthMaxLength() {
         assertThat(faker.internet().password(10, 25), matchesRegularExpression("[a-z\\d]{10,25}"));
     }
@@ -118,6 +146,14 @@ public class InternetTest extends AbstractFakerTest {
         assertThat(faker.internet().password(10, 25, false, false), matchesRegularExpression("[a-z\\d]{10,25}"));
         assertThat(faker.internet().password(10, 25, false, true), matchesRegularExpression("[a-z\\d!@#$%^&*]{10,25}"));
         assertThat(faker.internet().password(10, 25, true, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{10,25}"));
+    }
+
+    @Test
+    public void testPasswordMinLengthMaxLengthIncludeUpperCaseIncludeSpecialIncludeDigit() {
+        assertThat(faker.internet().password(10, 25, false, false, false), matchesRegularExpression("[a-z]{10,25}"));
+        assertThat(faker.internet().password(10, 25, false, true, true), matchesRegularExpression("[a-z\\d!@#$%^&*]{10,25}"));
+        assertThat(faker.internet().password(10, 25, true, true, false), matchesRegularExpression("[a-zA-Z!@#$%^&*]{10,25}"));
+        assertThat(faker.internet().password(10, 25, true, true, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{10,25}"));
     }
 
     @Test
@@ -239,6 +275,12 @@ public class InternetTest extends AbstractFakerTest {
     }
 
     @Test
+    @Repeat(times=10)
+    public void testUuid() {
+        assertThat(faker.internet().uuid(), matchesRegularExpression("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"));
+    }
+
+    @Test
     @Repeat(times=100)
     public void testFarsiIDNs() {
         // in this case, we're just making sure Farsi doesn't blow up.
@@ -248,5 +290,16 @@ public class InternetTest extends AbstractFakerTest {
         assertThat(f.internet().emailAddress(), not(isEmptyOrNullString()));
         assertThat(f.internet().safeEmailAddress(), not(isEmptyOrNullString()));
         assertThat(f.internet().url(), not(isEmptyOrNullString()));
+    }
+
+    @Test
+    public void testUserAgent() {
+        Internet.UserAgent[] agents = Internet.UserAgent.values();
+        for(Internet.UserAgent agent : agents) {
+            assertThat(faker.internet().userAgent(agent), not(isEmptyOrNullString()));
+        }
+
+        //Test faker.internet().userAgentAny() for random user_agent retrieval.
+        assertThat(faker.internet().userAgentAny(), not(isEmptyOrNullString()));
     }
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.github.javafaker;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * A generator of random dates.
- * 
+ *
  * @author pmiklos
  *
  */
@@ -26,7 +26,7 @@ public class DateAndTime {
 
     /**
      * Generates a future date from now. Note that there is a 1 second slack to avoid generating a past date.
-     * 
+     *
      * @param atMost
      *            at most this amount of time ahead from now exclusive.
      * @param unit
@@ -40,8 +40,25 @@ public class DateAndTime {
     }
 
     /**
+     * Generates a future date from now, with a minimum time.
+     *
+     * @param atMost
+     *            at most this amount of time ahead from now exclusive.
+     * @param minimum
+     *            the minimum amount of time in the future from now.
+     * @param unit
+     *            the time unit.
+     * @return a future date from now.
+     */
+    public Date future(int atMost, int minimum, TimeUnit unit) {
+        Date now = new Date();
+        Date minimumDate = new Date(now.getTime() + unit.toMillis(minimum));
+        return future(atMost - minimum, unit, minimumDate);
+    }
+
+    /**
      * Generates a future date relative to the {@code referenceDate}.
-     * 
+     *
      * @param atMost
      *            at most this amount of time ahead to the {@code referenceDate} exclusive.
      * @param unit
@@ -61,7 +78,7 @@ public class DateAndTime {
 
     /**
      * Generates a past date from now. Note that there is a 1 second slack added.
-     * 
+     *
      * @param atMost
      *            at most this amount of time earlier from now exclusive.
      * @param unit
@@ -75,8 +92,25 @@ public class DateAndTime {
     }
 
     /**
+     * Generates a past date from now, with a minimum time.
+     *
+     * @param atMost
+     *            at most this amount of time earlier from now exclusive.
+     * @param minimum
+     *            the minimum amount of time in the past from now.
+     * @param unit
+     *            the time unit.
+     * @return a past date from now.
+     */
+    public Date past(int atMost, int minimum, TimeUnit unit) {
+        Date now = new Date();
+        Date minimumDate = new Date(now.getTime() - unit.toMillis(minimum));
+        return past(atMost - minimum, unit, minimumDate);
+    }
+
+    /**
      * Generates a past date relative to the {@code referenceDate}.
-     * 
+     *
      * @param atMost
      *            at most this amount of time past to the {@code referenceDate} exclusive.
      * @param unit
@@ -96,7 +130,7 @@ public class DateAndTime {
 
     /**
      * Generates a random date between two dates.
-     * 
+     *
      * @param from
      *            the lower bound inclusive
      * @param to
@@ -119,7 +153,7 @@ public class DateAndTime {
      *
      * @return a random birthday between 65 and 18 years ago.
      */
-    public java.util.Date birthday() {
+    public Date birthday() {
         return birthday(DEFAULT_MIN_AGE, DEFAULT_MAX_AGE);
     }
 
@@ -134,10 +168,10 @@ public class DateAndTime {
      * @throws IllegalArgumentException
      *             if the {@code maxAge} is lower than {@code minAge}.
      */
-    public java.util.Date birthday(int minAge, int maxAge) {
+    public Date birthday(int minAge, int maxAge) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         Calendar from = new GregorianCalendar(currentYear - maxAge, 0, 1);
-        Calendar to = new GregorianCalendar(currentYear - minAge, 12, 31);
+        Calendar to = new GregorianCalendar(currentYear - minAge, 11, 31);
 
         return between(from.getTime(), to.getTime());
     }

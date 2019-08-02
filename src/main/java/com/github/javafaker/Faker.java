@@ -19,6 +19,8 @@ public class Faker {
     private final Ancient ancient;
     private final App app;
     private final Artist artist;
+    private final Avatar avatar;
+    private final Aviation aviation;
     private final Lorem lorem;
     private final Music music;
     private final Name name;
@@ -32,6 +34,8 @@ public class Faker {
     private final ChuckNorris chuckNorris;
     private final Color color;
     private final Commerce commerce;
+    private final Country country;
+    private final Currency currency;
     private final Company company;
     private final Crypto crypto;
     private final IdNumber idNumber;
@@ -43,7 +47,9 @@ public class Faker {
     private final GameOfThrones gameOfThrones;
     private final DateAndTime dateAndTime;
     private final Demographic demographic;
+    private final Dog dog;
     private final Educator educator;
+    private final ElderScrolls elderScrolls;
     private final Shakespeare shakespeare;
     private final SlackEmoji slackEmoji;
     private final Space space;
@@ -69,6 +75,23 @@ public class Faker {
     private final Matz matz;
     private final Witcher witcher;
     private final CPF cpf;
+    private final DragonBall dragonBall;
+    private final FunnyName funnyName;
+    private final HitchhikersGuideToTheGalaxy hitchhikersGuideToTheGalaxy;
+    private final Hobbit hobbit;
+    private final HowIMetYourMother howIMetYourMother;
+    private final LeagueOfLegends leagueOfLegends;
+    private final Overwatch overwatch;
+    private final Robin robin;
+    private final StarTrek starTrek;
+    private final Weather weather;
+    private final Lebowski lebowski;
+    private final Medical medical;
+    private final Animal animal;
+    private final BackToTheFuture backToTheFuture;
+    private final PrincessBride princessBride;
+    private final Buffy buffy;
+    private final Relationships relationships;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -89,6 +112,8 @@ public class Faker {
         this.ancient = new Ancient(this);
         this.app = new App(this);
         this.artist = new Artist(this);
+        this.avatar = new Avatar(this);
+        this.aviation = new Aviation(this);
         this.lorem = new Lorem(this);
         this.music = new Music(this);
         this.name = new Name(this);
@@ -105,7 +130,9 @@ public class Faker {
         this.hacker = new Hacker(this);
         this.company = new Company(this);
         this.crypto = new Crypto(this);
+        this.elderScrolls = new ElderScrolls(this);
         this.commerce = new Commerce(this);
+        this.currency = new Currency(this);
         this.options = new Options(this);
         this.code = new Code(this);
         this.file = new File(this);
@@ -114,6 +141,7 @@ public class Faker {
         this.gameOfThrones = new GameOfThrones(this);
         this.dateAndTime = new DateAndTime(this);
         this.demographic = new Demographic(this);
+        this.dog = new Dog(this);
         this.educator = new Educator(this);
         this.shakespeare = new Shakespeare(this);
         this.slackEmoji = new SlackEmoji(this);
@@ -139,6 +167,24 @@ public class Faker {
         this.matz = new Matz(this);
         this.witcher = new Witcher(this);
         this.cpf = new CPF(this);
+        this.dragonBall = new DragonBall(this);
+        this.funnyName = new FunnyName(this);
+        this.hitchhikersGuideToTheGalaxy = new HitchhikersGuideToTheGalaxy(this);
+        this.hobbit = new Hobbit(this);
+        this.howIMetYourMother = new HowIMetYourMother(this);
+        this.leagueOfLegends = new LeagueOfLegends(this);
+        this.overwatch = new Overwatch(this);
+        this.robin = new Robin(this);
+        this.starTrek = new StarTrek(this);
+        this.weather = new Weather(this);
+        this.lebowski = new Lebowski(this);
+        this.medical = new Medical(this);
+        this.country = new Country(this);
+        this.animal = new Animal(this);
+        this.backToTheFuture = new BackToTheFuture(this);
+        this.princessBride = new PrincessBride(this);
+        this.buffy = new Buffy(this);
+        this.relationships = new Relationships(this);
     }
 
     /**
@@ -254,6 +300,11 @@ public class Faker {
         return this.randomService;
     }
 
+    public Currency currency() {
+        return currency;
+
+    }
+
     FakeValuesService fakeValuesService() {
         return this.fakeValuesService;
     }
@@ -268,6 +319,14 @@ public class Faker {
 
     public Artist artist() {
         return artist;
+    }
+
+    public Avatar avatar() {
+        return avatar;
+    }
+
+    public Aviation aviation() {
+        return aviation;
     }
 
     public Music music() {
@@ -304,6 +363,10 @@ public class Faker {
 
     public Book book() {
         return book;
+    }
+
+    public Buffy buffy() {
+        return buffy;
     }
 
     public Business business() {
@@ -358,6 +421,10 @@ public class Faker {
         return food;
     }
 
+    public ElderScrolls elderScrolls() {
+        return elderScrolls;
+    }
+
     public GameOfThrones gameOfThrones() {
         return gameOfThrones;
     }
@@ -368,6 +435,10 @@ public class Faker {
 
     public Demographic demographic() {
         return demographic;
+    }
+
+    public Dog dog() {
+        return dog;
     }
 
     public Educator educator() {
@@ -469,22 +540,85 @@ public class Faker {
     public CPF cpf() {
         return cpf;
     }
+  
+    public DragonBall dragonBall() {
+        return dragonBall;
+    }
 
+    public FunnyName funnyName() {
+        return funnyName;
+    }
+
+    public HitchhikersGuideToTheGalaxy hitchhikersGuideToTheGalaxy() {
+        return hitchhikersGuideToTheGalaxy;
+    }
+
+    public Hobbit hobbit() {
+        return hobbit;
+    }
+
+    public HowIMetYourMother howIMetYourMother() {
+        return howIMetYourMother;
+    }
+
+    public LeagueOfLegends leagueOfLegends() {
+        return leagueOfLegends;
+    }
+
+    public Overwatch overwatch() {
+        return overwatch;
+    }
+
+    public Robin robin() {
+        return robin;
+    }
+
+    public StarTrek starTrek() {
+        return starTrek;
+    }
+
+    public Weather weather() {
+        return weather;
+    }
+
+    public Lebowski lebowski() {
+        return lebowski;
+    }
+
+    public Medical medical(){return medical;}
+
+    public Country country(){ return country;}
+
+    public Animal animal(){ return animal; }
+
+    public BackToTheFuture backToTheFuture() {
+        return  backToTheFuture;
+    }
+
+    public PrincessBride princessBride() {
+        return princessBride;
+    }
+
+    public Relationships relationships() {
+        return relationships;
+    }
+    
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
 
     /**
      * Allows the evaluation of native YML expressions to allow you to build your own.
-     *
+     * <p>
      * The following are valid expressions:
      * <ul>
-     *     <li>#{regexify '(a|b){2,3}'}</li>
-     *     <li>#{regexify '\\.\\*\\?\\+'}</li>
-     *     <li>#{bothify '????','false'}</li>
-     *     <li>#{Name.first_name} #{Name.first_name} #{Name.last_name}</li>
-     *     <li>#{number.number_between '1','10'}</li>
+     * <li>#{regexify '(a|b){2,3}'}</li>
+     * <li>#{regexify '\\.\\*\\?\\+'}</li>
+     * <li>#{bothify '????','false'}</li>
+     * <li>#{Name.first_name} #{Name.first_name} #{Name.last_name}</li>
+     * <li>#{number.number_between '1','10'}</li>
      * </ul>
+     *
      * @param expression (see examples above)
      * @return the evaluated string expression
      * @throws RuntimeException if unable to evaluate the expression

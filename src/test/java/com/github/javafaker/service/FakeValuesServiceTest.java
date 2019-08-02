@@ -10,7 +10,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,6 +24,9 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
 public class FakeValuesServiceTest extends AbstractFakerTest {
+
+    private static final Long MILLIS_IN_AN_HOUR = 1000 * 60 * 60L;
+    private static final Long MILLIS_IN_A_DAY = MILLIS_IN_AN_HOUR * 24;
 
     @Mock
     private RandomService randomService;
@@ -34,13 +40,8 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
         // always return the first element
         when(randomService.nextInt(anyInt())).thenReturn(0);
-        
-        fakeValuesService = spy(new FakeValuesService(new Locale("test"), randomService));
-    }
 
-    @Test(expected = LocaleDoesNotExistException.class)
-    public void localeShouldThrowException() {
-        new FakeValuesService(new Locale("Does not exist"), randomService);
+        fakeValuesService = spy(new FakeValuesService(new Locale("test"), randomService));
     }
 
     @Test
@@ -73,11 +74,11 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     public void safeFetchShouldReturnEmptyStringWhenPropertyDoesntExist() {
         assertThat(fakeValuesService.safeFetch("property.dummy2", ""), isEmptyString());
     }
-    
+
     @Test
     public void bothify2Args() {
         final DummyService dummy = mock(DummyService.class);
-        
+
         Faker f = new Faker();
 
         String value = fakeValuesService.resolve("property.bothify_2", dummy, f);
@@ -190,30 +191,30 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
         assertThat(chain, contains(Locale.SIMPLIFIED_CHINESE, Locale.CHINESE, Locale.ENGLISH));
     }
-    
+
     @Test
     public void testLocaleChainEnglish() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.ENGLISH);
 
         assertThat(chain, contains(Locale.ENGLISH));
     }
-    
+
     @Test
     public void testLocaleChainLanguageOnly() {
         final List<Locale> chain = fakeValuesService.localeChain(Locale.CHINESE);
 
         assertThat(chain, contains(Locale.CHINESE, Locale.ENGLISH));
     }
-    
+
     @Test
     public void expressionWithInvalidFakerObject() {
-        expressionShouldFailWith("#{ObjectNotOnFaker.methodName}", 
+        expressionShouldFailWith("#{ObjectNotOnFaker.methodName}",
                 "Unable to resolve #{ObjectNotOnFaker.methodName} directive.");
     }
-    
+
     @Test
     public void expressionWithValidFakerObjectButInvalidMethod() {
-        expressionShouldFailWith("#{Name.nonExistentMethod}", 
+        expressionShouldFailWith("#{Name.nonExistentMethod}",
                 "Unable to resolve #{Name.nonExistentMethod} directive.");
     }
 
@@ -227,15 +228,41 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
      */
     @Test
     public void expressionWithValidFakerObjectValidMethodInvalidArgs() {
-        expressionShouldFailWith("#{Number.number_between 'x','y'}", 
+        expressionShouldFailWith("#{Number.number_between 'x','y'}",
                 "Unable to resolve #{Number.number_between 'x','y'} directive.");
     }
-    
+
+    @Test
+    public void futureDateExpression() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy" );
+
+        Date now = new Date();
+        Date nowPlus10Days = new Date( now.getTime() + MILLIS_IN_A_DAY * 10 );
+
+        Date date = dateFormat.parse( fakeValuesService.expression( "#{date.future '10','TimeUnit.DAYS'}", faker ));
+
+        assertThat( date.getTime(), greaterThan( now.getTime() ));
+        assertThat( date.getTime(), lessThan( nowPlus10Days.getTime() ));
+    }
+
+    @Test
+    public void pastDateExpression() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy" );
+
+        Date now = new Date();
+        Date nowMinus5Hours = new Date( now.getTime() - MILLIS_IN_AN_HOUR * 5 );
+
+        Date date = dateFormat.parse( fakeValuesService.expression( "#{date.past '5','TimeUnit.HOURS'}", faker ));
+
+        assertThat( date.getTime(), greaterThan( nowMinus5Hours.getTime() ));
+        assertThat( date.getTime(), lessThan( now.getTime() ));
+    }
+
     /**
      * Two things are important here:
      * 1) the message in the exception should be USEFUL
      * 2) a {@link RuntimeException} should be thrown.
-     * 
+     *
      * if the message changes, it's ok to update the test provided
      * the two conditions above are still true.
      */
@@ -243,7 +270,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     public void expressionCompletelyUnresolvable() {
         expressionShouldFailWith("#{x}", "Unable to resolve #{x} directive.");
     }
-    
+
     private void expressionShouldFailWith(String expression, String errorMessage) {
         try {
             fakeValuesService.expression(expression, faker);
@@ -251,6 +278,21 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         } catch (RuntimeException re) {
             assertThat(re.getMessage(), is(errorMessage));
         }
+    }
+    @Test
+    public void resolveUsingTheSameKeyTwice() {
+        // #{hello} -> DummyService.hello
+
+        // given
+        final DummyService dummy = mock(DummyService.class);
+        when(dummy.hello()).thenReturn("1").thenReturn("2");
+
+        // when
+        final String actual = fakeValuesService.resolve("property.sameResolution", dummy, faker);
+
+        // then
+        assertThat(actual, is("1 2"));
+        verifyZeroInteractions(faker);
     }
 
     public static class DummyService {
@@ -261,7 +303,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         public String lastName() {
             return "Smith";
         }
-        
+
         public String hello() {
             return "Hello";
         }

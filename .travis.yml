@@ -1,9 +1,11 @@
 language: java
-dist: precise
+dist: trusty
 jdk:
-- oraclejdk7
 - oraclejdk8
 - openjdk7
+- openjdk10
+- oraclejdk11
+sudo: true
 script: "mvn verify failsafe:integration-test failsafe:verify"
 branches:
   except:
@@ -12,3 +14,4 @@ notifications:
   email: false
 after_success:
 - mvn clean cobertura:cobertura coveralls:cobertura
+

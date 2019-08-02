@@ -6,8 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static org.apache.commons.lang3.StringUtils.join;
+import static org.apache.commons.lang3.StringUtils.stripAccents;
 
 public class Internet {
     private final Faker faker;
@@ -21,9 +23,7 @@ public class Internet {
     }
 
     public String emailAddress(String localPart) {
-        return join(localPart,
-                "@",
-                FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker)));
+        return emailAddress(localPart, FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.free_email", this, faker)));
     }
 
     public String safeEmailAddress() {
@@ -31,9 +31,11 @@ public class Internet {
     }
 
     public String safeEmailAddress(String localPart) {
-        return join(localPart, 
-                "@",
-                FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.safe_email", this, faker)));
+        return emailAddress(localPart, FakerIDN.toASCII(faker.fakeValuesService().resolve("internet.safe_email", this, faker)));
+    }
+
+    private String emailAddress(String localPart, String domain) {
+        return join(stripAccents(localPart), "@", domain);
     }
 
     public String domainName() {
@@ -108,6 +110,10 @@ public class Internet {
         return password(8, 16);
     }
 
+    public String password(boolean includeDigit) {
+        return password(8, 16, false, false, includeDigit);
+    }
+
     public String password(int minimumLength, int maximumLength) {
         return password(minimumLength, maximumLength, false);
     }
@@ -117,15 +123,19 @@ public class Internet {
     }
 
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial) {
+        return password(minimumLength, maximumLength, includeUppercase, includeSpecial, true);
+    }
+
+    public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial, boolean includeDigit) {
         if (includeSpecial) {
-            char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase).toCharArray();
+            char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
             char[] special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
             for (int i = 0; i < faker.random().nextInt(minimumLength); i++) {
                 password[faker.random().nextInt(password.length)] = special[faker.random().nextInt(special.length)];
             }
             return new String(password);
         } else {
-            return faker.lorem().characters(minimumLength, maximumLength, includeUppercase);
+            return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
         }
     }
     
@@ -283,8 +293,59 @@ public class Internet {
         }
         return slug.toString();
     }
+
+    /**
+     * Returns a UUID (type 4) as String.
+     * @return A UUID as String.
+     */
+    public String uuid() {
+        return UUID.randomUUID().toString();
+    }
           
     private <T> T random(T[] src) {
         return src[faker.random().nextInt(src.length)];
+    }
+
+    public String userAgent(UserAgent userAgent) {
+        UserAgent agent = userAgent;
+
+        if(agent == null) {
+            agent = UserAgent.any();
+        }
+
+        String userAgentKey = "internet.user_agent." + agent.toString();
+        return faker.fakeValuesService().resolve(userAgentKey, this, faker);
+    }
+
+    public String userAgentAny() {
+        return userAgent(null);
+    }
+
+    public enum UserAgent {
+        AOL("aol"),
+        CHROME("chrome"),
+        FIREFOX("firefox"),
+        INTERNET_EXPLORER("internet_explorer"),
+        NETSCAPE("netscape"),
+        OPERA("opera"),
+        SAFARI("safari");
+
+        //Browser's name in corresponding yaml (internet.yml) file.
+        private String browserName;
+
+        UserAgent(String browserName) {
+            this.browserName = browserName;
+        }
+
+        private static UserAgent any() {
+            UserAgent[] agents = UserAgent.values();
+            int randomIndex = (int)(Math.random() * agents.length);
+            return agents[randomIndex];
+        }
+
+        @Override
+        public String toString() {
+            return browserName;
+        }
     }
 }
