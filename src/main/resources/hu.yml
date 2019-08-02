@@ -23,3 +23,16 @@ hu:
       street_address:
         - "#{street_name} #{building_number}"
       default_country: [Magyarország]
+
+    company:
+      suffix: [Kkt, Kht, Bt, Kv, Kft, ZRt, NyRt]
+      legal_form: [Kkt, Kht, Bt, Kv, Kft, ZRt, NyRt]
+      name:
+        - "#{Name.last_name} #{suffix}"
+        - "#{Name.last_name}-#{Name.last_name}"
+        - "#{Name.last_name} és #{Name.last_name}"
+        - "#{Name.last_name}, #{Name.last_name} és #{Name.last_name}"
+        - "#{Name.last_name} és Társa"
+        - "#{Name.last_name} és Fia"
+        - "#{Name.last_name} és Társa #{suffix}"
+        - "#{Name.last_name} és Fia #{suffix}"
