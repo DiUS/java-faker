@@ -36,3 +36,38 @@ hu:
         - "#{Name.last_name} és Fia"
         - "#{Name.last_name} és Társa #{suffix}"
         - "#{Name.last_name} és Fia #{suffix}"
+        -
+    compass:
+      cardinal:
+        word: ['Észak', 'Kelet', 'Dél', 'Nyugat']
+        abbreviation:  ['É', 'K', 'D', 'Ny']
+        azimuth:  ['0', '90', '180', '270']
+      ordinal:
+        word:  ['Északkelet', 'Délkelet', 'Délnyugat', 'Északnyugat']
+        abbreviation:  ['ÉK', 'DK', 'DNy', 'ÉNy']
+        azimuth:  ['45', '135', '225', '315']
+      half-wind:
+        word:  ['Észak-Északnyugat', 'Kelet-Északkelet', 'Kelet-Délkelet', 'Dél-Délkelet', 'Dél-Délnyugat', 'Nyugat-Délnyugat', 'Nyugat-Északnyugat', 'Észak-Északnyugat']
+        abbreviation:  ['ÉÉNy', 'KÉK', 'KDK', 'DDK', 'DDNy', 'NyDNy', 'NyÉNy', 'ÉÉNy']
+        azimuth:  ['22.5', '67.5', '112.5', '157.5', '202.5', '247.5', '292.5', '337.5']
+      # TODO: Not sure this is how we can translate quarter winds to Hungarian..
+      #quarter-wind:
+      #  word:  ['Észak Keletről', 'Északkelet Nyugatról', 'Északkelet Északról', 'Kelet Északról', 'Kelet Délről', 'Délkelet Keletről', 'Délkelet Délről', 'Dél Keletről', 'Dél Nyugatról', 'Délnyugat Délről', 'Délnyugat Nyugatról', 'Nyugat Délről', 'Nyugat Északról', 'Északnyugat Nyugatról', 'Északnyugat Északról', 'Észak Nyugatról']
+      #  abbreviation:  ['É-K', 'Ék-Ny', 'ÉK-É', 'K-É', 'K-D', 'DK-K', 'DK-D', 'D-K', 'D-Ny', 'DNy-D', 'DNy-Ny', 'Ny-D', 'Ny-É', 'ÉNy-Ny', 'ÉNy-É', 'É-Ny']
+      #  azimuth:  ['11.25', '33.75', '56.25', '78.75', '101.25', '123.75', '146.25', '168.75', '191.25', '213.75', '236.25', '258.75', '281.25', '303.75', '326.25', '348.75']
+      direction:
+        - "#{cardinal}"
+        - "#{ordinal}"
+        - "#{half_wind}"
+        #- "#{quarter_wind}"
+      abbreviation:
+        - "#{cardinal_abbreviation}"
+        - "#{ordinal_abbreviation}"
+        - "#{half_wind_abbreviation}"
+        #- "#{quarter_wind_abbreviation}"
+      azimuth:
+        - "#{cardinal_azimuth}"
+        - "#{ordinal_azimuth}"
+        - "#{half_wind_azimuth}"
+        #- "#{quarter_wind_azimuth}"
+
