@@ -19,6 +19,7 @@ en:
         AW: "Aruba"
         AU: "Australia"
         AT: "Austria"
+        AX: "Aland Islands"
         AZ: "Azerbaijan"
         BS: "Bahamas"
         BH: "Bahrain"
@@ -31,6 +32,7 @@ en:
         BM: "Bermuda"
         BT: "Bhutan"
         BO: "Bolivia"
+        BQ: 'Bonaire'
         BA: "Bosnia And Herzegovina"
         BW: "Botswana"
         BV: "Bouvet Island"
@@ -60,6 +62,7 @@ en:
         CI: "Cote D'ivoire"
         HR: "Croatia"
         CU: "Cuba"
+        CW: "Curacao"
         CY: "Cyprus"
         CZ: "Czech Republic"
         DK: "Denmark"
@@ -94,6 +97,7 @@ en:
         GP: "Guadeloupe"
         GU: "Guam"
         GT: "Guatemala"
+        GG: 'Guernsey'
         GN: "Guinea"
         GW: "Guinea-bissau"
         GY: "Guyana"
@@ -109,10 +113,12 @@ en:
         IR: "Iran, Islamic Republic Of"
         IQ: "Iraq"
         IE: "Ireland"
+        IM: "Isle of Man"
         IL: "Israel"
         IT: "Italy"
         JM: "Jamaica"
         JP: "Japan"
+        JE: "Jersey"
         JO: "Jordan"
         KZ: "Kazakstan"
         KE: "Kenya"
@@ -167,7 +173,7 @@ en:
         NU: "Niue"
         NF: "Norfolk Island"
         MP: "Northern Mariana Islands"
-        NO: "Norway"
+        'NO': "Norway"
         OM: "Oman"
         PK: "Pakistan"
         PW: "Palau"
@@ -186,9 +192,11 @@ en:
         RO: "Romania"
         RU: "Russian Federation"
         RW: "Rwanda"
+        BL: "Saint Barthelemy"
         SH: "Saint Helena"
         KN: "Saint Kitts And Nevis"
         LC: "Saint Lucia"
+        MF: "Saint Martin"
         PM: "Saint Pierre And Miquelon"
         VC: "Saint Vincent And The Grenadines"
         WS: "Samoa"
@@ -200,12 +208,14 @@ en:
         SC: "Seychelles"
         SL: "Sierra Leone"
         SG: "Singapore"
+        SX: "Sint Maarten"
         SK: "Slovakia"
         SI: "Slovenia"
         SB: "Solomon Islands"
         SO: "Somalia"
         ZA: "South Africa"
         GS: "South Georgia And The South Sandwich Islands"
+        SS: "South Sudan"
         ES: "Spain"
         LK: "Sri Lanka"
         SD: "Sudan"
@@ -219,6 +229,7 @@ en:
         TJ: "Tajikistan"
         TZ: "Tanzania, United Republic Of"
         TH: "Thailand"
+        TL: "Timor-Leste"
         TG: "Togo"
         TK: "Tokelau"
         TO: "Tonga"
@@ -386,7 +397,6 @@ en:
         mauritania: "MR"
         mauritius: "MU"
         mayotte: "YT"
-        mexicoMX: ""
         micronesia_federated_states_of: "FM"
         moldova_republic_of: "MD"
         monaco: "MC"
@@ -409,7 +419,7 @@ en:
         niue: "NU"
         norfolk_island: "NF"
         northern_mariana_islands: "NP"
-        norway: "NP"
+        norway: "NO"
         oman: "OM"
         pakistan: "PK"
         palau: "PW"
@@ -494,7 +504,7 @@ en:
       community_prefix: [Park, Summer, Autumn, Paradise, Eagle, Pine, Royal, University, Willow]
       community_suffix: [Village, Creek, Place, Pointe, Square, Oaks, Gardens, Crossing, Court, Acres, Estates, Heights]
       community:
-      - "#{community_prefix} #{community_suffix}"
+        - "#{community_prefix} #{community_suffix}"
       street_suffix: [Alley, Avenue, Branch, Bridge, Brook, Brooks, Burg, Burgs, Bypass, Camp, Canyon, Cape, Causeway, Center, Centers, Circle, Circles, Cliff, Cliffs, Club, Common, Corner, Corners, Course, Court, Courts, Cove, Coves, Creek, Crescent, Crest, Crossing, Crossroad, Curve, Dale, Dam, Divide, Drive, Drive, Drives, Estate, Estates, Expressway, Extension, Extensions, Fall, Falls, Ferry, Field, Fields, Flat, Flats, Ford, Fords, Forest, Forge, Forges, Fork, Forks, Fort, Freeway, Garden, Gardens, Gateway, Glen, Glens, Green, Greens, Grove, Groves, Harbor, Harbors, Haven, Heights, Highway, Hill, Hills, Hollow, Inlet, Inlet, Island, Island, Islands, Islands, Isle, Isle, Junction, Junctions, Key, Keys, Knoll, Knolls, Lake, Lakes, Land, Landing, Lane, Light, Lights, Loaf, Lock, Locks, Locks, Lodge, Lodge, Loop, Mall, Manor, Manors, Meadow, Meadows, Mews, Mill, Mills, Mission, Mission, Motorway, Mount, Mountain, Mountain, Mountains, Mountains, Neck, Orchard, Oval, Overpass, Park, Parks, Parkway, Parkways, Pass, Passage, Path, Pike, Pine, Pines, Place, Plain, Plains, Plains, Plaza, Plaza, Point, Points, Port, Port, Ports, Ports, Prairie, Prairie, Radial, Ramp, Ranch, Rapid, Rapids, Rest, Ridge, Ridges, River, Road, Road, Roads, Roads, Route, Row, Rue, Run, Shoal, Shoals, Shore, Shores, Skyway, Spring, Springs, Springs, Spur, Spurs, Square, Square, Squares, Squares, Station, Station, Stravenue, Stravenue, Stream, Stream, Street, Street, Streets, Summit, Summit, Terrace, Throughway, Trace, Track, Trafficway, Trail, Trail, Tunnel, Tunnel, Turnpike, Turnpike, Underpass, Union, Unions, Valley, Valleys, Via, Viaduct, View, Views, Village, Village, Villages, Ville, Vista, Vista, Walk, Walks, Wall, Way, Ways, Well, Wells]
       secondary_address: ['Apt. ###', 'Suite ###']
       # Though these are US-specific, they are here (in the default locale) for backwards compatibility
@@ -556,20 +566,19 @@ en:
       state_abbr: [AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY]
       time_zone: [Pacific/Midway, Pacific/Pago_Pago, Pacific/Honolulu, America/Juneau, America/Los_Angeles, America/Tijuana, America/Denver, America/Phoenix, America/Chihuahua, America/Mazatlan, America/Chicago, America/Regina, America/Mexico_City, America/Mexico_City, America/Monterrey, America/Guatemala, America/New_York, America/Indiana/Indianapolis, America/Bogota, America/Lima, America/Lima, America/Halifax, America/Caracas, America/La_Paz, America/Santiago, America/St_Johns, America/Sao_Paulo, America/Argentina/Buenos_Aires, America/Guyana, America/Godthab, Atlantic/South_Georgia, Atlantic/Azores, Atlantic/Cape_Verde, Europe/Dublin, Europe/London, Europe/Lisbon, Europe/London, Africa/Casablanca, Africa/Monrovia, Etc/UTC, Europe/Belgrade, Europe/Bratislava, Europe/Budapest, Europe/Ljubljana, Europe/Prague, Europe/Sarajevo, Europe/Skopje, Europe/Warsaw, Europe/Zagreb, Europe/Brussels, Europe/Copenhagen, Europe/Madrid, Europe/Paris, Europe/Amsterdam, Europe/Berlin, Europe/Berlin, Europe/Rome, Europe/Stockholm, Europe/Vienna, Africa/Algiers, Europe/Bucharest, Africa/Cairo, Europe/Helsinki, Europe/Kiev, Europe/Riga, Europe/Sofia, Europe/Tallinn, Europe/Vilnius, Europe/Athens, Europe/Istanbul, Europe/Minsk, Asia/Jerusalem, Africa/Harare, Africa/Johannesburg, Europe/Moscow, Europe/Moscow, Europe/Moscow, Asia/Kuwait, Asia/Riyadh, Africa/Nairobi, Asia/Baghdad, Asia/Tehran, Asia/Muscat, Asia/Muscat, Asia/Baku, Asia/Tbilisi, Asia/Yerevan, Asia/Kabul, Asia/Yekaterinburg, Asia/Karachi, Asia/Karachi, Asia/Tashkent, Asia/Kolkata, Asia/Kolkata, Asia/Kolkata, Asia/Kolkata, Asia/Kathmandu, Asia/Dhaka, Asia/Dhaka, Asia/Colombo, Asia/Almaty, Asia/Novosibirsk, Asia/Rangoon, Asia/Bangkok, Asia/Bangkok, Asia/Jakarta, Asia/Krasnoyarsk, Asia/Shanghai, Asia/Chongqing, Asia/Hong_Kong, Asia/Urumqi, Asia/Kuala_Lumpur, Asia/Singapore, Asia/Taipei, Australia/Perth, Asia/Irkutsk, Asia/Ulaanbaatar, Asia/Seoul, Asia/Tokyo, Asia/Tokyo, Asia/Tokyo, Asia/Yakutsk, Australia/Darwin, Australia/Adelaide, Australia/Melbourne, Australia/Melbourne, Australia/Sydney, Australia/Brisbane, Australia/Hobart, Asia/Vladivostok, Pacific/Guam, Pacific/Port_Moresby, Asia/Magadan, Asia/Magadan, Pacific/Noumea, Pacific/Fiji, Asia/Kamchatka, Pacific/Majuro, Pacific/Auckland, Pacific/Auckland, Pacific/Tongatapu, Pacific/Fakaofo, Pacific/Apia]
       city_name:
-      - "#{city}"
+        - "#{city}"
       city:
-      - "#{city_prefix} #{Name.first_name}#{city_suffix}"
-      - "#{city_prefix} #{Name.first_name}"
-      - "#{Name.first_name}#{city_suffix}"
-      - "#{Name.last_name}#{city_suffix}"
+        - "#{city_prefix} #{Name.first_name}#{city_suffix}"
+        - "#{city_prefix} #{Name.first_name}"
+        - "#{Name.first_name}#{city_suffix}"
+        - "#{Name.last_name}#{city_suffix}"
       street_prefix: "xx"
       street_name:
-      - "#{Name.first_name} #{street_suffix}"
-      - "#{Name.last_name} #{street_suffix}"
+        - "#{Name.first_name} #{street_suffix}"
+        - "#{Name.last_name} #{street_suffix}"
       street_address:
-      - "#{building_number} #{street_name}"
+        - "#{building_number} #{street_name}"
       full_address:
-      - "#{street_address}, #{city}, #{state_abbr} #{zip_code}"
-      - "#{secondary_address} #{street_address}, #{city}, #{state_abbr} #{zip_code}"
+        - "#{street_address}, #{city}, #{state_abbr} #{zip_code}"
+        - "#{secondary_address} #{street_address}, #{city}, #{state_abbr} #{zip_code}"
       default_country: [United States of America]
-
