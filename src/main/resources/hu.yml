@@ -130,6 +130,9 @@ hu:
     cell_phone:
       formats: ['+36-20-#######', '+36-30-#######', '+36-50-#######', '+36-70-#######']
 
+    space:
+      planet: ['Merkúr', 'Vénusz', 'Föld', 'Mars', 'Jupiter', 'Szaturnusz', 'Uránusz', 'Neptun']
+
     university:
       prefix: [Műszaki, Orvosi, Közgazdaságtudományi, Közszolgálati, Nemzetvédelmi, Hittudományi, Állatorvostudományi, Gazdaságtudományi, Zeneművészeti, Művészeti, Táncművészeti, Filmművészeti, Testnevelési]
       suffix: [Egyetem, Főiskola]
