@@ -123,4 +123,9 @@ hu:
     cell_phone:
       formats: ['+36-20-#######', '+36-30-#######', '+36-50-#######', '+36-70-#######']
 
-
+    university:
+      prefix: [Műszaki, Orvosi, Közgazdaságtudományi, Közszolgálati, Nemzetvédelmi, Hittudományi, Állatorvostudományi, Gazdaságtudományi, Zeneművészeti, Művészeti, Táncművészeti, Filmművészeti, Testnevelési]
+      suffix: [Egyetem, Főiskola]
+      name:
+        - "#{Name.last_name} #{University.suffix}"
+        - "#{University.prefix} #{University.suffix} #{Address.city}"
