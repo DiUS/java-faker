@@ -38,6 +38,13 @@ hu:
     color:
       name: [vörös, zöld, kék, sárga, lila, mentazöld, zöldeskék, fehér, fekete, narancssárga, rózsaszín, szürke, gesztenyebarna, ibolya, türkiz, cser, égszínkék, lazacszín, szilvakék, oliva, bíborvörös, lime, csontfehér, indigókék, aranyszín, fukszia, ciánkék, levendula, ezüst]
 
+    commerce:
+      department: ["Könyvek", "Filmek", "Zene", "Játékok", "Műszaki készülékek", "Számítógépek", "Otthon", "Kert", "Szerszámok", "Élelmiszer", "Egészség", "Kozmetika", "Gyermekholmik", "Babaholmik", "Ruházat", "Cipők", "Ékszer", "Sportszer", "Túrafelszerelés", "Gépjármű"]
+      product_name:
+        adjective: [Kis, Ergonómikus, Rusztikus, Intelligens, Nagyszerű, Hihetetlen, Fantasztikus, Praktickus, Kecses, Menő, Óriási, Középszerű, Szinergikus, Strapabíró, Könnyű, Aerodinamikus, Tartós]
+        material: [Acél, Fa, Beton, Műanyag, Pamut, Gránit, Gumi, Bőr, Selyem, Gyapjú, Len, Márvány, Vas, Bronz, Réz, Aluminium, Papír]
+        product: [Szék, Autó, Számítógép, Kesztyű, Nadrág, Ing, Asztal, Cipő, Kalap, Tányér, Kés, Üveg, Kabát, Lámpa, Billentyűzet, Táska, Pad, Óra, Karóra, Pénztárca]
+
     company:
       suffix: [Kkt, Kht, Bt, Kv, Kft, ZRt, NyRt]
       legal_form: [Kkt, Kht, Bt, Kv, Kft, ZRt, NyRt]
