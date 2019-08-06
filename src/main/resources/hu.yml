@@ -14,7 +14,7 @@ hu:
       state_abbr: [BK, BA, BE, BZ, CS, FE, GS, HB, HE, JN, KE, NO, PE, SO, SZ, TO, VA, VE, ZA]
       time_zone: [Europe/Budapest, Central European Time, CET]
       city:
-        - "#{city_prefix} #{Name.first_name}#{city_suffix}"
+        - "#{Name.first_name}#{city_suffix}"
         - "#{city_prefix} #{Name.first_name}"
         - "#{Name.first_name}#{city_suffix}"
         - "#{Name.last_name}#{city_suffix}"
