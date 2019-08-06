@@ -35,6 +35,9 @@ hu:
         - fej
         - írás
 
+    color:
+      name: [vörös, zöld, kék, sárga, lila, mentazöld, zöldeskék, fehér, fekete, narancssárga, rózsaszín, szürke, gesztenyebarna, ibolya, türkiz, cser, égszínkék, lazacszín, szilvakék, oliva, bíborvörös, lime, csontfehér, indigókék, aranyszín, fukszia, ciánkék, levendula, ezüst]
+
     company:
       suffix: [Kkt, Kht, Bt, Kv, Kft, ZRt, NyRt]
       legal_form: [Kkt, Kht, Bt, Kv, Kft, ZRt, NyRt]
