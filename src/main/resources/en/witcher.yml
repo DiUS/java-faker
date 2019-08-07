@@ -6,40 +6,6 @@ en:
         witchers: ["Geralt of Rivia", "Coën", "Vesemir", "Eskel", "Lambert", "Letho of Gulet","Ciri","George of Kagen","Jerome Moreau","Auckes","Serrit","Kolgrim","Ivar Evil-Eye","Junod of Belhaven","Gerd"]
         schools: ["Wolf", "Griffin", "Cat", "Viper", "Manticore", "Bear"]
         locations: ["Aedd Gynvael","Aldersberg","Beauclair","Cidaris","Cintra","Gors Velen","Maribor","Novigrad","Oxenfurt","Tretogor","Vengerberg","Vizima","Ard Carraigh","Bremervoord","Brugge","Claremont","Creyden","Fen Aspra","Hengfors","Lan Exeter","Pont Vanis","Lyria","Maecht","Malleore","Metinna","Nilfgaard","Neunreuth","Rakverelin","Rivia","Thurn","Acorn Bay","Anchor","Assengard","Attre","Ban Ard","Ban Gleán","Barefield","Belhaven","Blaviken","Brenna","Breza","Burdorff","Caelf","Carreras","Craag An","Crinfrid","Daevon","Dillingen","Dorian","Druigh","Dudno","Duén Canell","Dun Dâre","Ellander","Eysenlaan","Fano","Foam","Forgeham","Fox Hollow","Ghelibol","Glyswen","Gulet","Hochebuz","Jealousy","Kaczan","Kagen","Kerack","Kernow","Klucz","Knotweed Meadow","Little Marsh","Lower Posada","Malhoun","Mirt","Murivel","New Ironworks","Porog","Riedbrune","Rinde","Roggeveen","Tegamo","Tigg","Tridam","Tyffi","Unicorn","Upper Posada","Vattweir","Vole","White Bridge","Zavada","Armeria","Baldhorn","Ban Gleán","Beauclair","Bodrog","Carcano","Castel Ravello","Darn Dyffra","Darn Rowan","Darn Ruach","Dillingen","Dorndal","Drakenborg","Fen Aspra","Glevitzingen","Gwendeith","Hagge","Houtborg","Kaer Morhen","Kaer Trolde","Leyda","Loc Grim","Mayena","Mirt","Montecalvo","Montsalvat","Nastrog","Razwan","Red Binduga","Rocayne","Rhys-Rhun","Riedbrune","Rozrog","Sarda","Scala","Schwemmland","Spalla","Stygga","Tigg","Vartburg","Vedette","Vidort","Winneburg","Zurbarran","Est Haemlet","Loc Muinne","Shaerrawedd"]
-        quotes: [
-          "Just five more minutes… Is it 1358 yet? No? Then fuck off!",
-          "Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.",
-          "Hide the wenches, Witcher's coming!!","Oh year... the Elder Blood can be fiery",
-          "Damn, Eskel... you got an hourglass figure","No Lollygagin'!",
-          "You get what you get and be happy with it","I'll stick me boot so far up yer arse your tongue'll taste like wench twat",
-          "Evil is evil, Stregobor. Lesser, greater, middling, it's all the same. Proportions are negotiated, boundaries blurred. I'm not a pious hermit, I haven't done only good in my life. But if I'm to choose between one evil and another, then I prefer not to choose at all.",
-          "One hand washes the other. Freedom and contempt have their limits. In the end, it is always the case that one is someone else's tool.",
-          "You cannot do it. You cannot do it, witcheress. In Kaer Morhen, they taught you to kill, so you kill like a machine. Instinctively. To kill yourself takes character, strength, determination and courage. But that, that they could not teach you.",
-          "Death, the final judgement. The Beast has met its end once. It doesn't fear death, it is death. How will you defeat human villainy? With your sword? You who died and still walk amongst the living?",
-          "Well, there’s a war, so there’s orphans. Didn’t [you] know that?",
-          "Know when a legend becomes a prophecy? When it gains believers.",
-          "You don’t need mutations to strip men of their humanity. I’ve seen plenty of examples.",
-          "To be neutral does not mean to be indifferent or insensitive. You don't have to kill your feelings. It's enough to kill hatred within yourself.",
-          "There is never a second opportunity to make a first impression.",
-          "People”—Geralt turned his head—“like to invent monsters and monstrosities. Then they seem less monstrous themselves.",
-          "A mother, you son-of-a-bitch, is sacred!",
-          "Only Evil and Greater Evil exist and beyond them, in the shadows, lurks True Evil. True Evil, Geralt, is something you can barely imagine, even if you believe nothing can still surprise you. And sometimes True Evil seizes you by the throat and demands that you choose between it and another, slightly lesser, Evil.",
-          "Only death can finish the fight, everything else only interrupts the fighting.",
-          "Mistakes,’ he said with effort, ‘are also important to me. I don’t cross them out of my life, or memory. And I never blame others for them.",
-          "What is truth? The negation of lies? Or the statement of a fact? And if the fact is a lie, what then is the truth?",
-          "They weren't lying. They firmly believed it all. Which doesn't change the facts.",
-          "There's a grain of truth in every fairy tale.",
-          "I need this conversation. They say silence is golden. Maybe it is, although I'm not sure it's worth that much. It has its price certainly; you have to pay for it.",
-          "You’ve mistaken the stars reflected on the surface of the lake at night for the heavens.",
-          "It is easy to kill with a bow, girl. How easy it is to release the bowstring and think, it is not I, it is the arrow. The blood of that boy is not on my hands. The arrow killed him, not I. But the arrow does not dream anything in the night.",
-          "The sword of destiny has two edges. You are one of them.",
-          "When you know about something it stops being a nightmare. When you know how to fight something, it stops being so threatening.",
-          "As usual, cats and children noticed him first.",
-          "That’s the role of poetry, Ciri. To say what others cannot utter.",
-          "No one wants to suffer. But that is the fate of each. And some suffer more. Not necessarily of their own volition. It's not about to enduring the suffering. It's about how you endure it.",
-          "Destiny has many faces. Mine is beautiful on the outside and hideous on the inside. She has stretched her bloody talons toward me—",
-          "A coward,' he declared with dignity, when he'd stopped coughing and had got his breath back, 'dies a hundred times. A brave man dies but once. But Dame Fortune favours the brave and holds the coward in contempt.'",
-          "I thought I was choosing the lesser evil. I chose the lesser evil. Lesser evil! I’m Geralt! Witcher…I’m the Butcher of Blaviken—"
-        ]
+        quotes: ["Just five more minutes… Is it 1358 yet? No? Then fuck off!","Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.","Hide the wenches, Witcher's coming!!","Oh year... the Elder Blood can be fiery","Damn, Eskel... you got an hourglass figure","No Lollygagin'!","You get what you get and be happy with it","I'll stick me boot so far up yer arse your tongue'll taste like wench twat"]
         monsters: ["Archespore","Berserker","Botchling","Lubberkin","Ulfhedinn","Werewolf","The Toad Prince","Basilisk","Cockatrice","Forktail","Royal Wyvern","Shrieker","Silver Basilisk","Slyzard Matriarch","Slyzard","Dragon of Fyresdal","Wyvern","Djinn","Earth Elemental","Fire Elemental","Gargoyle","Golem","Hound of the Wild Hunt","Ice Elemental","Pixie","Apiarian Phantom","Therazane","Ekhidnae","Erynias","Griffin","Harpy","Melusine","Opinicus","Salma","Siren","Succubus","Arachas","Arachnomorph","Endrega Drone","Endrega Warrior","Endrega Worker","Giant Centipede","Kikimore","Kikimore Worker","Pale Widow","Abaya","Alghoul","Drowner","Foglet","Ghoul","Grave Hag","Ignis Fatuus","Mourntart","Mucknixer","Rotfiend","Scurver","Spotted Wight","Water Hag","Wight","Cloud Giant","Cyclopse","Golyat","Hagubman","Ice Giant","Ice Troll","Nekker","Rock Troll","Wham-a-Wham","Chort","Crone","Doppler","Fiend","Fugas","Godling","Grottore","Howler","Imp","Kernun","Leshen","Morvudd","Shaelmaar","Spriggan","Sylvan","The Caretaker","Barghests","Ethereal","Hym","Longlocks","Nightwraith","Noonwraith","Penitent","Plague Maiden","Umbra","Wraith","Alp","Bruxa","Ekimmara","Gael","Garkain","Higher Vampire","Katakan"]
 
