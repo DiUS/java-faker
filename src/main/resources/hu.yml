@@ -57,7 +57,7 @@ hu:
         - "#{Name.last_name} és Fia"
         - "#{Name.last_name} és Társa #{suffix}"
         - "#{Name.last_name} és Fia #{suffix}"
-        -
+
     compass:
       cardinal:
         word: ['Észak', 'Kelet', 'Dél', 'Nyugat']
