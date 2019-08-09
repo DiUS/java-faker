@@ -85,6 +85,7 @@ public class Faker {
     private final Lebowski lebowski;
     private final Medical medical;
     private final BackToTheFuture backToTheFuture;
+    private final Nation nation;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -171,6 +172,7 @@ public class Faker {
         this.medical = new Medical(this);
         this.country = new Country(this);
         this.backToTheFuture = new BackToTheFuture(this);
+        this.nation = new Nation(this);
     }
 
     /**
@@ -561,6 +563,10 @@ public class Faker {
 
     public BackToTheFuture backToTheFuture() {
         return  backToTheFuture;
+    }
+
+    public Nation nation() {
+        return nation;
     }
 
     public String resolve(String key) {
