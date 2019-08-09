@@ -3,6 +3,7 @@ package com.github.javafaker;
 import com.github.javafaker.repeating.Repeat;
 import org.junit.Test;
 
+import static com.github.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertThat;
 
@@ -38,6 +39,11 @@ public class CountryTest extends AbstractFakerTest {
 
     @Test
     public void testCurrencyCode() {
-        assertThat(faker.country().currencyCode(), matchesRegularExpression("([\\w-]+ ?)+"));
+        assertThat(faker.country().currencyCode(), matchesRegularExpression("([\\w-’í]+ ?)+"));
+    }
+
+    @Test
+    public void testName() {
+        assertThat(faker.country().name(), isStringWithContents());
     }
 }

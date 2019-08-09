@@ -20,7 +20,7 @@ public class Lorem {
     }
 
     public char character(boolean includeUppercase) {
-        return characters(1).charAt(0);
+        return characters(1, includeUppercase).charAt(0);
     }
 
     public String characters() {
@@ -28,7 +28,7 @@ public class Lorem {
     }
 
     public String characters(boolean includeUppercase) {
-        return characters(255, false);
+        return characters(255, includeUppercase);
     }
 
     public String characters(int minimumLength, int maximumLength) {
