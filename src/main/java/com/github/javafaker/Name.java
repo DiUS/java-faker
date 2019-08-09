@@ -129,4 +129,12 @@ public class Name {
 
         return StringUtils.deleteWhitespace(username);
     }
+    
+    /**
+     * <p>Returns a blood group such as O−, O+, A-, A+, B-, B+, AB-, AB+</p>
+     * @return a blood group such as O−, O+, A-, A+, B-, B+, AB-, AB+
+     */
+    public String bloodGroup() {
+        return faker.fakeValuesService().resolve("name.blood_group", this, faker);
+    }
 }
