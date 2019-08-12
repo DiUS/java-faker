@@ -36,7 +36,7 @@ public class FakerIT {
     /**
      * a collection of Locales -> Exceptions.
      * In the case of 'pt', city_prefix is '' by design. This test fails because it's testing that all string returning
-     * methods return a non blank string. But pt city_prefix is blank ,but the test shouldn't fail. So we add put 
+     * methods return a non blank string. But pt city_prefix is blank ,but the test shouldn't fail. So we add put
      * exceptions like this into this collection.
      */
     private static final Map<Locale, List<String>> exceptions = Maps.newHashMap();
@@ -94,6 +94,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.address());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.app());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.artist());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.aviation());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.backToTheFuture());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.business());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.book());
@@ -151,6 +152,11 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.witcher());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.weather());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lebowski());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.animal());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.princessBride());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.elderScrolls());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.buffy());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.relationships());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
