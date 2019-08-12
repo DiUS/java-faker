@@ -135,6 +135,20 @@ public class NumberTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testLongBetweenOneAndThree() {
+        Set<Long> nums = Sets.newHashSet();
+        final long lowerLimit = 0;
+        final long upperLimit = 3;
+        for (int i = 0; i < 1000; ++i) {
+            long value = faker.number().numberBetween(lowerLimit, upperLimit);
+            assertThat(value, is(lessThan(upperLimit)));
+            assertThat(value, is(greaterThanOrEqualTo(lowerLimit)));
+            nums.add(value);
+        }
+        assertThat(nums, contains(0L, 1L, 2L));
+    }
+
+    @Test
     public void numberBetweenIntIntZeroMinMax() {
         assertThat("Calling numberBetween with min==max yields min, with 0",
                 faker.number().numberBetween(0, 0),
