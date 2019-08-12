@@ -77,7 +77,7 @@ public class NameTest  extends AbstractFakerTest{
     
     @Test
     public void testBloodGroup() {
-        assertThat(faker.name().bloodGroup(), matchesRegularExpression("(A|B|AB|O)[+-−]"));
+        assertThat(faker.name().bloodGroup(), matchesRegularExpression("(A|B|AB|O)[+-]"));
     }
 
 }
