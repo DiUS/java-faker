@@ -51,7 +51,7 @@ public class Internet {
     }
 
     public String url() {
-        return join(new Object[]{
+        return join(
                 "www",
                 ".",
                 FakerIDN.toASCII(
@@ -61,7 +61,7 @@ public class Internet {
                 ),
                 ".",
                 domainSuffix()
-        });
+        );
     }
 
     /**

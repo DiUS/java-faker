@@ -69,13 +69,13 @@ public class Company {
     }
 
     public String url() {
-        return join(new Object[]{
+        return join(
                 "www",
                 ".",
                 FakerIDN.toASCII(domainName()),
                 ".",
                 domainSuffix()
-        });
+        );
     }
 
     private String domainName(){
