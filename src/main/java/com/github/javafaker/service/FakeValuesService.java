@@ -22,7 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FakeValuesService {
-    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*\\}");
+    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*}");
 
     private final Logger log = Logger.getLogger("faker");
 
@@ -106,7 +106,7 @@ public class FakeValuesService {
      * with new Locale("pt","BR").
      */
     private Locale normalizeLocale(Locale locale) {
-        final String[] parts = locale.toString().split("[-\\_]");
+        final String[] parts = locale.toString().split("[-_]");
 
         if (parts.length == 1) {
             return new Locale(parts[0]);
