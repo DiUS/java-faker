@@ -37,7 +37,7 @@ public class Relationships {
     }
     
     public String any() {
-        Method currentMethod = Relationships.class.getClass().getEnclosingMethod();
+        Method currentMethod = getClass().getEnclosingMethod();
 
         try {
             Method[] methods = Relationships.class.getDeclaredMethods();
