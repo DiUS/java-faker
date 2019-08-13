@@ -571,7 +571,7 @@ public class FakeValuesService {
      * this is useful as we get to find the method and coerce the arguments in one
      * shot, returning both when successful.  This saves us from doing it more than once (coercing args).
      */
-    private class MethodAndCoercedArgs {
+    private static class MethodAndCoercedArgs {
 
         private final Method method;
 
