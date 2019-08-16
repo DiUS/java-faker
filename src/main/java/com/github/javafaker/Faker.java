@@ -91,6 +91,7 @@ public class Faker {
     private final PrincessBride princessBride;
     private final Buffy buffy;
     private final Relationships relationships;
+    private final Military military;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -183,6 +184,7 @@ public class Faker {
         this.princessBride = new PrincessBride(this);
         this.buffy = new Buffy(this);
         this.relationships = new Relationships(this);
+        this.military = new Military(this);
     }
 
     /**
@@ -595,6 +597,10 @@ public class Faker {
 
     public Relationships relationships() {
         return relationships;
+    }
+
+    public Military military() {
+        return military;
     }
     
     public String resolve(String key) {
