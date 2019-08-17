@@ -79,6 +79,7 @@ Fakers
 * Demographic
 * Dog
 * DragonBall
+* Dune
 * Educator
 * Esports
 * File
@@ -103,12 +104,14 @@ Fakers
 * Matz
 * Music
 * Name
+* Nation
 * Number
 * Options
 * Overwatch
 * PhoneNumber
 * Pokemon
 * Princess Bride
+* Relationship Terms
 * RickAndMorty
 * Robin
 * RockBand

@@ -89,6 +89,10 @@ public class Faker {
     private final Animal animal;
     private final BackToTheFuture backToTheFuture;
     private final PrincessBride princessBride;
+    private final Buffy buffy;
+    private final Relationships relationships;
+    private final Nation nation;
+    private final Dune dune;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -179,6 +183,10 @@ public class Faker {
         this.animal = new Animal(this);
         this.backToTheFuture = new BackToTheFuture(this);
         this.princessBride = new PrincessBride(this);
+        this.buffy = new Buffy(this);
+        this.relationships = new Relationships(this);
+        this.nation = new Nation(this);
+        this.dune = new Dune(this);
     }
 
     /**
@@ -357,6 +365,10 @@ public class Faker {
 
     public Book book() {
         return book;
+    }
+
+    public Buffy buffy() {
+        return buffy;
     }
 
     public Business business() {
@@ -585,6 +597,18 @@ public class Faker {
         return princessBride;
     }
 
+    public Relationships relationships() {
+        return relationships;
+    }
+
+    public Nation nation() {
+        return nation;
+    }
+
+    public Dune dune() {
+        return dune;
+    }
+    
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
