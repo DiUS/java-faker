@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -118,6 +119,26 @@ public class NumberTest extends AbstractFakerTest {
         long v1 = faker.number().numberBetween(min1, 980000000L);
         assertThat(v1, is(greaterThan((long) min1)));
         assertThat(v1, is(lessThan(980000000L)));
+    }
+
+    @Test
+    @Repeat(times = 100)
+    public void testLongNumberBetweenRepeated() {
+        long low = 1;
+        long high = 10;
+        long v = faker.number().numberBetween(low, high);
+        assertThat(v, is(lessThan(high)));
+        assertThat(v, is(greaterThanOrEqualTo(low)));
+    }
+
+    @Test
+    @Repeat(times = 100)
+    public void testIntNumberBetweenRepeated() {
+        int low = 1;
+        int high = 10;
+        int v = faker.number().numberBetween(low, high);
+        assertThat(v, is(lessThan(high)));
+        assertThat(v, is(greaterThanOrEqualTo(low)));
     }
 
     @Test
