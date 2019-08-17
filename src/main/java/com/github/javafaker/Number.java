@@ -39,7 +39,7 @@ public class Number {
      * @param max exclusive (unless min == max)
      */
     public long numberBetween(long min, long max) {
-        return decimalBetween(min,max).longValue();
+        return decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_DOWN).longValue();
     }
     
     /**
