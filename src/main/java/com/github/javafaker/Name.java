@@ -121,10 +121,10 @@ public class Name {
      */
     public String username() {
 
-        String username = StringUtils.join(new String[]{
+        String username = StringUtils.join(
                 firstName().replaceAll("'", "").toLowerCase(),
                 ".",
-                lastName().replaceAll("'", "").toLowerCase()}
+                lastName().replaceAll("'", "").toLowerCase()
         );
 
         return StringUtils.deleteWhitespace(username);

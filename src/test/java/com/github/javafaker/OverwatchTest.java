@@ -1,6 +1,5 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
