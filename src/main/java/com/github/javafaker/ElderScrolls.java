@@ -35,4 +35,7 @@ public class ElderScrolls {
     public String lastName() {
         return faker.fakeValuesService().resolve("games.elder_scrolls.last_name", this, faker);
     }
+
+    public String quote() {return faker.fakeValuesService().resolve("games.elder_scrolls.quote", this, faker);
+    }
 }
