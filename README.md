@@ -104,6 +104,7 @@ Fakers
 * Matz
 * Music
 * Name
+* Nation
 * Number
 * Options
 * Overwatch

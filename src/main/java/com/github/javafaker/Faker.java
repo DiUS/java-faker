@@ -91,6 +91,7 @@ public class Faker {
     private final PrincessBride princessBride;
     private final Buffy buffy;
     private final Relationships relationships;
+    private final Nation nation;
     private final Dune dune;
 
     public Faker() {
@@ -184,6 +185,7 @@ public class Faker {
         this.princessBride = new PrincessBride(this);
         this.buffy = new Buffy(this);
         this.relationships = new Relationships(this);
+        this.nation = new Nation(this);
         this.dune = new Dune(this);
     }
 
@@ -597,6 +599,10 @@ public class Faker {
 
     public Relationships relationships() {
         return relationships;
+    }
+
+    public Nation nation() {
+        return nation;
     }
 
     public Dune dune() {
