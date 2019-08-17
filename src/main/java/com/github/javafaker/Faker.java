@@ -92,6 +92,7 @@ public class Faker {
     private final Buffy buffy;
     private final Relationships relationships;
     private final Nation nation;
+    private final Dune dune;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -185,6 +186,7 @@ public class Faker {
         this.buffy = new Buffy(this);
         this.relationships = new Relationships(this);
         this.nation = new Nation(this);
+        this.dune = new Dune(this);
     }
 
     /**
@@ -603,6 +605,10 @@ public class Faker {
         return nation;
     }
 
+    public Dune dune() {
+        return dune;
+    }
+    
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
