@@ -157,6 +157,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.elderScrolls());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.buffy());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.relationships());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.dune());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
