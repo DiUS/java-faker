@@ -70,7 +70,7 @@ public class RelationshipTest extends AbstractFakerTest {
 
     @Test(expected = RuntimeException.class)
     public void anyWithIllegalAccessExceptionThrown() {
-        when(mockFaker.random()).thenThrow(new IllegalArgumentException());
+        when(mockFaker.random()).thenThrow(new IllegalAccessException());
         new Relationships(mockFaker).any();
     }
 
