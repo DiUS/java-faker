@@ -122,7 +122,9 @@ public class FakeValuesService {
      * @return
      */
     public Object fetch(String key) {
-        List<Object> valuesArray = (List) fetchObject(key);
+        List<?> valuesArray = new ArrayList<Object>(); 
+        if (fetchObject(key) instanceof ArrayList)
+            valuesArray = (ArrayList<?>)fetchObject(key);
         return valuesArray == null ? null : valuesArray.get(randomService.nextInt(valuesArray.size()));
     }
 
@@ -176,7 +178,6 @@ public class FakeValuesService {
      *            dot. E.g. name.first_name
      * @return
      */
-    @SuppressWarnings("unchecked")
     public Object fetchObject(String key) {
         String[] path = key.split("\\.");
 
@@ -186,7 +187,7 @@ public class FakeValuesService {
             for (int p = 0; currentValue != null && p < path.length; p++) {
                 String currentPath = path[p];
                 if (currentValue instanceof Map) {
-                    currentValue = ((Map) currentValue).get(currentPath);
+                    currentValue = ((Map<?,?>) currentValue).get(currentPath);
                 } else  {
                     currentValue = ((FakeValuesInterface) currentValue).get(currentPath);
                 }
