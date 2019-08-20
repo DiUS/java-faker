@@ -1,9 +1,9 @@
 package com.github.javafaker.service;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.is;
 
 import java.util.Locale;
 
@@ -39,7 +39,7 @@ public class FakeValuesGroupingTest {
         assertThat(Maps.difference(fakeValuesGrouping.get("address"), addressValues.get("address")).areEqual(), equalTo(true));
         assertThat(fakeValuesGrouping.get("address"), is(notNullValue()));
 
-        assertThat(Maps.difference(fakeValuesGrouping.get("creature"), addressValues.get("creature")).areEqual(), equalTo(true));
+        assertThat(Maps.difference(fakeValuesGrouping.get("creature"), catValues.get("creature")).areEqual(), equalTo(true));
         assertThat(fakeValuesGrouping.get("creature"), is(notNullValue()));
     }
     
