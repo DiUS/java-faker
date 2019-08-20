@@ -22,4 +22,12 @@ public class HarryPotter {
     public String book() {
         return faker.resolve("harry_potter.books");
     }
+
+    public String house() {
+        return faker.resolve("harry_potter.houses");
+    }
+
+    public String spell() {
+        return faker.resolve("harry_potter.spells");
+    }
 }
