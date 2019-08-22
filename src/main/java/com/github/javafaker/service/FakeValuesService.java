@@ -122,7 +122,9 @@ public class FakeValuesService {
      * @return
      */
     public Object fetch(String key) {
-        List<Object> valuesArray = (List) fetchObject(key);
+        List<?> valuesArray = new ArrayList<Object>(); 
+        if (fetchObject(key) instanceof ArrayList)
+            valuesArray = (ArrayList<?>)fetchObject(key);
         return valuesArray == null ? null : valuesArray.get(randomService.nextInt(valuesArray.size()));
     }
 
@@ -176,7 +178,6 @@ public class FakeValuesService {
      *            dot. E.g. name.first_name
      * @return
      */
-    @SuppressWarnings("unchecked")
     public Object fetchObject(String key) {
         String[] path = key.split("\\.");
 
