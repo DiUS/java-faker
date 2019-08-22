@@ -187,7 +187,7 @@ public class FakeValuesService {
             for (int p = 0; currentValue != null && p < path.length; p++) {
                 String currentPath = path[p];
                 if (currentValue instanceof Map) {
-                    currentValue = ((Map<?,?>) currentValue).get(currentPath);
+                    currentValue = ((Map) currentValue).get(currentPath);
                 } else  {
                     currentValue = ((FakeValuesInterface) currentValue).get(currentPath);
                 }
