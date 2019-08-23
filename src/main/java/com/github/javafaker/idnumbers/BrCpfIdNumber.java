@@ -26,12 +26,54 @@ public class BrCpfIdNumber {
 		return convertAsUnformattedString(cpfDigits);
 	}
 
+	public String getInvalidFormattedCpf(Faker faker) {
+
+		int[] cpfDigits = retrieveInvalidCpfDigits(faker);
+
+		return convertAsFormattedString(cpfDigits);
+	}
+
+	public String getInvalidUnformattedCpf(Faker faker) {
+
+		int[] cpfDigits = retrieveInvalidCpfDigits(faker);
+
+		return convertAsUnformattedString(cpfDigits);
+	}
+
 	private int[] retrieveCpfDigits(Faker faker) {
 		int[] inputDigits = createInputDigits(faker);
 
 		int[] verifierDigits = calculateVerifierDigits(inputDigits);
 
 		return organizeCpfDigits(inputDigits, verifierDigits);
+	}
+
+	private int[] retrieveInvalidCpfDigits(Faker faker) {
+		int[] inputDigits = createInputDigits(faker);
+
+		int[] verifierDigits = calculateInvalidVerifierDigits(inputDigits, faker);
+
+		return organizeCpfDigits(inputDigits, verifierDigits);
+	}
+
+	private int[] calculateInvalidVerifierDigits(int[] inputDigits, Faker faker) {
+		int[] verifierDigits = calculateVerifierDigits(inputDigits);
+
+		for (int index = 0; index < verifierDigits.length; index++) {
+			verifierDigits[index] = retrieveRandomIntDifferentFrom(verifierDigits[index], faker);
+		}
+
+		return verifierDigits;
+	}
+
+	private int retrieveRandomIntDifferentFrom(int integer, Faker faker) {
+		int result;
+
+		do {
+			result = retrieveRandomDigit(faker);
+		} while (result == integer);
+
+		return result;
 	}
 
 	private String convertAsFormattedString(int[] cpfDigits) {
@@ -62,7 +104,7 @@ public class BrCpfIdNumber {
 	private int[] calculateVerifierDigits(int[] inputDigits) {
 		int[] verifierDigits = new int[VERIFIER_DIGITS_LENGTH];
 
-		for (int index = 0; index < INPUT_DIGITS_LENGTH; index++) {
+		for (int index = 0; index < inputDigits.length; index++) {
 			verifierDigits[0] += inputDigits[index] * (9 - (index % 10));
 			verifierDigits[1] += inputDigits[index] * (9 - ((index + 1) % 10));
 		}
@@ -77,9 +119,13 @@ public class BrCpfIdNumber {
 
 	private int[] createInputDigits(Faker faker) {
 		int[] inputDigits = new int[INPUT_DIGITS_LENGTH];
-		for (int index = 0; index < INPUT_DIGITS_LENGTH; index++) {
-			inputDigits[index] = faker.random().nextInt(10);
+		for (int index = 0; index < inputDigits.length; index++) {
+			inputDigits[index] = retrieveRandomDigit(faker);
 		}
 		return inputDigits;
+	}
+
+	private int retrieveRandomDigit(Faker faker) {
+		return faker.random().nextInt(10);
 	}
 }
