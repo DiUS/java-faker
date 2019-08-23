@@ -27,46 +27,46 @@ public class BrCpfIdNumber {
 
 	public String getValidFormattedCpf(Faker faker) {
 
-		int[] cpfDigits = retrieveCpfDigits(faker);
+		int[] cpfDigits = createCpfDigits(faker);
 
 		return convertAsFormattedString(cpfDigits);
 	}
 
 	public String getValidUnformattedCpf(Faker faker) {
 
-		int[] cpfDigits = retrieveCpfDigits(faker);
+		int[] cpfDigits = createCpfDigits(faker);
 
 		return convertAsUnformattedString(cpfDigits);
 	}
 
 	public String getInvalidFormattedCpf(Faker faker) {
 
-		int[] cpfDigits = retrieveInvalidCpfDigits(faker);
+		int[] cpfDigits = createInvalidCpfDigits(faker);
 
 		return convertAsFormattedString(cpfDigits);
 	}
 
 	public String getInvalidUnformattedCpf(Faker faker) {
 
-		int[] cpfDigits = retrieveInvalidCpfDigits(faker);
+		int[] cpfDigits = createInvalidCpfDigits(faker);
 
 		return convertAsUnformattedString(cpfDigits);
 	}
 
-	private int[] retrieveCpfDigits(Faker faker) {
+	private int[] createCpfDigits(Faker faker) {
 		int[] inputDigits = createInputDigits(faker);
 
 		int[] verifierDigits = calculateVerifierDigits(inputDigits);
 
-		return organizeCpfDigits(inputDigits, verifierDigits);
+		return ArrayUtils.addAll(inputDigits, verifierDigits);
 	}
 
-	private int[] retrieveInvalidCpfDigits(Faker faker) {
+	private int[] createInvalidCpfDigits(Faker faker) {
 		int[] inputDigits = createInputDigits(faker);
 
 		int[] verifierDigits = calculateInvalidVerifierDigits(inputDigits, faker);
 
-		return organizeCpfDigits(inputDigits, verifierDigits);
+		return ArrayUtils.addAll(inputDigits, verifierDigits);
 	}
 
 	public boolean isValid(String cpf) {
@@ -141,13 +141,10 @@ public class BrCpfIdNumber {
 		return cpfStringBuilder.toString();
 	}
 
-	private int[] organizeCpfDigits(int[] inputDigits, int[] verifierDigits) {
+	protected int[] calculateVerifierDigits(int[] inputDigits) {
 
 		ArrayUtils.reverse(inputDigits);
-		return ArrayUtils.addAll(inputDigits, verifierDigits);
-	}
 
-	protected int[] calculateVerifierDigits(int[] inputDigits) {
 		int[] verifierDigits = new int[VERIFIER_DIGITS_LENGTH];
 
 		for (int index = 0; index < inputDigits.length; index++) {
@@ -160,13 +157,11 @@ public class BrCpfIdNumber {
 		verifierDigits[1] += verifierDigits[0] * 9;
 		verifierDigits[1] = (verifierDigits[1] % 11) % 10;
 
-		ArrayUtils.reverse(verifierDigits);
-
 		return verifierDigits;
 	}
 
 	protected boolean isValid(int[] cpfDigits) {
-		int[] inputDigits = Arrays.copyOfRange(cpfDigits, 0, INPUT_DIGITS_LENGTH);
+		int[] inputDigits = retrieveInputDigits(cpfDigits);
 
 		int[] cpfVerifierDigits = Arrays.copyOfRange(cpfDigits, INPUT_DIGITS_LENGTH,
 				INPUT_DIGITS_LENGTH + VERIFIER_DIGITS_LENGTH);
@@ -174,6 +169,10 @@ public class BrCpfIdNumber {
 		int[] calculatedVerifierDigits = calculateVerifierDigits(inputDigits);
 
 		return Arrays.equals(cpfVerifierDigits, calculatedVerifierDigits);
+	}
+
+	private int[] retrieveInputDigits(int[] cpfDigits) {
+		return Arrays.copyOfRange(cpfDigits, 0, INPUT_DIGITS_LENGTH);
 	}
 
 	private int[] createInputDigits(Faker faker) {
