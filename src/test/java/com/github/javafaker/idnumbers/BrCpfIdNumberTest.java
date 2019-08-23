@@ -91,5 +91,22 @@ public class BrCpfIdNumberTest extends AbstractFakerTest {
 		String cpf = "011.063.470-56";
 		assertTrue(brCpfIdNumber.isValid(cpf));
 	}
-
+	
+	@Test
+	public void testIsValidShouldReturnTrueForValidUnformattedCpf() throws Exception {
+		String cpf = "01106347056";
+		assertTrue(brCpfIdNumber.isValid(cpf));
+	}
+	
+	@Test
+	public void testIsValidShouldReturnFalseForInvalidFormattedCpf() throws Exception {
+		String cpf = "011.207.110-72";
+		assertFalse(brCpfIdNumber.isValid(cpf));
+	}
+	
+	@Test
+	public void testIsValidShouldReturnFalseForInvalidUnformattedCpf() throws Exception {
+		String cpf = "01120711072";
+		assertFalse(brCpfIdNumber.isValid(cpf));
+	}
 }
