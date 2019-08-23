@@ -1,13 +1,14 @@
 package com.github.javafaker.idnumbers;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.regex.Pattern;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.github.javafaker.AbstractFakerTest;
+
+import static org.junit.Assert.*;
 
 public class BrCpfIdNumberTest extends AbstractFakerTest {
 
@@ -50,4 +51,41 @@ public class BrCpfIdNumberTest extends AbstractFakerTest {
 		assertTrue(UNFORMATTED_CPF_PATTERN.matcher(cpf).matches());
 	}
 
+	@Test
+	public void testValidCpfStartingWithZero() throws Exception {
+		int[] cpf = {0,8,5,3,2,5,9,4,0};
+		assertSame(brCpfIdNumber.calculateVerifierDigits(cpf)[0], 2);
+		assertSame(brCpfIdNumber.calculateVerifierDigits(cpf)[1], 6);
+	}
+
+	@Test
+	public void testValidCpfStartingWithGreaterThanZero() throws Exception {
+		int[] cpf = {9,3,7,8,5,1,4,8,0};
+		assertSame(brCpfIdNumber.calculateVerifierDigits(cpf)[0], 4);
+		assertSame(brCpfIdNumber.calculateVerifierDigits(cpf)[1], 6);
+	}
+
+	@Test
+	public void testVerifyValidCpfStartingWithZero() throws Exception {
+		int[] cpf = {0,8,5,3,2,5,9,4,0,2,6};
+		assertEquals(brCpfIdNumber.validateCPF(cpf),true);
+	}
+
+	@Test
+	public void testVerifyValidCpfStartingWithGreaterThanZero() throws Exception {
+		int[] cpf = {7,9,3,1,3,9,8,4,0,8,3};
+		assertEquals(brCpfIdNumber.validateCPF(cpf),true);
+	}
+
+	@Test
+	public void testVerifyInvalidCpfStartingWithZero() throws Exception {
+		int[] cpf = {0,0,4,6,6,7,6,4,0,6,5};
+		assertEquals(brCpfIdNumber.validateCPF(cpf),false);
+	}
+
+	@Test
+	public void testVerifyInvalidCpfStartingWithGreaterThanZero() throws Exception {
+		int[] cpf = {1,2,3,4,5,6,7,8,9,0,1};
+		assertEquals(brCpfIdNumber.validateCPF(cpf),false);
+	}
 }
