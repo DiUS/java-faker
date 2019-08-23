@@ -1,6 +1,5 @@
 package com.github.javafaker.idnumbers;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -47,19 +46,19 @@ public class BrCpfIdNumberTest extends AbstractFakerTest {
 		String cpf = "065.154.070-41";
 		assertTrue(brCpfIdNumber.isValid(cpf));
 	}
-	
+
 	@Test
 	public void testIsValidShouldReturnTrueForValidUnformattedCpfStartingWithZero() throws Exception {
 		String cpf = "04893747002";
 		assertTrue(brCpfIdNumber.isValid(cpf));
 	}
-	
+
 	@Test
 	public void testIsValidShouldReturnFalseForInvalidFormattedCpfStartingWithZero() throws Exception {
 		String cpf = "099.972.740-59";
 		assertFalse(brCpfIdNumber.isValid(cpf));
 	}
-	
+
 	@Test
 	public void testIsValidShouldReturnFalseForInvalidUnformattedCpfStartingWithZero() throws Exception {
 		String cpf = "03360109025";
@@ -76,15 +75,6 @@ public class BrCpfIdNumberTest extends AbstractFakerTest {
 	public void testIsValidShouldReturnTrueForValidUnformattedCpfStartingWithGreaterThanZero() throws Exception {
 		String cpf = "49764225004";
 		assertTrue(brCpfIdNumber.isValid(cpf));
-	}
-
-	@Test
-	public void debugDoTesteDeCima() throws Exception{
-		int[] cpf = { 4, 9, 6, 4, 2, 2, 5, 0 };
-		int[] expectedValues = {0, 4};
-
-		int[] actualValues = brCpfIdNumber.calculateVerifierDigits(cpf);
-		assertArrayEquals(expectedValues, actualValues);
 	}
 
 	@Test
