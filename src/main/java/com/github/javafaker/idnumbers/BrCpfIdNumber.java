@@ -1,11 +1,11 @@
 package com.github.javafaker.idnumbers;
 
+import java.util.Arrays;
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.ArrayUtils;
 
 import com.github.javafaker.Faker;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class BrCpfIdNumber {
 
@@ -13,7 +13,17 @@ public class BrCpfIdNumber {
 
 	private static final int VERIFIER_DIGITS_LENGTH = 2;
 
+	private static final int CPF_DIGITS_LENGTH = INPUT_DIGITS_LENGTH + VERIFIER_DIGITS_LENGTH;
+
 	private static final String CPF_FORMAT_PATTERN = "###.###.###-##";
+
+	protected static final String FORMATTED_CPF_REGEX_PATTERN = "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$";
+
+	static final Pattern FORMATTED_CPF_PATTERN = Pattern.compile(FORMATTED_CPF_REGEX_PATTERN);
+
+	protected static final String UNFORMATTED_CPF_REGEX_PATTERN = "^\\d{11}$";
+
+	static final Pattern UNFORMATTED_CPF_PATTERN = Pattern.compile(UNFORMATTED_CPF_REGEX_PATTERN);
 
 	public String getValidFormattedCpf(Faker faker) {
 
@@ -57,6 +67,39 @@ public class BrCpfIdNumber {
 		int[] verifierDigits = calculateInvalidVerifierDigits(inputDigits, faker);
 
 		return organizeCpfDigits(inputDigits, verifierDigits);
+	}
+
+	public boolean isValid(String cpf) {
+
+		if (!isFormatted(cpf) && !isUnformatted(cpf)) {
+			return false;
+		}
+
+		int[] cpfDigits = convertAsIntegerArray(cpf);
+
+		return isValid(cpfDigits);
+	}
+
+	private int[] convertAsIntegerArray(String cpf) {
+		char[] cpfChars = cpf.toCharArray();
+		int[] result = new int[CPF_DIGITS_LENGTH];
+		int index = 0;
+
+		for (char cpfChar : cpfChars) {
+			if (Character.isDigit(cpfChar)) {
+				result[index++] = Character.getNumericValue(cpfChar);
+			}
+		}
+
+		return result;
+	}
+
+	private boolean isFormatted(String cpf) {
+		return FORMATTED_CPF_PATTERN.matcher(cpf).matches();
+	}
+
+	private boolean isUnformatted(String cpf) {
+		return UNFORMATTED_CPF_PATTERN.matcher(cpf).matches();
 	}
 
 	private int[] calculateInvalidVerifierDigits(int[] inputDigits, Faker faker) {
@@ -117,15 +160,20 @@ public class BrCpfIdNumber {
 		verifierDigits[1] += verifierDigits[0] * 9;
 		verifierDigits[1] = (verifierDigits[1] % 11) % 10;
 
+		ArrayUtils.reverse(verifierDigits);
+
 		return verifierDigits;
 	}
 
-	protected boolean validateCPF(int[] cpf){
-		int[] firtNineNumbers = Arrays.copyOfRange(cpf,0, 8);
-		int[] lastTwoNumbers = Arrays.copyOfRange(cpf,9, 10);
-		int[] expectedLastTwoNumbers = calculateVerifierDigits(firtNineNumbers);
-		return expectedLastTwoNumbers[0] == lastTwoNumbers[0] &&
-				expectedLastTwoNumbers[1] == lastTwoNumbers[1];
+	protected boolean isValid(int[] cpfDigits) {
+		int[] inputDigits = Arrays.copyOfRange(cpfDigits, 0, INPUT_DIGITS_LENGTH);
+
+		int[] cpfVerifierDigits = Arrays.copyOfRange(cpfDigits, INPUT_DIGITS_LENGTH,
+				INPUT_DIGITS_LENGTH + VERIFIER_DIGITS_LENGTH);
+
+		int[] calculatedVerifierDigits = calculateVerifierDigits(inputDigits);
+
+		return Arrays.equals(cpfVerifierDigits, calculatedVerifierDigits);
 	}
 
 	private int[] createInputDigits(Faker faker) {
