@@ -142,14 +142,16 @@ public class BrCpfIdNumber {
 	}
 
 	protected int[] calculateVerifierDigits(int[] inputDigits) {
+		
+		int[] invertedInputDigits = Arrays.copyOf(inputDigits, inputDigits.length);
 
-		ArrayUtils.reverse(inputDigits);
+		ArrayUtils.reverse(invertedInputDigits);
 
 		int[] verifierDigits = new int[VERIFIER_DIGITS_LENGTH];
 
-		for (int index = 0; index < inputDigits.length; index++) {
-			verifierDigits[0] += inputDigits[index] * (9 - (index % 10));
-			verifierDigits[1] += inputDigits[index] * (9 - ((index + 1) % 10));
+		for (int index = 0; index < invertedInputDigits.length; index++) {
+			verifierDigits[0] += invertedInputDigits[index] * (9 - (index % 10));
+			verifierDigits[1] += invertedInputDigits[index] * (9 - ((index + 1) % 10));
 		}
 
 		verifierDigits[0] = (verifierDigits[0] % 11) % 10;
