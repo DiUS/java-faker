@@ -21,7 +21,7 @@ import com.github.javafaker.Faker;
  * @author EullerLisowski
  *
  */
-public class BrCpfIdNumber {
+public class PtBRCpfIdNumber {
 
 	private static final int INPUT_DIGITS_LENGTH = 9;
 
