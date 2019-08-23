@@ -67,7 +67,6 @@ Fakers
 * Beer
 * Book
 * Bool
-* BrCpfIdNumber (Brazilian CPF identifier)
 * Business
 * ChuckNorris
 * Cat
