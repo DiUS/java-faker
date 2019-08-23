@@ -69,7 +69,7 @@ public class BrCpfIdNumber {
 		return organizeCpfDigits(inputDigits, verifierDigits);
 	}
 
-	public boolean isValid(String cpf) {
+	protected boolean isValid(String cpf) {
 
 		if (!isFormatted(cpf) && !isUnformatted(cpf)) {
 			return false;
@@ -165,7 +165,7 @@ public class BrCpfIdNumber {
 		return verifierDigits;
 	}
 
-	protected boolean isValid(int[] cpfDigits) {
+	private boolean isValid(int[] cpfDigits) {
 		int[] inputDigits = Arrays.copyOfRange(cpfDigits, 0, INPUT_DIGITS_LENGTH);
 
 		int[] cpfVerifierDigits = Arrays.copyOfRange(cpfDigits, INPUT_DIGITS_LENGTH,
