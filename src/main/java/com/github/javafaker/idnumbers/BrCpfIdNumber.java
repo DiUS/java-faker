@@ -7,29 +7,50 @@ import com.github.javafaker.Faker;
 public class BrCpfIdNumber {
 
 	private static final int INPUT_DIGITS_LENGTH = 9;
-	
+
 	private static final int VERIFIER_DIGITS_LENGTH = 2;
-	
+
 	private static final String CPF_FORMAT_PATTERN = "###.###.###-##";
 
-	public String getValidCpf(Faker faker) {
+	public String getValidFormattedCpf(Faker faker) {
 
+		int[] cpfDigits = retrieveCpfDigits(faker);
+
+		return convertAsFormattedString(cpfDigits);
+	}
+
+	public String getValidUnformattedCpf(Faker faker) {
+
+		int[] cpfDigits = retrieveCpfDigits(faker);
+
+		return convertAsUnformattedString(cpfDigits);
+	}
+
+	private int[] retrieveCpfDigits(Faker faker) {
 		int[] inputDigits = createInputDigits(faker);
 
 		int[] verifierDigits = calculateVerifierDigits(inputDigits);
 
-		int[] cpfDigits = organizeCpfDigits(inputDigits, verifierDigits);
-
-		return formatAsString(cpfDigits);
+		return organizeCpfDigits(inputDigits, verifierDigits);
 	}
 
-	private String formatAsString(int[] cpfDigits) {
+	private String convertAsFormattedString(int[] cpfDigits) {
 		String cpf = CPF_FORMAT_PATTERN;
 
 		for (int cpfDigit : cpfDigits) {
 			cpf = cpf.replaceFirst("#", Integer.toString(cpfDigit));
 		}
 		return cpf;
+	}
+
+	private String convertAsUnformattedString(int[] cpfDigits) {
+		StringBuilder cpfStringBuilder = new StringBuilder();
+
+		for (int cpfDigit : cpfDigits) {
+			cpfStringBuilder.append(cpfDigit);
+		}
+
+		return cpfStringBuilder.toString();
 	}
 
 	private int[] organizeCpfDigits(int[] inputDigits, int[] verifierDigits) {
