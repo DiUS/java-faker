@@ -43,70 +43,83 @@ public class BrCpfIdNumberTest extends AbstractFakerTest {
 	}
 
 	@Test
-	public void testValidCpfStartingWithZero() throws Exception {
-		int[] cpf = { 0, 8, 5, 3, 2, 5, 9, 4, 0 };
-		int[] expectedValues = {2, 6};
-		
+	public void testIsValidShouldReturnTrueForValidFormattedCpfStartingWithZero() throws Exception {
+		String cpf = "065.154.070-41";
+		assertTrue(brCpfIdNumber.isValid(cpf));
+	}
+	
+	@Test
+	public void testIsValidShouldReturnTrueForValidUnformattedCpfStartingWithZero() throws Exception {
+		String cpf = "04893747002";
+		assertTrue(brCpfIdNumber.isValid(cpf));
+	}
+	
+	@Test
+	public void testIsValidShouldReturnFalseForInvalidFormattedCpfStartingWithZero() throws Exception {
+		String cpf = "099.972.740-59";
+		assertFalse(brCpfIdNumber.isValid(cpf));
+	}
+	
+	@Test
+	public void testIsValidShouldReturnFalseForInvalidUnformattedCpfStartingWithZero() throws Exception {
+		String cpf = "03360109025";
+		assertFalse(brCpfIdNumber.isValid(cpf));
+	}
+
+	@Test
+	public void testIsValidShouldReturnTrueForValidFormattedCpfStartingWithGreaterThanZero() throws Exception {
+		String cpf = "919.766.290-98";
+		assertTrue(brCpfIdNumber.isValid(cpf));
+	}
+
+	@Test
+	public void testIsValidShouldReturnTrueForValidUnformattedCpfStartingWithGreaterThanZero() throws Exception {
+		String cpf = "49764225004";
+		assertTrue(brCpfIdNumber.isValid(cpf));
+	}
+
+	@Test
+	public void debugDoTesteDeCima() throws Exception{
+		int[] cpf = { 4, 9, 6, 4, 2, 2, 5, 0 };
+		int[] expectedValues = {0, 4};
+
 		int[] actualValues = brCpfIdNumber.calculateVerifierDigits(cpf);
-		
 		assertArrayEquals(expectedValues, actualValues);
 	}
 
 	@Test
-	public void testValidCpfStartingWithGreaterThanZero() throws Exception {
-		int[] cpf = { 9, 3, 7, 8, 5, 1, 4, 8, 0 };
-		int[] expectedValues = {4, 6};
-		
-		int[] actualValues = brCpfIdNumber.calculateVerifierDigits(cpf);
-		
-		assertArrayEquals(expectedValues, actualValues);
-	}
-
-	@Test
-	public void testVerifyValidCpfStartingWithZero() throws Exception {
-		int[] cpf = { 0, 8, 5, 3, 2, 5, 9, 4, 0, 2, 6 };
-		assertTrue(brCpfIdNumber.isValid(cpf));
-	}
-
-	@Test
-	public void testVerifyValidCpfStartingWithGreaterThanZero() throws Exception {
-		int[] cpf = { 7, 9, 3, 1, 3, 9, 8, 4, 0, 8, 3 };
-		assertTrue(brCpfIdNumber.isValid(cpf));
-	}
-
-	@Test
-	public void testVerifyInvalidCpfStartingWithZero() throws Exception {
-		int[] cpf = { 0, 0, 4, 6, 6, 7, 6, 4, 0, 6, 5 };
+	public void testIsValidShouldReturnFalseForInvalidFormattedCpfStartingWithGreaterThanZero() throws Exception {
+		String cpf = "144.970.180-88";
 		assertFalse(brCpfIdNumber.isValid(cpf));
 	}
 
 	@Test
-	public void testVerifyInvalidCpfStartingWithGreaterThanZero() throws Exception {
-		int[] cpf = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1 };
+	public void testIsValidShouldReturnFalseForInvalidUnformattedCpfStartingWithGreaterThanZero() throws Exception {
+		String cpf = "56803652090";
 		assertFalse(brCpfIdNumber.isValid(cpf));
 	}
 
 	@Test
-	public void testIsValidShouldReturnTrueForValidFormattedCpf() throws Exception {
-		String cpf = "011.063.470-56";
+	public void testGetValidFormattedCpfShouldReturnValidFormattedCpf() throws Exception {
+		String cpf = brCpfIdNumber.getValidFormattedCpf(faker);
 		assertTrue(brCpfIdNumber.isValid(cpf));
 	}
-	
+
 	@Test
-	public void testIsValidShouldReturnTrueForValidUnformattedCpf() throws Exception {
-		String cpf = "01106347056";
-		assertTrue(brCpfIdNumber.isValid(cpf));
-	}
-	
-	@Test
-	public void testIsValidShouldReturnFalseForInvalidFormattedCpf() throws Exception {
-		String cpf = "011.207.110-72";
+	public void testGetInvalidFormattedCpfShouldReturnInvalidFormattedCpf() throws Exception {
+		String cpf = brCpfIdNumber.getInvalidFormattedCpf(faker);
 		assertFalse(brCpfIdNumber.isValid(cpf));
 	}
-	
+
 	@Test
-	public void testIsValidShouldReturnFalseForInvalidUnformattedCpf() throws Exception {
-		String cpf = "01120711072";
+	public void testGetValidUnformattedCpfShouldReturnValidFormattedCpf() throws Exception {
+		String cpf = brCpfIdNumber.getValidUnformattedCpf(faker);
+		assertTrue(brCpfIdNumber.isValid(cpf));
+	}
+
+	@Test
+	public void testGetInvalidUnformattedCpfShouldReturnInvalidFormattedCpf() throws Exception {
+		String cpf = brCpfIdNumber.getInvalidUnformattedCpf(faker);
 		assertFalse(brCpfIdNumber.isValid(cpf));
 	}
 }
