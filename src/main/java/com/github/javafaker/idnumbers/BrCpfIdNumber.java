@@ -8,9 +8,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.github.javafaker.Faker;
 
 /**
- * Generate both valid and invalid Brazilian CPF identification number.
+ * Generate both valid and invalid Brazilian CPF identification numbers.
  * 
- * For more information about CPF please visit
+ * For more information about CPF please check
  * https://en.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%ADsicas
  * 
  * The validation numbers algorithm was implemented following instructions
@@ -155,7 +155,7 @@ public class BrCpfIdNumber {
 		return cpfStringBuilder.toString();
 	}
 
-	protected int[] calculateVerifierDigits(int[] inputDigits) {
+	private int[] calculateVerifierDigits(int[] inputDigits) {
 
 		int[] invertedInputDigits = Arrays.copyOf(inputDigits, inputDigits.length);
 
