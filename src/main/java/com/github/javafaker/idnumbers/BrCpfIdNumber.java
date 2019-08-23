@@ -4,6 +4,9 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import com.github.javafaker.Faker;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class BrCpfIdNumber {
 
 	private static final int INPUT_DIGITS_LENGTH = 9;
@@ -101,7 +104,7 @@ public class BrCpfIdNumber {
 		return ArrayUtils.addAll(inputDigits, verifierDigits);
 	}
 
-	private int[] calculateVerifierDigits(int[] inputDigits) {
+	protected int[] calculateVerifierDigits(int[] inputDigits) {
 		int[] verifierDigits = new int[VERIFIER_DIGITS_LENGTH];
 
 		for (int index = 0; index < inputDigits.length; index++) {
@@ -115,6 +118,14 @@ public class BrCpfIdNumber {
 		verifierDigits[1] = (verifierDigits[1] % 11) % 10;
 
 		return verifierDigits;
+	}
+
+	protected boolean validateCPF(int[] cpf){
+		int[] firtNineNumbers = Arrays.copyOfRange(cpf,0, 8);
+		int[] lastTwoNumbers = Arrays.copyOfRange(cpf,9, 10);
+		int[] expectedLastTwoNumbers = calculateVerifierDigits(firtNineNumbers);
+		return expectedLastTwoNumbers[0] == lastTwoNumbers[0] &&
+				expectedLastTwoNumbers[1] == lastTwoNumbers[1];
 	}
 
 	private int[] createInputDigits(Faker faker) {
