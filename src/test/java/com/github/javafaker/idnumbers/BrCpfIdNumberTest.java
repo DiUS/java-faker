@@ -50,4 +50,10 @@ public class BrCpfIdNumberTest extends AbstractFakerTest {
 		assertTrue(UNFORMATTED_CPF_PATTERN.matcher(cpf).matches());
 	}
 
+	@Test
+	public void testIsValidShouldReturnTrueForValidFormattedCpf() throws Exception {
+		String cpf = "011.063.470-56";
+		assertTrue(brCpfIdNumber.isValid(cpf));
+	}
+
 }
