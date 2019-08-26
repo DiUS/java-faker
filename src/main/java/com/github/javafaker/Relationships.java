@@ -15,11 +15,11 @@ public class Relationships {
     public String direct() {
         return faker.resolve("relationship.familial.direct");
     }
-    
+
     public String extended() {
         return faker.resolve("relationship.familial.extended");
     }
-    
+
     public String inLaw() {
         return faker.resolve("relationship.in_law");
     }
@@ -27,17 +27,17 @@ public class Relationships {
     public String spouse() {
         return faker.resolve("relationship.spouse");
     }
-    
+
     public String parent() {
         return faker.resolve("relationship.parent");
     }
-    
+
     public String sibling() {
         return faker.resolve("relationship.sibling");
     }
-    
+
     public String any() {
-        Method currentMethod = Relationships.class.getClass().getEnclosingMethod();
+        Method currentMethod = getClass().getEnclosingMethod();
 
         try {
             Method[] methods = Relationships.class.getDeclaredMethods();
@@ -56,5 +56,5 @@ public class Relationships {
             throw new RuntimeException("InvocationTargetException: " + e.getMessage());
         }
     }
-    
+
 }

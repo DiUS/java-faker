@@ -91,6 +91,8 @@ public class Faker {
     private final PrincessBride princessBride;
     private final Buffy buffy;
     private final Relationships relationships;
+    private final Nation nation;
+    private final Dune dune;
     private final Military military;
 
     public Faker() {
@@ -184,6 +186,8 @@ public class Faker {
         this.princessBride = new PrincessBride(this);
         this.buffy = new Buffy(this);
         this.relationships = new Relationships(this);
+        this.nation = new Nation(this);
+        this.dune = new Dune(this);
         this.military = new Military(this);
     }
 
@@ -599,10 +603,18 @@ public class Faker {
         return relationships;
     }
 
+    public Nation nation() {
+        return nation;
+    }
+
+    public Dune dune() {
+        return dune;
+    }
+
     public Military military() {
         return military;
     }
-    
+
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }

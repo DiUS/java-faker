@@ -28,4 +28,14 @@ public class HarryPotterTest extends AbstractFakerTest {
     public void book() {
         assertThat(faker.harryPotter().book(), matchesRegularExpression("Harry Potter and the ([A-Za-z'\\-]+ ?)+"));
     }
+
+    @Test
+    public void house() {
+        assertThat(faker.harryPotter().house(), matchesRegularExpression("[A-Za-z ]+"));
+    }
+
+    @Test
+    public void spell() {
+        assertThat(faker.harryPotter().spell(), matchesRegularExpression("[A-Za-z ]+"));
+    }
 }
