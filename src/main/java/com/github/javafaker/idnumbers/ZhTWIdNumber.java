@@ -69,14 +69,15 @@ public class ZhTWIdNumber {
         checksumNumber.append(idNumber.substring(1, 9));
 
         for (int i = 0; i < checksumNumber.length(); i++) {
-            checksum += ((int) checksumNumber.charAt(i) - 48) * validCode[i];
+            checksum += ((int) checksumNumber.charAt(i) - 48)
+                    * validCode[i];
         }
         return checksum;
     }
 
     private int calculateChecksum(String idNumber) {
         return calculateChecksumWithoutLastNumber(idNumber) +
-                (((int) idNumber.charAt(9)) - 48) * validCode[10];
+                (((int) idNumber.charAt(9) - 48) * validCode[10]);
     }
 
     private String getLastNumber(boolean valid, String idNumber) {
@@ -89,7 +90,7 @@ public class ZhTWIdNumber {
     }
 
     boolean validIdNumber(String idNumber) {
-        String[] numbers = idNumber.split("");
+        String[] numbers = idNumber.split("(?!^)");
         if (!cityCodeMap.containsKey(numbers[0]))
             return false;
         else if (!numbers[1].equals("1") && !numbers[1].equals("2"))
