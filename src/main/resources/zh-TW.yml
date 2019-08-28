@@ -27,3 +27,7 @@ zh-TW:
 
     phone_number:
       formats: ['###-########', '####-########', '###########']
+
+    id_number:
+      valid: "#{IDNumber.valid_zh_tw_id_number}"
+      invalid: "#{IDNumber.invalid_zh_tw_id_number}"

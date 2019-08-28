@@ -2,8 +2,10 @@ package com.github.javafaker;
 
 import com.github.javafaker.idnumbers.EnIdNumber;
 import com.github.javafaker.idnumbers.SvSEIdNumber;
+import com.github.javafaker.idnumbers.ZhTWIdNumber;
 
 public class IdNumber {
+
     private final Faker faker;
 
     protected IdNumber(Faker faker) {
@@ -37,5 +39,23 @@ public class IdNumber {
     public String invalidSvSeSsn() {
         SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
         return svSEIdNumber.getInvalidSsn(faker);
+    }
+
+    /**
+     * Taiwan don't have ssn so use identity number
+     * Specified as #{IDNumber.valid_zh_tw_id_number} in zh-TW.yml
+     */
+    public String validZhTwIdNumber() {
+        ZhTWIdNumber zhTWIdNumber = new ZhTWIdNumber();
+        return zhTWIdNumber.getValidIdNumber(faker);
+    }
+
+    /**
+     * Taiwan don't have ssn so use identity number
+     * Specified as #{IDNumber.invalid_zh_tw_id_number} in zh-TW.yml
+     */
+    public String invalidZhTwIdNumber() {
+        ZhTWIdNumber zhTWIdNumber = new ZhTWIdNumber();
+        return zhTWIdNumber.getInvalidIdNumber(faker);
     }
 }
