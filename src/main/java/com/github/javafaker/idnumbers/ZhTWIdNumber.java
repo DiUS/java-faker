@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class ZhTWIdNumber {
     private static final Map<String, String> cityCodeMap = new HashMap<String, String>();
-    private static final List<String> cityCodeMapKeySet;
+    private static final List<String> cityCodeMapKeySet; // use a list of cityCodeMap's keyset to get a random key in cityCodeMap
     private static final int[] validCode = {1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1};
 
     static {
@@ -35,7 +35,6 @@ public class ZhTWIdNumber {
         cityCodeMap.put("W", "32"); //金門縣
         cityCodeMap.put("X", "30"); //澎湖縣
         cityCodeMap.put("Z", "33"); //連江縣
-        // For get a random key in cityCodeMap
         cityCodeMapKeySet = new ArrayList<String>(cityCodeMap.keySet());
     }
 
@@ -50,7 +49,7 @@ public class ZhTWIdNumber {
     private String getIdNumber(Faker f, boolean valid) {
         StringBuilder idNumber = new StringBuilder();
         idNumber.append(getRandomCityCode());
-        idNumber.append(f.random().nextInt(1, 2)); // 1 for male 0 for female
+        idNumber.append(f.random().nextInt(1, 2)); // 1 for male 2 for female
         for (int i = 0; i < 7; i++) {
             idNumber.append(f.random().nextInt(0, 9));
         }
