@@ -6,5 +6,8 @@
 /dependency-reduced-pom.xml
 META-INF/
 bin/
+<<<<<<< HEAD
 target
 *.iml
+=======
+>>>>>>> 33f96e12925258c357b813ca66fbd10dffac6b42

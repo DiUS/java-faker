@@ -4,7 +4,7 @@ package com.github.javafaker;
 
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
@@ -43,5 +43,10 @@ public class ElderScrollsTest extends AbstractFakerTest  {
     @Test
     public void testRegion() {
         assertThat(faker.elderScrolls().region(), not(isEmptyOrNullString()));
+    }
+
+    @Test
+    public void testQuote() {
+        assertThat(faker.elderScrolls().quote(), not(isEmptyOrNullString()));
     }
 }

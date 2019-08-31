@@ -28,7 +28,10 @@ public class Number {
      * @see Number#numberBetween(long, long) 
      */
     public int numberBetween(int min, int max) {
-        return decimalBetween(min,max).setScale(0, RoundingMode.HALF_DOWN).intValue();
+        if (min == max) return min;
+
+        int value = decimalBetween(min,max).setScale(0, RoundingMode.HALF_DOWN).intValue();
+        return value == max ? value - 1 : value;
     }
 
     /**
@@ -40,7 +43,10 @@ public class Number {
      * @param max exclusive (unless min == max)
      */
     public long numberBetween(long min, long max) {
-        return decimalBetween(min,max).longValue();
+        if (min == max) return min;
+
+        long value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_DOWN).longValue();
+        return value == max ? value - 1 : value;
     }
     
     /**

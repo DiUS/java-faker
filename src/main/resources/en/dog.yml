@@ -10,4 +10,3 @@ en:
         coat_length: ["hairless", "short", "medium", "long", "wire", "curly"]
         size: ["small", "medium", "large", "extra large"]
         gender: ["female", "male"]
-

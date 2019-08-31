@@ -23,7 +23,7 @@ import com.github.javafaker.service.files.EnFile;
 import com.mifmif.common.regex.Generex;
 
 public class FakeValuesService {
-    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*\\}");
+    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?(?:'([^']+)')?(?:,'([^']+)')*}");
 
     private final Logger log = Logger.getLogger("faker");
 
@@ -107,7 +107,7 @@ public class FakeValuesService {
      * with new Locale("pt","BR").
      */
     private Locale normalizeLocale(Locale locale) {
-        final String[] parts = locale.toString().split("[-\\_]");
+        final String[] parts = locale.toString().split("[-_]");
 
         if (parts.length == 1) {
             return new Locale(parts[0]);
@@ -573,7 +573,7 @@ public class FakeValuesService {
      * this is useful as we get to find the method and coerce the arguments in one
      * shot, returning both when successful.  This saves us from doing it more than once (coercing args).
      */
-    private class MethodAndCoercedArgs {
+    private static class MethodAndCoercedArgs {
 
         private final Method method;
 

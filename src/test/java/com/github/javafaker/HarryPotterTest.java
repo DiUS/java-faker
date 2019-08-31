@@ -3,7 +3,7 @@ package com.github.javafaker;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.core.IsNot.not;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
@@ -27,5 +27,15 @@ public class HarryPotterTest extends AbstractFakerTest {
     @Test
     public void book() {
         assertThat(faker.harryPotter().book(), matchesRegularExpression("Harry Potter and the ([A-Za-z'\\-]+ ?)+"));
+    }
+
+    @Test
+    public void house() {
+        assertThat(faker.harryPotter().house(), matchesRegularExpression("[A-Za-z ]+"));
+    }
+
+    @Test
+    public void spell() {
+        assertThat(faker.harryPotter().spell(), matchesRegularExpression("[A-Za-z ]+"));
     }
 }

@@ -1,14 +1,15 @@
 package com.github.javafaker;
 
+import static com.github.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static com.github.javafaker.matchers.IsANumber.isANumber;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
 
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -117,4 +118,10 @@ public class AddressTest extends AbstractFakerTest {
         faker = new Faker(new Locale("en-US"));
         assertThat(faker.address().countyByZipCode("47732"), not(isEmptyOrNullString()));
     }
+
+    @Test
+    public void testStreetPrefix() {
+        assertThat(faker.address().streetPrefix(), isStringWithContents());
+    }
+    
 }

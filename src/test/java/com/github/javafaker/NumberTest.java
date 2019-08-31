@@ -1,12 +1,12 @@
 package com.github.javafaker;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
-import static org.junit.Assert.assertThat;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.javafaker.repeating.Repeat;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -127,6 +128,26 @@ public class NumberTest extends AbstractFakerTest {
     }
 
     @Test
+    @Repeat(times = 100)
+    public void testLongNumberBetweenRepeated() {
+        long low = 1;
+        long high = 10;
+        long v = faker.number().numberBetween(low, high);
+        assertThat(v, is(lessThan(high)));
+        assertThat(v, is(greaterThanOrEqualTo(low)));
+    }
+
+    @Test
+    @Repeat(times = 100)
+    public void testIntNumberBetweenRepeated() {
+        int low = 1;
+        int high = 10;
+        int v = faker.number().numberBetween(low, high);
+        assertThat(v, is(lessThan(high)));
+        assertThat(v, is(greaterThanOrEqualTo(low)));
+    }
+
+    @Test
     public void testNumberBetweenOneAndThree() {
         Set<Integer> nums = Sets.newHashSet();
         final int lowerLimit = 0;
@@ -138,6 +159,20 @@ public class NumberTest extends AbstractFakerTest {
             nums.add(value);
         }
         assertThat(nums, contains(0, 1, 2));
+    }
+
+    @Test
+    public void testLongBetweenOneAndThree() {
+        Set<Long> nums = Sets.newHashSet();
+        final long lowerLimit = 0;
+        final long upperLimit = 3;
+        for (int i = 0; i < 1000; ++i) {
+            long value = faker.number().numberBetween(lowerLimit, upperLimit);
+            assertThat(value, is(lessThan(upperLimit)));
+            assertThat(value, is(greaterThanOrEqualTo(lowerLimit)));
+            nums.add(value);
+        }
+        assertThat(nums, contains(0L, 1L, 2L));
     }
 
     @Test
