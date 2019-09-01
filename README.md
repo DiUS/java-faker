@@ -56,10 +56,11 @@ See [CONTRIBUTING.md](https://github.com/DiUS/java-faker/blob/master/CONTRIBUTIN
 
 Fakers
 -----
+* Address
 * Ancient
 * Animal
-* Address
 * App
+* Aqua Teen Hunger Force
 * Artist
 * Avatar
 * Back To The Future
