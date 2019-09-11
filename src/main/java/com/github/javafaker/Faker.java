@@ -93,6 +93,7 @@ public class Faker {
     private final Relationships relationships;
     private final Nation nation;
     private final Dune dune;
+    private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
 
     public Faker() {
@@ -188,6 +189,7 @@ public class Faker {
         this.relationships = new Relationships(this);
         this.nation = new Nation(this);
         this.dune = new Dune(this);
+        this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
     }
 
@@ -611,10 +613,14 @@ public class Faker {
         return dune;
     }
 
+    public AquaTeenHungerForce aquaTeenHungerForce() {
+        return aquaTeenHungerForce;
+    }
+
     public ProgrammingLanguage programmingLanguage() {
         return programmingLanguage;
     }
-    
+
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
