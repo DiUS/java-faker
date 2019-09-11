@@ -11,7 +11,7 @@ hu:
       secondary_address: ['#. em', '#. emelet', 'Fsz.']
       postcode: ['####']
       state: [Bács-Kiskun, Baranya, Békés, Borsod-Abaúj-Zemplén, Csongrád, Fejér, Győr-Moson-Sopron, Hajdú-Bihar, Heves, Jász-Nagykun-Szolnok, Komárom-Esztergom, Nógrád, Pest, Somogy, Szabolcs-Szatmár-Bereg, Tolna, Vas, Veszprém, Zala]
-      state_abbr: [BK, BA, BE, BZ, CS, FE, GS, HB, HE, JN, KE, NO, PE, SO, SZ, TO, VA, VE, ZA]
+      state_abbr: ["BK", "BA", "BE", "BZ", "CS", "FE", "GS", "HB", "HE", "JN", "KE", "NO", "PE", "SO", "SZ", "TO", "VA", "VE", "ZA"]
       time_zone: [Europe/Budapest, Central European Time, CET]
       city:
         - "#{Name.first_name}#{city_suffix}"
