@@ -125,6 +125,7 @@ Fakers
 * Team
 * TwinPeaks
 * University
+* Vehicle
 * Weather
 * Witcher
 * Yoda

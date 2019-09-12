@@ -3,17 +3,18 @@ package com.github.javafaker;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class VehicleTest extends AbstractFakerTest {
     private static final String WORD_MATCH = "\\w+\\.?";
     private static final String WORDS_MATCH = "^[a-zA-Z0-9_/ -]*$";
-    private static final String FOREIGN_WARDS_MATCH = "^[\\p{L}]*[a-zA-Z0-9/ -/(/)']*[\\p{L}]*";
+    private static final String FOREIGN_WARDS_MATCH = "\\P{Cc}+";
 
     @Test
     public void testVin() {
@@ -21,8 +22,8 @@ public class VehicleTest extends AbstractFakerTest {
     }
 
     @Test
-    public void testManufacture() {
-        assertThat(faker.vehicle().manufacture(), matchesRegularExpression(FOREIGN_WARDS_MATCH));
+    public void testManufacturer() {
+        assertThat(faker.vehicle().manufacturer(), matchesRegularExpression(FOREIGN_WARDS_MATCH));
     }
 
     @Test
@@ -57,19 +58,12 @@ public class VehicleTest extends AbstractFakerTest {
 
     @Test
     public void testDoor() {
-        assertTrue((Integer) faker.vehicle().door() > 0);
+        assertTrue((Integer) faker.vehicle().doors() > 0);
     }
 
     @Test
     public void testEngine() {
         assertThat(faker.vehicle().engine(), matchesRegularExpression("\\d Cylinder Engine"));
-    }
-
-    @Test
-    public void testMileage() {
-        int mileage = faker.vehicle().mileage(61,90000);
-        assertTrue(mileage >= 61);
-        assertTrue(mileage <= 90000);
     }
 
     @Test
@@ -99,24 +93,31 @@ public class VehicleTest extends AbstractFakerTest {
     }
 
     @Test
-    public void testCarOption() {
-        ArrayList carOption = faker.vehicle().carOption();
-        assertTrue(carOption.size() >= 5);
-        assertTrue(carOption.size() <= 10);
+    public void testCarOptionsMinMax() {
+        ArrayList carOptions = faker.vehicle().carOptions(11, 12);
+        assertThat(carOptions.size(), greaterThanOrEqualTo(11));
+        assertThat(carOptions.size(), lessThanOrEqualTo(12));
     }
 
     @Test
-    public void testStandardSpec() {
-        ArrayList standardSpecs = faker.vehicle().standardSpecs();
-        assertTrue(standardSpecs.size() >= 5);
-        assertTrue(standardSpecs.size() <= 10);
+    public void testCarOptions() {
+        ArrayList carOptions = faker.vehicle().carOptions();
+        assertThat(carOptions.size(), greaterThanOrEqualTo(5));
+        assertThat(carOptions.size(), lessThanOrEqualTo(10));
     }
+
     @Test
-    public void testYear() {
-        int mileage = faker.vehicle().year();
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int pastYear = currentYear - 10;
-        assertTrue(mileage >= pastYear);
-        assertTrue(mileage <= currentYear);
+    public void testStandardSpecsMinMax() {
+        ArrayList standardSpecs = faker.vehicle().standardSpecs(13, 14);
+        assertThat(standardSpecs.size(), greaterThanOrEqualTo(13));
+        assertThat(standardSpecs.size(), lessThanOrEqualTo(14));
     }
+
+    @Test
+    public void testStandardSpecs() {
+        ArrayList standardSpecs = faker.vehicle().standardSpecs();
+        assertThat(standardSpecs.size(), greaterThanOrEqualTo(5));
+        assertThat(standardSpecs.size(), lessThanOrEqualTo(10));
+    }
+
 }
