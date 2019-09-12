@@ -94,6 +94,7 @@ public class Faker {
     private final Nation nation;
     private final Dune dune;
     private final AquaTeenHungerForce aquaTeenHungerForce;
+    private final Vehicle vehicle;
     private final ProgrammingLanguage programmingLanguage;
 
     public Faker() {
@@ -191,6 +192,7 @@ public class Faker {
         this.dune = new Dune(this);
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
+        this.vehicle = new Vehicle(this);
     }
 
     /**
@@ -616,6 +618,11 @@ public class Faker {
     public AquaTeenHungerForce aquaTeenHungerForce() {
         return aquaTeenHungerForce;
     }
+
+    public Vehicle vehicle() {
+        return vehicle;
+    }
+
 
     public ProgrammingLanguage programmingLanguage() {
         return programmingLanguage;
