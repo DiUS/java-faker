@@ -23,6 +23,7 @@ public class Faker {
     private final Aviation aviation;
     private final Lorem lorem;
     private final Music music;
+    private final Disease disease;
     private final Name name;
     private final Number number;
     private final Internet internet;
@@ -118,6 +119,7 @@ public class Faker {
         this.aviation = new Aviation(this);
         this.lorem = new Lorem(this);
         this.music = new Music(this);
+        this.disease = new Disease(this);
         this.name = new Name(this);
         this.number = new Number(this);
         this.internet = new Internet(this);

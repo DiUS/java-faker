@@ -1,0 +1,4 @@
+en:
+  faker:
+    disease:
+        name: ["Fever" , "Blood Pressure","Cold & Flu","Malaria","Ashtma","Cholestrol","Diabetes","Heart","Migraine"]
