@@ -1,10 +1,9 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesService;
-import com.github.javafaker.service.RandomService;
-
 import java.util.Locale;
 import java.util.Random;
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
 
 /**
  * Provides utility methods for generating fake strings, such as names, phone
@@ -94,6 +93,7 @@ public class Faker {
     private final Nation nation;
     private final Dune dune;
     private final AquaTeenHungerForce aquaTeenHungerForce;
+    private final Science science;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -189,6 +189,7 @@ public class Faker {
         this.nation = new Nation(this);
         this.dune = new Dune(this);
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
+        this.science = new Science(this);
     }
 
     /**
@@ -614,7 +615,11 @@ public class Faker {
     public AquaTeenHungerForce aquaTeenHungerForce() {
         return aquaTeenHungerForce;
     }
-    
+
+    public Science science() {
+        return science;
+    }
+
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
