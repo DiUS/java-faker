@@ -30,6 +30,27 @@ dependencies {
 
 ```
 
+## Android Manually Support
+1. Clone the repository locally.
+2. Migrate this Maven project to Gradle
+    1. In terminal navigate to root of project where pom.xml is present,
+    2. run `gradle init` command,
+    3. It ask you to migrate the existing maven project to gradle, select `yes`,
+    4. run command `sh gradlew build` to make sure project is successfully migrated.
+3. Import Module to Android Studio
+    1. Open android studio project
+    2. Select file > new > import module > select java library
+    3. In form , put name : `javaFaker` , 
+        package name : `com.github.javafaker` ,
+        class name: `myClass`  
+    4. In app gradle dependency add ```implementation project(path: ':javaFaker')```
+    5. copy gradle.build content from local migrated clone of library and paste it in gradle of javaFaker
+    6. copy paste all the files from clone to the javaFaker module
+    7. sync and update imports 
+    8. Faker library would be available for use.
+    
+---
+
 In your Java code
 
 ```java
