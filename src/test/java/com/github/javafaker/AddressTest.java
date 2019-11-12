@@ -109,6 +109,12 @@ public class AddressTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testHungarianZipCodeByState() {
+        faker = new Faker(new Locale("hu"));
+        assertThat(faker.address().zipCodeByState(faker.address().stateAbbr()), matchesRegularExpression("[0-9]{4}"));
+    }
+
+    @Test
     public void testCountyByZipCode() {
         faker = new Faker(new Locale("en-US"));
         assertThat(faker.address().countyByZipCode("47732"), not(isEmptyOrNullString()));

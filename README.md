@@ -169,6 +169,7 @@ Supported Locales
 * fi-FI
 * fr
 * he
+* hu
 * in-ID
 * it
 * ja
