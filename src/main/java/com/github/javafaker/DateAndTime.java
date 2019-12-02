@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.github.javafaker;
 
 import java.util.Calendar;
@@ -175,5 +172,4 @@ public class DateAndTime {
 
         return between(from.getTime(), to.getTime());
     }
-
 }
