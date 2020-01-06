@@ -56,7 +56,7 @@ en:
         - Subs
         - Sushi
       name:
-        - "#{name_prefix} #{name_suffix}"
+        - "#{Restaurant.name_prefix} #{Restaurant.name_suffix}"
       type:
         - African
         - American (New)

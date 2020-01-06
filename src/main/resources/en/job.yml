@@ -8,8 +8,8 @@ en:
       employment_type: [Full-time, Part-time, Temporary, Contract, Internship, Commission]
       education_level: [Associates, Bachelor, Master, Doctorate]
       title:
-        - "#{seniority} #{field} #{position}"
-        - "#{seniority} #{field} #{position}"
-        - "#{field} #{position}"
-        - "#{field} #{position}"
-        - "#{seniority} #{position}"
+        - "#{Job.seniority} #{Job.field} #{Job.position}"
+        - "#{Job.seniority} #{Job.field} #{Job.position}"
+        - "#{Job.field} #{Job.position}"
+        - "#{Job.field} #{Job.position}"
+        - "#{Job.seniority} #{Job.position}"

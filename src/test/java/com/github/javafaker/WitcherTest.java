@@ -29,9 +29,9 @@ public class WitcherTest extends AbstractFakerTest {
     
     @Test
     public void testQuote() {
-        assertThat(faker.witcher().quote(), matchesRegularExpression("[A-Za-z0-9 …\\?\\!\\.’',]+"));
+        assertThat(faker.witcher().quote(), matchesRegularExpression("[A-Za-z0-9 …\\?\\!\\.’',—\\-]+"));
     }
-    
+
     @Test
     public void testMonster() {
         assertThat(faker.witcher().monster(), matchesRegularExpression("[A-Za-z -]+"));

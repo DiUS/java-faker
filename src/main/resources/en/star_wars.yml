@@ -5,7 +5,7 @@ en:
       call_squadrons: ['Rogue', 'Red', 'Gray', 'Green', 'Blue', 'Gold', 'Black', 'Yellow', 'Phoenix']
       call_numbers: ['Leader', '#']
       call_sign:
-        - "#{call_squadron} #{call_number}"
+        - "#{Star_wars.call_squadron} #{Star_wars.call_number}"
       droids: ["2-1B", "4-LOM", "ASP", "B2-RP", "B1", "BD-3000", "C1-10P", "FA-4", "GH-7", "GNK", "LM-432", "ID9", "11-4D", "2-1B", "327-T", "4-LOM", "B4-D4", "NR-N99", "C-3PO", "R2-D2", "BB-8", "R2-Q5", "Super Battle Droid", "Mouse Droid", "Droideka", "Buzz Droid", "Magnaguard", "Interrogation Droid", "Vulture Droid", "BB-9E", "K-2SO"]
       planets: ["Alderaan", "Ahch-To", "Bespin", "Cantonica", "Coruscant", "Cloud City", "Crait", "DQar", "Dathomir", "Dagobah", "Death Star", "Eadu", "Endor", "Felucia", "Geonosis", "Hoth", "Hosnian Prime",  "Jakku", "Jedha", "Kamino", "Kashyyyk", "Lothal", "Mandalore", "Mustafar", "Mygeeto", "Naboo", "Onderon", "Ryloth", "Scarif", "Starkiller Base", "Sullust", "Takodana", "Tatooine", "Utapau", "Yavin 4"]
       species: ["Ewok", "Hutt", "Gungan", "Ithorian", "Jawa", "Neimoidian", "Sullustan", "Wookiee", "Mon Calamari", "Bith", "Dathomirian", "Gamorreans", "Kaminoan", "Twi'lek", "Porg"]

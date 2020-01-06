@@ -10,7 +10,7 @@ public class MedicalTest extends AbstractFakerTest {
 
     @Test
     public void testMedicineName() {
-        assertThat(faker.medical().medicineName(), matchesRegularExpression("([\\w']+\\.?( )?){2,5}"));
+        assertThat(faker.medical().medicineName(), matchesRegularExpression("([\\w']+\\.?( )?){2,6}"));
     }
 
     @Test
