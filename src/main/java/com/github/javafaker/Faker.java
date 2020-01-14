@@ -101,7 +101,7 @@ public class Faker {
     }
 
     public Faker(Locale locale) {
-        this(locale, null);
+        this(locale, (Random)null);
     }
 
     public Faker(Random random) {
@@ -109,8 +109,16 @@ public class Faker {
     }
 
     public Faker(Locale locale, Random random) {
-        this.randomService = new RandomService(random);
-        this.fakeValuesService = new FakeValuesService(locale, randomService);
+        this(locale, new RandomService(random));
+    }
+
+    public Faker(Locale locale, RandomService randomService) {
+        this(new FakeValuesService(locale, randomService), randomService);
+    }
+
+    public Faker(FakeValuesService fakeValuesService, RandomService random) {
+        this.randomService = random;
+        this.fakeValuesService = fakeValuesService;
 
         this.ancient = new Ancient(this);
         this.app = new App(this);
