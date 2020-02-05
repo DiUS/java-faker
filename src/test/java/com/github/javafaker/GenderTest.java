@@ -9,7 +9,7 @@ public class GenderTest extends AbstractFakerTest {
 
     @Test
     public void testType() {
-        assertThat(faker.gender().type(), matchesRegularExpression("\\w+"));
+        assertThat(faker.gender().type(), matchesRegularExpression("[\\w-]+"));
     }
 
     @Test
@@ -21,7 +21,7 @@ public class GenderTest extends AbstractFakerTest {
     @Test
     public void testShortBinaryType() {
         final Gender gender = faker.gender();
-        assertThat(gender.binaryType(), matchesRegularExpression("m|f"));
+        assertThat(gender.shortBinaryType(), matchesRegularExpression("m|f"));
     }
 
 }
