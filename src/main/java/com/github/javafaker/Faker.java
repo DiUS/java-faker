@@ -641,6 +641,7 @@ public class Faker {
 
     public Kaamelott kaamelott() {
         return kaamelott;
+
     public Gender gender() {
         return gender;
     }
