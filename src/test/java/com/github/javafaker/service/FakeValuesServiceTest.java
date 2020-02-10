@@ -258,6 +258,13 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         assertThat( date.getTime(), lessThan( now.getTime() ));
     }
 
+    @Test
+    public void expressionWithFourArguments() throws ParseException {
+
+        assertThat(fakeValuesService.expression("#{Internet.password '5','8','true','true'}", faker),
+            matchesRegularExpression("[\\w\\d\\!%#$@_\\^&\\*]{5,8}"));
+    }
+
     /**
      * Two things are important here:
      * 1) the message in the exception should be USEFUL
