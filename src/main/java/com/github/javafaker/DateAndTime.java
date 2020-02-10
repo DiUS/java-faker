@@ -144,6 +144,10 @@ public class DateAndTime {
             throw new IllegalArgumentException("Invalid date range, the upper bound date is before the lower bound.");
         }
 
+        if (from.equals(to)) {
+            return from;
+        }
+
         long offsetMillis = faker.random().nextLong(to.getTime() - from.getTime());
         return new Date(from.getTime() + offsetMillis);
     }
@@ -170,8 +174,10 @@ public class DateAndTime {
      */
     public Date birthday(int minAge, int maxAge) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        Calendar from = new GregorianCalendar(currentYear - maxAge, 0, 1);
-        Calendar to = new GregorianCalendar(currentYear - minAge, 11, 31);
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        Calendar from = new GregorianCalendar(currentYear - maxAge, currentMonth, currentDay);
+        Calendar to = new GregorianCalendar(currentYear - minAge, currentMonth, currentDay);
 
         return between(from.getTime(), to.getTime());
     }
