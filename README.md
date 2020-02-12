@@ -95,6 +95,7 @@ Fakers
 * LordOfTheRings
 * Lorem
 * Matz
+* Medical
 * Music
 * Name
 * Number
