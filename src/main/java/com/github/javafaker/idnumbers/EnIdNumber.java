@@ -14,8 +14,8 @@ public class EnIdNumber {
         String ssn = f.regexify("[0-8]\\d{2}-\\d{2}-\\d{4}");
 
         boolean isValid = true;
-        for (int i = 0; i < invalidSSNPatterns.length; i++) {
-            if (ssn.matches(invalidSSNPatterns[i])) {
+        for (String invalidSSNPattern : invalidSSNPatterns) {
+            if (ssn.matches(invalidSSNPattern)) {
                 isValid = false;
                 break;
             }

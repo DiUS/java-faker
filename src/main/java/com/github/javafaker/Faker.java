@@ -20,6 +20,7 @@ public class Faker {
     private final App app;
     private final Artist artist;
     private final Avatar avatar;
+    private final Aviation aviation;
     private final Lorem lorem;
     private final Music music;
     private final Name name;
@@ -33,6 +34,7 @@ public class Faker {
     private final ChuckNorris chuckNorris;
     private final Color color;
     private final Commerce commerce;
+    private final Country country;
     private final Currency currency;
     private final Company company;
     private final Crypto crypto;
@@ -47,6 +49,7 @@ public class Faker {
     private final Demographic demographic;
     private final Dog dog;
     private final Educator educator;
+    private final ElderScrolls elderScrolls;
     private final Shakespeare shakespeare;
     private final SlackEmoji slackEmoji;
     private final Space space;
@@ -83,13 +86,22 @@ public class Faker {
     private final Weather weather;
     private final Lebowski lebowski;
     private final Medical medical;
+    private final Animal animal;
+    private final BackToTheFuture backToTheFuture;
+    private final PrincessBride princessBride;
+    private final Buffy buffy;
+    private final Relationships relationships;
+    private final Nation nation;
+    private final Dune dune;
+    private final AquaTeenHungerForce aquaTeenHungerForce;
+    private final ProgrammingLanguage programmingLanguage;
 
     public Faker() {
         this(Locale.ENGLISH);
     }
 
     public Faker(Locale locale) {
-        this(locale, null);
+        this(locale, (Random)null);
     }
 
     public Faker(Random random) {
@@ -97,13 +109,22 @@ public class Faker {
     }
 
     public Faker(Locale locale, Random random) {
-        this.randomService = new RandomService(random);
-        this.fakeValuesService = new FakeValuesService(locale, randomService);
+        this(locale, new RandomService(random));
+    }
+
+    public Faker(Locale locale, RandomService randomService) {
+        this(new FakeValuesService(locale, randomService), randomService);
+    }
+
+    public Faker(FakeValuesService fakeValuesService, RandomService random) {
+        this.randomService = random;
+        this.fakeValuesService = fakeValuesService;
 
         this.ancient = new Ancient(this);
         this.app = new App(this);
         this.artist = new Artist(this);
         this.avatar = new Avatar(this);
+        this.aviation = new Aviation(this);
         this.lorem = new Lorem(this);
         this.music = new Music(this);
         this.name = new Name(this);
@@ -120,6 +141,7 @@ public class Faker {
         this.hacker = new Hacker(this);
         this.company = new Company(this);
         this.crypto = new Crypto(this);
+        this.elderScrolls = new ElderScrolls(this);
         this.commerce = new Commerce(this);
         this.currency = new Currency(this);
         this.options = new Options(this);
@@ -167,6 +189,16 @@ public class Faker {
         this.weather = new Weather(this);
         this.lebowski = new Lebowski(this);
         this.medical = new Medical(this);
+        this.country = new Country(this);
+        this.animal = new Animal(this);
+        this.backToTheFuture = new BackToTheFuture(this);
+        this.princessBride = new PrincessBride(this);
+        this.buffy = new Buffy(this);
+        this.relationships = new Relationships(this);
+        this.nation = new Nation(this);
+        this.dune = new Dune(this);
+        this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
+        this.programmingLanguage = new ProgrammingLanguage(this);
     }
 
     /**
@@ -307,6 +339,10 @@ public class Faker {
         return avatar;
     }
 
+    public Aviation aviation() {
+        return aviation;
+    }
+
     public Music music() {
         return music;
     }
@@ -341,6 +377,10 @@ public class Faker {
 
     public Book book() {
         return book;
+    }
+
+    public Buffy buffy() {
+        return buffy;
     }
 
     public Business business() {
@@ -393,6 +433,10 @@ public class Faker {
 
     public Food food() {
         return food;
+    }
+
+    public ElderScrolls elderScrolls() {
+        return elderScrolls;
     }
 
     public GameOfThrones gameOfThrones() {
@@ -552,6 +596,38 @@ public class Faker {
     }
 
     public Medical medical(){return medical;}
+
+    public Country country(){ return country;}
+
+    public Animal animal(){ return animal; }
+
+    public BackToTheFuture backToTheFuture() {
+        return  backToTheFuture;
+    }
+
+    public PrincessBride princessBride() {
+        return princessBride;
+    }
+
+    public Relationships relationships() {
+        return relationships;
+    }
+
+    public Nation nation() {
+        return nation;
+    }
+
+    public Dune dune() {
+        return dune;
+    }
+
+    public AquaTeenHungerForce aquaTeenHungerForce() {
+        return aquaTeenHungerForce;
+    }
+
+    public ProgrammingLanguage programmingLanguage() {
+        return programmingLanguage;
+    }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);

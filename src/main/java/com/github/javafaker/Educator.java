@@ -15,9 +15,9 @@ public class Educator {
     }
 
     public String course() {
-        return faker.fakeValuesService().resolve("educator.tertiary.course.type", this, faker) 
+        return faker.fakeValuesService().resolve("educator.tertiary.degree.type", this, faker)
                 + " "
-                + faker.fakeValuesService().resolve("educator.tertiary.course.subject", this, faker);
+                + faker.fakeValuesService().resolve("educator.tertiary.degree.subject", this, faker);
     }
 
     public String secondarySchool() {

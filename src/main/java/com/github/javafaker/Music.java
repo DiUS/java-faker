@@ -23,4 +23,8 @@ public class Music {
     public String chord() {
         return key() + faker.options().option(CHORD_TYPES);
     }
+
+    public String genre() {
+        return faker.resolve("music.genres");
+    }
 }

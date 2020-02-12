@@ -15,7 +15,7 @@ public class OverwatchTest extends AbstractFakerTest {
 
     @Test
     public void location() {
-        assertThat(faker.overwatch().location(), matchesRegularExpression("^(\\w+'?:?\\s?)+$"));
+        assertThat(faker.overwatch().location(), matchesRegularExpression("^(.+'?:?\\s?)+$"));
     }
 
     @Test

@@ -6,3 +6,5 @@ target
 *.iml
 .java-version
 /dependency-reduced-pom.xml
+META-INF/
+bin/
