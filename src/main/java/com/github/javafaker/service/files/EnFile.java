@@ -170,6 +170,7 @@ public class EnFile {
             "verbs.yml",
             "weather.yml",
             "witcher.yml",
+            "kaamelott.yml",
             "world_cup.yml",
             "world_of_warcraft.yml",
             "yoda.yml",

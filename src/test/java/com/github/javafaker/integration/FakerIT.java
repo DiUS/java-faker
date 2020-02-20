@@ -161,6 +161,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.dune());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.aquaTeenHungerForce());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.programmingLanguage());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.kaamelott());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.gender());
     }
 
