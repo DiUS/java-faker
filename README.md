@@ -98,6 +98,7 @@ Fakers
 * IdNumber
 * Internet
 * Job
+* Kaamelott
 * LeagueOfLegends
 * Lebowski
 * LordOfTheRings
