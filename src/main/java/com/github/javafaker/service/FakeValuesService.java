@@ -360,7 +360,7 @@ public class FakeValuesService {
                 throw new RuntimeException("Unable to resolve " + escapedDirective + " directive.");
             }
 
-            resolved = resolveExpression(resolved, current, root);
+                resolved = resolveExpression(resolved, current, root);
             result = StringUtils.replaceOnce(result, escapedDirective, resolved);
         }
         return result;
