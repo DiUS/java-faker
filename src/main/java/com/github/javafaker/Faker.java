@@ -106,6 +106,7 @@ public class Faker {
     private final Barcode barcode;
     private final Sip sip;
     private final EnglandFootBall englandfootball;
+    private final Vehicle vehicle;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -221,6 +222,7 @@ public class Faker {
         this.barcode = new Barcode(this);
         this.sip = new Sip(this);
         this.englandfootball = new EnglandFootBall(this);
+        this.vehicle = new Vehicle(this);
     }
 
     /**
@@ -686,6 +688,8 @@ public class Faker {
     public Sip sip() { return sip; }
 
     public EnglandFootBall englandfootball() { return englandfootball; }
+
+    public Vehicle vehicle() { return vehicle; }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
