@@ -16,34 +16,35 @@ public class Vehicle {
 
     public String vin() { return faker.fakeValuesService().regexify(VIN_REGEX); }
 
-    public String manufacturer() {  return faker.fakeValuesService().fetchString("vehicle.manufacture"); }
+    public String manufacturer() {  return faker.resolve("vehicle.manufacture"); }
 
-    public String make() { return faker.fakeValuesService().fetchString("vehicle.makes"); }
+    public String make() { return faker.resolve("vehicle.makes"); }
 
-    @SuppressWarnings("unchecked")
-    public String model(String make) { return faker.fakeValuesService().fetchString("vehicle.models_by_make." + make); }
+    public String model() { return model(make());}
+
+    public String model(String make) { return faker.resolve("vehicle.models_by_make." + make); }
 
     public String makeAndModel() {
         String make = make();
         return make + " " + model(make);
     }
 
-    public String style() { return faker.fakeValuesService().fetchString("vehicle.styles"); }
+    public String style() { return faker.resolve("vehicle.styles"); }
 
-    public String color() { return faker.fakeValuesService().fetchString("vehicle.colors"); }
+    public String color() { return faker.resolve("vehicle.colors"); }
 
-    public String transmission() { return faker.fakeValuesService().fetchString("vehicle.transmissions"); }
+    public String transmission() { return faker.resolve("vehicle.transmissions"); }
 
-    public String driveType() { return faker.fakeValuesService().fetchString("vehicle.drive_types"); }
+    public String driveType() { return faker.resolve("vehicle.drive_types"); }
 
-    public String fuelType() { return faker.fakeValuesService().fetchString("vehicle.fuel_types"); }
+    public String fuelType() { return faker.resolve("vehicle.fuel_types"); }
 
-    public String carType() { return faker.fakeValuesService().fetchString("vehicle.car_types"); }
+    public String carType() { return faker.resolve("vehicle.car_types"); }
 
     public String engine() {
-        return faker.fakeValuesService().fetch("vehicle.engine_sizes")
+        return faker.resolve("vehicle.engine_sizes")
                 + " "
-                + faker.fakeValuesService().fetchObject("vehicle.cylinder_engine");
+                + faker.resolve("vehicle.cylinder_engine");
     }
 
     public ArrayList carOptions() { return carOptions(5, 10); }
@@ -52,7 +53,7 @@ public class Vehicle {
         int optionSize =faker.number().numberBetween(min, max);
         ArrayList<String> arr = new ArrayList<String>(optionSize);
         while (optionSize > 0) {
-            arr.add(faker.fakeValuesService().fetchString("vehicle.car_options"));
+            arr.add(faker.resolve("vehicle.car_options"));
             optionSize -= 1;
         }
         return arr;
@@ -64,17 +65,15 @@ public class Vehicle {
         int standardSpecsSize =faker.number().numberBetween(min, max);
         ArrayList<String> arr = new ArrayList<String>(standardSpecsSize);
         while (standardSpecsSize > 0) {
-            arr.add(faker.fakeValuesService().fetchString("vehicle.standard_specs"));
+            arr.add(faker.resolve("vehicle.standard_specs"));
             standardSpecsSize -= 1;
         }
         return arr;
     }
 
-    public Object doors() { return faker.fakeValuesService().fetch("vehicle.doors"); }
+    public String doors() { return faker.resolve("vehicle.doors"); }
 
-    public String licensePlate() {
-        return faker.regexify(faker.bothify(faker.fakeValuesService().fetchObject("vehicle.license_plate").toString()));
-    }
+    public String licensePlate() { return faker.regexify(faker.bothify(faker.resolve("vehicle.license_plate"))); }
 
     public String licensePlate(String stateAbbreviation) {
 
@@ -82,7 +81,7 @@ public class Vehicle {
             return null;
         }
 
-        Object licensePlatesByState = faker.fakeValuesService().fetchObject("vehicle.license_plate_by_state." + stateAbbreviation);
-        return licensePlatesByState == null ? null :  faker.regexify(faker.bothify(licensePlatesByState.toString()));
+        String licensePlatesByState = faker.fakeValuesService().resolve("vehicle.license_plate_by_state." + stateAbbreviation, this, faker);
+        return licensePlatesByState == null ? null :  faker.regexify(faker.bothify(licensePlatesByState)).toUpperCase();
     }
 }

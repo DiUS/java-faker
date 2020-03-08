@@ -34,3 +34,20 @@ en-CA:
         - "(#{PhoneNumber.area_code}) #{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}"
         - "1-#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}"
         - "#{PhoneNumber.area_code}.#{PhoneNumber.exchange_code}.#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}"
+
+    vehicle:
+      license_plate: '#####' #Dept of national defence format, applicable to all provinces
+      license_plate_by_state:
+        AB: '???-####'
+        BC: ['??# ##?', '?? ####']
+        MB: '??? ###'
+        NB: '??? ###'
+        NL: '??? ###'
+        NT: '######'
+        NS: '??? ###'
+        NU: '### ###'
+        ON: ['????-###', '??-#####']
+        PE: '## #??'
+        QC: '?## ???'
+        SK: '### ???'
+        YT: ['???##', '??? ##']

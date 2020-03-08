@@ -4,6 +4,7 @@ import com.github.javafaker.matchers.MatchesRegularExpression;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.*;
@@ -14,7 +15,7 @@ public class VehicleTest extends AbstractFakerTest {
 
     private static final String WORD_MATCH = "\\w+\\.?";
     private static final String WORDS_MATCH = "^[a-zA-Z0-9_/ -]*$";
-    private static final String FOREIGN_WORDS_MATCH = "\\P{Cc}+";
+    private static final String INTERNATIONAL_WORDS_MATCH = "\\P{Cc}+";
 
     @Test
     public void testVin() {
@@ -22,9 +23,7 @@ public class VehicleTest extends AbstractFakerTest {
     }
 
     @Test
-    public void testManufacturer() {
-        assertThat(faker.vehicle().manufacturer(), matchesRegularExpression(FOREIGN_WORDS_MATCH));
-    }
+    public void testManufacturer() { assertThat(faker.vehicle().manufacturer(), matchesRegularExpression(INTERNATIONAL_WORDS_MATCH)); }
 
     @Test
     public void testMake() {
@@ -32,16 +31,13 @@ public class VehicleTest extends AbstractFakerTest {
     }
 
     @Test
-    public void testModel() {
-        assertThat(faker.vehicle().model(null), nullValue());
-        assertThat(faker.vehicle().model(faker.vehicle().make()), matchesRegularExpression(WORDS_MATCH));
-        assertThat(faker.vehicle().model("INVALID MAKE"), nullValue());
-    }
+    public void testModel() { assertThat(faker.vehicle().model(), MatchesRegularExpression.matchesRegularExpression(WORDS_MATCH));}
 
     @Test
-    public void testMakeAndModel() {
-        assertThat(faker.vehicle().makeAndModel(), matchesRegularExpression(WORDS_MATCH));
-    }
+    public void testModelWithParams() { assertThat(faker.vehicle().model("Toyota"), matchesRegularExpression(WORDS_MATCH)); }
+
+    @Test
+    public void testMakeAndModel() { assertThat(faker.vehicle().makeAndModel(), matchesRegularExpression(WORDS_MATCH)); }
 
     @Test
     public void testStyle() {
@@ -108,22 +104,23 @@ public class VehicleTest extends AbstractFakerTest {
     }
 
     @Test
-    public void testDoor() {
-        assertTrue((Integer) faker.vehicle().doors() > 0);
-    }
+    public void testDoor() { assertThat(faker.vehicle().doors(), matchesRegularExpression("\\d")); }
 
 
 
     @Test
-    public void testLicensePlate() {
-        assertThat(faker.vehicle().licensePlate(), matchesRegularExpression(WORDS_MATCH));
-    }
+    public void testLicensePlate() { assertThat(faker.vehicle().licensePlate(), matchesRegularExpression(WORDS_MATCH)); }
 
     @Test
     public void testLicensePlateWithParam() {
         assertThat(faker.vehicle().licensePlate("GA"), matchesRegularExpression(WORDS_MATCH));
-        assertThat(faker.vehicle().licensePlate(""), nullValue());
-        assertThat(faker.vehicle().licensePlate("INVALID STATE"), nullValue());
-        assertThat(faker.vehicle().licensePlate(null), nullValue());
+        assertThat(faker.vehicle().licensePlate("AL"), matchesRegularExpression(WORDS_MATCH));
+    }
+
+    @Test
+    public void testLicensePlateWithParam_Canada(){
+        Faker test = new Faker(Locale.CANADA);
+        assertThat(test.vehicle().licensePlate("MB"), matchesRegularExpression(WORDS_MATCH));
+        assertThat(test.vehicle().licensePlate("ON"), matchesRegularExpression(WORDS_MATCH));
     }
 }
