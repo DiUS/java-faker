@@ -137,6 +137,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.beer());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.university());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.cat());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.coin());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.lordOfTheRings());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.zelda());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.harryPotter());
