@@ -6,9 +6,9 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 public class CoinTest extends AbstractFakerTest {
-
+// /\w+/
     @Test
     public void flip() {
-        assertThat(faker.coin().flip(), matchesRegularExpression("/\\w+/"));
+        assertThat(faker.coin().flip(), matchesRegularExpression("Heads|Tails"));
     }
 }
