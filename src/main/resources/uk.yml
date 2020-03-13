@@ -98,3 +98,8 @@ uk:
       temperature:
         celsius: °C
         fahrenheit: °F
+
+    coin:
+      flip:
+        - Орел
+        - Решка
