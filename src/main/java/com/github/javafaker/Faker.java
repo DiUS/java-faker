@@ -3,6 +3,7 @@ package com.github.javafaker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 
+import javax.swing.*;
 import java.util.Locale;
 import java.util.Random;
 
@@ -59,6 +60,7 @@ public class Faker {
     private final Beer beer;
     private final University university;
     private final Cat cat;
+    private final Coin coin;
     private final File file;
     private final Stock stock;
     private final LordOfTheRings lordOfTheRings;
@@ -147,6 +149,7 @@ public class Faker {
         this.currency = new Currency(this);
         this.options = new Options(this);
         this.code = new Code(this);
+        this.coin = new Coin(this);
         this.file = new File(this);
         this.finance = new Finance(this);
         this.food = new Food(this);
@@ -495,6 +498,10 @@ public class Faker {
 
     public Cat cat() {
         return cat;
+    }
+
+    public Coin coin() {
+        return coin;
     }
 
     public Stock stock() {
