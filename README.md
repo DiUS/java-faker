@@ -72,6 +72,7 @@ Fakers
 * ChuckNorris
 * Cat
 * Code
+* Coin
 * Color
 * Commerce
 * Company
