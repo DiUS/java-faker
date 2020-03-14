@@ -42,6 +42,7 @@ public class Faker {
     private final Hacker hacker;
     private final Options options;
     private final Code code;
+    private final Coin coin;
     private final Finance finance;
     private final Food food;
     private final GameOfThrones gameOfThrones;
@@ -158,6 +159,7 @@ public class Faker {
         this.shakespeare = new Shakespeare(this);
         this.slackEmoji = new SlackEmoji(this);
         this.space = new Space(this);
+        this.coin = new Coin(this);
         this.superhero = new Superhero(this);
         this.team = new Team(this);
         this.bool = new Bool(this);
@@ -423,6 +425,10 @@ public class Faker {
 
     public Code code() {
         return code;
+    }
+
+    public Coin coin() {
+        return coin;
     }
 
     public File file() {
