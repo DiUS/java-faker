@@ -87,6 +87,7 @@ public class Faker {
     private final Weather weather;
     private final Lebowski lebowski;
     private final Medical medical;
+    private final Barcode barcode;
     private final Animal animal;
     private final BackToTheFuture backToTheFuture;
     private final PrincessBride princessBride;
@@ -193,6 +194,7 @@ public class Faker {
         this.lebowski = new Lebowski(this);
         this.medical = new Medical(this);
         this.country = new Country(this);
+        this.barcode = new Barcode(this);
         this.animal = new Animal(this);
         this.backToTheFuture = new BackToTheFuture(this);
         this.princessBride = new PrincessBride(this);
@@ -607,7 +609,13 @@ public class Faker {
 
     public Country country(){ return country;}
 
-    public Animal animal(){ return animal; }
+    public Barcode barcode() {
+        return barcode;
+    }
+
+    public Animal animal() {
+        return animal;
+    }
 
     public BackToTheFuture backToTheFuture() {
         return  backToTheFuture;
