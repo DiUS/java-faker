@@ -695,3 +695,8 @@ pt-BR:
     gender:
       types: ["Feminino", "Masculino", "Não Binário", "Agênero", "Gênero Fluido", "Gênero queer", "Bigênero", "Poligênero"]
       binary_types: ["Feminino", "Masculino"]
+    cpf:
+      valid_formatted: "#{IDNumber.valid_formatted_pt_br_cpf}"
+      valid_unformatted: "#{IDNumber.valid_unformatted_pt_br_cpf}"
+      invalid_formatted: "#{IDNumber.invalid_formatted_pt_br_cpf}"
+      invalid_unformatted: "#{IDNumber.invalid_unformatted_pt_br_cpf}"
