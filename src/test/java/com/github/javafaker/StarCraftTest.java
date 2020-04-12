@@ -29,7 +29,6 @@ public class StarCraftTest extends AbstractFakerTest {
         String character = faker.starCraft().character();
         assertThat(character, not(isEmptyOrNullString()));
         assertThat(character, matchesRegularExpression(noLeadingTrailingWhitespaceRegex));
-
     }
 
     @Test
@@ -37,7 +36,6 @@ public class StarCraftTest extends AbstractFakerTest {
         String planet = faker.starCraft().planet();
         assertThat(planet, not(isEmptyOrNullString()));
         assertThat(planet, matchesRegularExpression(noLeadingTrailingWhitespaceRegex));
-
     }
 
 }
