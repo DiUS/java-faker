@@ -121,6 +121,7 @@ Fakers
 * Shakespeare
 * SlackEmoji
 * Space
+* StarCraft
 * StarTrek
 * Stock
 * Superhero
