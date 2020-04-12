@@ -147,6 +147,7 @@ public class EnFile {
             "source.yml",
             "south_park.yml",
             "space.yml",
+            "starcraft.yml",
             "star_trek.yml",
             "star_wars.yml",
             "stargate.yml",
