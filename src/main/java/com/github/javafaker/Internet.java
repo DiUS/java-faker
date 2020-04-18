@@ -7,11 +7,14 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.StringUtils.join;
 import static org.apache.commons.lang3.StringUtils.stripAccents;
 
 public class Internet {
+    private static final Pattern SINGLE_QUOTE = Pattern.compile("'");
+    private static final Pattern COLON = Pattern.compile(":");
     private final Faker faker;
 
     protected Internet(Faker faker) {
@@ -43,7 +46,7 @@ public class Internet {
     }
 
     public String domainWord() {
-        return FakerIDN.toASCII(faker.name().lastName().toLowerCase().replaceAll("'", ""));
+        return FakerIDN.toASCII(SINGLE_QUOTE.matcher(faker.name().lastName().toLowerCase()).replaceAll(""));
     }
 
     public String domainSuffix() {
@@ -55,7 +58,7 @@ public class Internet {
                 "www",
                 ".",
                 FakerIDN.toASCII(
-                        faker.name().firstName().toLowerCase().replaceAll("'", "") +
+                        SINGLE_QUOTE.matcher(faker.name().firstName().toLowerCase()).replaceAll("") +
                                 "-" +
                                 domainWord()
                 ),
@@ -148,7 +151,7 @@ public class Internet {
         final String tmp = (prefix == null) ? "" : prefix;
         final int prefixLength = tmp.trim().length() == 0 
           ? 0 
-          : tmp.split(":").length;
+          : COLON.split(tmp).length;
         
         final StringBuilder out = new StringBuilder(tmp);
         for (int i=0;i < 6 - prefixLength;i++) {
