@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Random;
 
 import static com.github.javafaker.matchers.IsANumber.isANumber;
+import static com.github.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -108,8 +109,19 @@ public class AddressTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testHungarianZipCodeByState() {
+        faker = new Faker(new Locale("hu"));
+        assertThat(faker.address().zipCodeByState(faker.address().stateAbbr()), matchesRegularExpression("[0-9]{4}"));
+    }
+
+    @Test
     public void testCountyByZipCode() {
         faker = new Faker(new Locale("en-US"));
-        assertThat(faker.address().countyByZipCode(faker.address().zipCodeByState(faker.address().stateAbbr())), not(isEmptyOrNullString()));
+        assertThat(faker.address().countyByZipCode("47732"), not(isEmptyOrNullString()));
+    }
+
+    @Test
+    public void testStreetPrefix() {
+        assertThat(faker.address().streetPrefix(), isStringWithContents());
     }
 }

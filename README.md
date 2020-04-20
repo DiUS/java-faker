@@ -17,7 +17,7 @@ In pom.xml, add the following xml stanza between `<dependencies> ... </dependenc
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>0.18</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
@@ -25,7 +25,7 @@ For gradle users, add the following to your build.gradle file.
 
 ```groovy
 dependencies {
-    implementation 'com.github.javafaker:javafaker:0.18'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
 }
 
 ```
@@ -42,18 +42,29 @@ String lastName = faker.name().lastName(); // Barton
 String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 ```
 
+This is a [demo web application](https://java-faker.herokuapp.com/) that uses the library.
+
 Javadoc
 -----
 http://dius.github.io/java-faker/apidocs/index.html
 
 
+Contributions
+-------------
+See [CONTRIBUTING.md](https://github.com/DiUS/java-faker/blob/master/CONTRIBUTING.md)
+
+
 Fakers
 -----
-* Ancient
 * Address
+* Ancient
+* Animal
 * App
+* Aqua Teen Hunger Force
 * Artist
 * Avatar
+* Back To The Future
+* Aviation
 * Beer
 * Book
 * Bool
@@ -61,6 +72,7 @@ Fakers
 * ChuckNorris
 * Cat
 * Code
+* Coin
 * Color
 * Commerce
 * Company
@@ -69,6 +81,7 @@ Fakers
 * Demographic
 * Dog
 * DragonBall
+* Dune
 * Educator
 * Esports
 * File
@@ -86,6 +99,7 @@ Fakers
 * IdNumber
 * Internet
 * Job
+* Kaamelott
 * LeagueOfLegends
 * Lebowski
 * LordOfTheRings
@@ -93,11 +107,14 @@ Fakers
 * Matz
 * Music
 * Name
+* Nation
 * Number
 * Options
 * Overwatch
 * PhoneNumber
 * Pokemon
+* Princess Bride
+* Relationship Terms
 * RickAndMorty
 * Robin
 * RockBand
@@ -153,6 +170,7 @@ Supported Locales
 * fi-FI
 * fr
 * he
+* hu
 * in-ID
 * it
 * ja
