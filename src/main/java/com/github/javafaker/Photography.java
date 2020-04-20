@@ -12,63 +12,63 @@ public class Photography {
     }
 
     /**
-     * @return
+     * @return a photography term.
      */
     public String term() {
         return faker.fakeValuesService().fetchString("photography.term");
     }
 
     /**
-     * @return
+     * @return one of the photography brands.
      */
     public String brand() {
         return faker.fakeValuesService().fetchString("photography.brand");
     }
 
     /**
-     * @return
+     * @return a name of camera model/make.
      */
     public String camera() {
         return faker.fakeValuesService().fetchString("photography.camera");
     }
 
     /**
-     * @return
+     * @return some lens description like 500mm/8.
      */
     public String lens() {
         return faker.fakeValuesService().fetchString("photography.lens");
     }
 
     /**
-     * @return
+     * @return a photography genre.
      */
     public String gengre() {
         return faker.fakeValuesService().fetchString("photography.gengre");
     }
 
     /**
-     * @return
+     * @return some string to tag an image.
      */
     public String imageTag() {
         return faker.fakeValuesService().fetchString("photography.imagetag");
     }
 
     /**
-     * @return
+     * @return some aperture description like f/1.4 .
      */
     public String aperture() {
         return faker.fakeValuesService().fetchString("photography.aperture");
     }
 
     /**
-     * @return
+     * @return some shutter description like 1/25 .
      */
     public String shutter() {
         return faker.fakeValuesService().fetchString("photography.shutter");
     }
 
     /**
-     * @return
+     * @return some iso value like 3200.
      */
     public String iso() {
         return faker.fakeValuesService().fetchString("photography.iso");
