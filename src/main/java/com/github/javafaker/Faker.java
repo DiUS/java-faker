@@ -97,6 +97,7 @@ public class Faker {
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
     private final Kaamelott kaamelott;
+    private final Photography photography;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -203,6 +204,7 @@ public class Faker {
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
         this.kaamelott = new Kaamelott(this);
+        this.photography = new Photography(this);
     }
 
     /**
@@ -639,6 +641,10 @@ public class Faker {
 
     public Kaamelott kaamelott() {
         return kaamelott;
+    }
+
+    public Photography photography() {
+        return  photography;
     }
 
     public String resolve(String key) {
