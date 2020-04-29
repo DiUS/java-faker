@@ -58,11 +58,11 @@ public class AddressTest extends AbstractFakerTest {
     public void testLocaleLatitude() {
         Faker engFaker = new Faker(Locale.ENGLISH);
         String engLatStr = engFaker.address().latitude();
-        assertThat(engLatStr, matchesRegularExpression("-?\\d{1,2}\\.\\d{6}"));
+        assertThat(engLatStr, matchesRegularExpression("-?\\d{1,2}\\.\\d{6,7}"));
 
         Faker ruFaker = new Faker(new Locale("ru"));
         String rusLatStr = ruFaker.address().latitude();
-        assertThat(rusLatStr, matchesRegularExpression("-?\\d{1,2},\\d{6}"));
+        assertThat(rusLatStr, matchesRegularExpression("-?\\d{1,2},\\d{6,7}"));
     }
 
     @Test
