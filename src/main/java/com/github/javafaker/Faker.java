@@ -15,6 +15,7 @@ import java.util.Random;
 public class Faker {
     private final RandomService randomService;
     private final FakeValuesService fakeValuesService;
+    Locale locale;
 
     private final Ancient ancient;
     private final App app;
@@ -103,7 +104,7 @@ public class Faker {
     }
 
     public Faker(Locale locale) {
-        this(locale, (Random)null);
+        this(locale, (Random) null);
     }
 
     public Faker(Random random) {
@@ -116,6 +117,7 @@ public class Faker {
 
     public Faker(Locale locale, RandomService randomService) {
         this(new FakeValuesService(locale, randomService), randomService);
+        this.locale = locale;
     }
 
     public Faker(FakeValuesService fakeValuesService, RandomService random) {
@@ -250,8 +252,8 @@ public class Faker {
      * <p>
      * For example, the string "ABC##EFG" could be replaced with a string like "ABC99EFG".
      *
-     * @param numberString
-     * @return
+     * @param numberString Template for string generation
+     * @return Generated string
      */
     public String numerify(String numberString) {
         return fakeValuesService.numerify(numberString);
@@ -263,8 +265,8 @@ public class Faker {
      * <p>
      * For example, the string "12??34" could be replaced with a string like "12AB34".
      *
-     * @param letterString
-     * @return
+     * @param letterString Template for string generation
+     * @return Generated string.
      */
     public String letterify(String letterString) {
         return fakeValuesService.letterify(letterString);
@@ -603,14 +605,20 @@ public class Faker {
         return lebowski;
     }
 
-    public Medical medical(){return medical;}
+    public Medical medical() {
+        return medical;
+    }
 
-    public Country country(){ return country;}
+    public Country country() {
+        return country;
+    }
 
-    public Animal animal(){ return animal; }
+    public Animal animal() {
+        return animal;
+    }
 
     public BackToTheFuture backToTheFuture() {
-        return  backToTheFuture;
+        return backToTheFuture;
     }
 
     public PrincessBride princessBride() {

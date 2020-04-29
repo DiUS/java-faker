@@ -28,11 +28,11 @@ public class Address {
     }
 
     public String secondaryAddress() {
-        return faker.numerify(faker.fakeValuesService().resolve("address.secondary_address", this,faker));
+        return faker.numerify(faker.fakeValuesService().resolve("address.secondary_address", this, faker));
     }
 
     public String zipCode() {
-        return faker.bothify(faker.fakeValuesService().resolve("address.postcode", this,faker));
+        return faker.bothify(faker.fakeValuesService().resolve("address.postcode", this, faker));
     }
 
     public String zipCodeByState(String stateAbbr) {
@@ -84,11 +84,11 @@ public class Address {
     }
 
     public String latitude() {
-        return String.format("%.8g", (faker.random().nextDouble() * 180) - 90);
+        return String.format(faker.locale, "%.8g", (faker.random().nextDouble() * 180) - 90);
     }
 
     public String longitude() {
-        return String.format("%.8g", (faker.random().nextDouble() * 360) - 180);
+        return String.format(faker.locale, "%.8g", (faker.random().nextDouble() * 360) - 180);
     }
 
     public String timeZone() {
