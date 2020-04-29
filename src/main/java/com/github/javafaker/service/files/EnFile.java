@@ -26,7 +26,7 @@ public class EnFile {
         return path;
     }
 
-    private static List<String> FILES = Arrays.asList("address.yml",
+    private static final List<String> FILES = Arrays.asList("address.yml",
             "ancient.yml",
             "animal.yml",
             "app.yml",
@@ -177,7 +177,7 @@ public class EnFile {
             "zelda.yml");
 
     // files where the search path can't be derived from the filename
-    private static List<EnFile> FILES_WITH_A_DIFFERENT_PATH = Arrays.asList(
+    private static final List<EnFile> FILES_WITH_A_DIFFERENT_PATH = Arrays.asList(
             new EnFile("animal.yml", "creature"),
             new EnFile("cat.yml", "creature"),
             new EnFile("dog.yml", "creature"),
