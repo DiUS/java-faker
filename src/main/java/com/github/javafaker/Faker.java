@@ -96,8 +96,8 @@ public class Faker {
     private final Dune dune;
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
-    private final Basketball basketball;
     private final Kaamelott kaamelott;
+    private final Basketball basketball;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -493,9 +493,7 @@ public class Faker {
         return team;
     }
 
-    public Beer beer() {
-        return beer;
-    }
+    public Beer beer() { return beer; }
 
     public University university() {
         return university;
@@ -631,8 +629,6 @@ public class Faker {
         return dune;
     }
 
-    public Basketball basketball() { return basketball; }
-
     public AquaTeenHungerForce aquaTeenHungerForce() {
         return aquaTeenHungerForce;
     }
@@ -645,6 +641,7 @@ public class Faker {
         return kaamelott;
     }
 
+    public Basketball basketball() { return basketball; }
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
