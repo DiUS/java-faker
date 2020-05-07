@@ -163,6 +163,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.aquaTeenHungerForce());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.programmingLanguage());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.kaamelott());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.basketball());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
@@ -183,7 +184,7 @@ public class FakerIT {
             final String returnValueAsString = (String) returnValue;
             assertThat(failureReason, returnValueAsString, not(isEmptyOrNullString()));
             assertThat(failureReason + " is a slash encoded regex", returnValueAsString,
-                       not(allOf(startsWith("/"), endsWith("/"))));
+                    not(allOf(startsWith("/"), endsWith("/"))));
         }
     }
 
