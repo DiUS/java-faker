@@ -96,6 +96,7 @@ public class Faker {
     private final Dune dune;
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
+    private final Basketball basketball;
     private final Kaamelott kaamelott;
 
     public Faker() {
@@ -203,6 +204,7 @@ public class Faker {
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
         this.kaamelott = new Kaamelott(this);
+        this.basketball = new Basketball(this);
     }
 
     /**
@@ -628,6 +630,8 @@ public class Faker {
     public Dune dune() {
         return dune;
     }
+
+    public Basketball basketball() { return basketball; }
 
     public AquaTeenHungerForce aquaTeenHungerForce() {
         return aquaTeenHungerForce;
