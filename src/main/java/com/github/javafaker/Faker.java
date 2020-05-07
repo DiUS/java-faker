@@ -94,6 +94,7 @@ public class Faker {
     private final Relationships relationships;
     private final Nation nation;
     private final Dune dune;
+    private final BojackHorseman bojackHorseman;
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
     private final Kaamelott kaamelott;
@@ -202,6 +203,7 @@ public class Faker {
         this.dune = new Dune(this);
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
+        this.bojackHorseman = new BojackHorseman(this);
         this.kaamelott = new Kaamelott(this);
     }
 
@@ -640,6 +642,8 @@ public class Faker {
     public Kaamelott kaamelott() {
         return kaamelott;
     }
+
+    public BojackHorseman bojackHorseman() { return bojackHorseman; }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
