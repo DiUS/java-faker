@@ -64,6 +64,7 @@ Fakers
 * Artist
 * Avatar
 * Back To The Future
+* BojackHorseman
 * Aviation
 * Beer
 * Book
