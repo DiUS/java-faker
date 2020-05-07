@@ -96,7 +96,6 @@ public class Faker {
     private final Dune dune;
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
-    private final Gender gender;
     private final Kaamelott kaamelott;
     private final Gender gender;
 
