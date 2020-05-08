@@ -30,4 +30,5 @@ public class Gender {
      */
     public String binarytypes() {
         return faker.fakeValuesService().resolve("gender.binary_types", this, faker);
-    }}
+    }
+}
