@@ -22,16 +22,9 @@ public class UserNameTest extends AbstractFakerTest{
         assertThat(test, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
         assertThat(test.length(),equalTo(12));
     }
-
-    @Test //This test case is trying to test the normal cases
-    public void testUsernameCase2(){
-        String test = faker.name().username(10,14);
-        assertThat(test, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
-        assertThat(test.length(), allOf(greaterThanOrEqualTo(6), lessThanOrEqualTo(25)));
-    }
     
     @Test //This test case is trying to test the normal cases
-    public void testUsernameCase3(){
+    public void testUsernameCase2(){
         String test = faker.name().username(17,20);
         assertThat(test, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
         assertThat(test.length(), allOf(greaterThanOrEqualTo(17), lessThanOrEqualTo(20)));
