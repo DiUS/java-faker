@@ -3,7 +3,6 @@ package com.github.javafaker;
 import com.github.javafaker.service.FakerIDN;
 import com.github.javafaker.service.RandomService;
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
