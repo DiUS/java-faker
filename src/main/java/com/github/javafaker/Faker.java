@@ -97,6 +97,7 @@ public class Faker {
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
     private final Kaamelott kaamelott;
+    private final Gender gender;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -203,6 +204,7 @@ public class Faker {
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
         this.kaamelott = new Kaamelott(this);
+        this.gender=new Gender(this);
     }
 
     /**
@@ -640,6 +642,8 @@ public class Faker {
     public Kaamelott kaamelott() {
         return kaamelott;
     }
+
+    public Gender gender(){return gender;}
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
