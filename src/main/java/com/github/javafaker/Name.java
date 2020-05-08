@@ -139,8 +139,6 @@ public class Name {
             lenFirst = random.nextInt(cmax-4)+2; // random number between 2 to max-3
         }else if(cmax-3>=11 && cmin-13>2){
             lenFirst = random.nextInt(25-cmin)+cmin-13; //random number min-13 to 11
-        }else{
-            lenFirst = random.nextInt(cmax-cmin+11)+cmin-13; //random number min-13 to max-3
         }
         return lenFirst;
     }
