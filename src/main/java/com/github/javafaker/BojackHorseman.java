@@ -1,4 +1,5 @@
 package com.github.javafaker;
+
 /**
  * Generate random parts in BojackHorseman.
  * @author unknown and irakatz
