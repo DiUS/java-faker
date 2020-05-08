@@ -1,6 +1,7 @@
 package com.github.javafaker;
 /**
  * Generate random components of basketall game, e.g. teams, coaches, positions and players.
+ * @author unknown and irakatz
  */
 public class Basketball {
     private final Faker faker;
