@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.DecimalFormatSymbols;
@@ -123,5 +124,22 @@ public class AddressTest extends AbstractFakerTest {
     @Test
     public void testStreetPrefix() {
         assertThat(faker.address().streetPrefix(), isStringWithContents());
+    }
+    @Test
+    public void testHungarianZipCodeByStateOfNO(){
+        for(int i=0;i<1000;i++){
+            Faker faker = new Faker(new Locale("hu"));
+            assertThat(faker.address().zipCodeByState("NO"), matchesRegularExpression("[0-9]{4}"));
+        }
+    }
+    @Test
+    public void testHungarianZipCodeByStateOfFalse(){
+        try{
+            Faker faker = new Faker(new Locale("hu"));
+            faker.address().zipCodeByState("false");
+            Assert.fail("Cannot reach here");
+        }catch (RuntimeException e){
+            assertThat(e.getMessage(), is("address.postcode_by_state.false resulted in null expression"));
+        }
     }
 }
