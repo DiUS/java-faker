@@ -24,6 +24,13 @@ public class UserNameTest extends AbstractFakerTest{
     }
 
 
+    @Test //This test case is trying to test when min==max, in other words we produce the username in a fixed length
+    public void testUsernameCase2(){
+        String test = faker.name().username(17,40);
+        assertThat(test, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+        assertThat(test.length(),allOf(greaterThanOrEqualTo(16), lessThanOrEqualTo(40)));
+    }
+
     @Test //This test case is trying to test when the max < 6 or min >25, then we will return an error message
     public void OutOfBoundary(){
         String test1 = faker.name().username(1,5);
