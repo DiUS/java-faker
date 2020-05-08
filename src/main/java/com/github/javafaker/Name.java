@@ -1,6 +1,7 @@
 package com.github.javafaker;
 
 import org.apache.commons.lang3.StringUtils;
+import java.util.Random;
 
 public class Name {
     
@@ -106,6 +107,94 @@ public class Name {
     }
 
     /**
+     * @return a first_name in the length we want.
+     */
+    private String userFirstName(int len) {
+        return faker.fakeValuesService().resolve("name.first_name_L"+len, this, faker);
+    }
+
+    /**
+     * @return the last_name in the length we want.
+     */
+    private String userLastName(int len){
+        return faker.fakeValuesService().resolve("name.last_name_L"+len, this, faker);
+    }
+    // detect errors of input parameters
+    private String inputErrorDetecte(int cmin, int cmax){
+        if(cmax<cmin){
+            return "max should not be smaller than min";
+        }
+        if(cmax<5 || cmin >24){
+            return "the min should not be greater than 25 and the max should not be smaller than 6";
+        }
+        return null;
+    }
+    // get the length of first name
+    private int getLenFirst(int cmin, int cmax){
+        int lenFirst = 0;
+        Random random = new Random();
+        if(cmax-3>=11 && cmin-13<=2){
+            lenFirst = random.nextInt(10)+2; // random number between 2 to 11
+        }else if(cmax-3<11 && cmin-13<=2){
+            lenFirst = random.nextInt(cmax-4)+2; // random number between 2 to max-3
+        }else if(cmax-3>=11 && cmin-13>2){
+            lenFirst = random.nextInt(25-cmin)+cmin-13; //random number min-13 to 11
+        }else{
+            lenFirst = random.nextInt(cmax-cmin+11)+cmin-13; //random number min-13 to max-3
+        }
+        return lenFirst;
+    }
+
+
+    /**
+     * <p>
+     *     A lowercase username composed of the first_name and last_name joined with a '.'. Some examples are:
+     *     <ul>
+     *         <li>(template) {@link #firstName()}.{@link #lastName()}</li>
+     *         <li>jim.jones</li>
+     *         <li>jason.leigh</li>
+     *         <li>tracy.jordan</li>
+     *     </ul>
+     * </p>
+     * @return a random two part user name with the min and max length we give.
+     * @see Name#firstName() 
+     * @see Name#lastName()
+     */
+    public String username(int min, int max) {
+        int cmin = min-1;
+        int cmax = max-1;
+        String error = inputErrorDetecte(cmin,cmax);
+        if(error!=null){
+            return error;
+        }
+        int lenFirst = 0;
+        int lenLast = 0;
+        Random random = new Random();
+        lenFirst = getLenFirst(cmin,cmax);
+        if(cmin-lenFirst<3){
+            if(cmax-lenFirst<=13) {
+                lenLast = random.nextInt(cmax - lenFirst - 2) + 3; //random number 3 to (max-len_first)
+            }else{
+                lenLast = random.nextInt(11) + 3; //random number 3 to 13
+            }
+        }else{
+            if(cmax-lenFirst<=13){
+                lenLast = random.nextInt(cmax-cmin+1)+cmin-lenFirst; //random number (min-len_first) to (max-len_first)
+            }else{
+                lenLast = random.nextInt(14 - cmin + lenFirst) + cmin - lenFirst; //random number (min-len_first) to 13
+            }
+        }
+
+        String username = StringUtils.join(
+                userFirstName(lenFirst).replaceAll("'", "").toLowerCase(),
+                ".",
+                userLastName(lenLast).replaceAll("'", "").toLowerCase()
+        );
+
+        return StringUtils.deleteWhitespace(username);
+    }
+
+    /**
      * <p>
      *     A lowercase username composed of the first_name and last_name joined with a '.'. Some examples are:
      *     <ul>
@@ -116,11 +205,10 @@ public class Name {
      *     </ul>
      * </p>
      * @return a random two part user name.
-     * @see Name#firstName() 
+     * @see Name#firstName()
      * @see Name#lastName()
      */
-    public String username() {
-
+    public String username(){
         String username = StringUtils.join(
                 firstName().replaceAll("'", "").toLowerCase(),
                 ".",
@@ -129,7 +217,7 @@ public class Name {
 
         return StringUtils.deleteWhitespace(username);
     }
-    
+
     /**
      * <p>Returns a blood group such as O−, O+, A-, A+, B-, B+, AB-, AB+</p>
      * @return a blood group such as O−, O+, A-, A+, B-, B+, AB-, AB+
