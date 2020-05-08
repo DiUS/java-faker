@@ -49,7 +49,8 @@ public class Number {
      */
     public long numberBetween(long min, long max) {
          if (min == max) return min;
-         else{
+         
+        else{
             if (min>max){long tmp=max;max=min;min=tmp;}
             long value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
             return value >= max ? max - 1 : value;
