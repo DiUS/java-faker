@@ -28,7 +28,14 @@ public class UserNameTest extends AbstractFakerTest{
     public void testUsernameCase2(){
         String test = faker.name().username(17,40);
         assertThat(test, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
-        assertThat(test.length(),allOf(greaterThanOrEqualTo(16), lessThanOrEqualTo(40)));
+        assertThat(test.length(),allOf(greaterThanOrEqualTo(17), lessThanOrEqualTo(40)));
+    }
+
+    @Test //This test case is trying to test when min==max, in other words we produce the username in a fixed length
+    public void testUsernameCase3(){
+        String test = faker.name().username(-2,40);
+        assertThat(test, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+        assertThat(test.length(),allOf(greaterThanOrEqualTo(-2), lessThanOrEqualTo(40)));
     }
 
     @Test //This test case is trying to test when the max < 6 or min >25, then we will return an error message
