@@ -5,6 +5,8 @@ import com.github.javafaker.idnumbers.SvSEIdNumber;
 import com.github.javafaker.idnumbers.ZhCnIdNumber;
 import org.yaml.snakeyaml.Yaml;
 
+import java.text.ParseException;
+
 public class IdNumber {
     private final Faker faker;
 
@@ -42,11 +44,13 @@ public class IdNumber {
     }
 
     /**
-     * Specified as #{IDNumber.valid_sv_se_ssn} in zh-CN.yml
+     * Generate a valid Zh-CN id number.
+     * @return A Zh-CN id number
+     * @throws ParseException An exception caused by parse time
      */
 
-    public String validZhCNSsn(){
-        ZhCnIdNumber zhCNIdNumber = new ZhCnIdNumber();
-        return zhCNIdNumber.getValidSsn(faker);
+    public String validZhCNSsn () throws ParseException {
+        ZhCnIdNumber zhCnIdNumber = new ZhCnIdNumber();
+        return zhCnIdNumber.getValidSsn(faker);
     }
 }

@@ -1,13 +1,15 @@
 package com.github.javafaker.idnumbers;
 
 import com.github.javafaker.Faker;
+import com.github.javafaker.idnumbers.ZhCnIdNumber;
 import com.github.javafaker.matchers.MatchesRegularExpression;
 import org.junit.Test;
 
+import java.lang.reflect.Field;
+import java.text.ParseException;
 import java.util.Locale;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ZhCNIdNumberTest {
     @Test
@@ -62,4 +64,43 @@ public class ZhCNIdNumberTest {
             assertTrue(isSatisfied);
         }
     }
+
+    @Test(expected = ParseException.class)
+    public void testParseExcpetion() throws Throwable {
+        Faker faker=new Faker();
+        ZhCnIdNumber idNumber=new ZhCnIdNumber();
+        Class<?> cls=ZhCnIdNumber.class;
+        Field startTime=cls.getDeclaredField("startTime");
+        Field endTime=cls.getDeclaredField("endTime");
+        startTime.setAccessible(true);
+        endTime.setAccessible(true);
+        startTime.set(idNumber,"abcde");
+        endTime.set(idNumber,"abcde");
+        startTime.setAccessible(false);
+        endTime.setAccessible(false);
+        System.out.println(idNumber.getValidSsn(faker));
+        fail("Should throw ParseExpection");
+    }
+
+    @Test
+    public void testValidZhCnIdNumber() throws ParseException {
+        for (int i=0;i<100; i++){
+            Faker faker=new Faker();
+            ZhCnIdNumber id=new ZhCnIdNumber();
+            String idNumber=id.getValidSsn(faker);
+            boolean isSatisfied=true;
+            if(idNumber.length()!=18)isSatisfied=false;
+            for(int j=0;j<idNumber.length();j++){
+                char ch=idNumber.charAt(j);
+                if(j!=idNumber.length()-1){
+                    if(ch>'9'||ch<'0'){isSatisfied=false;break;}
+                }
+                else{
+                    if((ch>'9'||ch<'0')&&ch!='X'){isSatisfied=false;break;}
+                }
+            }
+            assertTrue(isSatisfied);
+        }
+    }
+
 }
