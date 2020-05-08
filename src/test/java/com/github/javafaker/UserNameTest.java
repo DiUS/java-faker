@@ -29,7 +29,14 @@ public class UserNameTest extends AbstractFakerTest{
         assertThat(test, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
         assertThat(test.length(), allOf(greaterThanOrEqualTo(6), lessThanOrEqualTo(25)));
     }
-
+    
+    @Test //This test case is trying to test the normal cases
+    public void testUsernameCase3(){
+        String test = faker.name().username(17,20);
+        assertThat(test, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+        assertThat(test.length(), allOf(greaterThanOrEqualTo(17), lessThanOrEqualTo(20)));
+    }
+    
     @Test //This test case is trying to test when the max < 6 or min >25, then we will return an error message
     public void OutOfBoundary(){
         String test1 = faker.name().username(1,5);
