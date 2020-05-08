@@ -113,7 +113,8 @@ public class Number {
         final long randomChunk = faker.random().nextLong(decimalOfChunkCount);
         final double chunkStart = trueMin + randomChunk * chunkCount;
         final double adj = chunkCount * faker.random().nextDouble();
-        return chunkStart + adj >= trueMax ? new BigDecimal(trueMax -1) :new BigDecimal(chunkStart + adj);
+        if(chunkStart + adj >= trueMax) return new BigDecimal(trueMax -1);
+            else return new BigDecimal(chunkStart + adj);
     }
 
     public String digits(int count) {
