@@ -66,6 +66,7 @@ Fakers
 * Back To The Future
 * Aviation
 * Beer
+* Bojack Horseman
 * Book
 * Bool
 * Business
