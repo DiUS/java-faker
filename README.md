@@ -79,6 +79,7 @@ Fakers
 * Crypto
 * DateAndTime
 * Demographic
+* Disease
 * Dog
 * DragonBall
 * Dune
