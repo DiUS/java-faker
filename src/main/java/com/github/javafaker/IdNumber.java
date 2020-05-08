@@ -4,6 +4,7 @@ import com.github.javafaker.idnumbers.EnIdNumber;
 import com.github.javafaker.idnumbers.SvSEIdNumber;
 import com.github.javafaker.idnumbers.ZhCnIdNumber;
 import org.yaml.snakeyaml.Yaml;
+
 import java.text.ParseException;
 
 public class IdNumber {
