@@ -1,7 +1,7 @@
 package com.github.javafaker;
 
 /**
- * Generates photography related strings.
+ * Provides photography related strings.
  */
 public class Photography {
 
@@ -68,7 +68,7 @@ public class Photography {
     }
 
     /**
-     * @return some iso value like 3200.
+     * @return some ISO value like 3200.
      */
     public String iso() {
         return faker.fakeValuesService().fetchString("photography.iso");
