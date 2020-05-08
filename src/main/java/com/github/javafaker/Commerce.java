@@ -51,7 +51,7 @@ public class Commerce {
     /**
      * Generate a random price between 0.00 and 100.00
      */
-    public String price() {
+    public String price() throws IllegalAccessException, NoSuchFieldException {
         return price(0, 100);
     }
 
@@ -60,46 +60,27 @@ public class Commerce {
      * @param min the smaller number, also the inclusive lower bound of generated number
      * @param max the larger number, also the exclusive upper bound of generated number
      * @return A generated number between min and max, its format depends on locale
+     * @throws IllegalAccessException An exception happens when get fields.
      */
-    public String price(double min, double max) {
+    public String price(double min, double max) throws IllegalAccessException, NoSuchFieldException {
         double price =  min + (faker.random().nextDouble() * (max - min));
         Locale locale = new Locale("en");
-        try {
-            Class fclass = faker.getClass();
-
-            Field[] dFields = fclass.getDeclaredFields();
-            for (Field fd : dFields) {
-                boolean flag = fd.isAccessible();
-                fd.setAccessible(true);
-                if (fd.getName().equals("fakeValuesService")) {
-                    FakeValuesService fvc = (FakeValuesService) fd.get(faker);
-                    Field[] fvcFields = fvc.getClass().getDeclaredFields();
-                    for (Field fvcFd : fvcFields) {
-                        boolean fvcFlag = fvcFd.isAccessible();
-                        fvcFd.setAccessible(true);
-                        if (fvcFd.getName().equals("fakeValuesList")) {
-                            List<FakeValuesInterface> localList = (List) fvcFd.get(fvc);
-                            for (FakeValuesInterface cur : localList) {
-                                if (cur.getClass().getSimpleName().equals("FakeValues")) {
-                                    Field[] fakeValueFields = cur.getClass().getDeclaredFields();
-                                    for (Field fakeValuesFd : fakeValueFields) {
-                                        boolean fakeValuesFdFlag = fakeValuesFd.isAccessible();
-                                        fakeValuesFd.setAccessible(true);
-                                        if (fakeValuesFd.getName().equals("locale"))
-                                            locale = (Locale) fakeValuesFd.get(cur);
-                                        fakeValuesFd.setAccessible(fakeValuesFdFlag);
-                                    }
-                                }
-                            }
-                        }
-                        fvcFd.setAccessible(fvcFlag);
-                    }
-                }
-                fd.setAccessible(flag);
+        Field fakeValuesServiceField=Faker.class.getDeclaredField("fakeValuesService");
+        fakeValuesServiceField.setAccessible(true);
+        FakeValuesService fakeValuesService=(FakeValuesService) fakeValuesServiceField.get(faker);
+        Field fakeValuesListField=fakeValuesService.getClass().getDeclaredField("fakeValuesList");
+        fakeValuesListField.setAccessible(true);
+        List<FakeValuesInterface> localLists=( List<FakeValuesInterface>) fakeValuesListField.get(fakeValuesService);
+        for(FakeValuesInterface currentInterface : localLists){
+            if (currentInterface.getClass().getSimpleName().equals("FakeValues")){
+                Field localeField = currentInterface.getClass().getDeclaredField("locale");
+                localeField.setAccessible(true);
+                locale=(Locale) localeField.get(currentInterface);
+                localeField.setAccessible(false);
             }
-        }catch (IllegalAccessException e){
-            return null;
         }
+        fakeValuesListField.setAccessible(false);
+        fakeValuesServiceField.setAccessible(false);
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance(locale);
         decimalFormat.applyPattern("#0.00");
         return decimalFormat.format(price);
