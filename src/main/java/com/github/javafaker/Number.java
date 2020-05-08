@@ -31,13 +31,10 @@ public class Number {
      * @return A generated number between min and max
      */
     public int numberBetween(int min, int max) {
-        if (min>max){
-            int tmp=max;
-            max=min;
-            min=tmp;
-        }
+        
         if (min == max) return min;
         else{
+            if (min>max){int tmp=max;max=min;min=tmp;}
             int value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
             return value >= max ? max - 1 : value;
         }
@@ -51,13 +48,9 @@ public class Number {
      * @return A generated number between min and max
      */
     public long numberBetween(long min, long max) {
-        if (min>max){
-            long tmp=max;
-            max=min;
-            min=tmp;
-        }
-        if (min == max) return min;
-        else{
+         if (min == max) return min;
+         else{
+            if (min>max){long tmp=max;max=min;min=tmp;}
             long value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
             return value >= max ? max - 1 : value;
         }
