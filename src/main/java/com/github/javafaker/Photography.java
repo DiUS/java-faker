@@ -19,7 +19,7 @@ public class Photography {
     }
 
     /**
-     * @return one of the photography brands.
+     * @return a photography brand.
      */
     public String brand() {
         return faker.fakeValuesService().fetchString("photography.brand");
