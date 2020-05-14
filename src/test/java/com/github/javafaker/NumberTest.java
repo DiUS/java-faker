@@ -120,6 +120,26 @@ public class NumberTest extends AbstractFakerTest {
         long v1 = faker.number().numberBetween(min1, 980000000L);
         assertThat(v1, is(greaterThan((long) min1)));
         assertThat(v1, is(lessThan(980000000L)));
+
+        boolean isFind = false;
+        for (int i = 0; i < 100000; i++) {
+            int r = faker.number().numberBetween(0, 7);
+            if (r == 6) {
+                isFind = true;
+                break;
+            }
+        }
+        assertThat(isFind,is(true));
+
+        isFind = false;
+        for (int i = 0; i < 100000; i++) {
+            long r = faker.number().numberBetween(0L, 7L);
+            if (r == 6) {
+                isFind = true;
+                break;
+            }
+        }
+        assertThat(isFind,is(true));
     }
 
     @Test

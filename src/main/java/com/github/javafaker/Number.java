@@ -28,9 +28,13 @@ public class Number {
      */
     public int numberBetween(int min, int max) {
         if (min == max) return min;
-
-        int value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_DOWN).intValue();
-        return value == max ? value - 1 : value;
+        else if (min > max){
+            int tmp = max;
+            max = min;
+            min = tmp;
+        }
+        int value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
+        return value >= max ? value - 1 : value;
     }
 
     /**
@@ -43,9 +47,13 @@ public class Number {
      */
     public long numberBetween(long min, long max) {
         if (min == max) return min;
-
-        long value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_DOWN).longValue();
-        return value == max ? value - 1 : value;
+        else if (min > max){
+            long tmp = max;
+            max = min;
+            min = tmp;
+        }
+        long value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_UP).longValue();
+        return value >= max ? value - 1 : value;
     }
     
     /**
@@ -101,12 +109,13 @@ public class Number {
         final double range = (double) trueMax - (double) trueMin;
         
         final double chunkCount = Math.sqrt(Math.abs(range));
-        final double chunkSize = chunkCount;
-        final long randomChunk = faker.random().nextLong((long) chunkCount);
+        final long decimalChunkCount=(long)Math.ceil(chunkCount);
+        final long randomChunk = faker.random().nextLong(decimalChunkCount);
 
-        final double chunkStart = trueMin + randomChunk * chunkSize;
-        final double adj = chunkSize * faker.random().nextDouble();
-        return new BigDecimal(chunkStart + adj);
+        final double chunkStart = trueMin + randomChunk * chunkCount;
+
+        final double adj = chunkCount * faker.random().nextDouble();
+        return chunkStart + adj >= trueMax ? new BigDecimal(trueMax -1) :new BigDecimal(chunkStart + adj);
     }
 
     public String digits(int count) {
