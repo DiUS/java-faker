@@ -14,7 +14,7 @@ public class Lorem {
     protected Lorem(Faker faker) {
         this.faker = faker;
     }
-    
+
     public char character() {
         return character(false);
     }
@@ -32,15 +32,15 @@ public class Lorem {
     }
 
     public String characters(int minimumLength, int maximumLength) {
-        return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength, false);
+        return characters(faker.random().nextInt(maximumLength - minimumLength + 1) + minimumLength, false);
     }
 
     public String characters(int minimumLength, int maximumLength, boolean includeUppercase) {
-        return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength, includeUppercase);
+        return characters(faker.random().nextInt(maximumLength - minimumLength + 1) + minimumLength, includeUppercase);
     }
 
     public String characters(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeDigit) {
-        return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength, includeUppercase, includeDigit);
+        return characters(faker.random().nextInt(maximumLength - minimumLength + 1) + minimumLength, includeUppercase, includeDigit);
     }
 
     public String characters(int fixedNumberOfCharacters) {
@@ -91,6 +91,7 @@ public class Lorem {
 
     /**
      * Create a sentence with a random number of words within the range 4..10.
+     *
      * @return a random sentence
      */
     public String sentence() {
@@ -99,6 +100,7 @@ public class Lorem {
 
     /**
      * Create a sentence with a random number of words within the range (wordCount+1)..(wordCount+6).
+     *
      * @param wordCount
      * @return a random sentence
      */
@@ -108,8 +110,9 @@ public class Lorem {
 
     /**
      * Create a sentence with a random number of words within the range (wordCount+1)..(wordCount+randomWordsToAdd).</p>
-     * 
+     * <p>
      * Set {@code randomWordsToAdd} to 0 to generate sentences with a fixed number of words.
+     *
      * @param wordCount
      * @param randomWordsToAdd
      * @return a random sentence
