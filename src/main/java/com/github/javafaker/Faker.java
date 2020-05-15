@@ -13,9 +13,12 @@ import java.util.Random;
  * @author ren
  */
 public class Faker {
+
     private final RandomService randomService;
     private final FakeValuesService fakeValuesService;
 
+
+    
     private final Ancient ancient;
     private final App app;
     private final Artist artist;
@@ -42,10 +45,10 @@ public class Faker {
     private final Hacker hacker;
     private final Options options;
     private final Code code;
-    private final Coin coin;
     private final Finance finance;
     private final Food food;
     private final GameOfThrones gameOfThrones;
+	private final Gender gender;
     private final DateAndTime dateAndTime;
     private final Demographic demographic;
     private final Dog dog;
@@ -96,14 +99,13 @@ public class Faker {
     private final Dune dune;
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
-    private final Kaamelott kaamelott;
 
     public Faker() {
         this(Locale.ENGLISH);
     }
 
     public Faker(Locale locale) {
-        this(locale, (Random)null);
+        this(locale, (Random) null);
     }
 
     public Faker(Random random) {
@@ -121,6 +123,8 @@ public class Faker {
     public Faker(FakeValuesService fakeValuesService, RandomService random) {
         this.randomService = random;
         this.fakeValuesService = fakeValuesService;
+
+        
 
         this.ancient = new Ancient(this);
         this.app = new App(this);
@@ -152,6 +156,7 @@ public class Faker {
         this.finance = new Finance(this);
         this.food = new Food(this);
         this.gameOfThrones = new GameOfThrones(this);
+		this.gender = new Gender(this);
         this.dateAndTime = new DateAndTime(this);
         this.demographic = new Demographic(this);
         this.dog = new Dog(this);
@@ -159,7 +164,6 @@ public class Faker {
         this.shakespeare = new Shakespeare(this);
         this.slackEmoji = new SlackEmoji(this);
         this.space = new Space(this);
-        this.coin = new Coin(this);
         this.superhero = new Superhero(this);
         this.team = new Team(this);
         this.bool = new Bool(this);
@@ -202,7 +206,6 @@ public class Faker {
         this.dune = new Dune(this);
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
-        this.kaamelott = new Kaamelott(this);
     }
 
     /**
@@ -327,6 +330,9 @@ public class Faker {
         return this.fakeValuesService;
     }
 
+
+
+
     public Ancient ancient() {
         return ancient;
     }
@@ -427,10 +433,6 @@ public class Faker {
         return code;
     }
 
-    public Coin coin() {
-        return coin;
-    }
-
     public File file() {
         return file;
     }
@@ -450,6 +452,10 @@ public class Faker {
     public GameOfThrones gameOfThrones() {
         return gameOfThrones;
     }
+	
+	public Gender gender() {
+        return gender;
+    }
 
     public DateAndTime date() {
         return dateAndTime;
@@ -458,6 +464,7 @@ public class Faker {
     public Demographic demographic() {
         return demographic;
     }
+
 
     public Dog dog() {
         return dog;
@@ -603,14 +610,20 @@ public class Faker {
         return lebowski;
     }
 
-    public Medical medical(){return medical;}
+    public Medical medical() {
+        return medical;
+    }
 
-    public Country country(){ return country;}
+    public Country country() {
+        return country;
+    }
 
-    public Animal animal(){ return animal; }
+    public Animal animal() {
+        return animal;
+    }
 
     public BackToTheFuture backToTheFuture() {
-        return  backToTheFuture;
+        return backToTheFuture;
     }
 
     public PrincessBride princessBride() {
@@ -635,10 +648,6 @@ public class Faker {
 
     public ProgrammingLanguage programmingLanguage() {
         return programmingLanguage;
-    }
-
-    public Kaamelott kaamelott() {
-        return kaamelott;
     }
 
     public String resolve(String key) {
