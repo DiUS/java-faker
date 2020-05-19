@@ -3,7 +3,7 @@ package com.github.javafaker;
 import org.apache.commons.lang3.StringUtils;
 
 public class Name {
-    
+
     private final Faker faker;
 
     /**
@@ -48,7 +48,7 @@ public class Name {
 
     /**
      * <p>Returns the same value as {@link #name()}</p>
-     * @see Name#name() 
+     * @see Name#name()
      */
     public String fullName() {
         return name();
@@ -100,9 +100,9 @@ public class Name {
      */
     public String title() {
         return StringUtils.join(new String[] {
-            faker.fakeValuesService().resolve("name.title.descriptor", this, faker), 
-            faker.fakeValuesService().resolve("name.title.level", this, faker), 
-            faker.fakeValuesService().resolve("name.title.job", this, faker) }, " ");
+                faker.fakeValuesService().resolve("name.title.descriptor", this, faker),
+                faker.fakeValuesService().resolve("name.title.level", this, faker),
+                faker.fakeValuesService().resolve("name.title.job", this, faker) }, " ");
     }
 
     /**
@@ -116,7 +116,7 @@ public class Name {
      *     </ul>
      * </p>
      * @return a random two part user name.
-     * @see Name#firstName() 
+     * @see Name#firstName()
      * @see Name#lastName()
      */
     public String username() {
@@ -129,12 +129,22 @@ public class Name {
 
         return StringUtils.deleteWhitespace(username);
     }
-    
+
     /**
      * <p>Returns a blood group such as O−, O+, A-, A+, B-, B+, AB-, AB+</p>
      * @return a blood group such as O−, O+, A-, A+, B-, B+, AB-, AB+
      */
     public String bloodGroup() {
         return faker.fakeValuesService().resolve("name.blood_group", this, faker);
+    }
+
+    /**
+     * <p>
+     *     A string composed of a male_first_name or a female_first_name, a last_name, and a gender (according to the male_first_name)
+     * </p>
+     * @return a name with a gender, such as Aaron Abbott, male
+     */
+    public String nameWithGender() {
+        return faker.fakeValuesService().resolve("name.name_with_gender",this,faker);
     }
 }
