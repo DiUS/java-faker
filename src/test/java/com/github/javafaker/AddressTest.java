@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
 import org.junit.Test;
 
 import java.text.DecimalFormatSymbols;
