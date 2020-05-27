@@ -125,6 +125,7 @@ Fakers
 * Stock
 * Superhero
 * Team
+* TrashArticle
 * TwinPeaks
 * University
 * Weather
