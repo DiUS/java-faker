@@ -24,21 +24,17 @@ public class Number {
     }
 
     /**
-     * @see Number#numberBetween(long, long) 
+     * @see Number#numberBetween(long, long)
      */
     public int numberBetween(int min, int max) {
         if (min == max) return min;
-        else if (min > max){
-            int tmp = max;
-            max = min;
-            min = tmp;
-        }
-        int value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
-        return value >= max ? value - 1 : value;
+
+        int value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_DOWN).intValue();
+        return value == max ? value - 1 : value;
     }
 
     /**
-     * Return a number between <em>min</em> and <em>max</em>.  If 
+     * Return a number between <em>min</em> and <em>max</em>.  If
      * min == max, then min is returned. So numberBetween(2,2) will yield 2 even though
      * it doesn't make sense.
      *
@@ -47,15 +43,11 @@ public class Number {
      */
     public long numberBetween(long min, long max) {
         if (min == max) return min;
-        else if (min > max){
-            long tmp = max;
-            max = min;
-            min = tmp;
-        }
-        long value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_UP).longValue();
-        return value >= max ? value - 1 : value;
+
+        long value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_DOWN).longValue();
+        return value == max ? value - 1 : value;
     }
-    
+
     /**
      * @param numberOfDigits the number of digits the generated value should have
      * @param strict         whether or not the generated value should have exactly <code>numberOfDigits</code>
@@ -107,15 +99,14 @@ public class Number {
         final long trueMax = Math.max(min, max);
 
         final double range = (double) trueMax - (double) trueMin;
-        
+
         final double chunkCount = Math.sqrt(Math.abs(range));
-        final long decimalChunkCount=(long)Math.ceil(chunkCount);
-        final long randomChunk = faker.random().nextLong(decimalChunkCount);
+        final double chunkSize = chunkCount;
+        final long randomChunk = faker.random().nextLong((long) chunkCount);
 
-        final double chunkStart = trueMin + randomChunk * chunkCount;
-
-        final double adj = chunkCount * faker.random().nextDouble();
-        return chunkStart + adj >= trueMax ? new BigDecimal(trueMax -1) :new BigDecimal(chunkStart + adj);
+        final double chunkStart = trueMin + randomChunk * chunkSize;
+        final double adj = chunkSize * faker.random().nextDouble();
+        return new BigDecimal(chunkStart + adj);
     }
 
     public String digits(int count) {
