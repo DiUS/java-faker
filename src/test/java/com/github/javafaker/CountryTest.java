@@ -28,6 +28,11 @@ public class CountryTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testName() {
+        assertThat(faker.country().name(), isStringWithContents());
+    }
+
+    @Test
     public void testCapital() {
         assertThat(faker.country().capital(), matchesRegularExpression("([\\w'-]+ ?)+"));
     }
@@ -40,10 +45,5 @@ public class CountryTest extends AbstractFakerTest {
     @Test
     public void testCurrencyCode() {
         assertThat(faker.country().currencyCode(), matchesRegularExpression("([\\w-’í]+ ?)+"));
-    }
-
-    @Test
-    public void testName() {
-        assertThat(faker.country().name(), isStringWithContents());
     }
 }

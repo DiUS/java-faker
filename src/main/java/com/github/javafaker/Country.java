@@ -2,7 +2,7 @@ package com.github.javafaker;
 
 /**
  * Use to generate information of a same country.
- * @author 韩霄
+ * @author 韩霄 卞证
  * @date 2020/5/18
  */
 public class Country {
