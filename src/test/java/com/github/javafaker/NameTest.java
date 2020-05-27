@@ -80,4 +80,8 @@ public class NameTest  extends AbstractFakerTest{
         assertThat(faker.name().bloodGroup(), matchesRegularExpression("(A|B|AB|O)[+-]"));
     }
 
+    @Test
+    public void testNameWithGender(){
+        assertThat(faker.name().nameWithGender(), matchesRegularExpression("([\\w']+\\.?( )?){2},[a-z]{4,6}"));
+    }
 }
