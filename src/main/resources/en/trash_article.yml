@@ -1,0 +1,28 @@
+en:
+  faker:
+    trash_article:
+      good_first:
+        - "As far as I am concerned, TOPIC is very important in our life."
+        - "Now, to solve the problem of the TOPIC is greatly important."
+        - "In my opinion, understanding what is TOPIC is of great importace for our lifetime."
+        - "Here I will give a short example."
+        - "In many years ago, some brilliant person have already known the true meaning of TOPIC."
+      good_quote:
+        - "It is never too late to mend, this is also proper for TOPIC."
+        - "It is never too late to learn, this is right for TOPIC."
+        - "A good medicine tasks bitter, this is true for TOPIC."
+        - "Work makes the workman, this is proper for TOPIC."
+      good_end:
+        - "I wish every reader can taste each words."
+        - "This quote is wise, is not it?"
+        - "Although the quote is short, I believe it still help us understand the topic."
+        - "What a beautify quote!"
+      bad_first:
+        - "What we must face is that, if someone never understands TOPIC, he or she will only stay in his own world."
+        - "Be careful! If you ignore TOPIC, TOPIC will also abandon you!"
+        - "If someone laugh at TOPIC, the success will also laugh at them."
+      ends:
+        - "Maybe it will take us much time to understand TOPIC, but it is worthy."
+        - "In a nutshell, I wish everyone can understand TOPIC, then enjoy life!"
+        - "To conclude, it is never late to understand TOPIC!"
+
