@@ -16,9 +16,6 @@ en:
         - "#{first_name} #{last_name}"
         - "#{first_name} #{last_name}"
         - "#{first_name} #{last_name}"
-      name_with_gender:
-        - "#{male_first_name} #{last_name} ,male"
-        - "#{female_first_name} #{last_name} ,female"
       name_with_middle:
         - "#{prefix} #{first_name} #{last_name} #{last_name}"
         - "#{first_name} #{last_name} #{last_name} #{suffix}"
