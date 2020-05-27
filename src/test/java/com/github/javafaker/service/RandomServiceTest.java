@@ -68,4 +68,8 @@ public class RandomServiceTest extends AbstractFakerTest {
     public void testHex() {
         assertThat(randomService.hex(8), matchesRegularExpression("^[0-9A-F]{8}$"));
     }
+    @Test
+    public void testDefaultHex() {
+        assertThat(randomService.hex(), matchesRegularExpression("^[0-9A-F]{8}$"));
+    }
 }
