@@ -22,6 +22,22 @@ public class IdNumberTest extends AbstractFakerTest {
     @Test
     public void testSsnValid() {
         assertThat(faker.idNumber().valid(), matchesRegularExpression("[0-8]\\d{2}-\\d{2}-\\d{4}"));
+        assertThat(faker.idNumber().ssnValid(), matchesRegularExpression("[0-8]\\d{2}-\\d{2}-\\d{4}"));
+    }
+
+    @Test
+    public void testCnValid() {
+        assertThat(faker.idNumber().cnValid(), matchesRegularExpression("[0-8]\\d{5}-\\d{8}-\\d{4}"));
+    }
+
+    @Test
+    public void testValidSvSeSsn() {
+        assertThat(faker.idNumber().validSvSeSsn(), matchesRegularExpression("[0-8]\\d{5}-\\d{4}"));
+    }
+
+    @Test
+    public void testInvalidSvSeSsn() {
+        assertThat(faker.idNumber().invalidSvSeSsn(), matchesRegularExpression("[0-8]\\d{5}-\\d{4}"));
     }
 
     @Test

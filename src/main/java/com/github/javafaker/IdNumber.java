@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import com.github.javafaker.idnumbers.CnIdNumber;
 import com.github.javafaker.idnumbers.EnIdNumber;
 import com.github.javafaker.idnumbers.SvSEIdNumber;
 
@@ -21,6 +22,14 @@ public class IdNumber {
     public String ssnValid() {
         EnIdNumber enIdNumber = new EnIdNumber();
         return enIdNumber.getValidSsn(faker);
+    }
+
+    /**
+     * Generate the valid first chinese idNumber.
+     */
+    public String cnValid() {
+        CnIdNumber cnIdNumber = new CnIdNumber();
+        return cnIdNumber.getValidCn(faker);
     }
 
     /**
