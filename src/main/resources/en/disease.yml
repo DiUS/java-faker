@@ -1,0 +1,4 @@
+en:
+  faker:
+    disease:
+      type: ["Acquired disease", "Acute disease", "Chronic condition or chronic disease", "Congenital disorder or congenital disease","Genetic disease", "Hereditary or inherited disease", "Iatrogenic disease", "Idiopathic disease", "Incurable disease", "Primary disease", "Secondary disease", "Terminal disease", "Illness", "Disorder", "Predisease"]

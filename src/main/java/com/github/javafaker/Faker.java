@@ -48,6 +48,7 @@ public class Faker {
     private final GameOfThrones gameOfThrones;
     private final DateAndTime dateAndTime;
     private final Demographic demographic;
+    private final Disease disease;
     private final Dog dog;
     private final Educator educator;
     private final ElderScrolls elderScrolls;
@@ -203,6 +204,7 @@ public class Faker {
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
         this.kaamelott = new Kaamelott(this);
+        this.disease = new Disease(this);
     }
 
     /**
@@ -461,6 +463,10 @@ public class Faker {
 
     public Dog dog() {
         return dog;
+    }
+
+    public Disease disease(){
+        return disease;
     }
 
     public Educator educator() {
