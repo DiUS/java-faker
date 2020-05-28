@@ -117,6 +117,18 @@ public class NumberTest extends AbstractFakerTest {
             assertThat(v, is(greaterThanOrEqualTo(0L)));
         }
 
+        for (int i = 1; i < 100; ++i) {
+            int v = faker.number().numberBetween(i, 0);
+            assertThat(v, is(lessThanOrEqualTo(i)));
+            assertThat(v, is(greaterThanOrEqualTo(0)));
+        }
+
+        for (long i = 1L; i < 100L; ++i) {
+            long v = faker.number().numberBetween(i, 0);
+            assertThat(v, is(lessThanOrEqualTo(i)));
+            assertThat(v, is(greaterThanOrEqualTo(0L)));
+        }
+
         int min1 = 1;
         long v1 = faker.number().numberBetween(min1, 980000000L);
         assertThat(v1, is(greaterThan((long) min1)));
