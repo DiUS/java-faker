@@ -137,4 +137,14 @@ public class Name {
     public String bloodGroup() {
         return faker.fakeValuesService().resolve("name.blood_group", this, faker);
     }
+
+    /**
+     * <p>
+     *     A string composed of a male_first_name or a female_first_name, a last_name, and a gender (according to the male_first_name)
+     * </p>
+     * @return a name with a gender, such as Aaron Abbott, male
+     */
+    public String nameWithGender() {
+        return faker.fakeValuesService().resolve("name.name_with_gender",this,faker);
+    }
 }
