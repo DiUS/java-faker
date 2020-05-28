@@ -124,4 +124,15 @@ public class AddressTest extends AbstractFakerTest {
     public void testStreetPrefix() {
         assertThat(faker.address().streetPrefix(), isStringWithContents());
     }
+
+    @Test
+    public void testStreetSuffix() {
+        assertThat(faker.address().streetSuffix(), isStringWithContents());
+    }
+
+    @Test
+    public void testCitySuffix() { assertThat(faker.address().citySuffix(), isStringWithContents()); }
+
+    @Test
+    public void testCityPrefix() { assertThat(faker.address().cityPrefix(), isStringWithContents()); }
 }
