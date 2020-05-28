@@ -13,28 +13,34 @@ public class Number {
      * Returns a random number from 0-9 (both inclusive)
      */
     public int randomDigit() {
-        return decimalBetween(0,10).intValue();
+        return decimalBetween(0, 10).intValue();
     }
 
     /**
      * Returns a random number from 1-9 (both inclusive)
      */
     public int randomDigitNotZero() {
-        return decimalBetween(1,10).intValue();
+        return decimalBetween(1, 10).intValue();
     }
 
     /**
-     * @see Number#numberBetween(long, long) 
+     * @see Number#numberBetween(long, long)
      */
     public int numberBetween(int min, int max) {
         if (min == max) return min;
 
-        int value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_DOWN).intValue();
+        if (min > max) {
+            int tmp = max;
+            max = min;
+            min = tmp;
+        }
+
+        int value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
         return value == max ? value - 1 : value;
     }
 
     /**
-     * Return a number between <em>min</em> and <em>max</em>.  If 
+     * Return a number between <em>min</em> and <em>max</em>.  If
      * min == max, then min is returned. So numberBetween(2,2) will yield 2 even though
      * it doesn't make sense.
      *
@@ -44,10 +50,16 @@ public class Number {
     public long numberBetween(long min, long max) {
         if (min == max) return min;
 
-        long value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_DOWN).longValue();
+        if (min > max) {
+            long tmp = max;
+            max = min;
+            min = tmp;
+        }
+
+        long value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_UP).longValue();
         return value == max ? value - 1 : value;
     }
-    
+
     /**
      * @param numberOfDigits the number of digits the generated value should have
      * @param strict         whether or not the generated value should have exactly <code>numberOfDigits</code>
@@ -66,13 +78,14 @@ public class Number {
      * Returns a random number
      */
     public long randomNumber() {
-        int numberOfDigits = decimalBetween(1,10).intValue();
+        int numberOfDigits = decimalBetween(1, 10).intValue();
         return randomNumber(numberOfDigits, false);
     }
 
     public double randomDouble(int maxNumberOfDecimals, int min, int max) {
-        return randomDouble(maxNumberOfDecimals,(long) min, (long) max);
+        return randomDouble(maxNumberOfDecimals, (long) min, (long) max);
     }
+
     /**
      * Returns a random double
      *
@@ -81,7 +94,7 @@ public class Number {
      * @param max                 maximum value
      */
     public double randomDouble(int maxNumberOfDecimals, long min, long max) {
-        return decimalBetween(min,max)
+        return decimalBetween(min, max)
                 .setScale(maxNumberOfDecimals, BigDecimal.ROUND_HALF_DOWN)
                 .doubleValue();
     }
@@ -99,14 +112,13 @@ public class Number {
         final long trueMax = Math.max(min, max);
 
         final double range = (double) trueMax - (double) trueMin;
-        
-        final double chunkCount = Math.sqrt(Math.abs(range));
-        final double chunkSize = chunkCount;
-        final long randomChunk = faker.random().nextLong((long) chunkCount);
 
-        final double chunkStart = trueMin + randomChunk * chunkSize;
-        final double adj = chunkSize * faker.random().nextDouble();
-        return new BigDecimal(chunkStart + adj);
+        final double chunkCount = Math.sqrt(Math.abs(range));
+        final long decimalOfChunkCount = (long) Math.ceil(chunkCount);
+        final long randomChunk = faker.random().nextLong(decimalOfChunkCount);
+        final double chunkStart = trueMin + randomChunk * chunkCount;
+        final double adj = chunkCount * faker.random().nextDouble();
+        return chunkStart + adj >= trueMax ? new BigDecimal(trueMax - 1) : new BigDecimal(chunkStart + adj);
     }
 
     public String digits(int count) {
