@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
 import org.junit.Test;
 
 import java.util.Locale;
@@ -32,12 +33,13 @@ public class IdNumberTest extends AbstractFakerTest {
 
     @Test
     public void testValidSvSeSsn() {
-        assertThat(faker.idNumber().validSvSeSsn(), matchesRegularExpression("[0-8]\\d{5}-\\d{4}"));
+        assertThat(faker.idNumber().validSvSeSsn(), matchesRegularExpression("[0-9]\\d{5}[-+]\\d{4}"));
+
     }
 
     @Test
     public void testInvalidSvSeSsn() {
-        assertThat(faker.idNumber().invalidSvSeSsn(), matchesRegularExpression("[0-8]\\d{5}-\\d{4}"));
+        assertThat(faker.idNumber().invalidSvSeSsn(), matchesRegularExpression("[0-9]\\d{5}[-+]\\d{4}"));
     }
 
     @Test
