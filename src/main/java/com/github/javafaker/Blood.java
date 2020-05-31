@@ -5,7 +5,6 @@ package com.github.javafaker;
  *
  * @author Tang
  */
-
 public class Blood{
 
     private final Faker faker;
