@@ -48,4 +48,21 @@ public class PhoneNumberTest extends AbstractFakerTest {
     public void testSubscriberNumberWithLength() {
         assertThat(faker.phoneNumber().subscriberNumber(10), matchesRegularExpression("\\d{10}"));
     }
+
+    @Test
+    public void testPhoneNumberRegex() {
+        String number = faker.phoneNumber().phoneNumber("[2-4]#####");
+        assertThat(number, matchesRegularExpression("[2-4]\\d\\d\\d\\d\\d"));
+        number = faker.phoneNumber().phoneNumber("[2-4][3-7]#####");
+        assertThat(number, matchesRegularExpression("[2-4][3-7]\\d\\d\\d\\d\\d"));
+    }
+
+    @Test
+    public void testCellPhoneRegex() {
+        String number = faker.phoneNumber().cellPhone("[5-9]#-##-##");
+        assertThat(number, matchesRegularExpression("[5-9]\\d-\\d\\d-\\d\\d"));
+
+        number = faker.phoneNumber().cellPhone("[3-7][7-9]-##-##");
+        assertThat(number, matchesRegularExpression("[3-7][7-9]-\\d\\d-\\d\\d"));
+    }
 }

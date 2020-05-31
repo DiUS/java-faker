@@ -11,8 +11,16 @@ public class PhoneNumber {
         return faker.numerify(faker.fakeValuesService().resolve("cell_phone.formats", this, faker));
     }
 
+    public String cellPhone(String target) {
+        return faker.numerify(target);
+    }
+
     public String phoneNumber() {
         return faker.numerify(faker.fakeValuesService().resolve("phone_number.formats", this, faker));
+    }
+
+    public String phoneNumber(String target) {
+        return faker.numerify(target);
     }
 
     public String extension() {
