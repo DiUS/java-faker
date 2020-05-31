@@ -43,11 +43,6 @@ public class CountryTest extends AbstractFakerTest {
     }
     
     @Test
-    public void testCityInCountry(){
-        assertThat(faker.country().CityInCountry(), isStringWithContents());
-    }
-    
-    @Test
     public void testName() {
         assertThat(faker.country().name(), isStringWithContents());
     }
