@@ -86,6 +86,22 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     }
 
     @Test
+    public void numerify1ArgsRegex() {
+        Faker f = new Faker();
+        String s = "[2-4]#####";
+        String testRegex = f.numerify(s);
+        assertThat(testRegex, matchesRegularExpression("[2-4]\\d\\d\\d\\d\\d"));
+    }
+
+    @Test
+    public void numerify0Args() {
+        Faker f = new Faker();
+        String s = "##-##-##";
+        String testRegex = f.numerify(s);
+        assertThat(testRegex, matchesRegularExpression("\\d\\d-\\d\\d-\\d\\d"));
+    }
+
+    @Test
     public void regexifyDirective() {
         final DummyService dummy = mock(DummyService.class);
 
