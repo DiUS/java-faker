@@ -13,8 +13,13 @@ import java.util.Random;
  * @author ren
  */
 public class Faker {
+
     private final RandomService randomService;
     private final FakeValuesService fakeValuesService;
+
+    // member variable blood
+    private final Blood blood;
+
 
     private final Ancient ancient;
     private final App app;
@@ -95,14 +100,13 @@ public class Faker {
     private final Dune dune;
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
-    private final Kaamelott kaamelott;
 
     public Faker() {
         this(Locale.ENGLISH);
     }
 
     public Faker(Locale locale) {
-        this(locale, (Random)null);
+        this(locale, (Random) null);
     }
 
     public Faker(Random random) {
@@ -120,6 +124,9 @@ public class Faker {
     public Faker(FakeValuesService fakeValuesService, RandomService random) {
         this.randomService = random;
         this.fakeValuesService = fakeValuesService;
+
+        // initialize blood
+        this.blood = new Blood(this);
 
         this.ancient = new Ancient(this);
         this.app = new App(this);
@@ -200,7 +207,6 @@ public class Faker {
         this.dune = new Dune(this);
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
-        this.kaamelott = new Kaamelott(this);
     }
 
     /**
@@ -323,6 +329,17 @@ public class Faker {
 
     FakeValuesService fakeValuesService() {
         return this.fakeValuesService;
+    }
+
+
+
+    /**
+     * This method returns the blood object
+     *
+     * @return the blood object
+     */
+    public Blood blood() {
+        return blood;
     }
 
     public Ancient ancient() {
@@ -597,14 +614,20 @@ public class Faker {
         return lebowski;
     }
 
-    public Medical medical(){return medical;}
+    public Medical medical() {
+        return medical;
+    }
 
-    public Country country(){ return country;}
+    public Country country() {
+        return country;
+    }
 
-    public Animal animal(){ return animal; }
+    public Animal animal() {
+        return animal;
+    }
 
     public BackToTheFuture backToTheFuture() {
-        return  backToTheFuture;
+        return backToTheFuture;
     }
 
     public PrincessBride princessBride() {
@@ -629,10 +652,6 @@ public class Faker {
 
     public ProgrammingLanguage programmingLanguage() {
         return programmingLanguage;
-    }
-
-    public Kaamelott kaamelott() {
-        return kaamelott;
     }
 
     public String resolve(String key) {

@@ -161,7 +161,6 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.dune());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.aquaTeenHungerForce());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.programmingLanguage());
-        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.kaamelott());
     }
 
     private void testAllMethodsThatReturnStringsActuallyReturnStrings(Object object) throws Exception {
