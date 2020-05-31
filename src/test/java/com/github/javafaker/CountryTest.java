@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import com.github.javafaker.matchers.IsStringWithContents;
+import com.github.javafaker.matchers.MatchesRegularExpression;
 import com.github.javafaker.repeating.Repeat;
 import org.junit.Test;
 
@@ -41,6 +43,8 @@ public class CountryTest extends AbstractFakerTest {
     public void testCurrencyCode() {
         assertThat(faker.country().currencyCode(), matchesRegularExpression("([\\w-’í]+ ?)+"));
     }
+
+
 
     @Test
     public void testName() {
