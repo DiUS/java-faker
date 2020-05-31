@@ -32,16 +32,6 @@ public class Country {
     public String currencyCode() {
         return faker.fakeValuesService().resolve("country.currency_code", this, faker);
     }
-
-    /**
-     @return return a random country and its capital
-     */
-    public String CityInCountry(){
-        String[] total = faker.fakeValuesService().resolve("country.total",this,faker).split("/");
-        String city = total[3];
-        String country = total[2];
-        return country+","+city;
-    }
     
     public String name() {
         return faker.fakeValuesService().resolve("country.name", this, faker);
