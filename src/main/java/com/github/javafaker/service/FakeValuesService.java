@@ -21,6 +21,8 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.mifmif.common.regex.Generex;
+
 public class FakeValuesService {
 
     private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?((?:,?'([^']+)')*)\\}");
@@ -183,6 +185,7 @@ public class FakeValuesService {
         String[] path = key.split("\\.");
 
         Object result = null;
+
         for (FakeValuesInterface fakeValuesInterface : fakeValuesList) {
             Object currentValue = fakeValuesInterface;
             for (int p = 0; currentValue != null && p < path.length; p++) {
@@ -204,7 +207,8 @@ public class FakeValuesService {
     /**
      * Returns a string with the '#' characters in the parameter replaced with random digits between 0-9 inclusive.
      * <p/>
-     * For example, the string "ABC##EFG" could be replaced with a string like "ABC99EFG".
+     * Support regrular expression like '[2-4]'
+     * For example, the string "ABC##EFG[2-4]" could be replaced with a string like "ABC99EFG3".
      *
      * @param numberString
      * @return
@@ -213,13 +217,20 @@ public class FakeValuesService {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < numberString.length(); i++) {
             if (numberString.charAt(i) == '#') {
-                sb.append(randomService.nextInt(10));
+                sb.append("\\d");
+            }
+            else if (numberString.charAt(i) == '?') {
+                    sb.append("[?]");
             } else {
                 sb.append(numberString.charAt(i));
+
             }
         }
 
-        return sb.toString();
+        String result = sb.toString();
+        Generex generex = new Generex(result);
+        String randomStr = generex.random();
+        return randomStr;
     }
 
     /**
@@ -303,11 +314,9 @@ public class FakeValuesService {
      */
     public String resolve(String key, Object current, Faker root) {
         final String expression = safeFetch(key, null);
-
         if (expression == null) {
             throw new RuntimeException(key + " resulted in null expression");
         }
-
         return resolveExpression(expression, current, root);
     }
 
