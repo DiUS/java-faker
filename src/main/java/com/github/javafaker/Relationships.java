@@ -46,15 +46,9 @@ public class Relationships {
             Method runMethod = methods[indx];
             Relationships relationships = new Relationships(faker);
             return (String)runMethod.invoke(relationships);
-        } catch (SecurityException e) {
-            throw new RuntimeException("SecurityException: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException("IllegalArgumentException: " + e.getMessage());
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException("IllegalAccessException: " + e.getMessage());
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException("InvocationTargetException: " + e.getMessage());
-        }
+        } catch (Exception e) {
+            throw new RuntimeException("Exception: " + e.getMessage());
+        } 
     }
 
 }
