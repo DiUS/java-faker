@@ -31,6 +31,7 @@ public class Faker {
     private final Address address;
     private final Business business;
     private final Book book;
+    private final Blood blood;
     private final ChuckNorris chuckNorris;
     private final Color color;
     private final Commerce commerce;
@@ -137,6 +138,7 @@ public class Faker {
         this.address = new Address(this);
         this.book = new Book(this);
         this.business = new Business(this);
+        this.blood = new Blood(this);
         this.chuckNorris = new ChuckNorris(this);
         this.color = new Color(this);
         this.idNumber = new IdNumber(this);
@@ -378,6 +380,8 @@ public class Faker {
     public Address address() {
         return address;
     }
+
+    public Blood blood() { return blood; }
 
     public Book book() {
         return book;

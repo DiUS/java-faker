@@ -37,6 +37,7 @@ public class EnFile {
             "back_to_the_future.yml",
             "bank.yml",
             "beer.yml",
+            "blood.yml",
             "bojack_horseman.yml",
             "book.yml",
             "bossa_nova.yml",
