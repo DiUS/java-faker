@@ -41,7 +41,12 @@ public class CountryTest extends AbstractFakerTest {
     public void testCurrencyCode() {
         assertThat(faker.country().currencyCode(), matchesRegularExpression("([\\w-’í]+ ?)+"));
     }
-
+    
+    @Test
+    public void testCityInCountry(){
+        assertThat(faker.country().CityInCountry(), isStringWithContents());
+    }
+    
     @Test
     public void testName() {
         assertThat(faker.country().name(), isStringWithContents());
