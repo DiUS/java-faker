@@ -15,7 +15,6 @@ import java.util.Random;
 public class Faker {
     private final RandomService randomService;
     private final FakeValuesService fakeValuesService;
-    Locale locale;
 
     private final Ancient ancient;
     private final App app;
@@ -117,7 +116,6 @@ public class Faker {
 
     public Faker(Locale locale, RandomService randomService) {
         this(new FakeValuesService(locale, randomService), randomService);
-        this.locale = locale;
     }
 
     public Faker(FakeValuesService fakeValuesService, RandomService random) {
@@ -245,6 +243,10 @@ public class Faker {
      */
     public static Faker instance(Locale locale, Random random) {
         return new Faker(locale, random);
+    }
+
+    Locale getLocale() {
+        return fakeValuesService.getLocales().get(0);
     }
 
     /**
