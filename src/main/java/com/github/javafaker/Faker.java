@@ -246,7 +246,7 @@ public class Faker {
     }
 
     Locale getLocale() {
-        return fakeValuesService.getLocales().get(0);
+        return fakeValuesService.getLocalesChain().get(0);
     }
 
     /**

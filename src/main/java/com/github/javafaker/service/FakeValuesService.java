@@ -27,7 +27,7 @@ public class FakeValuesService {
     private final List<FakeValuesInterface> fakeValuesList;
     private final RandomService randomService;
 
-    private final List<Locale> locales;
+    private final List<Locale> localesChain;
 
     /**
      * <p>
@@ -58,10 +58,10 @@ public class FakeValuesService {
         this.randomService = randomService;
         locale = normalizeLocale(locale);
 
-        locales = localeChain(locale);
-        final List<FakeValuesInterface> all = new ArrayList(locales.size());
+        localesChain = localeChain(locale);
+        final List<FakeValuesInterface> all = new ArrayList(localesChain.size());
 
-        for (final Locale l : locales) {
+        for (final Locale l : localesChain) {
             boolean isEnglish = l.equals(Locale.ENGLISH);
             if (isEnglish) {
                 FakeValuesGrouping fakeValuesGrouping = new FakeValuesGrouping();
@@ -115,8 +115,8 @@ public class FakeValuesService {
         }
     }
 
-    public List<Locale> getLocales() {
-        return locales;
+    public List<Locale> getLocalesChain() {
+        return localesChain;
     }
 
     /**
