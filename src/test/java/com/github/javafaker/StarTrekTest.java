@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertFalse;
 
 public class StarTrekTest extends AbstractFakerTest {
 
@@ -26,4 +27,7 @@ public class StarTrekTest extends AbstractFakerTest {
     public void villain() {
         assertThat(faker.starTrek().villain(), matchesRegularExpression("^(\\w+'?\\.?\\s?)+$"));
     }
+
+    @Test
+    public void klingon() { assertFalse(faker.starTrek().klingon().isEmpty()); }
 }
