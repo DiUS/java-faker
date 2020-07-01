@@ -98,6 +98,7 @@ public class Faker {
     private final ProgrammingLanguage programmingLanguage;
     private final Kaamelott kaamelott;
     private final Disease disease;
+    private final Basketball basketball;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -205,6 +206,7 @@ public class Faker {
         this.programmingLanguage = new ProgrammingLanguage(this);
         this.kaamelott = new Kaamelott(this);
         this.disease = new Disease(this);
+        this.basketball = new Basketball(this);
     }
 
     /**
@@ -641,7 +643,11 @@ public class Faker {
         return kaamelott;
     }
 
+
     public Disease disease() {return disease; }
+
+    public Basketball basketball() { return basketball; }
+
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
