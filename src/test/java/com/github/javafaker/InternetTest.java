@@ -1,10 +1,12 @@
 package com.github.javafaker;
 
+import com.github.javafaker.matchers.MatchesRegularExpression;
 import com.github.javafaker.repeating.Repeat;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
@@ -109,7 +111,7 @@ public class InternetTest extends AbstractFakerTest {
 
     @Test
     public void testDomainSuffix() {
-      assertThat(faker.internet().domainSuffix(), matchesRegularExpression("\\w{2,4}"));
+        assertThat(faker.internet().domainSuffix(), matchesRegularExpression("\\w{2,4}"));
     }
 
     @Test
@@ -125,10 +127,10 @@ public class InternetTest extends AbstractFakerTest {
 
     @Test
     public void testPasswordIncludeDigit() {
+
         assertThat(faker.internet().password(), matchesRegularExpression("[a-z\\d]{8,16}"));
         assertThat(faker.internet().password(false), matchesRegularExpression("[a-z]{8,16}"));
     }
-
     @Test
     public void testPasswordMinLengthMaxLength() {
         assertThat(faker.internet().password(10, 25), matchesRegularExpression("[a-z\\d]{10,25}"));
@@ -169,9 +171,9 @@ public class InternetTest extends AbstractFakerTest {
         // loop through 1000 times just to 'run it through the wringer'
         for (int i=0; i<1000;i++) {
             assertThat(
-              "Is valid mac format",
-              faker.internet().macAddress(),
-              matchesRegularExpression("[0-9a-fA-F]{2}(\\:([0-9a-fA-F]{1,4})){5}"));
+                    "Is valid mac format",
+                    faker.internet().macAddress(),
+                    matchesRegularExpression("[0-9a-fA-F]{2}(\\:([0-9a-fA-F]{1,4})){5}"));
         }
     }
 
@@ -195,7 +197,7 @@ public class InternetTest extends AbstractFakerTest {
     public void testIpV4Cidr() {
         assertThat(faker.internet().ipV4Cidr(), countOf('.', is(3)));
         assertThat(faker.internet().ipV4Cidr(), countOf('/', is(1)));
-        
+
         for (int i = 0; i < 1000; i++) {
             assertThat(parseInt(faker.internet().ipV4Cidr().split("/")[1]),
                     both(greaterThanOrEqualTo(1)).and(lessThan(32)));
@@ -210,7 +212,7 @@ public class InternetTest extends AbstractFakerTest {
         String oneNineTwo = "^192\\.168\\..+";
         String oneSevenTwo = "^172\\.(16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31)\\..+";
 
-        
+
         for (int i = 0; i < 1000; i++) {
             String addr = faker.internet().privateIpV4Address();
             assertThat(addr, anyOf(matchesRegularExpression(tenDot),
@@ -241,7 +243,7 @@ public class InternetTest extends AbstractFakerTest {
     @Test
     public void testIpV6() {
         assertThat(faker.internet().ipV6Address(), countOf(':', is(7)));
-        
+
         for (int i = 0; i < 1000; i++) {
             assertThat(
                     "Is valid ipv6 format",
@@ -300,5 +302,38 @@ public class InternetTest extends AbstractFakerTest {
 
         //Test faker.internet().userAgentAny() for random user_agent retrieval.
         assertThat(faker.internet().userAgentAny(), not(isEmptyOrNullString()));
+    }
+    @Test
+    public void generateDigitPasswordTest(){
+        boolean isSatisfied =true;
+        for(int i=0;i<10000;i++){
+            Faker faker = new Faker();
+            String s=faker.internet().password(10, 25, true,true,true);
+            boolean hasDigit=false;
+            for(int j=0;j<s.length();j++){
+                if (s.charAt(j) >= '0' && s.charAt(j) <= '9') {
+                    hasDigit = true;
+                    break;
+                }
+            }
+            if (!hasDigit){isSatisfied=false;break;}
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+
+    @Test
+    public void generatePasswordWithoutUppercaseTest(){
+        boolean isSatisfied =true;
+        for(int i=0;i<10000;i++){
+            Faker faker = new Faker();
+            String s=faker.internet().password(10, 25, false,true,true);
+            boolean notHasUppercase=true;
+            for(int j=0;j<s.length();j++){
+                char ch=s.charAt(j);
+                if (ch >='A'&& ch<='Z'){notHasUppercase=false;break;}
+            }
+            if (!notHasUppercase){isSatisfied=false;break;}
+        }
+        Assert.assertTrue(isSatisfied);
     }
 }

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import static org.apache.commons.lang3.StringUtils.join;
@@ -126,17 +127,60 @@ public class Internet {
         return password(minimumLength, maximumLength, includeUppercase, includeSpecial, true);
     }
 
+    /**
+     * Generate random password with requirements(length, uppercase words, digits, special characters)
+     * @param minimumLength The minimum length of password
+     * @param maximumLength The maximum length of password
+     * @param includeUppercase Select whether the password contains uppercase words or not
+     * @param includeSpecial Select whether the password contains special characters or not
+     * @param includeDigit Select whether the password contains digits or not
+     * @return A password string
+     */
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial, boolean includeDigit) {
-        if (includeSpecial) {
-            char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
-            char[] special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
-            for (int i = 0; i < faker.random().nextInt(minimumLength); i++) {
-                password[faker.random().nextInt(password.length)] = special[faker.random().nextInt(special.length)];
-            }
-            return new String(password);
-        } else {
-            return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
+        char[] special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
+        int needLength=0,meetUppercase=-1,meetDigit=-1,meetSpecial=-1;
+        if(includeUppercase){meetUppercase=1;needLength+=1;}
+        if(includeSpecial){meetSpecial=1;needLength+=1;}
+        if(includeDigit){meetDigit=1;needLength+=1;}
+        if(maximumLength<needLength+1)return null;
+        int realMinimumLength=Math.max(minimumLength,(needLength+1));
+        Random random = new Random();
+        int expectedLength=random.nextInt((maximumLength-realMinimumLength+1))+realMinimumLength;
+        char [] password=new char[expectedLength];
+        for(int i=0;i<password.length;i++){
+            int ch = 'a'+random.nextInt(26);
+            password[i]=(char)ch;
         }
+        int abnormalLength=random.nextInt(expectedLength-needLength)+needLength;
+        int normalLength=expectedLength-abnormalLength;
+        for(int i=0;i<password.length;i++){
+            double possibility=random.nextDouble();
+            if(abnormalLength==0){break;}
+            if(normalLength==0){
+                if(meetUppercase==1){meetUppercase=0;password[i]=(char)('A'+random.nextInt(26));}
+                else if(meetSpecial==1){meetSpecial=0;password[i]=special[random.nextInt(8)];}
+                else if(meetDigit==1){meetDigit=0;password[i]=(char)('0'+random.nextInt(10));}
+                else{
+                    if(possibility<=0.33&&meetUppercase!=-1){password[i]=(char)('A'+random.nextInt(26));}
+                    else if(possibility<=0.66&&meetSpecial!=-1){password[i]=special[random.nextInt(8)];}
+                    else if(possibility<=1&&meetDigit!=-1){password[i]=(char)('0'+random.nextInt(10));}
+                }
+                continue;
+            }
+            if(possibility>0.7){
+                if(meetUppercase==1){meetUppercase=0;password[i]=(char)('A'+random.nextInt(26));}
+                else if(meetSpecial==1){meetSpecial=0;password[i]=special[random.nextInt(8)];}
+                else if(meetDigit==1){meetDigit=0;password[i]=(char)('0'+random.nextInt(10));}
+                else{
+                    if(possibility<=0.8&&meetUppercase!=-1){password[i]=(char)('A'+random.nextInt(26));}
+                    else if(possibility<=0.66&&meetSpecial!=-1){password[i]=special[random.nextInt(8)];}
+                    else if(possibility<=1&&meetDigit!=-1){password[i]=(char)('0'+random.nextInt(10));}
+                }
+                abnormalLength-=1;
+            }
+            else normalLength-=1;
+        }
+        return new String(password);
     }
     
     /**
