@@ -4,14 +4,12 @@
 package com.github.javafaker;
 
 import org.junit.Test;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
-
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /**
  * @author pmiklos
@@ -80,7 +78,16 @@ public class DateAndTimeTest extends AbstractFakerTest {
             assertThat("before lower bound", date.getTime(), greaterThanOrEqualTo(now.getTime()));
         }
     }
-
+    @Test
+    public void testBetweenThenLargerThanNow(){
+        try{
+        Date now = new Date();
+        Date then = new Date(now.getTime() + 1000);
+        Date date =faker.date().between(then,now);
+        fail("Should be exception");}catch (IllegalArgumentException e){
+            assertEquals("Invalid date range, the upper bound date is before the lower bound.", e.getMessage());
+        }
+    }
     @Test
     public void testBirthday() {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
