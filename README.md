@@ -67,6 +67,7 @@ Fakers
 * Aviation
 * Basketball
 * Beer
+* Bojack Horseman
 * Book
 * Bool
 * Business

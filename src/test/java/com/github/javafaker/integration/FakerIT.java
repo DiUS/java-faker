@@ -163,6 +163,7 @@ public class FakerIT {
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.aquaTeenHungerForce());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.programmingLanguage());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.kaamelott());
+        testAllMethodsThatReturnStringsActuallyReturnStrings(faker.bojackHorseman());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.basketball());
     }
 
