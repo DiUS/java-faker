@@ -97,6 +97,7 @@ public class Faker {
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
     private final Kaamelott kaamelott;
+    private final Basketball basketball;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -203,6 +204,7 @@ public class Faker {
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
         this.kaamelott = new Kaamelott(this);
+        this.basketball = new Basketball(this);
     }
 
     /**
@@ -491,9 +493,7 @@ public class Faker {
         return team;
     }
 
-    public Beer beer() {
-        return beer;
-    }
+    public Beer beer() { return beer; }
 
     public University university() {
         return university;
@@ -641,6 +641,7 @@ public class Faker {
         return kaamelott;
     }
 
+    public Basketball basketball() { return basketball; }
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
     }
