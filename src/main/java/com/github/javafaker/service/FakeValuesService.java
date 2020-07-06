@@ -72,7 +72,7 @@ public class FakeValuesService {
                 }
                 all.add(fakeValuesGrouping);
             } else {
-                all.add(new FakeValues(locale));
+                all.add(new FakeValues(l));
             }
         }
 

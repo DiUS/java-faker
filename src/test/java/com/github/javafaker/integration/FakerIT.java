@@ -47,6 +47,11 @@ public class FakerIT {
         exceptions.put(new Locale("pt"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
         exceptions.put(new Locale("uk"), Arrays.asList("Address.stateAbbr", "Address.streetSuffix",
                 "Address.cityPrefix", "Address.citySuffix"));
+        exceptions.put(new Locale("pt-BR"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
+        exceptions.put(new Locale("pt-br"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
+        exceptions.put(new Locale("Pt_br"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
+        exceptions.put(new Locale("pT_Br"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
+        exceptions.put(new Locale("pt","Br", "x2"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
     }
 
     public FakerIT(Locale locale, Random random) {
