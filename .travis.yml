@@ -1,8 +1,7 @@
 language: java
 dist: xenial
 jdk:
-- oraclejdk8
-- openjdk7
+- oraclejdk9
 - openjdk10
 - oraclejdk11
 sudo: true
