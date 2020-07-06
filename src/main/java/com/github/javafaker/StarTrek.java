@@ -22,4 +22,8 @@ public class StarTrek {
     public String villain() {
         return faker.fakeValuesService().resolve("star_trek.villain", this, faker);
     }
+
+    public String klingon() {
+        return faker.fakeValuesService().resolve("star_trek.klingon", this, faker);
+    }
 }
