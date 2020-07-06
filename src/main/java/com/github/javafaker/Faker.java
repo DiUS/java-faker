@@ -98,6 +98,7 @@ public class Faker {
     private final ProgrammingLanguage programmingLanguage;
     private final Kaamelott kaamelott;
     private final BojackHorseman bojackHorseman;
+    private final Disease disease;
     private final Basketball basketball;
 
     public Faker() {
@@ -206,6 +207,7 @@ public class Faker {
         this.programmingLanguage = new ProgrammingLanguage(this);
         this.kaamelott = new Kaamelott(this);
         this.bojackHorseman = new BojackHorseman(this);
+        this.disease = new Disease(this);
         this.basketball = new Basketball(this);
     }
 
@@ -644,6 +646,8 @@ public class Faker {
     }
 
     public BojackHorseman bojackHorseman() { return bojackHorseman; }
+
+    public Disease disease() {return disease; }
 
     public Basketball basketball() { return basketball; }
 
