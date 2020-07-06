@@ -107,7 +107,7 @@ public class Faker {
     }
 
     public Faker(Locale locale) {
-        this(locale, (Random) null);
+        this(locale, (Random)null);
     }
 
     public Faker(Random random) {
