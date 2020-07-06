@@ -101,6 +101,7 @@ public class Faker {
     private final BojackHorseman bojackHorseman;
     private final Disease disease;
     private final Basketball basketball;
+    private final Barcode barcode;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -211,6 +212,7 @@ public class Faker {
         this.bojackHorseman = new BojackHorseman(this);
         this.disease = new Disease(this);
         this.basketball = new Basketball(this);
+        this.barcode = new Barcode(this);
     }
 
     /**
@@ -662,6 +664,8 @@ public class Faker {
     public Disease disease() {return disease; }
 
     public Basketball basketball() { return basketball; }
+
+    public Barcode barcode() { return barcode; }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);

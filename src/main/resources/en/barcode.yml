@@ -1,0 +1,10 @@
+en:
+  faker:
+    barcode:
+      types: ['UPC', 'UPC-A', 'UPC-E', 'Code128', 'Code39','Code93', 'EAN', 'EAN-13', 'EAN-8', 'JAN-13', 'ISBN', 'ISSN',
+              'ITF', 'Codabar', 'Ames Code', 'NW-7', 'Monarch', 'Code 2 of 7', 'Rationalized', 'ANSI/AIM BC3-1995', 'USD-4',
+              'GS1 Databar', 'MSI Plessey', 'UCC']
+      datas: ['12345678', '09876543', '05755069', '15008444', '69503172', '05082366', '29951287', '37457367',
+              '87164772', '17217165', '56462327', '35186895', '16957481', '68124245', '28664694', '12372549',
+              '02527355']
+      typeAndData: "#{barcode.types} #{barcode.datas}"

@@ -35,6 +35,7 @@ public class EnFile {
             "artist.yml",
             "aviation.yml",
             "back_to_the_future.yml",
+            "barcode.yml",
             "bank.yml",
             "basketball.yml",
             "beer.yml",
