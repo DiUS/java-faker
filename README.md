@@ -123,6 +123,7 @@ Fakers
 * Robin
 * RockBand
 * Shakespeare
+* Sip
 * SlackEmoji
 * Space
 * StarTrek
