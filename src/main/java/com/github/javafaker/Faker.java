@@ -98,6 +98,7 @@ public class Faker {
     private final AquaTeenHungerForce aquaTeenHungerForce;
     private final ProgrammingLanguage programmingLanguage;
     private final Kaamelott kaamelott;
+    private final StarCraft starCraft;
     private final BojackHorseman bojackHorseman;
     private final Disease disease;
     private final Basketball basketball;
@@ -210,6 +211,7 @@ public class Faker {
         this.aquaTeenHungerForce = new AquaTeenHungerForce(this);
         this.programmingLanguage = new ProgrammingLanguage(this);
         this.kaamelott = new Kaamelott(this);
+        this.starCraft = new StarCraft(this);
         this.bojackHorseman = new BojackHorseman(this);
         this.disease = new Disease(this);
         this.basketball = new Basketball(this);
@@ -659,6 +661,10 @@ public class Faker {
 
     public Kaamelott kaamelott() {
         return kaamelott;
+    }
+
+    public StarCraft starCraft() {
+        return starCraft;
     }
 
     public BojackHorseman bojackHorseman() { return bojackHorseman; }

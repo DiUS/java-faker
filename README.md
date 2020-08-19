@@ -126,6 +126,7 @@ Fakers
 * Sip
 * SlackEmoji
 * Space
+* StarCraft
 * StarTrek
 * Stock
 * Superhero
