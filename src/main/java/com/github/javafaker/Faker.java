@@ -46,6 +46,7 @@ public class Faker {
     private final Finance finance;
     private final Food food;
     private final GameOfThrones gameOfThrones;
+    private final Gender gender;
     private final DateAndTime dateAndTime;
     private final Demographic demographic;
     private final Dog dog;
@@ -98,6 +99,10 @@ public class Faker {
     private final ProgrammingLanguage programmingLanguage;
     private final Kaamelott kaamelott;
     private final StarCraft starCraft;
+    private final BojackHorseman bojackHorseman;
+    private final Disease disease;
+    private final Basketball basketball;
+    private final Barcode barcode;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -153,6 +158,7 @@ public class Faker {
         this.finance = new Finance(this);
         this.food = new Food(this);
         this.gameOfThrones = new GameOfThrones(this);
+        this.gender = new Gender(this);
         this.dateAndTime = new DateAndTime(this);
         this.demographic = new Demographic(this);
         this.dog = new Dog(this);
@@ -205,6 +211,10 @@ public class Faker {
         this.programmingLanguage = new ProgrammingLanguage(this);
         this.kaamelott = new Kaamelott(this);
         this.starCraft = new StarCraft(this);
+        this.bojackHorseman = new BojackHorseman(this);
+        this.disease = new Disease(this);
+        this.basketball = new Basketball(this);
+        this.barcode = new Barcode(this);
     }
 
     /**
@@ -453,6 +463,10 @@ public class Faker {
         return gameOfThrones;
     }
 
+    public Gender gender() {
+        return gender;
+    }
+
     public DateAndTime date() {
         return dateAndTime;
     }
@@ -493,9 +507,7 @@ public class Faker {
         return team;
     }
 
-    public Beer beer() {
-        return beer;
-    }
+    public Beer beer() { return beer; }
 
     public University university() {
         return university;
@@ -605,14 +617,20 @@ public class Faker {
         return lebowski;
     }
 
-    public Medical medical(){return medical;}
+    public Medical medical() {
+        return medical;
+    }
 
-    public Country country(){ return country;}
+    public Country country() {
+        return country;
+    }
 
-    public Animal animal(){ return animal; }
+    public Animal animal() {
+        return animal;
+    }
 
     public BackToTheFuture backToTheFuture() {
-        return  backToTheFuture;
+        return backToTheFuture;
     }
 
     public PrincessBride princessBride() {
@@ -646,6 +664,14 @@ public class Faker {
     public StarCraft starCraft() {
         return starCraft;
     }
+
+    public BojackHorseman bojackHorseman() { return bojackHorseman; }
+
+    public Disease disease() {return disease; }
+
+    public Basketball basketball() { return basketball; }
+
+    public Barcode barcode() { return barcode; }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
