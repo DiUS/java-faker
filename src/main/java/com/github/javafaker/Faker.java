@@ -102,6 +102,7 @@ public class Faker {
     private final Disease disease;
     private final Basketball basketball;
     private final Barcode barcode;
+    private final Sip sip;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -213,6 +214,7 @@ public class Faker {
         this.disease = new Disease(this);
         this.basketball = new Basketball(this);
         this.barcode = new Barcode(this);
+        this.sip = new Sip(this);
     }
 
     /**
@@ -666,6 +668,8 @@ public class Faker {
     public Basketball basketball() { return basketball; }
 
     public Barcode barcode() { return barcode; }
+
+    public Sip sip() { return sip; }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);

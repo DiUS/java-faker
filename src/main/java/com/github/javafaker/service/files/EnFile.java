@@ -145,6 +145,7 @@ public class EnFile {
             "silicon_valley.yml",
             "simpsons.yml",
             "singular_siegler.yml",
+            "sip.yml",
             "slack_emoji.yml",
             "sonic_the_hedgehog.yml",
             "source.yml",
