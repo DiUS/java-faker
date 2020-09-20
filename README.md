@@ -49,6 +49,34 @@ Javadoc
 http://dius.github.io/java-faker/apidocs/index.html
 
 
+Android Setup Instructions
+-----
+Android studio uses gradle to build to project so you need to migrate maven project to gradle which could be done using following steps.
+1. Clone the repository locally.
+2. Migrate this Maven project to Gradle
+    1. Open terminal and navigate to root of the project, where `pom.xml` is present,
+    2. run `gradle init` command in terminal,
+    3. It will ask you to migrate the existing maven project to gradle, select `yes`,
+    4. run command `sh gradlew build` to make sure project is successfully migrated.
+3. Import Module to Android Studio
+    1. Open android studio project
+    2. `Select file > new > import module > select java library`
+    3. In wizard dialog, add library name : `javaFaker`, 
+        package name : `com.github.javafaker` ,
+        class name: `myClass`  
+    4. In app gradle dependency add 
+        ``` 
+        dependencies{
+            implementation project(path: ':javaFaker')
+            ...
+        }
+        ```
+    5. Copy `gradle.build` content from local migrated clone of library and paste it in `gradle.build` of javaFaker to your project.
+    6. Copy paste all the files from local clone to the javaFaker module in your project.
+    7. Sync and update your imports and Faker library would be available for use.
+    
+
+
 Contributions
 -------------
 See [CONTRIBUTING.md](https://github.com/DiUS/java-faker/blob/master/CONTRIBUTING.md)
