@@ -104,6 +104,7 @@ public class Faker {
     private final Basketball basketball;
     private final Barcode barcode;
     private final Sip sip;
+    private final Dessert dessert;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -217,6 +218,7 @@ public class Faker {
         this.basketball = new Basketball(this);
         this.barcode = new Barcode(this);
         this.sip = new Sip(this);
+        this.dessert = new Dessert(this);
     }
 
     /**
@@ -676,6 +678,8 @@ public class Faker {
     public Barcode barcode() { return barcode; }
 
     public Sip sip() { return sip; }
+
+    public Dessert dessert() { return dessert; }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
