@@ -1,8 +1,6 @@
 language: java
-dist: trusty
+dist: xenial
 jdk:
-- oraclejdk8
-- openjdk7
 - openjdk10
 - oraclejdk11
 sudo: true
