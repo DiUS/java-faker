@@ -65,7 +65,7 @@ public class RandomServiceTest extends AbstractFakerTest {
     }
 
     @Test
-    public void shouldReturnZeroWhenNextIntReceivesANumberLowerThanOne() {
+    public void nextIntShouldReturnZeroWhenPassingANumberThatIsLessThanOne() {
         assertThat(randomService.nextInt(0), is(0));
         assertThat(randomService.nextInt(-5), is(0));
     }
