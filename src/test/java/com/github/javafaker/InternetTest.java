@@ -147,6 +147,13 @@ public class InternetTest extends AbstractFakerTest {
     }
 
     @Test
+    public void shouldCreateAPasswordOfFixedLengthWhenPassingTheSameMinAndMaxLength() {
+        assertThat(faker.internet().password(10, 10, true, false, true).length(), is(10));
+        assertThat(faker.internet().password(32, 32, true, true, true).length(), is(32));
+        assertThat(faker.internet().password(80, 80, true, true, false).length(), is(80));
+    }
+
+    @Test
     public void testMacAddress() {
         assertThat(faker.internet().macAddress(), countOf(':', is(5)));
         assertThat(faker.internet().macAddress(""), countOf(':', is(5)));

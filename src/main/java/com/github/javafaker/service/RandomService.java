@@ -21,7 +21,7 @@ public class RandomService {
     }
 
     public int nextInt(int n) {
-        return random.nextInt(n);
+        return n > 1 ? random.nextInt(n) : 0;
     }
 
     public long nextLong() {
