@@ -42,8 +42,8 @@ public class Photography {
     /**
      * @return a photography genre.
      */
-    public String gengre() {
-        return faker.fakeValuesService().fetchString("photography.gengre");
+    public String genre() {
+        return faker.fakeValuesService().fetchString("photography.genre");
     }
 
     /**
