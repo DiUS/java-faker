@@ -1,7 +1,7 @@
 package com.github.javafaker;
 
 
-import com.github.javafaker.matchers.MatchesRegularExpression;
+
 import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
