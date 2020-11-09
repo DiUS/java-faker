@@ -57,4 +57,5 @@ public class FakeValuesTest {
         FakeValues fakeValues = new FakeValues(new Locale("nothing"));
         assertThat(fakeValues.get(PATH), is(nullValue()));
     }
+
 }

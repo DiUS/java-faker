@@ -67,6 +67,7 @@ Fakers
 * Aviation
 * Basketball
 * Beer
+* Bojack Horseman
 * Book
 * Bool
 * Business
@@ -80,6 +81,7 @@ Fakers
 * Crypto
 * DateAndTime
 * Demographic
+* Disease
 * Dog
 * DragonBall
 * Dune
@@ -91,6 +93,7 @@ Fakers
 * Friends
 * FunnyName
 * GameOfThrones
+* Gender
 * Hacker
 * HarryPotter
 * Hipster
@@ -121,8 +124,10 @@ Fakers
 * Robin
 * RockBand
 * Shakespeare
+* Sip
 * SlackEmoji
 * Space
+* StarCraft
 * StarTrek
 * Stock
 * Superhero
