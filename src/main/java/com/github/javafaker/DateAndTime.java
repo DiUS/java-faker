@@ -153,22 +153,22 @@ public class DateAndTime {
     }
 
     /**
-     * Generates a random birthday between 65 and 18 years ago.
+     * Generates a random birthday between 65 and 18 years ago from now.
      *
-     * @return a random birthday between 65 and 18 years ago.
+     * @return a random birthday between 65 and 18 years ago from now.
      */
     public Date birthday() {
         return birthday(DEFAULT_MIN_AGE, DEFAULT_MAX_AGE);
     }
 
     /**
-     * Generates a random birthday between two ages.
+     * Generates a random birthday between two ages from now.
      *
      * @param minAge
      *            the minimal age
      * @param maxAge
      *            the maximal age
-     * @return a random birthday between {@code minAge} and {@code maxAge} years ago.
+     * @return a random birthday between {@code minAge} and {@code maxAge} years ago from now.
      * @throws IllegalArgumentException
      *             if the {@code maxAge} is lower than {@code minAge}.
      */
