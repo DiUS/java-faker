@@ -131,6 +131,7 @@ public class EnFile {
             "parks_and_rec.yml",
             "phish.yml",
             "phone_number.yml",
+            "photography.yml",
             "pokemon.yml",
             "princess_bride.yml",
             "programming_language.yml",

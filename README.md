@@ -117,6 +117,7 @@ Fakers
 * Options
 * Overwatch
 * PhoneNumber
+* Photography
 * Pokemon
 * Princess Bride
 * Relationship Terms
