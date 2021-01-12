@@ -76,6 +76,7 @@ public class Faker {
     private final Yoda yoda;
     private final Matz matz;
     private final Witcher witcher;
+    private final CPF cpf;
     private final DragonBall dragonBall;
     private final FunnyName funnyName;
     private final HitchhikersGuideToTheGalaxy hitchhikersGuideToTheGalaxy;
@@ -190,6 +191,7 @@ public class Faker {
         this.yoda = new Yoda(this);
         this.matz = new Matz(this);
         this.witcher = new Witcher(this);
+        this.cpf = new CPF(this);
         this.dragonBall = new DragonBall(this);
         this.funnyName = new FunnyName(this);
         this.hitchhikersGuideToTheGalaxy = new HitchhikersGuideToTheGalaxy(this);
@@ -579,6 +581,10 @@ public class Faker {
         return witcher;
     }
 
+    public CPF cpf() {
+        return cpf;
+    }
+  
     public DragonBall dragonBall() {
         return dragonBall;
     }
