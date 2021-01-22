@@ -39,4 +39,26 @@ public class IdNumberTest extends AbstractFakerTest {
             assertThat(f.idNumber().invalid(), matchesRegularExpression("\\d{6}[-+]\\d{4}"));
         }
     }
+
+    @Test
+    public void testDni() {
+        final Faker f = new Faker();
+        assertThat(f.idNumber().dni(), matchesRegularExpression("^[0-9]{8,8}-[A-Za-z]$"));
+    }
+
+    @Test
+    public void testDniBasedInLocale() {
+        final Faker f = new Faker(new Locale("es"));
+        for (int i = 0; i < 100; i++) {
+            assertThat(f.idNumber().valid(), matchesRegularExpression("^[0-9]{8,8}-[A-Za-z]$"));
+        }
+    }
+
+    @Test
+    public void testInvalidDniBasedInLocale() {
+        final Faker f = new Faker(new Locale("es"));
+        for (int i = 0; i < 100; i++) {
+            assertThat(f.idNumber().invalid(), matchesRegularExpression("^[0-9]{8,8}-[A-Za-z]$"));
+        }
+    }
 }
