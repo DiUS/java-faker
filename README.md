@@ -110,6 +110,7 @@ Fakers
 * LordOfTheRings
 * Lorem
 * Matz
+* Military
 * Music
 * Name
 * Nation
