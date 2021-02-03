@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
@@ -207,6 +208,22 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testLocalesChainGetter() {
+        final List<Locale> chain = fakeValuesService.getLocalesChain();
+
+        assertThat(chain, contains(new Locale("test"), Locale.ENGLISH));
+    }
+
+    @Test
+    public void testLocalesChainGetterRu() {
+        final FakeValuesService FVS = new FakeValuesService(new Locale("ru"), randomService);
+        final List<Locale> processedChain = FVS.localeChain(new Locale("ru"));
+        final List<Locale> chain = FVS.getLocalesChain();
+
+        assertThat(chain, equalTo(processedChain));
+    }
+
+    @Test
     public void expressionWithInvalidFakerObject() {
         expressionShouldFailWith("#{ObjectNotOnFaker.methodName}",
                 "Unable to resolve #{ObjectNotOnFaker.methodName} directive.");
@@ -222,7 +239,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
      * Two things are important here:
      * 1) the message in the exception should be USEFUL
      * 2) a {@link RuntimeException} should be thrown.
-     *
+     * <p>
      * if the message changes, it's ok to update the test provided
      * the two conditions above are still true.
      */
@@ -234,42 +251,42 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     @Test
     public void futureDateExpression() throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH  );
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 
         Date now = new Date();
-        Date nowPlus10Days = new Date( now.getTime() + MILLIS_IN_A_DAY * 10 );
+        Date nowPlus10Days = new Date(now.getTime() + MILLIS_IN_A_DAY * 10);
 
-        Date date = dateFormat.parse( fakeValuesService.expression( "#{date.future '10','TimeUnit.DAYS'}", faker ));
+        Date date = dateFormat.parse(fakeValuesService.expression("#{date.future '10','TimeUnit.DAYS'}", faker));
 
-        assertThat( date.getTime(), greaterThan( now.getTime() ));
-        assertThat( date.getTime(), lessThan( nowPlus10Days.getTime() ));
+        assertThat(date.getTime(), greaterThan(now.getTime()));
+        assertThat(date.getTime(), lessThan(nowPlus10Days.getTime()));
     }
 
     @Test
     public void pastDateExpression() throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH );
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 
         Date now = new Date();
-        Date nowMinus5Hours = new Date( now.getTime() - MILLIS_IN_AN_HOUR * 5 );
+        Date nowMinus5Hours = new Date(now.getTime() - MILLIS_IN_AN_HOUR * 5);
 
-        Date date = dateFormat.parse( fakeValuesService.expression( "#{date.past '5','TimeUnit.HOURS'}", faker ));
+        Date date = dateFormat.parse(fakeValuesService.expression("#{date.past '5','TimeUnit.HOURS'}", faker));
 
-        assertThat( date.getTime(), greaterThan( nowMinus5Hours.getTime() ));
-        assertThat( date.getTime(), lessThan( now.getTime() ));
+        assertThat(date.getTime(), greaterThan(nowMinus5Hours.getTime()));
+        assertThat(date.getTime(), lessThan(now.getTime()));
     }
 
     @Test
     public void expressionWithFourArguments() throws ParseException {
 
         assertThat(fakeValuesService.expression("#{Internet.password '5','8','true','true'}", faker),
-            matchesRegularExpression("[\\w\\d\\!%#$@_\\^&\\*]{5,8}"));
+                matchesRegularExpression("[\\w\\d\\!%#$@_\\^&\\*]{5,8}"));
     }
 
     /**
      * Two things are important here:
      * 1) the message in the exception should be USEFUL
      * 2) a {@link RuntimeException} should be thrown.
-     *
+     * <p>
      * if the message changes, it's ok to update the test provided
      * the two conditions above are still true.
      */
@@ -286,6 +303,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
             assertThat(re.getMessage(), is(errorMessage));
         }
     }
+
     @Test
     public void resolveUsingTheSameKeyTwice() {
         // #{hello} -> DummyService.hello
