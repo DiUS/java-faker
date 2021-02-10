@@ -65,6 +65,12 @@ public class RandomServiceTest extends AbstractFakerTest {
     }
 
     @Test
+    public void nextIntShouldReturnZeroWhenPassingANumberThatIsLessThanOne() {
+        assertThat(randomService.nextInt(0), is(0));
+        assertThat(randomService.nextInt(-5), is(0));
+    }
+
+    @Test
     public void testHex() {
         assertThat(randomService.hex(8), matchesRegularExpression("^[0-9A-F]{8}$"));
     }
