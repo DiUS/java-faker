@@ -17,6 +17,12 @@ public class AddressTest extends AbstractFakerTest {
     private static final char decimalSeparator = new DecimalFormatSymbols().getDecimalSeparator();
 
     @Test
+    public void testZipCodeIsNumeric() {
+        final String streetAddressNumber = faker.address().zipCodeByState("CA");
+        assertThat(streetAddressNumber, matchesRegularExpression("[0-9]+"));
+    }
+
+    @Test
     public void testStreetAddressStartsWithNumber() {
         final String streetAddressNumber = faker.address().streetAddress();
         assertThat(streetAddressNumber, matchesRegularExpression("[0-9]+ .+"));
