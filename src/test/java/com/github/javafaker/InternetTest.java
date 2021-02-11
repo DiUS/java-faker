@@ -17,7 +17,6 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class InternetTest extends AbstractFakerTest {
-
     @Test
     public void testEmailAddress() {
         String emailAddress = faker.internet().emailAddress();
@@ -112,6 +111,12 @@ public class InternetTest extends AbstractFakerTest {
     @Test
     public void testPassword() {
         assertThat(faker.internet().password(), matchesRegularExpression("[a-z\\d]{8,16}"));
+    }
+
+    @Test
+    public void testPasswordWithFixedLength() {
+        String password = Faker.instance().internet().password(32, 32, true, true, true);
+        assertThat(password.length(), is(32));
     }
 
     @Test
