@@ -24,28 +24,37 @@ public class Number {
     }
 
     /**
-     * @see Number#numberBetween(long, long) 
+     * Generate random number between min and max.
+     * Notice min is the smaller one, max is larger one
+     * @param min Usually the smaller number, also the inclusive lower bound of generated number
+     * @param max Usually the larger number, also the exclusive(inclusive only min=max) upper bound of generated number
+     * @return A generated number between min and max
      */
     public int numberBetween(int min, int max) {
+        
         if (min == max) return min;
-
-        int value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_DOWN).intValue();
-        return value == max ? value - 1 : value;
+        else{
+            if (min>max){int tmp=max;max=min;min=tmp;}
+            int value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
+            return value >= max ? max - 1 : value;
+        }
     }
 
     /**
-     * Return a number between <em>min</em> and <em>max</em>.  If 
-     * min == max, then min is returned. So numberBetween(2,2) will yield 2 even though
-     * it doesn't make sense.
-     *
-     * @param min inclusive
-     * @param max exclusive (unless min == max)
+     * Generate random number between min and max.
+     * Notice min is the smaller one, max is larger one
+     * @param min Usually the smaller number, also the inclusive lower bound of generated number
+     * @param max Usually the larger number, also the exclusive(inclusive only min=max) upper bound of generated number
+     * @return A generated number between min and max
      */
     public long numberBetween(long min, long max) {
-        if (min == max) return min;
-
-        long value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_DOWN).longValue();
-        return value == max ? value - 1 : value;
+         if (min == max) return min;
+         
+        else{
+            if (min>max){long tmp=max;max=min;min=tmp;}
+            long value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
+            return value >= max ? max - 1 : value;
+        }
     }
     
     /**
@@ -101,12 +110,12 @@ public class Number {
         final double range = (double) trueMax - (double) trueMin;
         
         final double chunkCount = Math.sqrt(Math.abs(range));
-        final double chunkSize = chunkCount;
-        final long randomChunk = faker.random().nextLong((long) chunkCount);
-
-        final double chunkStart = trueMin + randomChunk * chunkSize;
-        final double adj = chunkSize * faker.random().nextDouble();
-        return new BigDecimal(chunkStart + adj);
+        final long decimalOfChunkCount=(long)Math.ceil(chunkCount);
+        final long randomChunk = faker.random().nextLong(decimalOfChunkCount);
+        final double chunkStart = trueMin + randomChunk * chunkCount;
+        final double adj = chunkCount * faker.random().nextDouble();
+        if(chunkStart + adj >= trueMax) return new BigDecimal(trueMax -1);
+            else return new BigDecimal(chunkStart + adj);
     }
 
     public String digits(int count) {

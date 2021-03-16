@@ -5,6 +5,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang3.tuple.Pair;
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -185,7 +186,7 @@ public class NumberTest extends AbstractFakerTest {
         assertThat("Calling numberBetween with min==max yields min, with 0",
                 faker.number().numberBetween(0L, 0L),
                 is(0L));
-        assertThat("Calling numberBetween with min==max yields min", 
+        assertThat("Calling numberBetween with min==max yields min",
                 faker.number().numberBetween(2L, 2L),
                 is(2L));
     }
@@ -233,7 +234,7 @@ public class NumberTest extends AbstractFakerTest {
      *  calculate the uniqueness for that given min/max range.
      * For all 'uniqueness' values
      *  verify the percentage of 'uniqueness' ratios over 80% is 90%.
-     *  
+     *
      * This isn't perfect but it ensures a pretty good degree of uniqueness in the random number generation.
      */
     @Test
@@ -290,7 +291,7 @@ public class NumberTest extends AbstractFakerTest {
                 });
             }
         };
-        
+
         final double percentGreaterThan80Percent = randomizationQualityTest(individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
         assertThat("Percentage of runs > 80% unique is gte 90%",
                 percentGreaterThan80Percent, greaterThanOrEqualTo(percentRunsGtUniquePercentage));
@@ -329,14 +330,14 @@ public class NumberTest extends AbstractFakerTest {
      * Over the series of numbers identified from RANDOMIZATION_QUALITY_RANGE_START to
      * RANDOMIZATION_QUALITY_RANGE_END, create a min/max range of -value/value and
      * with of those min/max values, call <em>percentUniqueRunner</em>.
-     * 
+     *
      * Collect the number of calls to <em>percentUniqueRunner</em> that were
      * above the threshold and finally return that number divided by the total number of calls to
      * <em>percentUniqueRunner</em>.
-     * 
+     *
      * @return percent of percentUniqueRunner's results greater than the threshold
      */
-    private double randomizationQualityTest(final double threshold, 
+    private double randomizationQualityTest(final double threshold,
                                             final Function<Pair<Long,Long>,Double> percentUniqueRunner) {
         final int rangeEnd = RANDOMIZATION_QUALITY_RANGE_END;
         final int rangeStep = RANDOMIZATION_QUALITY_RANGE_STEP;
@@ -357,7 +358,7 @@ public class NumberTest extends AbstractFakerTest {
         return (double) greaterThanThreshold.get() / (double) total.get();
     }
 
-    
+
     /**
      * Given a number of iterations, calls <em>callable</em> 'iterations' times and collects the results,
      * then calculates the number of results that were unique and returns the percentage that where unique.
@@ -384,4 +385,122 @@ public class NumberTest extends AbstractFakerTest {
         if (numbersToGet == 0) numbersToGet = RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET;
         return numbersToGet;
     }
+    @Test
+    public void satisfyIssueForIntTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        outer: for (int i = 1; i <= 1000; i++) {
+            for (int j = 0; j < 100000; j++) {
+                int r = fake.number().numberBetween(0, i);
+                if (r == i-1) {
+                    continue outer;
+                }
+            }
+            isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+    @Test
+    public void generateNumberAboveZeroForIntTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        for(int i=0;i<1000;i++){
+            int r = fake.number().numberBetween(0, 10);
+            if(r<0||r>=10)isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+    @Test
+    public void generateNumberAboveOrBelowZeroForIntTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        for(int i=0;i<1000;i++){
+            int r = fake.number().numberBetween(-10, 10);
+            if(r<-10||r>=10)isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+    @Test
+    public void generateNumberBelowZeroForIntTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        for(int i=0;i<1000;i++){
+            int r = fake.number().numberBetween(-20, -10);
+            if(r<-20||r>=-10)isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+    @Test
+    public void generateNumberBetweenMaxMinForIntTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        for(int i=0;i<1000;i++){
+            int r = fake.number().numberBetween(10, 0);
+            if(r<0||r>=10)isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+
+
+
+    @Test
+    public void satisfyIssueForLongTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        outer: for (int i = 1; i <= 1000; i++) {
+            for (int j = 0; j < 100000; j++) {
+                long r = fake.number().numberBetween(0, i);
+                if (r == i-1) {
+                    continue outer;
+                }
+            }
+            isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+    @Test
+    public void generateNumberAboveZeroForLongTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        for(int i=0;i<1000;i++){
+            long min=0;long max=10;
+            long r = fake.number().numberBetween(min, max);
+            if(r<0||r>=10)isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+    @Test
+    public void generateNumberAboveOrBelowZeroForLongTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        long min=-10;long max=10;
+        for(int i=0;i<1000;i++){
+            long r = fake.number().numberBetween(min, max);
+            if(r<-10||r>=10)isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+    @Test
+    public void generateNumberBelowZeroForLongTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        long min=-20;long max=-10;
+        for(int i=0;i<1000;i++){
+            long r = fake.number().numberBetween(min, max);
+            if(r<-20||r>=-10)isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+    @Test
+    public void generateNumberBetweenMaxMinForLongTest(){
+        Faker fake = new Faker();
+        boolean isSatisfied =true;
+        long min=10;long max=0;
+        for(int i=0;i<1000;i++){
+            long r = fake.number().numberBetween(min, max);
+            if(r<0||r>=10)isSatisfied=false;
+        }
+        Assert.assertTrue(isSatisfied);
+    }
+
 }
