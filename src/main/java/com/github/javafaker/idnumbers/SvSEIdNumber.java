@@ -81,19 +81,19 @@ public class SvSEIdNumber {
     }
 
     private String calculateDigits(String numbers) {
-        String calculatedNumbers = "";
+        StringBuilder calculatedNumbers = new StringBuilder();
         for (int i = 0; i < 9; i++) {
             int res;
             int n = Integer.parseInt(numbers.substring(i, i + 1));
             if (i % 2 == 0) {
-                res = n * 2;
+                res = n << 1;
             } else {
                 res = n;
             }
 
-            calculatedNumbers += res;
+            calculatedNumbers.append(res);
         }
-        return calculatedNumbers;
+        return calculatedNumbers.toString();
     }
 
     private int calculateDigitSum(String numbers) {

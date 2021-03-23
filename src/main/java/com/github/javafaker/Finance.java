@@ -7,8 +7,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Finance {
+    private static final Pattern NUMBERS = Pattern.compile("[^0-9]");
+    private static final Pattern EMPTY_STRING = Pattern.compile("");
     private final Faker faker;
 
     protected Finance(Faker faker) {
@@ -24,7 +27,7 @@ public class Finance {
         String value = faker.fakeValuesService().resolve(key, this, faker);
         final String template = faker.numerify(value);
 
-        String[] split = template.replaceAll("[^0-9]", "").split("");
+        String[] split = EMPTY_STRING.split(NUMBERS.matcher(template).replaceAll(""));
         List<Integer> reversedAsInt = new ArrayList<Integer>();
         for (int i = 0; i < split.length; i++) {
             final String current = split[split.length - 1 - i];
@@ -36,7 +39,7 @@ public class Finance {
         int multiplier = 1;
         for (Integer digit : reversedAsInt) {
             multiplier = (multiplier == 2 ? 1 : 2);
-            luhnSum += sum(String.valueOf(digit * multiplier).split(""));
+            luhnSum += sum(EMPTY_STRING.split(String.valueOf(digit * multiplier)));
         }
         int luhnDigit = (10 - (luhnSum % 10)) % 10;
         return template.replace('\\', ' ').replace('/', ' ').trim().replace('L', String.valueOf(luhnDigit).charAt(0));

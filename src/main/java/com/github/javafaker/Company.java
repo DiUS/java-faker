@@ -5,11 +5,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.StringUtils.join;
 
 public class Company {
 
+    private static final Pattern COMMA = Pattern.compile(",");
+    private static final Pattern SINGLE_QUOTE = Pattern.compile("'");
     private final Faker faker;
 
     protected Company(Faker faker) {
@@ -79,7 +82,7 @@ public class Company {
     }
 
     private String domainName(){
-        return StringUtils.deleteWhitespace(name().toLowerCase().replaceAll(",", "").replaceAll("'", ""));
+        return StringUtils.deleteWhitespace(SINGLE_QUOTE.matcher(COMMA.matcher(name().toLowerCase()).replaceAll("")).replaceAll(""));
     }
 
     private String domainSuffix() {
