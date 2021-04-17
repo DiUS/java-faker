@@ -51,18 +51,64 @@ public class Lorem {
         return characters(fixedNumberOfCharacters, includeUppercase, true);
     }
 
+    public String characters(int minimumLength, int maximumLength,
+                             boolean includeUppercase, boolean includeSpecial, boolean includeDigit) {
+        return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength,
+                          includeUppercase, includeSpecial, includeDigit);
+    }
+
+
     public String characters(int fixedNumberOfCharacters, boolean includeUppercase, boolean includeDigit) {
-        if (fixedNumberOfCharacters < 1) {
+        return characters(fixedNumberOfCharacters,includeUppercase,false,includeDigit);
+    }
+
+    public String characters(int fixedNumberOfCharacters,
+                             boolean includeUppercase, boolean includeSpecial, boolean includeDigit) {
+
+        if(fixedNumberOfCharacters < 1)
             return "";
-        }
+
         char[] buffer = new char[fixedNumberOfCharacters];
-        for (int i = 0; i < buffer.length; i++) {
+        char[] special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
+        char[] number = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        char[] All = (new String(special) + new String(characters)).toCharArray();
+        char[] SpecialAndLetter = (new String(special) + new String(letters)).toCharArray();
+
+        int cnt = 0;
+        if(includeUppercase){
+            char TheUpper = Character.toUpperCase(letters[faker.random().nextInt(letters.length)]);
+            if(cnt > fixedNumberOfCharacters - 1) return "";
+            buffer[cnt++] = TheUpper;
+
+        }
+
+        if(includeSpecial){
+            char TheSpecial =  special[faker.random().nextInt(special.length)];
+            if(cnt > fixedNumberOfCharacters - 1) return "";
+            buffer[cnt++] = TheSpecial;
+        }
+
+        if(includeDigit) {
+            char TheNum =  number[faker.random().nextInt(number.length)];
+            if(cnt > fixedNumberOfCharacters - 1) return "";
+            buffer[cnt++] = TheNum;
+        }
+
+
+        for (int i = cnt; i < buffer.length; i++) {
             char randomCharacter;
 
-            if (includeDigit) {
+            if (includeSpecial && !includeDigit){
+                randomCharacter = SpecialAndLetter[faker.random().nextInt(SpecialAndLetter.length)];
+            }
+            else if (!includeSpecial && includeDigit ) {
                 randomCharacter = characters[faker.random().nextInt(characters.length)];
-            } else {
+            }
+            else if (!includeSpecial && !includeDigit) {
                 randomCharacter = letters[faker.random().nextInt(letters.length)];
+            }
+            else {                                            //includeSpecial && includeDigit
+                randomCharacter = All[faker.random().nextInt(All.length)];
             }
 
             if (includeUppercase && faker.bool().bool()) {
@@ -70,8 +116,26 @@ public class Lorem {
             }
             buffer[i] = randomCharacter;
         }
+
+        shuffle(buffer);
         return new String(buffer);
     }
+
+    private void shuffle(char[] buffer){
+        int length = buffer.length;
+        for ( int i = length; i > 0; i-- ){
+            int randInd = faker.random().nextInt(i);
+            swap(buffer, randInd, i - 1);
+        }
+    }
+
+    private void swap(char[] a, int i, int j){
+        char temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
+
 
     public List<String> words(int num) {
         List<String> returnList = new ArrayList<String>();
