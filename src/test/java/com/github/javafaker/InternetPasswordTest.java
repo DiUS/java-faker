@@ -22,8 +22,6 @@ public class InternetPasswordTest {
             boolean isPasswordContainsSpecialCharacter = specialCharacterMatcher.find();
             boolean isPasswordContainsDigit = digitMatcher.find();
 
-            System.out.println(isPasswordContainsSpecialCharacter + " " + isPasswordContainsDigit + " " + password);
-
             assertTrue(isPasswordContainsDigit);
             assertTrue(isPasswordContainsSpecialCharacter);
         }

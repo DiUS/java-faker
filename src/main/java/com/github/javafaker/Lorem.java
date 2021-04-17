@@ -59,7 +59,25 @@ public class Lorem {
 
 
     public String characters(int fixedNumberOfCharacters, boolean includeUppercase, boolean includeDigit) {
-        return characters(fixedNumberOfCharacters,includeUppercase,false,includeDigit);
+        if (fixedNumberOfCharacters < 1) {
+            return "";
+        }
+        char[] buffer = new char[fixedNumberOfCharacters];
+        for (int i = 0; i < buffer.length; i++) {
+            char randomCharacter;
+
+            if (includeDigit) {
+                randomCharacter = characters[faker.random().nextInt(characters.length)];
+            } else {
+                randomCharacter = letters[faker.random().nextInt(letters.length)];
+            }
+
+            if (includeUppercase && faker.bool().bool()) {
+                randomCharacter = Character.toUpperCase(randomCharacter);
+            }
+            buffer[i] = randomCharacter;
+        }
+        return new String(buffer);
     }
 
     public String characters(int fixedNumberOfCharacters,
