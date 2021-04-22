@@ -1,6 +1,5 @@
 package com.github.javafaker;
 
-import com.github.javafaker.idnumbers.CNidNumber;
 import com.github.javafaker.idnumbers.EnIdNumber;
 import com.github.javafaker.idnumbers.SvSEIdNumber;
 
@@ -39,14 +38,4 @@ public class IdNumber {
         SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
         return svSEIdNumber.getInvalidSsn(faker);
     }
-
-    /**
-     * Specified as 6 digit number in zh-CN.yml
-     */
-    public String validCNID() {
-        String birthLocation = faker.fakeValuesService().resolve("id_number.valid", this, faker);
-        CNidNumber cNidNumber = new CNidNumber(birthLocation);
-        return cNidNumber.getValidCNID(faker);
-    }
-
 }
