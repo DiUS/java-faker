@@ -141,12 +141,6 @@ public class FakerTest extends AbstractFakerTest {
     }
 
     @Test
-    @Repeat(times = 10000)
-    public void Issue591PostCodeLengthCheck(){
-        assert (faker.address().zipCode().length() == 5);
-    }
-
-    @Test
     public void regexifyShouldGenerateSameValueForFakerWithSameSeed() {
         long seed = 1L;
         String regex = "\\d";
