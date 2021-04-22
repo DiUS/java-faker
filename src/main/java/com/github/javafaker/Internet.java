@@ -130,13 +130,52 @@ public class Internet {
         if (includeSpecial) {
             char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
             char[] special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
-            for (int i = 0; i < faker.random().nextInt(minimumLength); i++) {
-                password[faker.random().nextInt(password.length)] = special[faker.random().nextInt(special.length)];
+            for (int k = 0; k < 5; k++){
+                for (int i = 0; i < faker.random().nextInt(minimumLength); i++) {
+                    password[faker.random().nextInt(password.length)] = special[faker.random().nextInt(special.length)];
+                }
+                if (checkPassword(includeUppercase, includeSpecial, includeDigit, password)){break; }
+                password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
             }
             return new String(password);
         } else {
             return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
         }
+    }
+    public boolean checkPassword(boolean includeUppercase, boolean includeSpecial, boolean includeDigit, char[] password){
+        if(! includeUppercase && ! includeDigit && ! includeSpecial){
+            return true;
+        }
+        boolean check1 = !includeDigit;
+        boolean check2 = !includeUppercase;
+        boolean check3 = !includeSpecial;
+        if (includeDigit){
+            for (int i = 0; i< password.length;i++){
+                if (Character.isDigit(password[i])){
+                    check1 = true;
+                    break;
+                }
+            }
+        }
+        if (includeUppercase){
+            for (int i = 0; i< password.length;i++){
+                if (Character.isUpperCase(password[i])){
+                    check2 = true;
+                    break;
+                }
+            }
+        }
+        if(includeSpecial){
+            for (int i = 0; i< password.length;i++){
+                if(! Character.isUpperCase(password[i]) && ! Character.isLowerCase(password[i]) && ! Character.isDigit(password[i])){
+                    check3 = true;
+                    break;
+                }
+            }
+        }
+        if (check1&&check2&&check3)
+            return true;
+        return false;
     }
     
     /**
