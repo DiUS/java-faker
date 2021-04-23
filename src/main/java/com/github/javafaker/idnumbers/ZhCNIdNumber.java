@@ -62,8 +62,9 @@ public class ZhCNIdNumber {
     }
 
     private String getProvince(Faker f){
-        int index = f.random().nextInt(provinces.size());
-        String provinceNumber = provinces.get(index);
+//        int index = f.random().nextInt(provinces.size());
+//        String provinceNumber = provinces.get(index);
+        String provinceNumber = f.resolve("id_number.provinceCode");
         return provinceNumber;
     }
 
