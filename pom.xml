@@ -107,6 +107,22 @@
     <build>
 		<pluginManagement>
 			<plugins>
+                <plugin>
+                    <groupId>org.mudebug</groupId>
+                    <artifactId>prapr-plugin</artifactId>
+                    <version>2.0.2</version>
+                    <configuration>
+                        <threads>2</threads>
+                        <mutators>
+                            <mutator>ALL</mutator>
+                        </mutators>
+                        <outputFormats>
+                            <!-- <param>COMPRESSED-XML</param> -->
+                            <param>LOG</param>
+                            <param>HTML</param>
+                        </outputFormats>
+                    </configuration>
+                </plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -148,5 +164,28 @@
                 </plugin>
 			</plugins>
 		</pluginManagement>
-	</build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
