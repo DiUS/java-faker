@@ -2,6 +2,7 @@ package com.github.javafaker;
 
 import com.github.javafaker.idnumbers.EnIdNumber;
 import com.github.javafaker.idnumbers.SvSEIdNumber;
+import com.github.javafaker.idnumbers.ZhCNIdNumber;
 
 public class IdNumber {
     private final Faker faker;
@@ -37,5 +38,15 @@ public class IdNumber {
     public String invalidSvSeSsn() {
         SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
         return svSEIdNumber.getInvalidSsn(faker);
+    }
+
+    public String zhCnSsnValid() {
+        ZhCNIdNumber zhCNIdNumber = new ZhCNIdNumber();
+        return zhCNIdNumber.getValidCN(faker);
+    }
+
+    public String zhCnSsnInValid() {
+        ZhCNIdNumber zhCNIdNumber = new ZhCNIdNumber();
+        return zhCNIdNumber.getInvalidCN(faker);
     }
 }
