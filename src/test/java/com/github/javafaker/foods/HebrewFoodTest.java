@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class HebrewFoodTest {
-    // Test for issue 598
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/598
 
     public final String matchHebrewFood = "[\\u0590-\\u05FF ']+";
     public static Faker food;
