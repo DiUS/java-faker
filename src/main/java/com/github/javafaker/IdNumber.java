@@ -40,11 +40,22 @@ public class IdNumber {
         return svSEIdNumber.getInvalidSsn(faker);
     }
 
+    //CS304 Issue link: https://github.com/DiUS/java-faker/issues/588
+    /**
+     * Asks for a valid Chinese ID number.
+     * Specified as "#{IDNumber.zh_cn_ssn_valid}" in zh-CN.yml.
+     * @return A valid Chinese ID number.
+     */
     public String zhCnSsnValid() {
         ZhCNIdNumber zhCNIdNumber = new ZhCNIdNumber();
         return zhCNIdNumber.getValidCN(faker);
     }
 
+    /**
+     * Asks for an invalid Chinese ID number.
+     * Specified as "#{IDNumber.zh_cn_ssn_in_valid}" in zh-CN.yml.
+     * @return An invalid Chinese ID number.
+     */
     public String zhCnSsnInValid() {
         ZhCNIdNumber zhCNIdNumber = new ZhCNIdNumber();
         return zhCNIdNumber.getInvalidCN(faker);
