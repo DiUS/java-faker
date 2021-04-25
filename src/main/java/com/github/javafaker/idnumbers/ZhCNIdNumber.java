@@ -7,8 +7,7 @@ import java.util.List;
 
 //CS304 Issue link: https://github.com/DiUS/java-faker/issues/588
 public class ZhCNIdNumber {
-
-
+    
     /**
      * Gets a valid Chinese ID number.
      * @param f A specific instance of Faker.
