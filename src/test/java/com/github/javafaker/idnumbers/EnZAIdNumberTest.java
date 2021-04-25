@@ -10,10 +10,15 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
+/*
+ * This file was used to test the issue #566
+ * Wed Apr 25 16:58:22 GMT 2021
+ * by SE_CHWJ
+ */
+//CS304 issue link: https://github.com/DiUS/java-faker/issues/566
 public class EnZAIdNumberTest {
 
-
-    @Test
+    @Test(timeout = 4000)
     public void valid() {
         EnZAIdNumber idNumber = new EnZAIdNumber();
         final Faker f = new Faker(new Locale("en-ZA"));
@@ -25,7 +30,7 @@ public class EnZAIdNumberTest {
         assertThat(idNumber.validSsn("8801235111088"), is(true));
     }
 
-    @Test
+    @Test(timeout = 4000)
     public void invalid() {
         EnZAIdNumber idNumber = new EnZAIdNumber();
         final Faker f = new Faker(new Locale("en-ZA"));
@@ -39,7 +44,7 @@ public class EnZAIdNumberTest {
 
     }
 
-    @Test
+    @Test(timeout = 4000)
     public void testValidSsn() {
         final Faker f = new Faker(new Locale("en-ZA"));
         for (int i = 0; i < 100; i++) {
@@ -47,7 +52,7 @@ public class EnZAIdNumberTest {
         }
     }
 
-    @Test
+    @Test(timeout = 4000)
     public void testInvalidSsn() {
         final Faker f = new Faker(new Locale("en-ZA"));
         for (int i = 0; i < 100; i++) {

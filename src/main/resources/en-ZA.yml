@@ -135,6 +135,7 @@ en-ZA:
         - "#{first_name} #{last_name} #{last_name}"
 
     id_number:
+    # CS304 issue link: https://github.com/DiUS/java-faker/issues/566
       valid: "#{IDNumber.valid_en_za_ssn}"
       invalid: "#{IDNumber.invalid_en_za_ssn}"
 
