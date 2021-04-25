@@ -18,30 +18,29 @@ import static org.hamcrest.core.Is.is;
 //CS304 issue link: https://github.com/DiUS/java-faker/issues/566
 public class EnZAIdNumberTest {
 
+    //Test the method of judging ssn is right
     @Test(timeout = 4000)
-    public void testValidSsn() {
+    public void testExistSsn() {
         EnZAIdNumber idNumber = new EnZAIdNumber();
-        final Faker f = new Faker(new Locale("en-ZA"));
 
-        assertThat(idNumber.validSsn(f.idNumber().valid()), is(true));
-        assertThat(idNumber.validSsn(f.idNumber().valid()), is(true));
+        assertThat(idNumber.validSsn("9202204720085"), is(false));
+        assertThat(idNumber.validSsn("foo2204720082"), is(false));
+        assertThat(idNumber.validSsn("9232454720082"), is(false));
 
         assertThat(idNumber.validSsn("9202204720083"), is(true));
         assertThat(idNumber.validSsn("8801235111088"), is(true));
     }
 
     @Test(timeout = 4000)
-    public void testInvalidSsn() {
+    public void testFakerSsn() {
         EnZAIdNumber idNumber = new EnZAIdNumber();
         final Faker f = new Faker(new Locale("en-ZA"));
-
-        assertThat(idNumber.validSsn(f.idNumber().invalid()), is(false));
-        assertThat(idNumber.validSsn(f.idNumber().invalid()), is(false));
-
-        assertThat(idNumber.validSsn("9202204720085"), is(false));
-        assertThat(idNumber.validSsn("foo2204720082"), is(false));
-        assertThat(idNumber.validSsn("9232454720082"), is(false));
-
+        for (int i = 0; i < 100; i++) {
+            assertThat(idNumber.validSsn(f.idNumber().valid()), is(true));
+        }
+        for (int i = 0; i < 100; i++) {
+            assertThat(idNumber.validSsn(f.idNumber().invalid()), is(false));
+        }
     }
 
     @Test(timeout = 4000)
