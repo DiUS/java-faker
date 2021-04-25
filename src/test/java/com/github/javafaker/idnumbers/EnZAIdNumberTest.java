@@ -19,7 +19,7 @@ import static org.hamcrest.core.Is.is;
 public class EnZAIdNumberTest {
 
     @Test(timeout = 4000)
-    public void valid() {
+    public void testValidSsn() {
         EnZAIdNumber idNumber = new EnZAIdNumber();
         final Faker f = new Faker(new Locale("en-ZA"));
 
@@ -31,7 +31,7 @@ public class EnZAIdNumberTest {
     }
 
     @Test(timeout = 4000)
-    public void invalid() {
+    public void testInvalidSsn() {
         EnZAIdNumber idNumber = new EnZAIdNumber();
         final Faker f = new Faker(new Locale("en-ZA"));
 
@@ -45,18 +45,14 @@ public class EnZAIdNumberTest {
     }
 
     @Test(timeout = 4000)
-    public void testValidSsn() {
+    public void testSsnFormat() {
         final Faker f = new Faker(new Locale("en-ZA"));
         for (int i = 0; i < 100; i++) {
             Assert.assertThat(f.idNumber().valid(), matchesRegularExpression("\\d{10}[01][8]\\d{1}"));
         }
-    }
-
-    @Test(timeout = 4000)
-    public void testInvalidSsn() {
-        final Faker f = new Faker(new Locale("en-ZA"));
         for (int i = 0; i < 100; i++) {
             Assert.assertThat(f.idNumber().invalid(), matchesRegularExpression("\\d{10}[01][8]\\d{1}"));
         }
     }
+
 }
