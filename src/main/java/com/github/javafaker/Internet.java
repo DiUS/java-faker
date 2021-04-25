@@ -125,7 +125,16 @@ public class Internet {
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial) {
         return password(minimumLength, maximumLength, includeUppercase, includeSpecial, true);
     }
-
+    /**
+     * Generate a complex password depending on params
+     *
+     * @param minimumLength  the min length of password
+     * @param maximumLength  the max length of password
+     * @param includeDigit   whether the password includes digits
+     * @param includeSpecial   whether the password includes special characters
+     * @param includeUppercase  whether the password includes uppercase characters
+     * @return a string indicates the generate password.
+     */
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial, boolean includeDigit) {
         if (includeSpecial) {
             char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
