@@ -45,7 +45,7 @@ public class Issue587Test extends AbstractFakerTest {
     static int testTimes = 1000;
     static final int DAY_SECONDS = 24*3600;
 
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     @Test
     public void testFutureDate(){
         for (int i = 0; i < testTimes; i++) {
@@ -54,7 +54,7 @@ public class Issue587Test extends AbstractFakerTest {
         }
     }
 
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     @Test
     public void testPastDate() {
         for (int i = 0; i < testTimes; i++) {
@@ -63,7 +63,7 @@ public class Issue587Test extends AbstractFakerTest {
         }
     }
 
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     @Test
     public void testBetween() {
         Date now = new Date();

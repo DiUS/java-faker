@@ -34,7 +34,7 @@ public class LocalDateTime {
      *            the time unit.
      * @return a future date from now.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDate future(int atMost, TimeUnit unit) {
         Date now = new Date();
         Date aBitLaterThanNow = new Date(now.getTime() + 1000);
@@ -52,7 +52,7 @@ public class LocalDateTime {
      *            the time unit.
      * @return a future date from now.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDate future(int atMost, int minimum, TimeUnit unit) {
         Date now = new Date();
         Date minimumDate = new Date(now.getTime() + unit.toMillis(minimum));
@@ -70,7 +70,7 @@ public class LocalDateTime {
      *            the future date relative to this date.
      * @return a future date relative to {@code referenceDate}.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDate future(int atMost, TimeUnit unit, Date referenceDate) {
         long upperBound = unit.toMillis(atMost);
 
@@ -89,7 +89,7 @@ public class LocalDateTime {
      *            the time unit.
      * @return a past date from now.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDate past(int atMost, TimeUnit unit) {
         Date now = new Date();
         Date aBitEarlierThanNow = new Date(now.getTime() - 1000);
@@ -107,7 +107,7 @@ public class LocalDateTime {
      *            the time unit.
      * @return a past date from now.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDate past(int atMost, int minimum, TimeUnit unit) {
         Date now = new Date();
         Date minimumDate = new Date(now.getTime() - unit.toMillis(minimum));
@@ -125,7 +125,7 @@ public class LocalDateTime {
      *            the past date relative to this date.
      * @return a past date relative to {@code referenceDate}.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDate past(int atMost, TimeUnit unit, Date referenceDate) {
         long upperBound = unit.toMillis(atMost);
 
@@ -146,7 +146,7 @@ public class LocalDateTime {
      * @throws IllegalArgumentException
      *             if the {@code to} date represents an earlier date than {@code from} date.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDate between(Date from, Date to) throws IllegalArgumentException {
         if (to.before(from)) {
             throw new IllegalArgumentException("Invalid date range, the upper bound date is before the lower bound.");
@@ -165,7 +165,7 @@ public class LocalDateTime {
      *
      * @return a random birthday between 65 and 18 years ago from now.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDate birthday() {
         return birthday(DEFAULT_MIN_AGE, DEFAULT_MAX_AGE);
     }
@@ -181,7 +181,7 @@ public class LocalDateTime {
      * @throws IllegalArgumentException
      *             if the {@code maxAge} is lower than {@code minAge}.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDate birthday(int minAge, int maxAge) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         int currentMonth = Calendar.getInstance().get(Calendar.MONTH);

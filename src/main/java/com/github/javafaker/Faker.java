@@ -48,7 +48,7 @@ public class Faker {
     private final GameOfThrones gameOfThrones;
     private final Gender gender;
     private final DateAndTime dateAndTime;
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     private final LocalDateTime localDateTime;
     private final Demographic demographic;
     private final Dog dog;
@@ -165,7 +165,7 @@ public class Faker {
         this.gameOfThrones = new GameOfThrones(this);
         this.gender = new Gender(this);
         this.dateAndTime = new DateAndTime(this);
-        // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+        // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
         this.localDateTime = new LocalDateTime(this);
         this.demographic = new Demographic(this);
         this.dog = new Dog(this);
@@ -487,7 +487,7 @@ public class Faker {
      *
      * @return localDateTime object.
      */
-    // java-faker Issue link: https://github.com/DiUS/java-faker/issues/587
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     public LocalDateTime localDate(){
         return localDateTime;
     }
