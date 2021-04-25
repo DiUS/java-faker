@@ -151,7 +151,7 @@ public class Internet {
             return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
         }
     }
-    public boolean checkPassword(boolean includeUppercase, boolean includeSpecial, boolean includeDigit, char[] password){
+    private boolean checkPassword(boolean includeUppercase, boolean includeSpecial, boolean includeDigit, char[] password){
         if(! includeUppercase && ! includeDigit && ! includeSpecial){
             return true;
         }
