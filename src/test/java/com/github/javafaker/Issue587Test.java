@@ -28,13 +28,8 @@ package com.github.javafaker;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 /**
@@ -43,20 +38,10 @@ import static org.junit.Assert.*;
 
 public class Issue587Test extends AbstractFakerTest {
     static int testTimes = 1000;
-    static final int DAY_SECONDS = 24*3600;
 
     // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     @Test
-    public void testFutureDate(){
-        for (int i = 0; i < testTimes; i++) {
-            LocalDate date = faker.localDate().future(1, TimeUnit.DAYS);
-            assertFalse(date.isBefore(LocalDate.now()));
-        }
-    }
-
-    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
-    @Test
-    public void testPastDate() {
+    public void testPastDate01() {
         for (int i = 0; i < testTimes; i++) {
             LocalDate date = faker.localDate().past(1, TimeUnit.DAYS);
             assertFalse(date.isAfter(LocalDate.now()));
@@ -65,13 +50,10 @@ public class Issue587Test extends AbstractFakerTest {
 
     // CS304 Issue link: https://github.com/DiUS/java-faker/issues/587
     @Test
-    public void testBetween() {
-        Date now = new Date();
-        Date then = new Date(now.getTime() + 5*DAY_SECONDS);
-        for (int i = 0; i < 1000; i++) {
-            LocalDate date = faker.localDate().between(now, then);
-            assertFalse(date.isBefore(LocalDate.now()));
-            assertFalse(date.isAfter(LocalDate.now().plusDays(5)));
+    public void testPastDate02() {
+        for (int i = 0; i < testTimes; i++) {
+            LocalDate date = faker.localDate().past(2, TimeUnit.DAYS);
+            assertFalse(date.isAfter(LocalDate.now()));
         }
     }
 
