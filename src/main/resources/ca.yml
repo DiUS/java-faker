@@ -29,3 +29,53 @@ ca:
         - "#{first_name} #{last_name} #{last_name}"
     color:
       name: [aiguamarina, albercoc, amarant, ambre, ametista, atzur, beix, bistre, blanc, blat, blau, blau cel, blau fosc, blau marí, blau reial, blauet, bronze, camussa, canyella, caqui, cardenal, carmesí, carmí, carnació, castany rogenc, celadont, ceruli, chartreuse, cian, cirera, corall, coure, crema, escarlata, granat, gris, gris fosc, groc, lavanda, lila, llima, magenta, malva, marró, morat, ocre, or, orquídia, panotxa, plata, porpra, préssec, pruna, verd, verd maragda, verd oliva, verd veronès, vermell, vermell fosc, vermelló, vinca, violat, vori]
+    phone_number:
+      country_code: ['1']
+      area_code: [
+        '403', '587', '780', '825',  # Alberta
+        '236', '250', '604', '672', '778',  # British Columbia
+        '204', '431',  # Manitoba
+        '506',  # New Brunswick
+        '709',  # Newfoundland and Labrador
+        '782', '902',  # Nova Scotia and Prince Edward Island
+        '226', '249', '289', '343', '365', '416', '437', '519', '548', '613', '647', '705', '807', '905',  # Ontario
+        '367', '418', '438', '450', '514', '579', '581', '819', '873',  # Quebec
+        '306', '639',  # Saskatchewan
+        '867'  # Yukon, Northwest Territories and Nunavut
+      ]
+      formats:
+        - '#{area_code}-###-####'
+        - '(#{area_code}) ###-####'
+        - '#{country_code}-#{area_code}-###-####'
+        - '#{area_code}.###.####'
+        - '#{area_code}-###-#### x###'
+        - '(#{area_code}) ###-#### x###'
+        - '#{country_code}-###-###-#### x###'
+        - '#{area_code}.###.#### x###'
+        - '#{area_code}-###-#### x####'
+        - '(#{area_code}) ###-#### x####'
+        - '#{country_code}-#{area_code}-###-#### x####'
+        - '#{area_code}.###.#### x####'
+        - '#{area_code}-###-#### x#####'
+        - '(#{area_code}) ###-#### x#####'
+        - '#{country_code}-#{area_code}-###-#### x#####'
+        - '#{area_code}.###.#### x#####'
+    cell_phone:
+      country_code: ['1']
+      area_code: [
+        '403', '587', '780', '825',  # Alberta
+        '236', '250', '604', '672', '778',  # British Columbia
+        '204', '431',  # Manitoba
+        '506',  # New Brunswick
+        '709',  # Newfoundland and Labrador
+        '782', '902',  # Nova Scotia and Prince Edward Island
+        '226', '249', '289', '343', '365', '416', '437', '519', '548', '613', '647', '705', '807', '905',  # Ontario
+        '367', '418', '438', '450', '514', '579', '581', '819', '873',  # Quebec
+        '306', '639',  # Saskatchewan
+        '867'  # Yukon, Northwest Territories and Nunavut
+      ]
+      formats:
+        - '#{area_code}-###-####'
+        - '(#{area_code}) ###-####'
+        - '#{country_code}-#{area_code}-###-####'
+        - '#{area_code}.###.####'

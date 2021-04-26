@@ -35,7 +35,7 @@ public class AddressTest extends AbstractFakerTest {
         for (int i = 0; i < 100; i++) {
             latStr = faker.address().latitude().replace(decimalSeparator, '.');
             assertThat(latStr, isANumber());
-            lat = new Double(latStr);
+            lat = Double.valueOf(latStr);
             assertThat("Latitude is less then -90", lat, greaterThanOrEqualTo(-90.0));
             assertThat("Latitude is greater than 90", lat, lessThanOrEqualTo(90.0));
         }
@@ -48,7 +48,7 @@ public class AddressTest extends AbstractFakerTest {
         for (int i = 0; i < 100; i++) {
             longStr = faker.address().longitude().replace(decimalSeparator, '.');
             assertThat(longStr, isANumber());
-            lon = new Double(longStr);
+            lon = Double.valueOf(longStr);
             assertThat("Longitude is less then -180", lon, greaterThanOrEqualTo(-180.0));
             assertThat("Longitude is greater than 180", lon, lessThanOrEqualTo(180.0));
         }

@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.github.javafaker;
 
 import org.junit.Test;
