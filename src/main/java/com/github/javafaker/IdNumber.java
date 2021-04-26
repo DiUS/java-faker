@@ -1,6 +1,8 @@
 package com.github.javafaker;
 
 import com.github.javafaker.idnumbers.EnIdNumber;
+import com.github.javafaker.idnumbers.NricNumber;
+import com.github.javafaker.idnumbers.NricNumber.Type;
 import com.github.javafaker.idnumbers.SvSEIdNumber;
 
 public class IdNumber {
@@ -38,4 +40,21 @@ public class IdNumber {
         SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
         return svSEIdNumber.getInvalidSsn(faker);
     }
+
+    public String singaporeanFin(){
+        return NricNumber.getValidFIN(faker, Type.FOREIGNER_TWENTY_FIRST_CENTURY);
+    }
+
+    public String singaporeanFinBefore2000(){
+        return NricNumber.getValidFIN(faker, Type.FOREIGNER_TWENTIETH_CENTURY);
+    }
+
+    public String singaporeanUin(){
+        return NricNumber.getValidFIN(faker, Type.SINGAPOREAN_TWENTY_FIRST_CENTURY);
+    }
+
+    public String singaporeanUinBefore2000(){
+        return NricNumber.getValidFIN(faker, Type.SINGAPOREAN_TWENTIETH_CENTURY);
+    }
+
 }
