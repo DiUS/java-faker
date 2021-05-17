@@ -394,7 +394,7 @@ public class NumberTest extends AbstractFakerTest {
         //test whether the fake number made by numberBetween(int min, int max)
         // is not randomly and evenly distributed
         // (The difference between the average is less than 10%)
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         Random random = new Random();
         int testCase = 100000;
 
@@ -425,7 +425,7 @@ public class NumberTest extends AbstractFakerTest {
         //test whether the fake number made by numberBetween(long min, long max)
         // is not randomly and evenly distributed
         // (The difference between the average is less than 10%)
-        Map<Long, Integer> map = new HashMap<>();
+        Map<Long, Integer> map = new HashMap<Long, Integer>();
         Random random = new Random();
         int testCase = 1000000;
 
