@@ -24,28 +24,31 @@ public class Number {
     }
 
     /**
-     * @see Number#numberBetween(long, long) 
+     * @see Number#numberBetween(int, int)
+     * Generate a invalid social security number on faker
+     * @param min the lower bound (include min)
+     * @param max the lower bound (not include max)
+     * @return a random number on faker.number() between min and max
+     * if min = max, return min
      */
+    //CS304 issue link: https://github.com/DiUS/java-faker/issues/458
     public int numberBetween(int min, int max) {
         if (min == max) return min;
-
-        int value = decimalBetween(min,max).setScale(0, BigDecimal.ROUND_HALF_DOWN).intValue();
-        return value == max ? value - 1 : value;
+        return decimalBetween(min, max).intValue();
     }
 
     /**
-     * Return a number between <em>min</em> and <em>max</em>.  If 
-     * min == max, then min is returned. So numberBetween(2,2) will yield 2 even though
-     * it doesn't make sense.
-     *
-     * @param min inclusive
-     * @param max exclusive (unless min == max)
+     * @see Number#numberBetween(long, long)
+     * Generate a invalid social security number on faker
+     * @param min the lower bound (include min)
+     * @param max the lower bound (not include max)
+     * @return a random number on faker.number() between min and max
+     * if min = max, return min
      */
+    //CS304 issue link: https://github.com/DiUS/java-faker/issues/458
     public long numberBetween(long min, long max) {
         if (min == max) return min;
-
-        long value = decimalBetween(min, max).setScale(0, BigDecimal.ROUND_HALF_DOWN).longValue();
-        return value == max ? value - 1 : value;
+        return decimalBetween(min, max).longValue();
     }
     
     /**
@@ -87,26 +90,29 @@ public class Number {
     }
 
     /**
-     * @param min inclusive
-     * @param max exclusive
-     * @return
+     * @see Number#decimalBetween(long, long)
+     * Generate a invalid social security number on faker
+     * @param min the lower bound (include min)
+     * @param max the lower bound (not include max)
+     * @return decimalBetween on faker.number() between min and max
+     * if min = max, return min
      */
+    //CS304 issue link: https://github.com/DiUS/java-faker/issues/458
     private BigDecimal decimalBetween(long min, long max) {
         if (min == max) {
             return new BigDecimal(min);
         }
-        final long trueMin = Math.min(min, max);
-        final long trueMax = Math.max(min, max);
 
-        final double range = (double) trueMax - (double) trueMin;
-        
-        final double chunkCount = Math.sqrt(Math.abs(range));
-        final double chunkSize = chunkCount;
-        final long randomChunk = faker.random().nextLong((long) chunkCount);
+        final BigDecimal trueMin = new BigDecimal(""+min);
+        final BigDecimal trueMax = new BigDecimal(""+max);
+        final BigDecimal random = new BigDecimal(Math.random());
 
-        final double chunkStart = trueMin + randomChunk * chunkSize;
-        final double adj = chunkSize * faker.random().nextDouble();
-        return new BigDecimal(chunkStart + adj);
+        BigDecimal r = trueMax.subtract(trueMin);
+        r = trueMin.add(r.multiply(random));
+
+        if (r.compareTo(trueMax) > -1) return decimalBetween(min, max);
+        return r;
+
     }
 
     public String digits(int count) {

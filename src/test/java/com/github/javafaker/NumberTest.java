@@ -10,14 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class NumberTest extends AbstractFakerTest {
 
@@ -384,4 +383,137 @@ public class NumberTest extends AbstractFakerTest {
         if (numbersToGet == 0) numbersToGet = RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET;
         return numbersToGet;
     }
+    /*
+     * This file was used to test the issue #458
+     * Wed May 15 GMT 2021
+     * by SE_CHWJ
+     */
+    //CS304 issue link: https://github.com/DiUS/java-faker/issues/458
+    @Test
+    public void testIntNumberBetweenQuality() {
+        //test whether the fake number made by numberBetween(int min, int max)
+        // is not randomly and evenly distributed
+        // (The difference between the average is less than 10%)
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Random random = new Random();
+        int testCase = 100000;
+
+        int min = Math.abs(random.nextInt());
+        int max = min + Math.abs(random.nextInt(100));
+        double mean = testCase/(double)(max-min);
+        for (int j = 0; j < testCase; j++) {
+            int r = faker.number().numberBetween(min,max);
+            Integer count = map.get(r);
+            map.put(r, count == null ? 1 : count + 1);
+        }
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            int count = entry.getValue();
+            assertTrue((mean-count)/mean < 0.2);
+        }
+
+    }
+
+    /*
+     * This file was used to test the issue #458
+     * Wed May 15 GMT 2021
+     * by SE_CHWJ
+     */
+    //CS304 issue link: https://github.com/DiUS/java-faker/issues/458
+    @Test
+    public void testLongNumberBetweenQuality() {
+        //test whether the fake number made by numberBetween(long min, long max)
+        // is not randomly and evenly distributed
+        // (The difference between the average is less than 10%)
+        Map<Long, Integer> map = new HashMap<Long, Integer>();
+        Random random = new Random();
+        int testCase = 1000000;
+
+        long min = Math.abs(random.nextLong());
+        long max = min + Math.abs(random.nextInt(200));
+        double mean = testCase/(double)(max-min);
+        for (int j = 0; j < testCase; j++) {
+            Long r = faker.number().numberBetween(min,max);
+            Integer count = map.get(r);
+            map.put(r, count == null ? 1 : count + 1);
+        }
+
+        for (Map.Entry<Long, Integer> entry : map.entrySet()) {
+            int count = entry.getValue();
+            assertTrue((mean-count)/mean < 0.2);
+        }
+
+    }
+
+    /*
+     * This file was used to test the issue #458
+     * Wed May 15 GMT 2021
+     * by SE_CHWJ
+     */
+    //CS304 issue link: https://github.com/DiUS/java-faker/issues/458
+    @Test
+    public void testNumberBetweenContain() {
+
+        Set<Integer> ints = Sets.newHashSet();
+        Set<Long> longs = Sets.newHashSet();
+        Random random = new Random();
+        int size = Math.abs(random.nextInt(100));
+
+        //test whether NumberBetween(int min, int max) can
+        // create all number between min and max(not included)
+        // and not use crossing the border
+        int minInt = Math.abs(random.nextInt());
+        int maxInt = minInt + size;
+        for (int i = 0; i < 100000; ++i) {
+            int value = faker.number().numberBetween(minInt, maxInt);
+            assertThat(value, is(lessThan(maxInt)));
+            assertThat(value, is(greaterThanOrEqualTo(minInt)));
+            ints.add(value);
+        }
+        assertEquals(ints.size(), size);
+
+        //test whether NumberBetween(long, long) can
+        // create all number between min and max(not included)
+        // and not use crossing the border
+        long minLong = Math.abs(random.nextLong());
+        long maxLong = minLong + size;
+        for (int i = 0; i < 100000; ++i) {
+            long value = faker.number().numberBetween(minLong, maxLong);
+            assertThat(value, is(lessThan(maxLong)));
+            assertThat(value, is(greaterThanOrEqualTo(minLong)));
+            longs.add(value);
+        }
+        assertEquals(longs.size(), size);
+    }
+
+    /*
+     * This file was used to test the issue #458
+     * Wed May 15 GMT 2021
+     * by SE_CHWJ
+     */
+    //CS304 issue link: https://github.com/DiUS/java-faker/issues/458
+    @Test
+    public void testNumberBetweenBorder() {
+
+        Random random = new Random();
+
+        //test whether NumberBetween(long, long) not use crossing the border
+        for (int i = 0; i <= 100; i++) {
+
+            //create long integer max and min
+            long size, min = 0, max = -1;
+            while (max < min){
+                size = Math.abs(random.nextLong());
+                min = Math.abs(random.nextLong());
+                max = min + size;
+            }
+
+            for (int j = 0; j < 3000; j++) {
+                long value = faker.number().numberBetween(min, max);
+                assertThat(value, is(lessThan(max)));
+                assertThat(value, is(greaterThanOrEqualTo(min)));
+            }
+        }
+    }
+
 }
