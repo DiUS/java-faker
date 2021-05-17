@@ -1,7 +1,6 @@
 package com.github.javafaker;
 
 import java.math.BigDecimal;
-import java.util.Random;
 
 public class Number {
     private final Faker faker;
