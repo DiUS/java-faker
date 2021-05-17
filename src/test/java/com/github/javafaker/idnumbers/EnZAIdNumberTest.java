@@ -15,6 +15,7 @@ import static org.hamcrest.core.Is.is;
  * Wed Apr 25 16:58:22 GMT 2021
  * by SE_CHWJ
  */
+
 //CS304 issue link: https://github.com/DiUS/java-faker/issues/566
 public class EnZAIdNumberTest {
 

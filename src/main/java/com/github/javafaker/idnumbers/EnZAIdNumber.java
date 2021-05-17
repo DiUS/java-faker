@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class EnZAIdNumber {
 
-    private static final String[] validPattern = {"##########08#","##########18#"};
+    private static String[] validPattern = {"##########08#","##########18#"};
 
     /**
      * Generate a valid social security number on faker
@@ -50,7 +50,7 @@ public class EnZAIdNumber {
 
     /**
      * Generate a fixed format numeric string
-     * @param f the java-faker
+     * @param faker the java-faker
      * @return a fixed format numeric string
      */
     //CS304 issue link: https://github.com/DiUS/java-faker/issues/566
@@ -142,5 +142,4 @@ public class EnZAIdNumber {
         }
         return total;
     }
-
 }
