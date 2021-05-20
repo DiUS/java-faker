@@ -689,6 +689,10 @@ public class Faker {
 
     public EnglandFootBall englandfootball() { return englandfootball; }
 
+    /**
+     * CS304 Issue link: https://github.com/alibaba/easyexcel/issues/634
+     * @return class residentEvil.
+     */
     public ResidentEvil residentEvil() { return residentEvil; }
 
     public String resolve(String key) {
