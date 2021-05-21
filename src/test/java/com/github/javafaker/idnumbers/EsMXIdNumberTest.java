@@ -19,24 +19,31 @@ import static org.hamcrest.core.Is.is;
 public class EsMXIdNumberTest {
 
     //Test the Valid MX ssn
-    @Test(timeout = 4000)
+    @Test(timeout = 6000)
     public void testValidMXSsn() {
         final Faker f = new Faker(new Locale("es-MX"));
-        Assert.assertThat(f.idNumber().valid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
+        for (int i = 0; i < 100; i++) {
+            Assert.assertThat(f.idNumber().valid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
                     "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
-        Assert.assertThat(f.idNumber().valid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
-                "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
-
+        }
+        for (int i = 0; i < 100; i++) {
+            Assert.assertThat(f.idNumber().invalid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
+                    "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
+        }
     }
 
     //Test the Invalid MX ssn
-    @Test(timeout = 4000)
+    @Test(timeout = 6000)
     public void testInvalidMXSsn() {
         final Faker f = new Faker(new Locale("es-MX"));
-        Assert.assertThat(f.idNumber().invalid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
-                "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
-        Assert.assertThat(f.idNumber().invalid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
-                "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
+        for (int i = 0; i < 100; i++) {
+            Assert.assertThat(f.idNumber().validEsMXSsn(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
+                    "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
+        }
+        for (int i = 0; i < 10; i++) {
+            Assert.assertThat(f.idNumber().invalidEsMXSsn(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
+                    "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
+        }
     }
 
 }
