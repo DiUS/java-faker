@@ -106,6 +106,7 @@ public class Faker {
     private final Barcode barcode;
     private final Sip sip;
     private final EnglandFootBall englandfootball;
+    private final SocialMedia socialMedia;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -221,6 +222,7 @@ public class Faker {
         this.barcode = new Barcode(this);
         this.sip = new Sip(this);
         this.englandfootball = new EnglandFootBall(this);
+        this.socialMedia = new SocialMedia(this);
     }
 
     /**
@@ -692,6 +694,15 @@ public class Faker {
     }
 
     /**
+     * create fake Social Media
+     * @return A Social Media.
+     */
+    //CS304 Issue link: https://github.com/DiUS/java-faker/issues/414
+    public SocialMedia socialMedia(){
+        return socialMedia;
+    }
+
+    /**
      * Allows the evaluation of native YML expressions to allow you to build your own.
      * <p>
      * The following are valid expressions:
@@ -710,4 +721,5 @@ public class Faker {
     public String expression(String expression) {
         return this.fakeValuesService.expression(expression, this);
     }
+
 }
