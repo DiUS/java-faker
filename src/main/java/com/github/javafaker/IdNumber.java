@@ -47,7 +47,11 @@ public class IdNumber {
     //CS304 Issue link: https://github.com/DiUS/java-faker/issues/571
     public String validEsMXSsn() {
         EsMXIdNumber esMXIdNumber = new EsMXIdNumber();
-        return esMXIdNumber.get();
+        String ssn = "";
+        while (ssn.length() != 18){
+            ssn = esMXIdNumber.get();
+        }
+        return ssn;
     }
 
     /**
