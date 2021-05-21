@@ -22,20 +22,19 @@ public class EsMXIdNumberTest {
     @Test(timeout = 4000)
     public void testValidMXSsn() {
         final Faker f = new Faker(new Locale("es-MX"));
-        for (int i = 0; i < 100; i++) {
-            Assert.assertThat(f.idNumber().valid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
+        Assert.assertThat(f.idNumber().valid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
                     "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
-        }
+        Assert.assertThat(f.idNumber().valid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
+                "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
+
     }
 
     //Test the Invalid MX ssn
     @Test(timeout = 4000)
     public void testInvalidMXSsn() {
         final Faker f = new Faker(new Locale("es-MX"));
-        for (int i = 0; i < 100; i++) {
-            Assert.assertThat(f.idNumber().invalid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
-                    "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
-        }
+        Assert.assertThat(f.idNumber().invalid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{6}[HM]" +
+                "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
     }
 
 }
