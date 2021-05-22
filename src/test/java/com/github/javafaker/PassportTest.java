@@ -71,7 +71,7 @@ public class PassportTest extends AbstractFakerTest {
         assertNotNull(faker.passport().amInvalid());
     }
 
-
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/450
     @Test
     public void testChValidFrequently() {
         for (int i = 0; i < 1000; i++) {
@@ -79,6 +79,7 @@ public class PassportTest extends AbstractFakerTest {
         }
     }
 
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/450
     @Test
     public void testChInValidFrequently() {
         for (int i = 0; i < 1000; i++) {
