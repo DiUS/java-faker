@@ -13,8 +13,19 @@ public class PassportTest extends AbstractFakerTest {
     // CS304 Issue link: https://github.com/DiUS/java-faker/issues/450
     @Test
     public void testChValid() {
-        assertTrue(faker.passport().chValid().matches("E[0-9A-HJ-NP-Z][0-9]{7}")
-                || faker.passport().chValid().matches("G[0-9]{8}"));
+        String passport = faker.passport().chValid();
+        assertTrue(passport.charAt(0) == 'E' || passport.charAt(0) == 'G');
+        if (passport.charAt(0) == 'G') {
+            for (int i = 1; i < passport.length(); i++) {
+                assertTrue(Character.isDigit(passport.charAt(i)));
+            }
+        }else {
+            assertFalse(passport.charAt(1) == 'I' || passport.charAt(1) == 'O');
+            assertTrue(Character.isLetter(passport.charAt(1)) || Character.isDigit(passport.charAt(1)));
+            for (int i = 2; i < passport.length(); i++) {
+                assertTrue(Character.isDigit(passport.charAt(i)));
+            }
+        }
     }
 
     // CS304 Issue link: https://github.com/DiUS/java-faker/issues/450
@@ -58,5 +69,20 @@ public class PassportTest extends AbstractFakerTest {
     @Test
     public void testAmInValidNotNull() {
         assertNotNull(faker.passport().amInvalid());
+    }
+
+
+    @Test
+    public void testChValidFrequently() {
+        for (int i = 0; i < 1000; i++) {
+            testChValid();
+        }
+    }
+
+    @Test
+    public void testChInValidFrequently() {
+        for (int i = 0; i < 1000; i++) {
+            testChInValid();
+        }
     }
 }
