@@ -39,4 +39,27 @@ public class IdNumberTest extends AbstractFakerTest {
             assertThat(f.idNumber().invalid(), matchesRegularExpression("\\d{6}[-+]\\d{4}"));
         }
     }
+
+    /**
+     * Test whether generated valid Mexican ssn is valid.
+     */
+    @Test
+    public void testValidMexicanSsn() {
+        final Faker f = new Faker(new Locale("es_MX"));
+        for (int i = 0; i < 100; i++) {
+            assertThat(f.idNumber().valid(), matchesRegularExpression("[A-Z][A-Z][A-Z][A-Z]\\d{2}[0-1]\\d[0-3]\\d[HM]" +
+                                        "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d{1}"));
+        }
+    }
+
+    /**
+     * Test whether generated invalid Mexican ssn is invalid.
+     */
+    @Test
+    public void testInvalidMexicanSsn() {
+        final Faker f = new Faker(new Locale("es_MX"));
+        for (int i = 0; i < 100; i++) {
+            assertThat(f.idNumber().valid(), matchesRegularExpression("\\w[AEIOUaeiou]\\w{2}\\d{2}[0-1]\\d[0-3]\\d[HMhm]\\w{7}"));
+        }
+    }
 }
