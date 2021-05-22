@@ -93,6 +93,7 @@ public class EnFile {
             "hacker.yml",
             "half_life.yml",
             "harry_potter.yml",
+            "hearthstone.yml",
             "heroes.yml",
             "heroes_of_the_storm.yml",
             "hey_arnold.yml",
@@ -194,7 +195,8 @@ public class EnFile {
             new EnFile("witcher.yml", "games"),
             new EnFile("zelda.yml", "games"),
             new EnFile("elder_scrolls.yml", "games"),
-            new EnFile("phone_number.yml", "cell_phone")); // load phone number again with a differen path
+            new EnFile("phone_number.yml", "cell_phone"),
+            new EnFile("hearthstone.yml", "games")); // load phone number again with a differen path
 
 
     public static List<EnFile> getFiles() {

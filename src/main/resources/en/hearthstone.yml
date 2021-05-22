@@ -1,0 +1,8 @@
+en:
+  faker:
+    games:
+      hearthstone:
+        professions: ["Warrior", "Paladin", "Warlock", "Priest", "Mage", "Druid", "Shaman", "Hunter", "Rogue", "Demon Hunter"]
+        characters: ["Garrosh Hellscream", "Uther Lightbringer", "Illidan Stormrage", "Gul'dan", "Anduin Wrynn", "Valeera Sanguinar", "Thrall", "Jaina Proudmoore", "Rexxar", "Malfurion Stormrage"]
+        patterns: ["Battlegrounds", "Standard", "Wild", "Classic", "Arena", "Solo Adventures", "Tavern Brawl", "Duels"]
+        rank: ["Legend", "Diamond", "Platinum", "Gold", "Silver", "Bronze"]
