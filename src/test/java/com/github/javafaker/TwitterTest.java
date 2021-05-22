@@ -91,22 +91,36 @@ public class TwitterTest extends AbstractFakerTest {
      */
     @Test
     public void user_name_test() {
-        assertThat(faker.twitter().user_name(), matchesRegularExpression("[a-zA-Z0-9_\\-\u4e00-\u9fa5]+"));
+        for(int i=0; i<10; i++){
+            assertThat(faker.twitter().user_name(), matchesRegularExpression("[a-zA-Z0-9_\\-\u4e00-\u9fa5]+"));
+        }
     }
     /**
      * Test for faking twitter user id
      */
     @Test
     public void user_id_test() {
-        assertThat(faker.twitter().user_id(), matchesRegularExpression("[0-9]+"));
+        for(int i=0; i<10; i++){
+            assertThat(faker.twitter().user_id(), matchesRegularExpression("[0-9]+"));
+        }
     }
     /**
      * Test for faking twitter link
      */
     @Test
-    public void linkTest() {
+    public void linkTestRules() {
         for (int i = 0; i < 10; i++) {
             assertThat(faker.twitter().get_link("John", 6), matchesRegularExpression("[A-Za-z0-9.:/]+"));
+        }
+    }
+
+    /**
+     * Test for faking twitter link keywords
+     */
+    @Test
+    public void linkTestKeyWords() {
+        for (int i = 0; i < 10; i++) {
+            assertTrue(faker.twitter().get_link("John", 6).contains("John"));
         }
     }
 }

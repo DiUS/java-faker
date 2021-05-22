@@ -67,7 +67,7 @@ public class Twitter {
         String result = "";
         Random random = new Random();
         for (int i = 0; i < 3; i++) {
-            result = result + random.nextInt(10);
+            result = result.concat(String.valueOf(random.nextInt(10)));
         }
         String id2 = result + newDate;
 
