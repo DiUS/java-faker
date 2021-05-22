@@ -6,7 +6,7 @@
     <version>1.0.3-SNAPSHOT</version>
     <name>Java Faker</name>
     <description>
-    	This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
+        This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
         It's useful when you're developing a new project and need some pretty data for showcase.
     </description>
     <url>http://github.com/DiUS/java-faker</url>
@@ -105,17 +105,17 @@
         </dependency>
     </dependencies>
     <build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.7.0</version>
-					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
-					</configuration>
-				</plugin>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.eluder.coveralls</groupId>
                     <artifactId>coveralls-maven-plugin</artifactId>
@@ -146,17 +146,7 @@
                         </execution>
                     </executions>
                 </plugin>
-			</plugins>
-		</pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>7</source>
-                    <target>7</target>
-                </configuration>
-            </plugin>
-        </plugins>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>
