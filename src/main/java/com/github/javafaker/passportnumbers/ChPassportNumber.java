@@ -44,9 +44,10 @@ public class ChPassportNumber {
 
         boolean isValid = true;
         for (String validCHPattern : validCHPatterns) {
-            if (!ch.matches(validCHPattern)) {
-                isValid = false;
+            if (ch.matches(validCHPattern)) {
+                continue;
             }
+            isValid = false;
         }
         if (isValid) {
             ch = getInvalidCh(f);
