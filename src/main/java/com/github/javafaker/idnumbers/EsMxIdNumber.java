@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 //CS304 Issue link: https://github.com/DiUS/java-faker/issues/571
 
@@ -113,6 +114,8 @@ public class EsMxIdNumber {
      * @return whether this ssn is valid or not.
      */
     boolean validEsMxSsn(String ssn) {
+        String stdRegex = "[A-Z][A-Z][A-Z][A-Z]\\d{2}[0-1]\\d[0-3]\\d[HM]" +
+                "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d";
         if (ssn.length() != STANDARD_LENGTH) {
             return false;
         }
@@ -123,7 +126,7 @@ public class EsMxIdNumber {
         } catch (ParseException e) {
             return false;
         }
-        return checkState(ssn);
+        return Pattern.matches(stdRegex,ssn)&&checkState(ssn);
     }
 
     /**
@@ -157,5 +160,4 @@ public class EsMxIdNumber {
         }
         return false;
     }
-
 }
