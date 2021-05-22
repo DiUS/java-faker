@@ -13,10 +13,6 @@ public class PassportTest extends AbstractFakerTest {
     // CS304 Issue link: https://github.com/DiUS/java-faker/issues/450
     @Test
     public void testChValid() {
-        if (!faker.passport().chValid().matches("E[0-9A-HJ-NP-Z][0-9]{7}")
-                && !faker.passport().chValid().matches("G[0-9]{8}")){
-            System.err.println(faker.passport().chValid());
-        }
         assertTrue(faker.passport().chValid().matches("E[0-9A-HJ-NP-Z][0-9]{7}")
                 || faker.passport().chValid().matches("G[0-9]{8}"));
     }

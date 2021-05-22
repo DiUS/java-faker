@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 
 public class ChPassportNumber {
     private static final String[] validCHPatterns = {
-            "E[0-9A-HJ-NP-Z][0-9]{7}",
+            "E[0-9][0-9]{7}",
             "G[0-9]{8}"};
 
     /**
