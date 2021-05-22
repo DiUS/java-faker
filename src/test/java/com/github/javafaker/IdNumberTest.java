@@ -40,6 +40,9 @@ public class IdNumberTest extends AbstractFakerTest {
         }
     }
 
+    /**
+     * Test whether generated valid Mexican ssn is valid.
+     */
     @Test
     public void testValidMexicanSsn() {
         final Faker f = new Faker(new Locale("es_MX"));
@@ -49,6 +52,9 @@ public class IdNumberTest extends AbstractFakerTest {
         }
     }
 
+    /**
+     * Test whether generated invalid Mexican ssn is invalid.
+     */
     @Test
     public void testInvalidMexicanSsn() {
         final Faker f = new Faker(new Locale("es_MX"));

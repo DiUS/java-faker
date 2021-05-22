@@ -6,13 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Pattern;
 
-//CS304 Issue link: https://github.com/DiUS/java-faker/issues/571
 
 /**
  * Implementation based on the definition at
  * https://en.wikipedia.org/wiki/Unique_Population_Registry_Code
  */
-@SuppressWarnings("checkstyle:RegexpSingleline")
+
+//CS304 Issue link: https://github.com/DiUS/java-faker/issues/571
 public class EsMxIdNumber {
 
     /**
@@ -114,8 +114,8 @@ public class EsMxIdNumber {
      * @return whether this ssn is valid or not.
      */
     boolean validEsMxSsn(String ssn) {
-        String stdRegex = "[A-Z][A-Z][A-Z][A-Z]\\d{2}[0-1]\\d[0-3]\\d[HM]" +
-                "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d";
+        String stdRegex = "[A-Z][A-Z][A-Z][A-Z]\\d{2}[0-1]\\d[0-3]\\d[HM]"
+                + "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z,0-9]\\d";
         if (ssn.length() != STANDARD_LENGTH) {
             return false;
         }
@@ -126,7 +126,7 @@ public class EsMxIdNumber {
         } catch (ParseException e) {
             return false;
         }
-        return Pattern.matches(stdRegex,ssn)&&checkState(ssn);
+        return Pattern.matches(stdRegex, ssn) && checkState(ssn);
     }
 
     /**
