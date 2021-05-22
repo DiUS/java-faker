@@ -8,7 +8,16 @@ import org.junit.Test;
  */
 public class DomainTest extends AbstractFakerTest {
     /**
-     * Test first level domain.
+     * CS304 Issue link: https://github.com/DiUS/java-faker/issues/391
+     */
+    @Test
+    public void testFirstLvlDomainNotNull() {
+        String ret = faker.domain().firstLvlDomain("example");
+        assert (ret != null);
+    }
+
+    /**
+     * CS304 Issue link: https://github.com/DiUS/java-faker/issues/391
      */
     @Test
     public void testFirstLvlDomain() {
@@ -19,7 +28,16 @@ public class DomainTest extends AbstractFakerTest {
     }
 
     /**
-     * Test second level domain.
+     * CS304 Issue link: https://github.com/DiUS/java-faker/issues/391
+     */
+    @Test
+    public void testSecondLvlDomainNotNull() {
+        String ret = faker.domain().secondLvlDomain("example");
+        assert (ret != null);
+    }
+
+    /**
+     * CS304 Issue link: https://github.com/DiUS/java-faker/issues/391
      */
     @Test
     public void testSecondLvlDomain() {
@@ -29,8 +47,18 @@ public class DomainTest extends AbstractFakerTest {
         }
     }
 
+
     /**
-     * Test full domain.
+     * CS304 Issue link: https://github.com/DiUS/java-faker/issues/391
+     */
+    @Test
+    public void testFullDomainNotNull() {
+        String ret = faker.domain().fullDomain("example");
+        assert (ret != null);
+    }
+
+    /**
+     * CS304 Issue link: https://github.com/DiUS/java-faker/issues/391
      */
     @Test
     public void testFullDomain() {
@@ -41,7 +69,16 @@ public class DomainTest extends AbstractFakerTest {
     }
 
     /**
-     * Test a random valid domain.
+     * CS304 Issue link: https://github.com/DiUS/java-faker/issues/391
+     */
+    @Test
+    public void testValidDomainNotNull() {
+        String ret = faker.domain().validDomain("example");
+        assert (ret != null);
+    }
+
+    /**
+     * CS304 Issue link: https://github.com/DiUS/java-faker/issues/391
      */
     @Test
     public void testValidDomain() {
