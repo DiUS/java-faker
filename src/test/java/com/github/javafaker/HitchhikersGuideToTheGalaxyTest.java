@@ -34,7 +34,7 @@ public class HitchhikersGuideToTheGalaxyTest extends AbstractFakerTest {
     }
 
     @Test
-    public void specie() {
-        assertThat(faker.hitchhikersGuideToTheGalaxy().specie(), matchesRegularExpression("^(\\w+'?\\s?)+$"));
+    public void species() {
+        assertThat(faker.hitchhikersGuideToTheGalaxy().species(), matchesRegularExpression("^(\\w+'?\\s?)+$"));
     }
 }

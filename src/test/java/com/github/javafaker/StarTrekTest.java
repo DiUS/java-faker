@@ -20,8 +20,8 @@ public class StarTrekTest extends AbstractFakerTest {
     }
 
     @Test
-    public void specie() {
-        assertThat(faker.starTrek().specie(), matchesRegularExpression("^(\\w+-?'?\\s?)+$"));
+    public void species() {
+        assertThat(faker.starTrek().species(), matchesRegularExpression("^(\\w+-?'?\\s?)+$"));
     }
 
     @Test

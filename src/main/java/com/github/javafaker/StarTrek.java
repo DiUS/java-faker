@@ -15,8 +15,8 @@ public class StarTrek {
         return faker.fakeValuesService().resolve("star_trek.location", this, faker);
     }
 
-    public String specie() {
-        return faker.fakeValuesService().resolve("star_trek.specie", this, faker);
+    public String species() {
+        return faker.fakeValuesService().resolve("star_trek.species", this, faker);
     }
 
     public String villain() {
