@@ -137,4 +137,28 @@ public class Name {
     public String bloodGroup() {
         return faker.fakeValuesService().resolve("name.blood_group", this, faker);
     }
+
+    public String maleMiddleName() {
+        return faker.fakeValuesService().resolve("name.male_middle_name", this, faker);
+    }
+
+    public String maleFirstName() {
+        return faker.fakeValuesService().resolve("name.male_first_name", this, faker);
+    }
+
+    public String maleLastName() {
+        return faker.fakeValuesService().resolve("name.male_last_name", this, faker);
+    }
+
+    public String femaleFirstName() {
+        return faker.fakeValuesService().resolve("name.female_first_name", this, faker);
+    }
+
+    public String femaleMiddleName() {
+        return faker.fakeValuesService().resolve("name.female_middle_name", this, faker);
+    }
+
+    public String femaleLastName() {
+        return faker.fakeValuesService().resolve("name.female_last_name", this, faker);
+    }
 }
