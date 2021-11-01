@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
+
 import static org.apache.commons.lang3.StringUtils.join;
 import static org.apache.commons.lang3.StringUtils.stripAccents;
 
@@ -139,6 +141,35 @@ public class Internet {
         }
     }
     
+
+    public String password(int minimumLength, int maximumLength, boolean includeUppercase, char[] specialChars, boolean includeDigit) {
+        if (specialChars.length == 0 || specialChars == null) {
+            char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
+
+            numSpecialChars = faker.random().nextInt(0, password.length);
+            List<Integer> specialCharsIndices = new ArrayList<>(password.length);
+            for (int i=0; i < password.length; i++) {
+                specialCharsIndices.add(i);
+            }
+            Collections.shuffle(specialCharsIndices);
+            specialCharsIndices.subList(0, numSpecialChars).clear();
+            System.out.println("specialCharsIndices: ",specialCharsIndices);
+
+            // Set<Integer> specialCharsIndices = new LinkedHashSet<>();
+            // while (specialCharsIndices.size() < numSpecialChars) {
+            //     specialCharsIndices.add(faker.random().nextInt(password.length));
+            // }
+
+            Iterator<int> it = specialCharsIndices.iterator();
+            while(it.hasNext()) {
+                password[it.next()] = specialChars[faker.random().nextInt(specialChars.length)];
+            }
+            return new String(password);
+        } else {
+            return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
+        }
+    }
+
     /**
      * <p>Returns a MAC address in the following format: 6-bytes in MM:MM:MM:SS:SS:SS format.</p>
      * @return a correctly formatted MAC address
