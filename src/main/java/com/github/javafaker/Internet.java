@@ -8,6 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
 import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
 
 import static org.apache.commons.lang3.StringUtils.join;
@@ -153,29 +157,29 @@ public class Internet {
      */
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, char[] specialChars, boolean includeDigit) {
         if (specialChars.length == 0 || specialChars == null) {
+            return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
+        } else {
             char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
 
-            numSpecialChars = faker.random().nextInt(0, password.length);
-            List<Integer> specialCharsIndices = new ArrayList<>(password.length);
+            int numSpecialChars = faker.random().nextInt(0, password.length);
+            List<Integer> specialCharsIndices = new ArrayList(password.length);
             for (int i=0; i < password.length; i++) {
                 specialCharsIndices.add(i);
             }
             Collections.shuffle(specialCharsIndices);
             specialCharsIndices.subList(0, numSpecialChars).clear();
-            System.out.println("specialCharsIndices: ",specialCharsIndices);
+            // System.out.println("specialCharsIndices: ",specialCharsIndices);
 
             // Set<Integer> specialCharsIndices = new LinkedHashSet<>();
             // while (specialCharsIndices.size() < numSpecialChars) {
             //     specialCharsIndices.add(faker.random().nextInt(password.length));
             // }
 
-            Iterator<int> it = specialCharsIndices.iterator();
+            Iterator<Integer> it = specialCharsIndices.iterator();
             while(it.hasNext()) {
                 password[it.next()] = specialChars[faker.random().nextInt(specialChars.length)];
             }
             return new String(password);
-        } else {
-            return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
         }
     }
 
