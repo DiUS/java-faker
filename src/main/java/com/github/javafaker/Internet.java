@@ -141,7 +141,16 @@ public class Internet {
         }
     }
     
-
+    /**
+     * Generates a random password that can include special characters.
+     * An array of special characters must be supplied as a parameter and special characters in the password are randomly selected from this array.
+     * @param minimumLength     minimum character length of the generated password
+     * @param maximumLength     maximum character length of the generated password
+     * @param includeUppercase  boolean for whether to potentially include uppercase letters
+     * @param specialChars      character array of special characters (eg. '!','@','#','$') from which special characters in the password will be randomly selected 
+     * @param includeDigit      boolean for whether to include digits (eg. 0,1,2,3,4,5,6,7,9) in the password
+     * @return String with the generated password
+     */
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, char[] specialChars, boolean includeDigit) {
         if (specialChars.length == 0 || specialChars == null) {
             char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
