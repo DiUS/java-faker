@@ -33,4 +33,21 @@ public class Aviation {
     public String METAR() {
         return faker.fakeValuesService().fetchString("aviation.metar");
     }
+
+    public String flight(String type) {
+        String airline = null;
+        if (type == "IATA") {
+            airline = faker.fakeValuesService().fetchString("aviation.IATA_airline");
+        }
+        else if (type == "ICAO") {
+            airline = faker.fakeValuesService().fetchString("aviation.ICAO_airline");
+        }
+        int number = faker.number().numberBetween(0,9999);
+        return airline + number;
+    }
+
+    public String flight() {
+        return flight("IATA");
+    }
 }
+

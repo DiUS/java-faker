@@ -22,4 +22,9 @@ public class AviationTest extends AbstractFakerTest {
     public void metar() {
         assertThat(faker.aviation().METAR(), isStringWithContents());
     }
+
+    @Test
+    public void flight() {
+        System.out.println(faker.aviation().flight("ICAO"));
+    }
 }
