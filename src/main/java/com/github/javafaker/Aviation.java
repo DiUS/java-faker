@@ -34,20 +34,31 @@ public class Aviation {
         return faker.fakeValuesService().fetchString("aviation.metar");
     }
 
+    /**
+     * Return a flight number (IATA or ICAO format)
+     */
     public String flight(String type) {
-        String airline = null;
-        if (type == "IATA") {
-            airline = faker.fakeValuesService().fetchString("aviation.IATA_airline");
-        }
-        else if (type == "ICAO") {
+        String airline;
+        if (type.equals("ICAO")) {
             airline = faker.fakeValuesService().fetchString("aviation.ICAO_airline");
+        }
+        else {
+            airline = faker.fakeValuesService().fetchString("aviation.IATA_airline");
         }
         int number = faker.number().numberBetween(0,9999);
         return airline + number;
     }
 
+    /**
+     * Return a flight number without specifying flight number type
+     */
     public String flight() {
         return flight("IATA");
     }
+
+    /**
+     * Return an airline name
+     */
+    public String airline() { return faker.fakeValuesService().fetchString("aviation.airline");}
 }
 
