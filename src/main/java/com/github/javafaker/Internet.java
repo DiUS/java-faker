@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
-
 import static org.apache.commons.lang3.StringUtils.join;
 import static org.apache.commons.lang3.StringUtils.stripAccents;
 
@@ -174,24 +172,18 @@ public class Internet {
      * @return String with the generated password
      */
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, char[] specialChars, boolean includeDigit) {
-        if (specialChars.length == 0 || specialChars == null) {
+        if (specialChars.length == 0) {
             return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
         } else {
             char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
 
             int numSpecialChars = faker.random().nextInt(0, password.length);
-            List<Integer> specialCharsIndices = new ArrayList(password.length);
+            List<Integer> specialCharsIndices = new ArrayList<Integer>(password.length);
             for (int i=0; i < password.length; i++) {
                 specialCharsIndices.add(i);
             }
             Collections.shuffle(specialCharsIndices);
             specialCharsIndices.subList(0, numSpecialChars).clear();
-            // System.out.println("specialCharsIndices: ",specialCharsIndices);
-
-            // Set<Integer> specialCharsIndices = new LinkedHashSet<>();
-            // while (specialCharsIndices.size() < numSpecialChars) {
-            //     specialCharsIndices.add(faker.random().nextInt(password.length));
-            // }
 
             Iterator<Integer> it = specialCharsIndices.iterator();
             while(it.hasNext()) {
