@@ -11,6 +11,11 @@ class PasswordExample {
         //     System.out.println(pw);
         // }
 
+        // for (int i=0; i<10; i++) {
+        //     String pw = faker.internet().password(10, 25, true, true);
+        //     System.out.println(pw);
+        // }        
+
         char[] specialLarge = new char[]{'(',')','+',',','-','.','/',':',';','<','=','>','?','[',']','_','`','{','|','}','~','\"', '\'', '\\','!', '@', '#', '$', '%', '^', '&', '*'};
         for (int i=0; i<10; i++) {
             String pw = faker.internet().password(10, 20, true, specialLarge, true);

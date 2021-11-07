@@ -132,25 +132,43 @@ public class Internet {
         return password(minimumLength, maximumLength, includeUppercase, includeSpecial, true);
     }
 
+    // public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial, boolean includeDigit) {
+    //     if (includeSpecial) {
+    //         char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
+    //         char[] special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
+    //         for (int i = 0; i < faker.random().nextInt(minimumLength); i++) {
+    //             password[faker.random().nextInt(password.length)] = special[faker.random().nextInt(special.length)];
+    //         }
+    //         return new String(password);
+    //     } else {
+    //         return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
+    //     }
+    // }
+
+    /**
+     * Generates a random password that can include special characters. The default special characters are !@#$%^&*
+     * @param minimumLength     minimum character length of the generated password
+     * @param maximumLength     maximum character length of the generated password
+     * @param includeUppercase  boolean for whether to potentially include uppercase letters in the password
+     * @param includeSpecial    boolean for whether to potentially include special characters  in the password
+     * @param includeDigit      boolean for whether to include digits (eg. 0,1,2,3,4,5,6,7,9) in the password
+     * @return String with the generated password
+     */
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial, boolean includeDigit) {
         if (includeSpecial) {
-            char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
-            char[] special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
-            for (int i = 0; i < faker.random().nextInt(minimumLength); i++) {
-                password[faker.random().nextInt(password.length)] = special[faker.random().nextInt(special.length)];
-            }
-            return new String(password);
+            char[] specialCharsDefault = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
+            return password(minimumLength, maximumLength, includeUppercase, specialCharsDefault, includeDigit);
         } else {
             return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
         }
     }
     
     /**
-     * Generates a random password that can include special characters.
+     * Generates a random password that can include special characters where the special characters are defined by the user.
      * An array of special characters must be supplied as a parameter and special characters in the password are randomly selected from this array.
      * @param minimumLength     minimum character length of the generated password
      * @param maximumLength     maximum character length of the generated password
-     * @param includeUppercase  boolean for whether to potentially include uppercase letters
+     * @param includeUppercase  boolean for whether to potentially include uppercase letters in the password
      * @param specialChars      character array of special characters (eg. '!','@','#','$') from which special characters in the password will be randomly selected 
      * @param includeDigit      boolean for whether to include digits (eg. 0,1,2,3,4,5,6,7,9) in the password
      * @return String with the generated password
