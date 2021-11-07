@@ -171,6 +171,24 @@ public class InternetTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testPasswordMinLengthMaxLengthIncludeUpperCaseSetSpecialInternationalChars() {
+        
+        // ASCII international characters
+        char[] specialASCIIinternational = new char[]{'Å','á','æ','ç','É','ê','î','ï','ñ','Ø','ò','Û','û','ÿ'};
+        assertThat(faker.internet().password(300, 400, false, specialASCIIinternational, true), matchesRegularExpression("[a-z\\dÅáæçÉêîïñØòÛûÿ]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialASCIIinternational, false), matchesRegularExpression("[a-zA-ZÅáæçÉêîïñØòÛûÿ]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialASCIIinternational, true), matchesRegularExpression("[a-zA-Z\\dÅáæçÉêîïñØòÛûÿ]{300,400}"));
+        assertThat(faker.internet().password(300, 400, false, specialASCIIinternational, false), matchesRegularExpression("[a-zÅáæçÉêîïñØòÛûÿ]{300,400}"));
+
+        // UTF-8 international characters
+        char[] specialUnicodeInternational = new char[]{'П','三','Я'};
+        assertThat(faker.internet().password(300, 400, false, specialUnicodeInternational, true), matchesRegularExpression("[a-z\\dП三Я]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialUnicodeInternational, false), matchesRegularExpression("[a-zA-ZП三Я]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialUnicodeInternational, true), matchesRegularExpression("[a-zA-Z\\dП三Я]{300,400}"));
+        assertThat(faker.internet().password(300, 400, false, specialUnicodeInternational, false), matchesRegularExpression("[a-zП三Я]{300,400}"));
+    }
+
+    @Test
     public void testPasswordMinLengthMaxLengthIncludeUpperCaseIncludeSpecialIncludeDigit() {
         assertThat(faker.internet().password(10, 25, false, false, false), matchesRegularExpression("[a-z]{10,25}"));
         assertThat(faker.internet().password(10, 25, false, true, true), matchesRegularExpression("[a-z\\d!@#$%^&*]{10,25}"));
