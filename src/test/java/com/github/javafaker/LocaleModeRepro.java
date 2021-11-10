@@ -29,28 +29,36 @@ public class LocaleModeRepro {
         return getLocales().get(randomCountry);
     }
 
-    // public static String getLocale() {
-    //     String locale = TestConfig.getConfig().getString("locale");
+    public static String getLocale() {
+        // Set locale
+        // String locale = TestConfig.getConfig().getString("locale");
+        // String locale = "ca";
+        String locale = "random";
+        
+        String chosenLocale;
+        if (locale.equals("random")) {
+            chosenLocale = getRandomLocale();
+        } else if (getLocales().contains(locale)) {
+            chosenLocale = locale;
+        } else {
+            chosenLocale = "fa";
+        }
 
-    //     String chosenLocale;
-    //     if (locale.equals("random")) {
-    //         chosenLocale = getRandomLocale();
-    //     } else if (getLocales().contains(locale)) {
-    //         chosenLocale = locale;
-    //     } else {
-    //         chosenLocale = "fa";
-    //     }
-
-    //     log.info("Chosen locale: {}", chosenLocale);
-    //     return chosenLocale;
-    // }
+        // log.info("Chosen locale: {}", chosenLocale);
+        System.out.println(chosenLocale);
+        return chosenLocale;
+    }
 
     public static void main(String args[]) {
         System.out.println("BEGIN TEST");
         List<String> locales = getLocales();
         System.out.println(Arrays.toString(locales.toArray()));
+
         String randomLocale = getRandomLocale();
         System.out.println(randomLocale);
+
+        String chosenLocale = getLocale();
+
         // // Test Data
         // private Locale locale = new Locale(LocalePicker.getLocale());
         // private Faker faker = new Faker(locale);
