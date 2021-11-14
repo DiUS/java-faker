@@ -17,7 +17,8 @@ public class Options {
      * @param <E>   The type of the elements in the varargs.
      * @return A randomly selected element from the varargs.
      */
-    public <E> E option(E... options) {
+    @SafeVarargs
+    public final <E> E option(E... options) {
         return options[faker.random().nextInt(options.length)];
     }
 
@@ -28,7 +29,8 @@ public class Options {
      * @param <E>  The type of the elements in the list.
      * @return an array with randomly selected elements from the varargs.
      */
-    public <E> E[] randomSubset(E... options) {
+    @SafeVarargs
+    public final <E> E[] randomSubset(E... options) {
         return randomSubArray(options);
     }
 
