@@ -1,6 +1,5 @@
 package com.github.javafaker;
 
-import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +12,6 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.AnyOf.anyOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertArrayEquals;
 
 public class OptionsTest extends AbstractFakerTest {
 
