@@ -64,10 +64,10 @@ public class Options {
      */
     public <E> E[] randomSubArray(E[] array) {
         shuffleArray(array);
-        return Arrays.copyOfRange(array, 0, faker.number().numberBetween(0, array.length) + 2);
+        return Arrays.copyOfRange(array, 0, faker.number().numberBetween(0, array.length+1));
     }
 
-    static <E> void shuffleArray(E[] ar) {
+    private static <E> void shuffleArray(E[] ar) {
         Random rnd = ThreadLocalRandom.current();
         for (int i = ar.length - 1; i > 0; i--)
         {
@@ -98,7 +98,6 @@ public class Options {
      */
     public <E> List<E> randomSubList(List<E> list) {
         Collections.shuffle(list);
-        // System.out.println("list after shuffle " + list);
-        return new LinkedList<>(list.subList(0, faker.number().numberBetween(0, list.size())));
+        return new LinkedList<>(list.subList(0, faker.number().numberBetween(0, list.size()+1)));
     }
 }
