@@ -1,6 +1,5 @@
 package com.github.javafaker;
 
-import java.sql.Array;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -92,12 +91,12 @@ public class Options {
     /**
      * Returns a random sub-list from a list.
      *
-     * @param list The list to take a random element from.
      * @param <E>  The type of the elements in the list.
+     * @param list The list to take a random element from.
      * @return A list with randomly selected elements from the original list.
      */
     public <E> List<E> randomSubList(List<E> list) {
         Collections.shuffle(list);
-        return new LinkedList<>(list.subList(0, faker.number().numberBetween(0, list.size()+1)));
+        return list.subList(0, faker.number().numberBetween(0, list.size()+1));
     }
 }
