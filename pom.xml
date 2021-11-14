@@ -121,6 +121,7 @@
                     <artifactId>coveralls-maven-plugin</artifactId>
                     <version>4.3.0</version>
                     <configuration>
+                        <!--suppress UnresolvedMavenProperty -->
                         <repoToken>${env.COVERALLS_TOKEN}</repoToken>
                     </configuration>
                 </plugin>
@@ -148,5 +149,15 @@
                 </plugin>
 			</plugins>
 		</pluginManagement>
-	</build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
