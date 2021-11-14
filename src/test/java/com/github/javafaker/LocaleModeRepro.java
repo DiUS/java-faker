@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Locale;
 
 public class LocaleModeRepro {
     private static List<String> getLocales() {
@@ -31,8 +32,6 @@ public class LocaleModeRepro {
 
     public static String getLocale() {
         // Set locale
-        // String locale = TestConfig.getConfig().getString("locale");
-        // String locale = "ca";
         String locale = "random";
         
         String chosenLocale;
@@ -44,26 +43,31 @@ public class LocaleModeRepro {
             chosenLocale = "fa";
         }
 
-        // log.info("Chosen locale: {}", chosenLocale);
-        System.out.println(chosenLocale);
         return chosenLocale;
     }
 
     public static void main(String args[]) {
-        System.out.println("BEGIN TEST");
+        // Test each method
+        System.out.println("Test: getLocales");
         List<String> locales = getLocales();
         System.out.println(Arrays.toString(locales.toArray()));
 
+        System.out.println("Test: getRandomLocale");
         String randomLocale = getRandomLocale();
         System.out.println(randomLocale);
 
+        System.out.println("Test: getLocale");
         String chosenLocale = getLocale();
+        System.out.println(chosenLocale);
 
-        // // Test Data
-        // private Locale locale = new Locale(LocalePicker.getLocale());
-        // private Faker faker = new Faker(locale);
-
-        // private String firstName = faker.name().firstName(); // Emory
-        // private String lastName = faker.name().lastName(); // Barton
+        // Test full implementation
+        System.out.println("End-to-end Test");
+        Locale locale = new Locale(LocaleModeRepro.getLocale());
+        System.out.println (locale.toString());
+        Faker faker = new Faker(locale);
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        System.out.println (firstName);
+        System.out.println (lastName);
     }
 }
