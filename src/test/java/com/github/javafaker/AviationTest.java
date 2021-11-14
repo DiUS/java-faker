@@ -34,6 +34,11 @@ public class AviationTest extends AbstractFakerTest {
     }
 
     @Test
+    public void flight_default() {
+        assertThat(faker.aviation().flight(), matchesRegularExpression("[A-Z]{2}[0-9]+"));
+    }
+
+    @Test
     public void airline() {
         assertThat(faker.aviation().airline(), isStringWithContents());
     }
