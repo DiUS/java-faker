@@ -36,6 +36,15 @@ public class OptionsTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testRandomSubset(){
+        String[] result = faker.options().randomSubset("A", "B", "C");
+        //System.out.println(Arrays.toString(result));
+        for (String element : result){
+            assertThat(element, isOneOf(options));
+        }
+    }
+
+    @Test
     public void testOptionWithEnum() {
         assertThat(faker.options().option(Day.class), isOneOf(Day.values()));
     }
@@ -50,10 +59,30 @@ public class OptionsTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testRandomSubArray() {
+        Integer[] array = new Integer[] { 1, 2, 3, 5, 8, 13, 21 };
+        Integer[] result = faker.options().randomSubArray(array);
+        // System.out.println(Arrays.toString(result));
+        for (int element : result){
+            assertThat(element, isIn(array));
+        }
+    }
+
+    @Test
     public void testNextListElement() {
         List<Integer> list = Arrays.asList(1, 2, 3, 5, 8, 13, 21);
         for (int i = 1; i < 10; i++) {
             assertThat(faker.options().nextElement(list), isIn(list));
+        }
+    }
+
+    @Test
+    public void testRandomSubList() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 5, 8, 13, 21);
+        List<Integer> result = faker.options().randomSubList(list);
+        // System.out.println(result);
+        for (int element : result){
+            assertThat(element, isIn(list));
         }
     }
 
