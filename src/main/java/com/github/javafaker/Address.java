@@ -31,10 +31,21 @@ public class Address {
         return faker.numerify(faker.fakeValuesService().resolve("address.secondary_address", this,faker));
     }
 
+    /**
+    * Returns a String representing a standard 5-digit zip code.
+    * 
+    * @return a String representing a standard zip code
+    */
     public String zipCode() {
         return faker.bothify(faker.fakeValuesService().resolve("address.postcode", this,faker));
     }
 
+    /**
+    * Returns a String representing a ZIP+4 code for greater geographic specificity.
+    * This is a 9-digit zip code, but the String itself is 10 characters including the hyphen.
+    * 
+    * @return a String representing a ZIP+4 code
+    */
     public String zipCodePlus4(){
         return faker.bothify(faker.fakeValuesService().resolve("address.postcode_plus_four", this, faker));
     }
