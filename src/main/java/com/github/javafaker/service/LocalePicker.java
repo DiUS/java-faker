@@ -1,0 +1,49 @@
+package com.github.javafaker.service;
+
+import java.util.List; 
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Locale;
+import java.io.File;
+
+public class LocalePicker {
+
+    private final String resourcePath = "./src/main/resources";
+    private final List<String> locales;
+
+    LocalePicker() {
+        this.locales = getAllSupportedLocales();
+    }
+
+    public List<String> getAllSupportedLocales() {
+
+        // Retrieve list of all locales supported by Java Faker
+        List<String> locales = new ArrayList<String>();
+
+        String[] resourceFiles = new File(resourcePath).list();
+        int numResourceFiles = resourceFiles.length;
+        for (int i=0; i < numResourceFiles; i++) {
+            locales.add(resourceFiles[i]);
+        }
+
+        return locales;
+    }
+
+    public String getRandomLocale() {
+
+        // Randomly select a locale from list of all locales supported by Java Faker
+        Random random = new Random();
+        Integer randomCountry = random.nextInt(locales.size());
+        return locales.get(randomCountry);
+    }
+
+    public static void main(String args[]) {
+
+        LocalePicker lp = new LocalePicker();
+        List<String> allLocales = lp.getAllSupportedLocales();
+        System.out.println(Arrays.toString(allLocales.toArray()));
+        String randomLocale = lp.getRandomLocale();
+        System.out.println(randomLocale);
+    }
+}
