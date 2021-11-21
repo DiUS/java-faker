@@ -24,7 +24,11 @@ public class LocalePicker {
         String[] resourceFiles = new File(resourcePath).list();
         int numResourceFiles = resourceFiles.length;
         for (int i=0; i < numResourceFiles; i++) {
-            locales.add(resourceFiles[i]);
+            String resourceFileName = resourceFiles[i];
+            if (resourceFileName.endsWith(".yml")) {
+                String localeName = resourceFileName.substring(0, resourceFileName.lastIndexOf('.'));
+                locales.add(localeName);
+            }
         }
 
         return locales;
@@ -42,8 +46,8 @@ public class LocalePicker {
 
         LocalePicker lp = new LocalePicker();
         List<String> allLocales = lp.getAllSupportedLocales();
-        System.out.println(Arrays.toString(allLocales.toArray()));
+        System.out.println("All Supported Locales: " + Arrays.toString(allLocales.toArray()));
         String randomLocale = lp.getRandomLocale();
-        System.out.println(randomLocale);
+        System.out.println("Random Locale: " + randomLocale);
     }
 }
