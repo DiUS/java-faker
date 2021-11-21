@@ -36,6 +36,25 @@ public class OptionsTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testRandomlyNull() {
+        Integer[] int_list = new Integer[] {1,3,4,5,21,13,45};
+        Integer[] int_list_check = new Integer[] {1,3,4,5,21,13,45,null};
+        String[] string_list = new String[] {"hello", "Goodbye", "Hi", "near", "far"};
+        String[] string_list_check = new String[] {"hello", "Goodbye", "Hi", "near", "far", null};
+        for (int i = 0; i < int_list.length; i++) {
+            Integer temp = faker.options().randomlyNull(int_list);
+            assertThat( temp, isOneOf(int_list_check));
+        }
+
+        for (int i = 0; i < string_list.length; i++) {
+            String temp = faker.options().randomlyNull(string_list);
+            assertThat( temp, isOneOf(string_list_check));
+        }
+
+
+    }
+
+    @Test
     public void testOptionWithEnum() {
         assertThat(faker.options().option(Day.class), isOneOf(Day.values()));
     }
