@@ -12,7 +12,7 @@ public class LocalePicker {
     private final String resourcePath = "./src/main/resources";
     private final List<String> locales;
 
-    LocalePicker() {
+    public LocalePicker() {
         this.locales = getAllSupportedLocales();
     }
 
