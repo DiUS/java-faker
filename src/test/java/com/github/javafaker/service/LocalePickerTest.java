@@ -1,11 +1,15 @@
-package com.github.javafaker;
+package com.github.javafaker.service;
+
+import com.github.javafaker.AbstractFakerTest;
 import com.github.javafaker.repeating.Repeat;
 
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List; 
+import java.util.Random;
 import java.io.File;
 
 import com.github.javafaker.service.LocalePicker;
@@ -36,10 +40,24 @@ public class LocalePickerTest extends AbstractFakerTest {
     }
 
     @Test
-    @Repeat(times = 1000)
     public void testGetRandomLocale() {
+        // Check that we get the same locale when using pseudorandom number generator with a fixed seed
+        final long SEED_FIXED = 5;
 
-        String randomLocale = localePicker.getRandomLocale();
+        Random random1 = new Random(SEED_FIXED);
+        String randomLocale1 = localePicker.getRandomLocale(random1);
+
+        Random random2 = new Random(SEED_FIXED);
+        String randomLocale2 = localePicker.getRandomLocale(random2);
+
+        assertEquals(randomLocale1, randomLocale2);
+    }
+
+    @Test
+    @Repeat(times = 1000)
+    public void testGetLocale() {
+
+        String randomLocale = localePicker.getLocale();
         assertThat(allLocales, hasItems(randomLocale));
     }
 }

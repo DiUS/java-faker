@@ -34,12 +34,16 @@ public class LocalePicker {
         return locales;
     }
 
-    public String getRandomLocale() {
+    public String getRandomLocale(Random random) {
 
         // Randomly select a locale from list of all locales supported by Java Faker
-        Random random = new Random();
         Integer randomCountry = random.nextInt(locales.size());
         return locales.get(randomCountry);
+    }
+
+    public String getLocale() {
+        Random random = new Random();
+        return getRandomLocale(random);
     }
 
     public static void main(String args[]) {
@@ -47,7 +51,7 @@ public class LocalePicker {
         LocalePicker lp = new LocalePicker();
         List<String> allLocales = lp.getAllSupportedLocales();
         System.out.println("All Supported Locales: " + Arrays.toString(allLocales.toArray()));
-        String randomLocale = lp.getRandomLocale();
+        String randomLocale = lp.getLocale();
         System.out.println("Random Locale: " + randomLocale);
     }
 }
