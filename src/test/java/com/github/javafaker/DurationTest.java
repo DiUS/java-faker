@@ -7,7 +7,6 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class DurationTest extends AbstractFakerTest {
-    // @TODO: REFACTOR NOT TO USE ASSERT
     final int DURATION_IS_EQUAL = 0;
     final int DURATION_IS_GREATER = 1;
     final int DURATION_IS_LESS = -1;
