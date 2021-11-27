@@ -128,13 +128,13 @@ public class AddressTest extends AbstractFakerTest {
     @Test
     public void testZipIsFiveChars() {
         faker = new Faker(new Locale("en-us"));
-        assert(faker.address().zipCode().length() == 5);
+        assertThat(faker.address().zipCode().length(), is(5));
     }
 
     @Test
     public void testZipPlus4IsTenChars() {
         faker = new Faker(new Locale("en-us"));
-        assert(faker.address().zipCodePlus4().length() == 10);  // includes dash
+        assertThat(faker.address().zipCodePlus4().length(), is(10));  // includes dash
     }
 
     @Test
