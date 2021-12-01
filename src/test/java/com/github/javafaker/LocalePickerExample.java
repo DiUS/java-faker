@@ -10,6 +10,11 @@ import java.util.Locale;
 public class LocalePickerExample {
 
 
+    /**
+     * Example to illustrate use of LocalePicker to randomly select
+     *   locales (language and geographical/political/cultural region) when using Faker
+     * @param args Command-line arguments
+     */
     public static void main(String args[]) {
         LocalePicker lp = new LocalePicker();
 
@@ -30,11 +35,11 @@ public class LocalePickerExample {
         String phoneNumber = faker.phoneNumber().phoneNumber();
         String fullName = faker.name().fullName();
 
-        System.out.println ("Full Name" + fullName);
-        System.out.println ("First Name: " + firstName);
-        System.out.println ("Last Name: " + lastName);
-        System.out.println ("Street Address: " + streetAddress);
-        System.out.println ("Phone Number: " + phoneNumber);
+        System.out.println ("  Full Name" + fullName);
+        System.out.println ("  First Name: " + firstName);
+        System.out.println ("  Last Name: " + lastName);
+        System.out.println ("  Street Address: " + streetAddress);
+        System.out.println ("  Phone Number: " + phoneNumber);
 
         // Tests
         System.out.println (randomLocale.getLanguage());

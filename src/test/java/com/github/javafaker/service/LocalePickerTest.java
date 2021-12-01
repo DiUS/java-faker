@@ -23,12 +23,18 @@ public class LocalePickerTest extends AbstractFakerTest {
     private LocalePicker localePicker;
     private List<String> allLocales;
 
+    /**
+     * Initialize tests by instantiating a LocalePicker object and list of all locales supported in Java Faker
+     */
     @Before
     public void init() {
         localePicker = new LocalePicker();
         allLocales = localePicker.getAllSupportedLocales();
     }
 
+    /**
+     * Test to check that list of all locales support in Java Faker is loaded
+     */
     @Test
     public void testGetAllSuppportedLocales() {
         // Check that directory of locale resources exists
@@ -39,6 +45,11 @@ public class LocalePickerTest extends AbstractFakerTest {
         assertThat(allLocales, not(IsEmptyCollection.empty()));
     }
 
+    /**
+     * Test to check LocalePicker's getRandomLocale method is using the random number generator
+     *   passed as an argument. This is checked with a Random object that has a fixed seed and
+     *   should have deterministic results.
+     */
     @Test
     public void testGetRandomLocale() {
         // Check that we get the same locale when using pseudorandom number generator with a fixed seed
@@ -53,6 +64,10 @@ public class LocalePickerTest extends AbstractFakerTest {
         assertEquals(randomLocale1, randomLocale2);
     }
 
+    /**
+     * Test to check LocalePicker's getLocale method. It verifies that the randomly selected
+     *   locale is within the set of all locales supported by Java Faker.
+     */
     @Test
     @Repeat(times = 1000)
     public void testGetLocale() {
