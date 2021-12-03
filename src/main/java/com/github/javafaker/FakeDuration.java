@@ -17,8 +17,7 @@ public class FakeDuration {
     * @return a random long between 0 and max inclusive
     */
     private long getNumberBetween(long max){
-        final long min = 0;
-        return this.faker.number().numberBetween(min, max + 1);  // numberBetween max is exclusive
+        return this.faker.random().nextLong(max + 1);  // numberBetween max is exclusive
     }
 
     /**
