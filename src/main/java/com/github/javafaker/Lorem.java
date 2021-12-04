@@ -186,7 +186,8 @@ public class Lorem {
             sentenceStringBuilder = new StringBuilder(sentenceStringBuilder.substring(0, maxChars));
             if (Character.isWhitespace(sentenceStringBuilder.charAt(sentenceStringBuilder.length() - 1))) {
                 String substring = sentenceStringBuilder.substring(0, sentenceStringBuilder.length() - 1);
-                sentenceStringBuilder = new StringBuilder(substring + character());
+                sentenceStringBuilder = new StringBuilder(substring);
+                sentenceStringBuilder.append(character());
             }
         }
         return sentenceStringBuilder.toString();
