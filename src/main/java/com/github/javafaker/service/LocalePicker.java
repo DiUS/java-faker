@@ -44,7 +44,12 @@ public class LocalePicker {
         List<String> locales = new ArrayList<String>();
 
         String[] resourceFiles = new File(resourcePath).list();
-        int numResourceFiles = resourceFiles.length;
+
+        int numResourceFiles = 0;
+        if (resourceFiles != null) {
+            numResourceFiles = resourceFiles.length;
+        }
+        
         for (int i=0; i < numResourceFiles; i++) {
             String resourceFileName = resourceFiles[i];
             if (resourceFileName.endsWith(".yml")) {
