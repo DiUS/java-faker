@@ -1,16 +1,17 @@
 package com.github.javafaker.service;
 
 import java.util.List; 
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Locale;
 import java.io.File;
+import java.util.Collections;
 
 public class LocalePicker {
 
-    private final String resourcePath = "./src/main/resources";
+    private final static String resourcePath = "./src/main/resources";
     private final List<String> locales;
+    private List<String> shuffledLocales;
     private final Random random;
 
     /**
@@ -22,7 +23,7 @@ public class LocalePicker {
 
     /**
      * Constructor for LocalePicker class
-     * @param random random number generator (can have a seed for deterministic random selection)
+     * @param random random number generator (can utilize seed for deterministic random selection)
      */
     public LocalePicker(Random random) {
         if (random != null) {
@@ -57,23 +58,61 @@ public class LocalePicker {
 
     /**
      * Select a locale at random with replacement
-     * @param random random number generator (can have a seed for deterministic random selection)
+     * @param random random number generator (can utilize seed for deterministic random selection)
      * @return String of a randomly selected locale (eg. "es", "es-MX")
      */
-    public String getRandomLocale(Random random) {
+    public String getLocaleString(Random random) {
 
         // Randomly select a locale from list of all locales supported by Java Faker
-        Integer randomCountry = random.nextInt(locales.size());
-        return locales.get(randomCountry);
+        Integer randomIndex = random.nextInt(locales.size());
+        return locales.get(randomIndex);
     }
 
     /**
-     * Select a locale at random with replacement
+     * Select a locale at random without replacement. This can be used to rotate through all locales supported by Java Faker.
+     * @param random random number generator (can utilize seed for deterministic random selection)
      * @return String of a randomly selected locale (eg. "es", "es-MX")
      */
-    public String getLocale() {
-        Random random = new Random();
-        return getRandomLocale(random);
+    public String getLocaleStringWithoutReplacement(Random random) {
+        String pickedLocale = null;
+        if (this.shuffledLocales == null) {
+            // copy list of locales supported by Java Faker into shuffledLocales
+            shuffledLocales = new ArrayList<String>(this.locales);
+            // randomly shuffle shuffledLocales
+            Collections.shuffle(shuffledLocales);
+        }
+
+        if (shuffledLocales.size() > 0) {
+            // retrieve next locale in shuffledLocales and remove from list
+            pickedLocale = shuffledLocales.get(0);
+            shuffledLocales.remove(0);
+        }
+
+        if (shuffledLocales.size() == 0) {
+            shuffledLocales = null;
+        }
+
+        return pickedLocale;
+    }
+
+    /**
+     * 
+     * @return Locale object of a randomly selected locale (eg. "es", "es-MX"). 
+     *   Locale is selected at random WITH replacement from all locales supported by Java Faker.
+     */
+    public Locale getLocale() {
+        String pickedLocale = getLocaleString(this.random);
+        return new Locale(pickedLocale);
+    }
+
+    /**
+     * 
+     * @return Locale object of a randomly selected locale (eg. "es", "es-MX"). 
+     *   Locale is selected at random WITHOUT replacement from all locales supported by Java Faker.
+     */
+    public Locale getLocaleWithoutReplacement() {
+        String pickedLocale = getLocaleStringWithoutReplacement(this.random);
+        return new Locale(pickedLocale);
     }
 
 }

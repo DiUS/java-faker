@@ -8,11 +8,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
-import java.util.List; 
+import java.util.List;
+import java.util.ArrayList; 
 import java.util.Random;
+import java.util.Collections;
 import java.io.File;
-
-import com.github.javafaker.service.LocalePicker;
 
 import org.hamcrest.collection.IsEmptyCollection;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -46,33 +46,61 @@ public class LocalePickerTest extends AbstractFakerTest {
     }
 
     /**
-     * Test to check LocalePicker's getRandomLocale method is using the random number generator
+     * Test to check LocalePicker's getLocaleString method is using the random number generator
      *   passed as an argument. This is checked with a Random object that has a fixed seed and
      *   should have deterministic results.
      */
     @Test
-    public void testGetRandomLocale() {
+    public void testGetLocaleStringRandom() {
         // Check that we get the same locale when using pseudorandom number generator with a fixed seed
-        final long SEED_FIXED = 5;
+        final long SEED = 5;
 
-        Random random1 = new Random(SEED_FIXED);
-        String randomLocale1 = localePicker.getRandomLocale(random1);
+        Random random1 = new Random(SEED);
+        String randomLocale1 = localePicker.getLocaleString(random1);
 
-        Random random2 = new Random(SEED_FIXED);
-        String randomLocale2 = localePicker.getRandomLocale(random2);
+        Random random2 = new Random(SEED);
+        String randomLocale2 = localePicker.getLocaleString(random2);
 
         assertEquals(randomLocale1, randomLocale2);
     }
 
     /**
-     * Test to check LocalePicker's getLocale method. It verifies that the randomly selected
+     * Test to check LocalePicker's getLocaleString method. It verifies that the randomly selected
      *   locale is within the set of all locales supported by Java Faker.
      */
     @Test
     @Repeat(times = 1000)
     public void testGetLocale() {
 
-        String randomLocale = localePicker.getLocale();
+        Random random = new Random();
+        String randomLocale = localePicker.getLocaleString(random);
         assertThat(allLocales, hasItems(randomLocale));
     }
+
+    /**
+     * Test to check LocalePicker's getLocaleStringWithoutReplacement method.
+     *   It randomly selects n locales where n is the number of locales supported by Java Faker.
+     *   It ensures that all the locales supported by Java Faker are represented once.
+     */
+    @Test
+    public void testGetLocaleStringWithoutReplacement() {
+        Random random = new Random();
+        List<String> returnedLocales;
+        int numSupportedLocales = allLocales.size();
+
+        // loop through all locales supported by Java Faker twice
+        for (int i=0; i < 2; i++) {
+            returnedLocales = new ArrayList<String>(numSupportedLocales);
+
+            for (int j=0; j < numSupportedLocales; j++) {
+                returnedLocales.add(localePicker.getLocaleStringWithoutReplacement(random));
+            }
+
+            Collections.sort(returnedLocales);
+            Collections.sort(allLocales);
+            assertEquals(returnedLocales, allLocales);
+        }
+    }
+
+
 }
