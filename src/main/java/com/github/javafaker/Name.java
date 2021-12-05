@@ -54,6 +54,35 @@ public class Name {
         return name();
     }
 
+    private String getMaxLengthName(String key, int maxLength){
+        // shortest M/F name length is 2
+        // longest M/F name length is 11
+        String name = faker.fakeValuesService().resolve(key, this, faker);
+        while (name.length() > maxLength){
+            // keep pulling names until we find one of the correct length
+            name = faker.fakeValuesService().resolve(key, this, faker);
+        }
+        return name;
+    }
+
+    /**
+     * <p>Returns a random 'given' name such of a maximum length maxLength</p>
+     * @param maxLength maximum length of given name
+     * @return a 'given' name of max length such as Aaliyah, Aaron, Abagail or Abbey
+     */
+    private String firstName(int maxLength){
+        return getMaxLengthName("name.first_name", maxLength);
+    }
+
+    /**
+     * <p>Returns a random last name of a maximum length maxLength</p>
+     * @param maxLength maximum length of last name
+     * @return a random last name of max length such as Smith, Jones or Baldwin
+     */
+    private String lastName(int maxLength){
+        return getMaxLengthName("name.last_name", maxLength);
+    }
+
     /**
      * <p>Returns a random 'given' name such as Aaliyah, Aaron, Abagail or Abbey</p>
      * @return a 'given' name such as Aaliyah, Aaron, Abagail or Abbey
