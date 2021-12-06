@@ -54,7 +54,7 @@ public class Name {
         return name();
     }
 
-    private String getMaxLengthName(String key, int maxLength){
+    private String getMaxLengthName(String key, int maxLength) {
         // shortest M/F name length is 2
         // longest M/F name length is 11
         String name = faker.fakeValuesService().resolve(key, this, faker);
@@ -70,7 +70,7 @@ public class Name {
      * @param maxLength maximum length of given name
      * @return a 'given' name of max length such as Aaliyah, Aaron, Abagail or Abbey
      */
-    private String firstName(int maxLength){
+    private String firstName(int maxLength) {
         return getMaxLengthName("name.first_name", maxLength);
     }
 
@@ -79,7 +79,7 @@ public class Name {
      * @param maxLength maximum length of last name
      * @return a random last name of max length such as Smith, Jones or Baldwin
      */
-    private String lastName(int maxLength){
+    private String lastName(int maxLength) {
         return getMaxLengthName("name.last_name", maxLength);
     }
 
@@ -150,13 +150,6 @@ public class Name {
      */
     public String username() {
 
-        String username = StringUtils.join(
-                firstName().replaceAll("'", "").toLowerCase(),
-                ".",
-                lastName().replaceAll("'", "").toLowerCase()
-        );
-
-        return StringUtils.deleteWhitespace(username);
     }
     
     /**
