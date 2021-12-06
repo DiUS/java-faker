@@ -1,6 +1,10 @@
 package com.github.javafaker;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class Options {
     private final Faker faker;
@@ -51,5 +55,37 @@ public class Options {
      */
     public <E> E nextElement(List<E> list) {
         return list.get(faker.random().nextInt(list.size()));
+    }
+
+    /**
+     * Returns a random subset of the input list
+     * @param list input list
+     *
+     * @return A random subset.
+     */
+    public <E> List<E> getRandomSubset(List<E> list) {
+        List<E> toReturn = new ArrayList<E>();
+
+        int inputSize = list.size();
+        if (inputSize == 0) {
+            return toReturn;
+        }
+
+        int subsetSize = (int)(Math.random() * (inputSize));
+        Set<Integer> subsetIndex = new HashSet<Integer>();
+
+        for (int i = 0; i < subsetSize; i++) {
+            int randomIndex = (int)(Math.random() * (inputSize));
+            while (subsetIndex.contains(randomIndex)) {
+                randomIndex = (int)(Math.random() * (inputSize));
+            }
+            subsetIndex.add(randomIndex);
+        }
+
+        for (Integer index : subsetIndex) {
+            toReturn.add(list.get(index));
+        }
+
+        return toReturn;
     }
 }

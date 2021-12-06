@@ -171,6 +171,7 @@ public class Lorem {
         return sentence.substring(0, fixedLength).trim();
     }
 
+
     static {
         StringBuilder builder = new StringBuilder(36);
         for (char character = 'a'; character <= 'z'; character++) {

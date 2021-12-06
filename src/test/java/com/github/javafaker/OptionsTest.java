@@ -1,8 +1,12 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,6 +15,8 @@ import static org.hamcrest.Matchers.isOneOf;
 import static org.junit.Assert.assertThat;
 
 public class OptionsTest extends AbstractFakerTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(OptionsTest.class);
 
     private String[] options;
 
@@ -59,5 +65,25 @@ public class OptionsTest extends AbstractFakerTest {
 
     public enum Day {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
+
+    @Test
+    @Repeat(times=10)
+    public void testRandomSubset1() {
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        logger.info("Input list: {}", list);
+        logger.info("Random subset: {}", faker.options().getRandomSubset(list));
+    }
+
+    @Test
+    public void testRandomSubsetEmpty() {
+        List<Integer> list = new ArrayList<Integer>();
+        logger.info("Input list: {}", list);
+        logger.info("Random subset: {}", faker.options().getRandomSubset(list));
     }
 }
