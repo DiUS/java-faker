@@ -11,7 +11,7 @@ public class LocalePicker {
 
     private final static String resourcePath = "./src/main/resources";
     private final List<String> locales;
-    private List<String> shuffledLocales;
+    private List<String> shuffledLocales = new ArrayList<String>();
     private final Random random;
 
     /**
@@ -49,7 +49,7 @@ public class LocalePicker {
         if (resourceFiles != null) {
             numResourceFiles = resourceFiles.length;
         }
-        
+
         for (int i=0; i < numResourceFiles; i++) {
             String resourceFileName = resourceFiles[i];
             if (resourceFileName.endsWith(".yml")) {
@@ -80,22 +80,17 @@ public class LocalePicker {
      */
     public String getLocaleStringWithoutReplacement(Random random) {
         String pickedLocale = null;
-        if (this.shuffledLocales == null) {
+
+        if (this.shuffledLocales.isEmpty()) {
             // copy list of locales supported by Java Faker into shuffledLocales
             shuffledLocales = new ArrayList<String>(this.locales);
             // randomly shuffle shuffledLocales
             Collections.shuffle(shuffledLocales);
         }
 
-        if (shuffledLocales.size() > 0) {
-            // retrieve next locale in shuffledLocales and remove from list
-            pickedLocale = shuffledLocales.get(0);
-            shuffledLocales.remove(0);
-        }
-
-        if (shuffledLocales.size() == 0) {
-            shuffledLocales = null;
-        }
+        // retrieve next locale in shuffledLocales and remove from list
+        pickedLocale = shuffledLocales.get(0);
+        shuffledLocales.remove(0);
 
         return pickedLocale;
     }

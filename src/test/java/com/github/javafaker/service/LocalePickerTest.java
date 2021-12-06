@@ -16,7 +16,9 @@ import java.io.File;
 
 import org.hamcrest.collection.IsEmptyCollection;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.hasItems;
+
 
 public class LocalePickerTest extends AbstractFakerTest {
 
@@ -53,12 +55,12 @@ public class LocalePickerTest extends AbstractFakerTest {
     @Test
     public void testGetLocaleStringRandom() {
         // Check that we get the same locale when using pseudorandom number generator with a fixed seed
-        final long SEED = 5;
+        final long fixedSeed = 5;
 
-        Random random1 = new Random(SEED);
+        Random random1 = new Random(fixedSeed);
         String randomLocale1 = localePicker.getLocaleString(random1);
 
-        Random random2 = new Random(SEED);
+        Random random2 = new Random(fixedSeed);
         String randomLocale2 = localePicker.getLocaleString(random2);
 
         assertEquals(randomLocale1, randomLocale2);
