@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.Locale;
 
+// CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
 public class LocalePickerExample {
 
-
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
     /**
      * Example to illustrate use of LocalePicker to randomly select
      *   locales (language and geographical/political/cultural region) when using Faker

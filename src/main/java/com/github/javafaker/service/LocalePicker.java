@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.io.File;
 import java.util.Collections;
 
+// CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
 public class LocalePicker {
 
     private final static String resourcePath = "./src/main/resources";
@@ -14,6 +15,7 @@ public class LocalePicker {
     private List<String> shuffledLocales = new ArrayList<String>();
     private final Random random;
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
     /**
      * Constructor for LocalePicker class
      */
@@ -21,6 +23,7 @@ public class LocalePicker {
         this((Random) null);
     }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
     /**
      * Constructor for LocalePicker class
      * @param random random number generator (can utilize seed for deterministic random selection)
@@ -34,6 +37,7 @@ public class LocalePicker {
         this.locales = getAllSupportedLocales();
     }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
     /**
      * Retrieves list of all locales supported by Java Faker
      * @return a List of Strings with the name of the locale (eg. "es", "es-MX")
@@ -61,6 +65,7 @@ public class LocalePicker {
         return locales;
     }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
     /**
      * Select a locale at random with replacement
      * @param random random number generator (can utilize seed for deterministic random selection)
@@ -73,6 +78,7 @@ public class LocalePicker {
         return locales.get(randomIndex);
     }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
     /**
      * Select a locale at random without replacement. This can be used to rotate through all locales supported by Java Faker.
      * @param random random number generator (can utilize seed for deterministic random selection)
@@ -95,6 +101,7 @@ public class LocalePicker {
         return pickedLocale;
     }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
     /**
      * 
      * @return Locale object of a randomly selected locale (eg. "es", "es-MX"). 
@@ -105,6 +112,7 @@ public class LocalePicker {
         return new Locale(pickedLocale);
     }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/603
     /**
      * 
      * @return Locale object of a randomly selected locale (eg. "es", "es-MX"). 
