@@ -3,7 +3,6 @@ package com.github.javafaker;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 public class Options {
@@ -63,16 +62,16 @@ public class Options {
      *
      * @return A random subset.
      */
-    public <E> List<E> getRandomSubset(List<E> list) {
-        List<E> toReturn = new ArrayList<E>();
+    public <E> List<E> getRandomSubset(final List<E> list) {
+        final List<E> toReturn = new ArrayList<E>();
 
-        int inputSize = list.size();
+        final int inputSize = list.size();
         if (inputSize == 0) {
             return toReturn; // If we get an empty set, we have nothing to do but return the empty set back
         }
 
-        int subsetSize = (int)(Math.random() * (inputSize)); // Pick a subset size. Can also be the full list
-        Set<Integer> subsetIndex = new HashSet<Integer>();
+        final int subsetSize = (int)(Math.random() * (inputSize)); // Pick a subset size. Can also be the full list
+        final Set<Integer> subsetIndex = new HashSet<Integer>();
 
         for (int i = 0; i < subsetSize; i++) {
             int randomIndex = (int)(Math.random() * (inputSize)); // Pick a random index within the input list
@@ -82,7 +81,7 @@ public class Options {
             subsetIndex.add(randomIndex);
         }
 
-        for (Integer index : subsetIndex) {
+        for (final Integer index : subsetIndex) {
             toReturn.add(list.get(index)); // Build the subset list
         }
 
