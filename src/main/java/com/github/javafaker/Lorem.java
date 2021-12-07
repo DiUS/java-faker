@@ -158,7 +158,6 @@ public class Lorem {
         return StringUtils.substring(builder.toString(), 0, numberOfLetters);
     }
 
-
     static {
         StringBuilder builder = new StringBuilder(36);
         for (char character = 'a'; character <= 'z'; character++) {

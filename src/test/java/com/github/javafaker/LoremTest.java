@@ -107,5 +107,4 @@ public class LoremTest extends AbstractFakerTest {
     public void testWords() {
         assertThat(faker.lorem().words(), hasSize(greaterThanOrEqualTo(1)));
     }
-
 }
