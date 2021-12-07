@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class Options {
     private final Faker faker;
+    private static final Random rand = new Random();
 
     protected Options(Faker faker) {
         this.faker = faker;
@@ -71,14 +72,13 @@ public class Options {
             return toReturn; // If we get an empty set, we have nothing to do but return the empty set back
         }
 
-        Random r = new Random();
-        final int subsetSize = r.nextInt(inputSize); // Pick a subset size. Can also be the full list
+        final int subsetSize = rand.nextInt(inputSize); // Pick a subset size. Can also be the full list
         final Set<Integer> subsetIndex = new HashSet<Integer>();
 
         for (int i = 0; i < subsetSize; i++) {
-            int randomIndex = r.nextInt(inputSize); // Pick a random index within the input list
+            int randomIndex = rand.nextInt(inputSize); // Pick a random index within the input list
             while (subsetIndex.contains(randomIndex)) {
-                randomIndex = r.nextInt(inputSize); // If the index is already picked, choose another one
+                randomIndex = rand.nextInt(inputSize); // If the index is already picked, choose another one
             }
             subsetIndex.add(randomIndex);
         }
