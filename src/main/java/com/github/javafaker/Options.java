@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Random;
 
 public class Options {
     private final Faker faker;
@@ -70,13 +71,14 @@ public class Options {
             return toReturn; // If we get an empty set, we have nothing to do but return the empty set back
         }
 
-        final int subsetSize = (int)(Math.random() * (inputSize)); // Pick a subset size. Can also be the full list
+        Random r = new Random();
+        final int subsetSize = r.nextInt(inputSize); // Pick a subset size. Can also be the full list
         final Set<Integer> subsetIndex = new HashSet<Integer>();
 
         for (int i = 0; i < subsetSize; i++) {
-            int randomIndex = (int)(Math.random() * (inputSize)); // Pick a random index within the input list
+            int randomIndex = r.nextInt(inputSize); // Pick a random index within the input list
             while (subsetIndex.contains(randomIndex)) {
-                randomIndex = (int)(Math.random() * (inputSize)); // If the index is already picked, choose another one
+                randomIndex = r.nextInt(inputSize); // If the index is already picked, choose another one
             }
             subsetIndex.add(randomIndex);
         }

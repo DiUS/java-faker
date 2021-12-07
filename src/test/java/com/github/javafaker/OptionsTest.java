@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.Matchers.isOneOf;
@@ -72,11 +73,12 @@ public class OptionsTest extends AbstractFakerTest {
     @Repeat(times=10)
     public void testRandomSubset1() {
         List<Integer> list = new ArrayList<Integer>();
+        Random r = new Random();
         // Keep the array size to a small size for runtime
-        int listSize = (int)(Math.random()*100);
+        int listSize = r.nextInt(100);
         for (int i=0; i < listSize; i++) {
             // Allow for any positive integer
-            list.add((int)(Math.random()*Integer.MAX_VALUE));
+            list.add(r.nextInt());
         }
 
         List<Integer> subsetList = faker.options().getRandomSubset(list);
@@ -84,9 +86,8 @@ public class OptionsTest extends AbstractFakerTest {
         logger.info("Random subset: {}", subsetList);
 
         // Check that every element of the returned subset list is in fact in the original list
-        for (int i=0; i < subsetList.size(); i++)
-        {
-            assertThat(subsetList.get(i),isIn(list));
+        for (Integer integer : subsetList) {
+            assertThat(integer, isIn(list));
         }
     }
 
