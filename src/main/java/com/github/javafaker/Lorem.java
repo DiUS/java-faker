@@ -157,16 +157,6 @@ public class Lorem {
         }
         return StringUtils.substring(builder.toString(), 0, numberOfLetters);
     }
-    /**
-     * Create a Lorem Ipsum with fixed length.
-     *
-     * @param fixedLength size of the expected Lorem Ipsum
-     * @return a string with a fixed size
-     */
-    public String maxLengthSentence(int fixedLength) {
-        String sentence = this.sentence(fixedLength);
-        return sentence.substring(0, fixedLength).trim();
-    }
 
 
     static {

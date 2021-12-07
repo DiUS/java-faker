@@ -108,11 +108,4 @@ public class LoremTest extends AbstractFakerTest {
         assertThat(faker.lorem().words(), hasSize(greaterThanOrEqualTo(1)));
     }
 
-    @Test
-    public void testMaxLengthSentence() {
-        String s = faker.lorem().maxLengthSentence( 10);
-        assertEquals(s.length(), 10);
-        System.out.println(s);
-    }
-
 }
