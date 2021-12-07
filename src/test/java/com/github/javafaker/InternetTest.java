@@ -138,6 +138,11 @@ public class InternetTest extends AbstractFakerTest {
         assertThat(faker.internet().password(10, 25, true, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{10,25}"));
     }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/585
+    /**
+     * Test generation of random password character strings that include client-defined special characters.
+     * This test covers an empty set of special characters, common special characters, and escape characters.
+     */
     @Test
     public void testPasswordMinLengthMaxLengthIncludeUpperCaseSetSpecialChars() {
         
@@ -170,6 +175,11 @@ public class InternetTest extends AbstractFakerTest {
         assertThat(faker.internet().password(300, 400, false, specialExtended, false), matchesRegularExpression("[a-z\\(\\)\\+,-\\./:;\\<\\=\\>\\?\\[\\]_`\\{\\|\\}~]{300,400}"));
     }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/585
+    /**
+     * Test generation of random password character strings that include client-defined special characters.
+     * This test covers ASCII and Unicode UTF-8 international character sets.
+     */
     @Test
     public void testPasswordMinLengthMaxLengthIncludeUpperCaseSetSpecialInternationalChars() {
         

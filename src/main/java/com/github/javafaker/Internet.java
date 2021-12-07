@@ -143,6 +143,7 @@ public class Internet {
     //     }
     // }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/585
     /**
      * Generates a random password that can include special characters. The default special characters are !@#$%^&*
      * @param minimumLength     minimum character length of the generated password
@@ -161,6 +162,7 @@ public class Internet {
         }
     }
     
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/585
     /**
      * Generates a random password that can include special characters where the special characters are defined by the user.
      * An array of special characters must be supplied as a parameter and special characters in the password are randomly selected from this array.
