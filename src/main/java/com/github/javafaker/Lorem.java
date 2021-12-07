@@ -165,9 +165,6 @@ public class Lorem {
      */
     public String maxLengthSentence(int fixedLength) {
         String sentence = this.sentence(fixedLength);
-        while(sentence.substring(fixedLength - 1, fixedLength).equals(" ")) {
-            sentence = this.sentence(fixedLength);
-        }
         return sentence.substring(0, fixedLength).trim();
     }
 
