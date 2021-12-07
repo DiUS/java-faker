@@ -54,33 +54,32 @@ public class Name {
         return name();
     }
 
-    private String getMaxLengthName(String key, int maxLength) {
-        // shortest M/F name length is 2
-        // longest M/F name length is 11
+    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    private String getNameByMaxLength(String key, int maxNameLength) {
         String name = faker.fakeValuesService().resolve(key, this, faker);
-        while (name.length() > maxLength){
-            // keep pulling names until we find one of the correct length
+        final int maxAttempts = 4272;  // max number of names in M/F/Surname
+        int attemptNum = 1;
+        // keep pulling names until we find one of the correct length
+        while (name.length() > maxNameLength){
             name = faker.fakeValuesService().resolve(key, this, faker);
+            attemptNum++;
+            // abort if we've pulled more names than are present in the largest collection
+            if (attemptNum > maxAttempts) {
+                name = null;
+                break;
+            }
         }
         return name;
     }
 
-    /**
-     * <p>Returns a random 'given' name such of a maximum length maxLength</p>
-     * @param maxLength maximum length of given name
-     * @return a 'given' name of max length such as Aaliyah, Aaron, Abagail or Abbey
-     */
-    private String firstName(int maxLength) {
-        return getMaxLengthName("name.first_name", maxLength);
+    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    private String firstName(int maxNameLength) {
+        return getNameByMaxLength("name.first_name", maxNameLength);
     }
 
-    /**
-     * <p>Returns a random last name of a maximum length maxLength</p>
-     * @param maxLength maximum length of last name
-     * @return a random last name of max length such as Smith, Jones or Baldwin
-     */
-    private String lastName(int maxLength) {
-        return getMaxLengthName("name.last_name", maxLength);
+    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    private String lastName(int maxNameLength) {
+        return getNameByMaxLength("name.last_name", maxNameLength);
     }
 
     /**
@@ -134,6 +133,16 @@ public class Name {
             faker.fakeValuesService().resolve("name.title.job", this, faker) }, " ");
     }
 
+    private String makeUserName(String firstName, String lastName) {
+        String username = StringUtils.join(
+                firstName.replaceAll("'", "").toLowerCase(),
+                ".",
+                lastName.replaceAll("'", "").toLowerCase()
+        );
+
+        return StringUtils.deleteWhitespace(username);
+    }
+
     /**
      * <p>
      *     A lowercase username composed of the first_name and last_name joined with a '.'. Some examples are:
@@ -149,14 +158,62 @@ public class Name {
      * @see Name#lastName()
      */
     public String username() {
+        return makeUserName(firstName(), lastName());
+    }
 
-        String username = StringUtils.join(
-                firstName().replaceAll("'", "").toLowerCase(),
-                ".",
-                lastName().replaceAll("'", "").toLowerCase()
-        );
+    /**
+     * <p>
+     *     A lowercase username composed of the first_name and last_name joined with a '.'.
+     *      Constrained by minimum length and maximum length.
+     *      Some examples are:
+     *     <ul>
+     *         <li>(template) {@link #firstName()}.{@link #lastName()}</li>
+     *         <li>jim.jones</li>
+     *         <li>jason.leigh</li>
+     *         <li>tracy.jordan</li>
+     *     </ul>
+     * </p>
+     * @return a random two part user name with a minimum length minLength and a maximum length maxLength.
+     * @see Name#firstName() 
+     * @see Name#lastName()
+     */
+    public String username(int minLength, int maxLength) {
+        if (maxLength < minLength) {
+            throw new IllegalArgumentException("maxLength cannot be smaller than minLength");
+        }
 
-        return StringUtils.deleteWhitespace(username);
+        final int minLengthUsername = 6; // minimum length username = 5 (6 including dot)
+
+        if(minLength < minLengthUsername || maxLength < minLengthUsername) {
+            // we can't make a username shorter than 6 characters
+            throw new IllegalArgumentException("minimum allowable username length is " + minLengthUsername);
+        }
+
+        int maxFirstNameLength;
+        int maxLastNameLength;
+
+        if (maxLength % 2 == 0){
+            maxFirstNameLength = maxLastNameLength = maxLength / 2;
+        } else {
+            maxFirstNameLength = (maxLength / 2) + 1;
+        }
+
+        String firstName = firstName(maxFirstNameLength);
+        // maximum last name length is maximum allowable length
+        // minus the first name we retrieved minus the dot that joins the two names
+
+        if (firstName == null) {
+            throw new RuntimeException("firstName aborted because it was unable to find a name matching constraints");
+        }
+
+        maxLastNameLength = maxLength - firstName.length() - 1; 
+        String lastName = lastName(maxLastNameLength);
+
+        if (lastName == null){
+            throw new RuntimeException("lastName aborted because it was unable to find a name matching constraints");
+        }
+
+        return makeUserName(firstName, lastName);
     }
     
     /**

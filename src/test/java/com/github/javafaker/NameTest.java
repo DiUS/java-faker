@@ -7,6 +7,7 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
@@ -73,6 +74,40 @@ public class NameTest  extends AbstractFakerTest{
         doReturn("Compound Name").when(name).firstName();
         doReturn(name).when(faker).name();
         assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+    }
+
+    @Test
+    @Repeat (times = 100)
+    public void testConstrainedUsernameWithOddMaxLength() {
+        final int minLength = 6;
+        final int maxLength = 15;
+        String username = faker.name().username(minLength, maxLength);
+        assertThat(username, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+        assertTrue(username.length() >= minLength && username.length() <= maxLength);
+    }
+
+    @Test
+    @Repeat (times = 100)
+    public void testConstrainedUsernameWithEvenMaxLength() {
+        final int minLength = 6;
+        final int maxLength = 20;
+        String username = faker.name().username(minLength, maxLength);
+        assertThat(username, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+        assertTrue(username.length() >= minLength && username.length() <= maxLength);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstrainedUsernameWithSmallMinimum() {
+        final int minLength = 1;
+        final int maxLength = 15;
+        faker.name().username(minLength, maxLength);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstrainedUsernameWithMaxSmallerThanMin() {
+        final int minLength = 6;
+        final int maxLength = 3;
+        faker.name().username(minLength, maxLength);
     }
     
     @Test
