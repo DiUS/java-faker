@@ -162,11 +162,12 @@ public class Lorem {
      * Create a Lorem Ipsum sentence with fixed length.
      *
      * @param fixedLength size of the expected Lorem Ipsum sentence.
-     * @return a string with a fixed size. Return empty string if input size is 0 or negative.
+     * @return a string with a fixed size.
+     * Return empty string if input size is 0 or negative.
      */
     public String maxLengthSentence(final int fixedLength) {
         if (fixedLength <= 0) {
-            return new String("");
+            return "";
         }
 
         String sentence = this.sentence(fixedLength);
