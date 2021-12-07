@@ -163,15 +163,12 @@ public class Lorem {
      * @param fixedLength size of the expected Lorem Ipsum
      * @return a string with a fixed size
      */
-    public String maxLengthSentence(final int fixedLength) {
+    public String maxLengthSentence(int fixedLength) {
         String sentence = this.sentence(fixedLength);
-        String endOfSentence = sentence.substring(fixedLength - 1, fixedLength);
-        while(" ".equals(endOfSentence)) {
+        while(sentence.substring(fixedLength - 1, fixedLength).equals(" ")) {
             sentence = this.sentence(fixedLength);
-            endOfSentence = sentence.substring(fixedLength - 1, fixedLength);
         }
-
-        return sentence.substring(0, fixedLength);
+        return sentence.substring(0, fixedLength).trim();
     }
 
 
