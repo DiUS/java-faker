@@ -68,22 +68,22 @@ public class Options {
 
         int inputSize = list.size();
         if (inputSize == 0) {
-            return toReturn;
+            return toReturn; // If we get an empty set, we have nothing to do but return the empty set back
         }
 
-        int subsetSize = (int)(Math.random() * (inputSize));
+        int subsetSize = (int)(Math.random() * (inputSize)); // Pick a subset size. Can also be the full list
         Set<Integer> subsetIndex = new HashSet<Integer>();
 
         for (int i = 0; i < subsetSize; i++) {
-            int randomIndex = (int)(Math.random() * (inputSize));
+            int randomIndex = (int)(Math.random() * (inputSize)); // Pick a random index within the input list
             while (subsetIndex.contains(randomIndex)) {
-                randomIndex = (int)(Math.random() * (inputSize));
+                randomIndex = (int)(Math.random() * (inputSize)); // If the index is already picked, choose another one
             }
             subsetIndex.add(randomIndex);
         }
 
         for (Integer index : subsetIndex) {
-            toReturn.add(list.get(index));
+            toReturn.add(list.get(index)); // Build the subset list
         }
 
         return toReturn;

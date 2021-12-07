@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.Matchers.isOneOf;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class OptionsTest extends AbstractFakerTest {
@@ -71,19 +72,28 @@ public class OptionsTest extends AbstractFakerTest {
     @Repeat(times=10)
     public void testRandomSubset1() {
         List<Integer> list = new ArrayList<Integer>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
+        // Keep the array size to a small size for runtime
+        int listSize = (int)(Math.random()*100);
+        for (int i=0; i < listSize; i++) {
+            // Allow for any positive integer
+            list.add((int)(Math.random()*Integer.MAX_VALUE));
+        }
+
+        List<Integer> subsetList = faker.options().getRandomSubset(list);
         logger.info("Input list: {}", list);
-        logger.info("Random subset: {}", faker.options().getRandomSubset(list));
+        logger.info("Random subset: {}", subsetList);
+
+        // Check that every element of the returned subset list is in fact in the original list
+        for (int i=0; i < subsetList.size(); i++)
+        {
+            assertThat(subsetList.get(i),isIn(list));
+        }
     }
 
     @Test
     public void testRandomSubsetEmpty() {
         List<Integer> list = new ArrayList<Integer>();
-        logger.info("Input list: {}", list);
-        logger.info("Random subset: {}", faker.options().getRandomSubset(list));
+        List<Integer> subsetList = faker.options().getRandomSubset(list);
+        assertEquals(list,subsetList);
     }
 }
