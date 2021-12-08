@@ -167,7 +167,7 @@ public class Name {
     /**
      * <p>
      *     A lowercase username composed of the first_name and last_name joined with a '.'.
-     *      Constrained by minimum length and maximum length.
+     *      Constrained by maximum length.
      *      Some examples are:
      *     <ul>
      *         <li>(template) {@link #firstName()}.{@link #lastName()}</li>
@@ -180,18 +180,7 @@ public class Name {
      * @see Name#firstName() 
      * @see Name#lastName()
      */
-    public String username(int minLength, int maxLength) {
-        if (maxLength < minLength) {
-            throw new IllegalArgumentException("maxLength cannot be smaller than minLength");
-        }
-
-        final int minLengthUsername = 6; // minimum length username = 5 (6 including dot)
-
-        if(minLength < minLengthUsername || maxLength < minLengthUsername) {
-            // we can't make a username shorter than 6 characters
-            throw new IllegalArgumentException("minimum allowable username length is " + minLengthUsername);
-        }
-
+    public String username(int maxLength) {
         int maxFirstNameLength;
         int maxLastNameLength;
 

@@ -79,35 +79,19 @@ public class NameTest  extends AbstractFakerTest{
     @Test
     @Repeat (times = 100)
     public void testConstrainedUsernameWithOddMaxLength() {
-        final int minLength = 6;
         final int maxLength = 15;
-        String username = faker.name().username(minLength, maxLength);
+        String username = faker.name().username(maxLength);
         assertThat(username, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
-        assertTrue(username.length() >= minLength && username.length() <= maxLength);
+        assertTrue(username.length() <= maxLength);
     }
 
     @Test
     @Repeat (times = 100)
     public void testConstrainedUsernameWithEvenMaxLength() {
-        final int minLength = 6;
         final int maxLength = 20;
-        String username = faker.name().username(minLength, maxLength);
+        String username = faker.name().username(maxLength);
         assertThat(username, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
-        assertTrue(username.length() >= minLength && username.length() <= maxLength);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstrainedUsernameWithSmallMinimum() {
-        final int minLength = 1;
-        final int maxLength = 15;
-        faker.name().username(minLength, maxLength);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstrainedUsernameWithMaxSmallerThanMin() {
-        final int minLength = 6;
-        final int maxLength = 3;
-        faker.name().username(minLength, maxLength);
+        assertTrue(username.length() <= maxLength);
     }
     
     @Test
