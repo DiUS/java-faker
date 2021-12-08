@@ -195,7 +195,7 @@ public class Name {
         if (maxLength % 2 == 0){
             maxFirstNameLength = maxLastNameLength = maxLength / 2;
         } else {
-            maxFirstNameLength = (maxLength / 2) + 1;
+            maxFirstNameLength = maxLength / 2 + 1;
         }
 
         String firstName = firstName(maxFirstNameLength);
