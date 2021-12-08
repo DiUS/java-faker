@@ -133,6 +133,7 @@ public class Name {
             faker.fakeValuesService().resolve("name.title.job", this, faker) }, " ");
     }
 
+    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
     private String makeUserName(String firstName, String lastName) {
         String username = StringUtils.join(
                 firstName.replaceAll("'", "").toLowerCase(),
@@ -143,6 +144,7 @@ public class Name {
         return StringUtils.deleteWhitespace(username);
     }
 
+    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
     /**
      * <p>
      *     A lowercase username composed of the first_name and last_name joined with a '.'. Some examples are:
@@ -161,6 +163,7 @@ public class Name {
         return makeUserName(firstName(), lastName());
     }
 
+    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
     /**
      * <p>
      *     A lowercase username composed of the first_name and last_name joined with a '.'.
