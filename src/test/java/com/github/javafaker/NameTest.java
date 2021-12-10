@@ -76,7 +76,7 @@ public class NameTest  extends AbstractFakerTest{
         assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
     }
 
-    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
     @Test
     @Repeat (times = 100)
     public void testConstrainedUsernameWithOddMaxLength() {
@@ -86,7 +86,7 @@ public class NameTest  extends AbstractFakerTest{
         assertTrue(username.length() <= maxLength);
     }
 
-    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
     @Test
     @Repeat (times = 100)
     public void testConstrainedUsernameWithEvenMaxLength() {

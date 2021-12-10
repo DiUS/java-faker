@@ -54,7 +54,7 @@ public class Name {
         return name();
     }
 
-    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
     private String getNameByMaxLength(String key, int maxNameLength) {
         String name = faker.fakeValuesService().resolve(key, this, faker);
         final int maxAttempts = 4272;  // max number of names in M/F/Surname
@@ -72,12 +72,12 @@ public class Name {
         return name;
     }
 
-    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
     private String firstName(int maxNameLength) {
         return getNameByMaxLength("name.first_name", maxNameLength);
     }
 
-    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
     private String lastName(int maxNameLength) {
         return getNameByMaxLength("name.last_name", maxNameLength);
     }
@@ -133,7 +133,7 @@ public class Name {
             faker.fakeValuesService().resolve("name.title.job", this, faker) }, " ");
     }
 
-    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
     private String makeUserName(String firstName, String lastName) {
         String username = StringUtils.join(
                 firstName.replaceAll("'", "").toLowerCase(),
@@ -144,7 +144,7 @@ public class Name {
         return StringUtils.deleteWhitespace(username);
     }
 
-    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
     /**
      * <p>
      *     A lowercase username composed of the first_name and last_name joined with a '.'. Some examples are:
@@ -163,7 +163,7 @@ public class Name {
         return makeUserName(firstName(), lastName());
     }
 
-    // CS427 Issue Link: https://github.com/DiUS/java-faker/issues/361
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
     /**
      * <p>
      *     A lowercase username composed of the first_name and last_name joined with a '.'.
