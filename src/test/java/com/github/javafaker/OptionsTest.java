@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.Matchers.isOneOf;
@@ -54,6 +55,32 @@ public class OptionsTest extends AbstractFakerTest {
         List<Integer> list = Arrays.asList(1, 2, 3, 5, 8, 13, 21);
         for (int i = 1; i < 10; i++) {
             assertThat(faker.options().nextElement(list), isIn(list));
+        }
+    }
+
+    @Test
+    public void testRandomSubsetFromArray() {
+        Integer[] array = new Integer[] { 1, 2, 3, 5, 8, 13, 21 };
+        Set<Integer> subset = faker.options().randomSubset(array);
+        for (Integer ele : subset) {
+            assertThat(ele, isIn(array));
+        }
+    }
+
+    @Test
+    public void testRandomSubsetFromList() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 5, 8, 13, 21);
+        Set<Integer> subset = faker.options().randomSubset(list);
+        for (Integer ele : subset) {
+            assertThat(ele, isIn(list));
+        }
+    }
+
+    @Test
+    public void testRandomSubsetFromEnum() {
+        Set<Day> subset = faker.options().randomSubset(Day.class);
+        for (Day ele : subset) {
+            assertThat(ele, isOneOf(Day.values()));
         }
     }
 
