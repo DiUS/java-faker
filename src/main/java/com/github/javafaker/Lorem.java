@@ -173,4 +173,21 @@ public class Lorem {
     private static final char[] letters;
     private static final char[] characters;
 
+    /**
+     * Create a string as spaced words or sentences of fixed length.
+     *
+     * @param charLength size of the character
+     * @return a string with a fixed length
+     */
+    public String maxLengthSentence(int charLength) {
+        int expectWordCount =  charLength / 5;
+        Lorem lorem = faker.lorem();
+        int randomWordsToAdd = 0;
+        String randomSentence = lorem.sentence(expectWordCount, randomWordsToAdd);
+        while (randomSentence.length() < charLength) {
+            randomWordsToAdd += 5;
+            randomSentence = lorem.sentence(expectWordCount, randomWordsToAdd);
+        }
+        return randomSentence.substring(0, charLength).trim();
+    }
 }

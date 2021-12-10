@@ -107,4 +107,9 @@ public class LoremTest extends AbstractFakerTest {
     public void testWords() {
         assertThat(faker.lorem().words(), hasSize(greaterThanOrEqualTo(1)));
     }
+
+    @Test
+    public void testSentenceFixedLengthWithSpace() {
+       assertThat(faker.lorem().maxLengthSentence(10), matchesRegularExpression("[a-zA-Z\\s]{10}"));
+    }
 }
