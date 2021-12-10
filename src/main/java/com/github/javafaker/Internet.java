@@ -13,6 +13,24 @@ import static org.apache.commons.lang3.StringUtils.stripAccents;
 
 public class Internet {
     private final Faker faker;
+    private char[] specialChar;
+
+    /**
+     * To config the special character
+     *
+     * @param  special is a char array contains the special characters
+     */
+    public void configSpecialCharacter(char[] special) {
+        if (special == null || special.length == 0) {
+            return;
+        }
+        specialChar = new char[special.length];
+        int index = 0;
+        for (char ch : special) {
+            specialChar[index] = ch;
+            index++;
+        }
+    }
 
     protected Internet(Faker faker) {
         this.faker = faker;
@@ -129,9 +147,11 @@ public class Internet {
     public String password(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeSpecial, boolean includeDigit) {
         if (includeSpecial) {
             char[] password = faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit).toCharArray();
-            char[] special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
+            if (specialChar == null) {
+                specialChar = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
+            }
             for (int i = 0; i < faker.random().nextInt(minimumLength); i++) {
-                password[faker.random().nextInt(password.length)] = special[faker.random().nextInt(special.length)];
+                password[faker.random().nextInt(password.length)] = specialChar[faker.random().nextInt(specialChar.length)];
             }
             return new String(password);
         } else {
