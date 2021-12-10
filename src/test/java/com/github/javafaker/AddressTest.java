@@ -124,4 +124,28 @@ public class AddressTest extends AbstractFakerTest {
     public void testStreetPrefix() {
         assertThat(faker.address().streetPrefix(), isStringWithContents());
     }
+
+    // Issue link: https://github.com/DiUS/java-faker/issues/591
+    @Test
+    public void testZipIsFiveChars() {
+        faker = new Faker(new Locale("en-us"));
+        assertThat(faker.address().zipCode().length(), is(5));
+    }
+
+    // Issue link: https://github.com/DiUS/java-faker/issues/591
+    @Test
+    public void testZipPlus4IsTenChars() {
+        faker = new Faker(new Locale("en-us"));
+        assertThat(faker.address().zipCodePlus4().length(), is(10));  // includes dash
+    }
+
+    // Issue link: https://github.com/DiUS/java-faker/issues/591
+    @Test
+    public void testZipPlus4IsNineDigits(){
+        faker = new Faker(new Locale("en-us"));
+        final String[] zipCodeParts = faker.address().zipCodePlus4().split("-");
+        assertThat(zipCodeParts[0], matchesRegularExpression("[0-9]{5}"));
+        assertThat(zipCodeParts[1], matchesRegularExpression("[0-9]{4}"));
+    }
+
 }
