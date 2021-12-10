@@ -1,11 +1,9 @@
 package com.github.javafaker;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Options {
     private final Faker faker;
-
 
     protected Options(Faker faker) {
         this.faker = faker;
@@ -32,7 +30,6 @@ public class Options {
         E[] enumConstants = enumeration.getEnumConstants();
         return enumConstants[faker.random().nextInt(enumConstants.length)];
     }
-
 
     /**
      * Returns a random element from an array.
