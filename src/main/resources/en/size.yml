@@ -1,0 +1,4 @@
+en:
+  faker:
+    size:
+      adjective: ["abundant", "big-boned", "chubby", "fat", "giant", "gigantic", "great", "huge", "immense", "jumbo", "large", "little", "long", "majestic", "mammoth", "massive", "miniature", "petite", "puny", "scrawny", "short", "small", "tall", "teeny", "thin", "tiny", "vast"]
