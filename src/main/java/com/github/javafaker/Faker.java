@@ -106,6 +106,7 @@ public class Faker {
     private final Barcode barcode;
     private final Sip sip;
     private final EnglandFootBall englandfootball;
+    private final FakeDuration duration;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -221,6 +222,7 @@ public class Faker {
         this.barcode = new Barcode(this);
         this.sip = new Sip(this);
         this.englandfootball = new EnglandFootBall(this);
+        this.duration = new FakeDuration(this);
     }
 
     /**
@@ -653,6 +655,10 @@ public class Faker {
 
     public Dune dune() {
         return dune;
+    }
+
+    public FakeDuration duration() {
+        return duration;
     }
 
     public AquaTeenHungerForce aquaTeenHungerForce() {
