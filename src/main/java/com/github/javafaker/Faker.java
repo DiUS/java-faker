@@ -106,6 +106,8 @@ public class Faker {
     private final Barcode barcode;
     private final Sip sip;
     private final EnglandFootBall englandfootball;
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/450
+    private final Passport passport;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -221,6 +223,8 @@ public class Faker {
         this.barcode = new Barcode(this);
         this.sip = new Sip(this);
         this.englandfootball = new EnglandFootBall(this);
+        // CS304 Issue link: https://github.com/DiUS/java-faker/issues/450
+        this.passport = new Passport(this);
     }
 
     /**
@@ -686,6 +690,15 @@ public class Faker {
     public Sip sip() { return sip; }
 
     public EnglandFootBall englandfootball() { return englandfootball; }
+
+    /**
+     *
+     * Return passport attribute
+     *
+     * @return passport object.
+     */
+    // CS304 Issue link: https://github.com/DiUS/java-faker/issues/450
+    public Passport passport() {return passport;}
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
