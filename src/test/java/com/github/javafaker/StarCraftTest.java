@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 
 public class StarCraftTest extends AbstractFakerTest {
 
-    private final String noLeadingTrailingWhitespaceRegex = "^(?! )[A-Za-z0-9' ]*(?<! )$";
+    private final String noLeadingTrailingWhitespaceRegex = "^(?! )[A-Za-z0-9'\\- ]*(?<! )$";
 
     @Test
     public void testUnit() {
