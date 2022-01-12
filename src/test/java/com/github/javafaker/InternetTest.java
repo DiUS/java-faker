@@ -138,6 +138,66 @@ public class InternetTest extends AbstractFakerTest {
         assertThat(faker.internet().password(10, 25, true, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{10,25}"));
     }
 
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/585
+    /**
+     * Test generation of random password character strings that include client-defined special characters.
+     * This test covers an empty set of special characters, common special characters, and escape characters.
+     */
+    @Test
+    public void testPasswordMinLengthMaxLengthIncludeUpperCaseSetSpecialChars() {
+        
+        // empty set of special characters
+        char [] specialEmpty = new char[0];
+        assertThat(faker.internet().password(100, 200, false, specialEmpty, true), matchesRegularExpression("[a-z\\d]{100,200}"));
+        assertThat(faker.internet().password(100, 200, true, specialEmpty, false), matchesRegularExpression("[a-zA-Z]{100,200}"));
+        assertThat(faker.internet().password(100, 200, true, specialEmpty, true), matchesRegularExpression("[a-zA-Z\\d]{100,200}"));
+        assertThat(faker.internet().password(100, 200, false, specialEmpty, false), matchesRegularExpression("[a-z]{100,200}"));
+
+        // basic list of special characters: !,@,#,$,%,^,&,*
+        char[] specialBasic = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
+        assertThat(faker.internet().password(100, 200, false, specialBasic, true), matchesRegularExpression("[a-z\\d!@#$%^&*]{100,200}"));
+        assertThat(faker.internet().password(100, 200, true, specialBasic, false), matchesRegularExpression("[a-zA-Z!@#$%^&*]{100,200}"));
+        assertThat(faker.internet().password(100, 200, true, specialBasic, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{100,200}"));
+        assertThat(faker.internet().password(100, 200, false, specialBasic, false), matchesRegularExpression("[a-z!@#$%^&*]{100,200}"));
+
+        // escape characters
+        char[] specialEscapeChars = new char[]{'\"', '\'', '\\'};
+        assertThat(faker.internet().password(100, 200, false, specialEscapeChars, true), matchesRegularExpression("[a-z\\d\'\"\\\\]{100,200}"));
+        assertThat(faker.internet().password(100, 200, true, specialEscapeChars, false), matchesRegularExpression("[a-zA-Z\'\"\\\\]{100,200}"));
+        assertThat(faker.internet().password(100, 200, true, specialEscapeChars, true), matchesRegularExpression("[a-zA-Z\\d\'\"\\\\]{100,200}"));
+        assertThat(faker.internet().password(100, 200, false, specialEscapeChars, false), matchesRegularExpression("[a-z\'\"\\\\]{100,200}"));
+
+        // extended list of special characters
+        char[] specialExtended = new char[]{'(',')','+',',','-','.','/',':',';','<','=','>','?','[',']','_','`','{','|','}','~'};
+        assertThat(faker.internet().password(300, 400, false, specialExtended, true), matchesRegularExpression("[a-z\\d\\(\\)\\+,-\\./:;\\<\\=\\>\\?\\[\\]_`\\{\\|\\}~]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialExtended, false), matchesRegularExpression("[a-zA-Z\\(\\)\\+,-\\./:;\\<\\=\\>\\?\\[\\]_`\\{\\|\\}~]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialExtended, true), matchesRegularExpression("[a-zA-Z\\d\\(\\)\\+,-\\./:;\\<\\=\\>\\?\\[\\]_`\\{\\|\\}~]{300,400}"));
+        assertThat(faker.internet().password(300, 400, false, specialExtended, false), matchesRegularExpression("[a-z\\(\\)\\+,-\\./:;\\<\\=\\>\\?\\[\\]_`\\{\\|\\}~]{300,400}"));
+    }
+
+    // CS427 Issue link: https://github.com/DiUS/java-faker/issues/585
+    /**
+     * Test generation of random password character strings that include client-defined special characters.
+     * This test covers ASCII and Unicode UTF-8 international character sets.
+     */
+    @Test
+    public void testPasswordMinLengthMaxLengthIncludeUpperCaseSetSpecialInternationalChars() {
+        
+        // ASCII international characters
+        char[] specialASCIIinternational = new char[]{'Å','á','æ','ç','É','ê','î','ï','ñ','Ø','ò','Û','û','ÿ'};
+        assertThat(faker.internet().password(300, 400, false, specialASCIIinternational, true), matchesRegularExpression("[a-z\\dÅáæçÉêîïñØòÛûÿ]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialASCIIinternational, false), matchesRegularExpression("[a-zA-ZÅáæçÉêîïñØòÛûÿ]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialASCIIinternational, true), matchesRegularExpression("[a-zA-Z\\dÅáæçÉêîïñØòÛûÿ]{300,400}"));
+        assertThat(faker.internet().password(300, 400, false, specialASCIIinternational, false), matchesRegularExpression("[a-zÅáæçÉêîïñØòÛûÿ]{300,400}"));
+
+        // UTF-8 international characters
+        char[] specialUnicodeInternational = new char[]{'П','三','Я'};
+        assertThat(faker.internet().password(300, 400, false, specialUnicodeInternational, true), matchesRegularExpression("[a-z\\dП三Я]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialUnicodeInternational, false), matchesRegularExpression("[a-zA-ZП三Я]{300,400}"));
+        assertThat(faker.internet().password(300, 400, true, specialUnicodeInternational, true), matchesRegularExpression("[a-zA-Z\\dП三Я]{300,400}"));
+        assertThat(faker.internet().password(300, 400, false, specialUnicodeInternational, false), matchesRegularExpression("[a-zП三Я]{300,400}"));
+    }
+
     @Test
     public void testPasswordMinLengthMaxLengthIncludeUpperCaseIncludeSpecialIncludeDigit() {
         assertThat(faker.internet().password(10, 25, false, false, false), matchesRegularExpression("[a-z]{10,25}"));
