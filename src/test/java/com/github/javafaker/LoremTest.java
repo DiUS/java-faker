@@ -8,7 +8,9 @@ import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import java.util.Random;
 
+import com.github.javafaker.repeating.Repeat;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -106,5 +108,27 @@ public class LoremTest extends AbstractFakerTest {
     @Test
     public void testWords() {
         assertThat(faker.lorem().words(), hasSize(greaterThanOrEqualTo(1)));
+    }
+
+    @Test
+    @Repeat(times=10)
+    public void testMaxLengthSentence() {
+        Random rand = new Random();
+        // Test different lengths over 10 runs
+        int length = Math.abs(rand.nextInt(10000));
+        String s = faker.lorem().maxLengthSentence(length);
+        assertEquals(s.length(), length);
+    }
+
+    @Test
+    public void testMaxLengthWithEmptySentence() {
+        String s = faker.lorem().maxLengthSentence(0);
+        assertEquals(s.length(), 0);
+    }
+
+    @Test
+    public void testMaxLengthWithNegativeLengthSentence() {
+        String s = faker.lorem().maxLengthSentence(-1);
+        assertEquals(s.length(), 0);
     }
 }
