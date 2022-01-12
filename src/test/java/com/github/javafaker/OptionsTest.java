@@ -3,6 +3,7 @@ package com.github.javafaker;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +28,24 @@ public class OptionsTest extends AbstractFakerTest {
     @Test
     public void testOptionWithVarargsString() {
         assertThat(faker.options().option("A", "B", "C"), isOneOf(options));
+    }
+
+    @Test
+    public void testRandomlyNull() {
+        Integer[] int_array = new Integer[] {1,3,4,5,21,13,45};
+        Integer[] int_check = new Integer[] {1,3,4,5,21,13,45,null};
+        String[] string_list_check = new String[] {"hello", "Goodbye", "Hi", "near", "far", null};
+        for (int i = 0; i < int_array.length; i++) {
+            Integer temp = faker.options().randomlyNull(int_array);
+            assertThat( temp, isOneOf(int_check));
+        }
+
+        for (int i = 0; i < 5; i++) {
+            String temp = faker.options().randomlyNull("hello", "Goodbye", "Hi", "near", "far");
+            assertThat( temp, isOneOf(string_list_check));
+        }
+
+
     }
 
     @Test

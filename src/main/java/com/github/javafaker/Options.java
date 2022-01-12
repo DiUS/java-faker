@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Options {
@@ -31,6 +32,21 @@ public class Options {
         return enumConstants[faker.random().nextInt(enumConstants.length)];
     }
 
+    /**
+     * returns the same as option with null as an added possibility
+     * @param value The varargs to take a random element from.
+     * @param <E>   The type of the elements in the varargs.
+     * @return A randomly selected element from the varargs.
+     */
+    public <E> E randomlyNull(E... value) {
+        List<E> elements;
+        elements = new ArrayList<>(value.length);
+        for (int i = 0; i < value.length; i++) {
+            elements.add(i, value[i]);
+        }
+        elements.add(value.length, null);
+        return faker.options().option((E[]) elements.toArray());
+    }
     /**
      * Returns a random element from an array.
      *
