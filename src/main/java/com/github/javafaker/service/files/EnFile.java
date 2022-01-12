@@ -3,13 +3,15 @@ package com.github.javafaker.service.files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class EnFile {
+    private static final Pattern YAML = Pattern.compile(".yml");
     private final String file;
     private final String path;
 
     private EnFile(String file) {
-        this(file, file.replaceFirst(".yml", ""));
+        this(file, YAML.matcher(file).replaceFirst(""));
     }
 
     private EnFile(String file, String path) {

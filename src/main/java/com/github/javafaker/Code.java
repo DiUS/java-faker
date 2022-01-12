@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.ArrayUtils;
 import static org.apache.commons.lang3.math.NumberUtils.toInt;
 
@@ -8,6 +10,7 @@ import static org.apache.commons.lang3.math.NumberUtils.toInt;
  */
 public class Code {
 
+    private static final Pattern HYPHEN = Pattern.compile("-");
     private final Faker faker;
 
     protected Code(Faker faker) {
@@ -140,7 +143,7 @@ public class Code {
     }
 
     private final String stripIsbnSeparator(CharSequence t) {
-        return t.toString().replaceAll("-","");
+        return HYPHEN.matcher(t.toString()).replaceAll("");
     }
 
     public String asin() {
@@ -167,7 +170,7 @@ public class Code {
         int sum = 0;
         for (int i = 0; i < len - 1; i++) {
             if ((i + lenOffset) % 2 != 0) {
-                t = Character.getNumericValue(str[i]) * 2;
+                t = Character.getNumericValue(str[i]) << 1;
 
                 if (t > 9) {
                     t -= 9;

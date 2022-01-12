@@ -25,6 +25,10 @@ public class FakeValuesService {
 
     private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?((?:,?'([^']+)')*)\\}");
     private static final Pattern EXPRESSION_ARGUMENTS_PATTERN = Pattern.compile("(?:'(.*?)')");
+    private static final Pattern LOCALE = Pattern.compile("[-_]");
+    private static final Pattern DOT = Pattern.compile("\\.");
+    private static final Pattern A_TO_Z = Pattern.compile("([A-Z])");
+    private static final Pattern UNDERSCORE = Pattern.compile("_");
 
     private final Logger log = Logger.getLogger("faker");
 
@@ -108,7 +112,7 @@ public class FakeValuesService {
      * with new Locale("pt","BR").
      */
     private Locale normalizeLocale(Locale locale) {
-        final String[] parts = locale.toString().split("[-_]");
+        final String[] parts = LOCALE.split(locale.toString());
 
         if (parts.length == 1) {
             return new Locale(parts[0]);
@@ -180,7 +184,7 @@ public class FakeValuesService {
      */
     @SuppressWarnings("unchecked")
     public Object fetchObject(String key) {
-        String[] path = key.split("\\.");
+        String[] path = DOT.split(key);
 
         Object result = null;
         for (FakeValuesInterface fakeValuesInterface : fakeValuesList) {
@@ -454,7 +458,7 @@ public class FakeValuesService {
      * @return a yaml style name like 'phone_number' from a java style name like 'PhoneNumber'
      */
     private String javaNameToYamlName(String expression) {
-        return expression.replaceAll("([A-Z])", "_$1")
+        return A_TO_Z.matcher(expression).replaceAll("_$1")
                 .substring(1)
                 .toLowerCase();
     }
@@ -487,18 +491,18 @@ public class FakeValuesService {
      * @throws RuntimeException if there's a problem invoking the method or it doesn't exist.
      */
     private String resolveFakerObjectAndMethod(Faker faker, String key, List<String> args) {
-        final String[] classAndMethod = key.split("\\.", 2);
+        final String[] classAndMethod = DOT.split(key, 2);
 
         try {
-            String fakerMethodName = classAndMethod[0].replaceAll("_", "");
+            String fakerMethodName = UNDERSCORE.matcher(classAndMethod[0]).replaceAll("");
             MethodAndCoercedArgs fakerAccessor = accessor(faker, fakerMethodName, Collections.<String>emptyList());
             if (fakerAccessor == null) {
                 log.fine("Can't find top level faker object named " + fakerMethodName + ".");
                 return null;
             }
             Object objectWithMethodToInvoke = fakerAccessor.invoke(faker);
-            String nestedMethodName = classAndMethod[1].replaceAll("_", "");
-            final MethodAndCoercedArgs accessor = accessor(objectWithMethodToInvoke, classAndMethod[1].replaceAll("_", ""), args);
+            String nestedMethodName = UNDERSCORE.matcher(classAndMethod[1]).replaceAll("");
+            final MethodAndCoercedArgs accessor = accessor(objectWithMethodToInvoke, UNDERSCORE.matcher(classAndMethod[1]).replaceAll(""), args);
             if (accessor == null) {
                 throw new Exception("Can't find method on "
                         + objectWithMethodToInvoke.getClass().getSimpleName()
@@ -530,7 +534,7 @@ public class FakeValuesService {
         }
 
         if (name.contains("_")) {
-            return accessor(onObject, name.replaceAll("_", ""), args);
+            return accessor(onObject, UNDERSCORE.matcher(name).replaceAll(""), args);
         }
         return null;
     }
