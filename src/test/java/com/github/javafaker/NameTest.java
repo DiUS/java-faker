@@ -7,6 +7,7 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
@@ -73,6 +74,26 @@ public class NameTest  extends AbstractFakerTest{
         doReturn("Compound Name").when(name).firstName();
         doReturn(name).when(faker).name();
         assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+    }
+
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
+    @Test
+    @Repeat (times = 100)
+    public void testConstrainedUsernameWithOddMaxLength() {
+        final int maxLength = 15;
+        String username = faker.name().username(maxLength);
+        assertThat(username, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+        assertTrue(username.length() <= maxLength);
+    }
+
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
+    @Test
+    @Repeat (times = 100)
+    public void testConstrainedUsernameWithEvenMaxLength() {
+        final int maxLength = 20;
+        String username = faker.name().username(maxLength);
+        assertThat(username, matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
+        assertTrue(username.length() <= maxLength);
     }
     
     @Test

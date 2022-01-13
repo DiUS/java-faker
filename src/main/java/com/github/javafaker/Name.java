@@ -54,6 +54,34 @@ public class Name {
         return name();
     }
 
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
+    private String getNameByMaxLength(String key, int maxNameLength) {
+        String name = faker.fakeValuesService().resolve(key, this, faker);
+        final int maxAttempts = 4272;  // max number of names in M/F/Surname
+        int attemptNum = 1;
+        // keep pulling names until we find one of the correct length
+        while (name.length() > maxNameLength){
+            name = faker.fakeValuesService().resolve(key, this, faker);
+            attemptNum++;
+            // abort if we've pulled more names than are present in the largest collection
+            if (attemptNum > maxAttempts) {
+                name = null;
+                break;
+            }
+        }
+        return name;
+    }
+
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
+    private String firstName(int maxNameLength) {
+        return getNameByMaxLength("name.first_name", maxNameLength);
+    }
+
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
+    private String lastName(int maxNameLength) {
+        return getNameByMaxLength("name.last_name", maxNameLength);
+    }
+
     /**
      * <p>Returns a random 'given' name such as Aaliyah, Aaron, Abagail or Abbey</p>
      * @return a 'given' name such as Aaliyah, Aaron, Abagail or Abbey
@@ -105,6 +133,18 @@ public class Name {
             faker.fakeValuesService().resolve("name.title.job", this, faker) }, " ");
     }
 
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
+    private String makeUserName(String firstName, String lastName) {
+        String username = StringUtils.join(
+                firstName.replaceAll("'", "").toLowerCase(),
+                ".",
+                lastName.replaceAll("'", "").toLowerCase()
+        );
+
+        return StringUtils.deleteWhitespace(username);
+    }
+
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
     /**
      * <p>
      *     A lowercase username composed of the first_name and last_name joined with a '.'. Some examples are:
@@ -120,14 +160,52 @@ public class Name {
      * @see Name#lastName()
      */
     public String username() {
+        return makeUserName(firstName(), lastName());
+    }
 
-        String username = StringUtils.join(
-                firstName().replaceAll("'", "").toLowerCase(),
-                ".",
-                lastName().replaceAll("'", "").toLowerCase()
-        );
+    // Issue Link: https://github.com/DiUS/java-faker/issues/361
+    /**
+     * <p>
+     *     A lowercase username composed of the first_name and last_name joined with a '.'.
+     *      Constrained by maximum length.
+     *      Some examples are:
+     *     <ul>
+     *         <li>(template) {@link #firstName()}.{@link #lastName()}</li>
+     *         <li>jim.jones</li>
+     *         <li>jason.leigh</li>
+     *         <li>tracy.jordan</li>
+     *     </ul>
+     * </p>
+     * @return a random two part user name with a minimum length minLength and a maximum length maxLength.
+     * @see Name#firstName() 
+     * @see Name#lastName()
+     */
+    public String username(int maxLength) {
+        int maxFirstNameLength;
+        int maxLastNameLength;
 
-        return StringUtils.deleteWhitespace(username);
+        if (maxLength % 2 == 0){
+            maxFirstNameLength = maxLastNameLength = maxLength / 2;
+        } else {
+            maxFirstNameLength = maxLength / 2 + 1;
+        }
+
+        String firstName = firstName(maxFirstNameLength);
+        // maximum last name length is maximum allowable length
+        // minus the first name we retrieved minus the dot that joins the two names
+
+        if (firstName == null) {
+            throw new RuntimeException("firstName aborted because it was unable to find a name matching constraints");
+        }
+
+        maxLastNameLength = maxLength - firstName.length() - 1; 
+        String lastName = lastName(maxLastNameLength);
+
+        if (lastName == null){
+            throw new RuntimeException("lastName aborted because it was unable to find a name matching constraints");
+        }
+
+        return makeUserName(firstName, lastName);
     }
     
     /**
