@@ -1,0 +1,104 @@
+# encoding: utf-8
+es-PY:
+  time:
+    formats: "%d/%m/%Y %H:%M"
+  faker:
+    address:
+      city_prefix: ""
+      city_suffix: ""
+      country: [Afganistán, Albania, Alemania, Andorra, Angola, Anguila, Antigua y Barbuda, Antártida, Arabia Saudita, Argelia, Argentina, Armenia, Aruba, Australia, Austria, Autoridad Nacional Palestina, Azerbaiyán, Bahamas, Bangladés, Barbados, Baréin, Belice, Benín, Bermudas, Bielorrusia, Birmania, Bolivia, Bonaire, San Eustaquio y Saba, Bosnia y Herzegovina, Botsuana, Brasil, Brunéi, Bulgaria, Burkina Faso, Burundi, Bután, Bélgica, Cabo Verde, Camboya, Camerún, Canadá, Chad, Chile, China, Chipre, Ciudad del Vaticano, Colombia, Comoras, Corea del Norte, Corea del Sur, Costa Rica, Costa de Marfil, Croacia, Cuba, Curaçao, Dinamarca, Dominica, Ecuador, Egipto, El Salvador, Emiratos Árabes Unidos, Eritrea, Eslovaquia, Eslovenia, España, Estados Unidos, Estonia, Etiopía, Filipinas, Finlandia, Fiyi, Francia, Gabón, Gambia, Georgia, Ghana, Gibraltar, Granada, Grecia, Groenlandia, Guadalupe, Guam, Guatemala, Guayana Francesa, Guernsey, Guinea, Guinea Ecuatorial, Guinea-Bissau, Guyana, Haití, Honduras, Hong Kong, Hungría, India, Indonesia, Irak, Irlanda, Irán, Isla Bouvet, Isla de Man, Isla de Navidad, Islandia, Islas Caimán, Islas Cocos, Islas Cook, Islas Faroe, Islas Georgias del Sur y Sandwich del Sur, Islas Heard y McDonald, Islas Malvinas, Islas Marianas del Norte, Islas Marshall, Islas Pitcairn, Islas Salomón, Islas Turcas y Caicos, Islas Vírgenes Británicas, Islas Vírgenes de los Estados Unidos, Islas ultramarinas de Estados Unidos, Israel, Italia, Jamaica, Japón, Jersey, Jordania, Kazajistán, Kenia, Kirguistán, Kiribati, Kuwait, Laos, Lesoto, Letonia, Liberia, Libia, Liechtenstein, Lituania, Luxemburgo, Líbano, Macao, Madagascar, Malasia, Malaui, Maldivas, Malta, Malí, Marruecos, Martinica, Mauricio, Mauritania, Mayotte, Micronesia, Moldavia, Mongolia, Montenegro, Montserrat, Mozambique, México, Mónaco, Namibia, Nauru, Nepal, Nicaragua, Nigeria, Niue, Norfolk, Noruega, Nueva Caledonia, Nueva Zelanda, Níger, Omán, Pakistán, Palaos, Panamá, Papúa Nueva Guinea, Paraguay, Países Bajos, Perú, Polinesia Francesa, Polonia, Portugal, Qatar, Reino Unido, Rep. Dem. del Congo, República Centroafricana, República Checa, República Dominicana, República de Macedonia, República del Congo, Reunión, Ruanda, Rumania, Rusia, Samoa, Samoa Estadounidense, San Bartolomé, San Cristóbal y Nieves, San Marino, San Martín, San Martín (parte holandesa), San Pedro y Miquelón, San Vicente y las Granadinas, Santa Helena, A. y T., Santa Lucía, Santo Tomé y Príncipe, Senegal, Serbia, Seychelles, Sierra Leona, Singapur, Siria, Somalia, Sri Lanka, Suazilandia, Sudáfrica, Sudán, Sudán del Sur, Suecia, Suiza, Surinam, Svalbard y Jan Mayen, Sáhara Occidental, Tailandia, Taiwán, Tanzania, Tayikistán, Territorio Británico del Océano Índico, Territorios Australes Franceses, Timor Oriental, Togo, Tokelau, Tonga, Trinidad y Tobago, Turkmenistán, Turquía, Tuvalu, Túnez, Ucrania, Uganda, Uruguay, Uzbekistán, Vanuatu, Venezuela, Vietnam, Wallis y Futuna, Yemen, Yibuti, Zambia, Zimbabue, Åland]
+      country_code: [AND, ARE, AFG, ATG, AIA, ALB, ARM, AGO, ATA, ARG, ASM, AUT, AUS, ABW, ALA, AZE, BIH, BRB, BGD, BEL, BFA, BGR, BHR, BDI, BEN, BLM, BMU, BRN, BOL, BES, BRA, BHS, BTN, BVT, BWA, BLR, BLZ, CAN, CCK, COD, CAF, COG, CHE, CIV, COK, CHL, CMR, CHN, COL, CRI, CUB, CPV, CUW, CXR, CYP, CZE, DEU, DJI, DNK, DMA, DOM, DZA, ECU, EST, EGY, ESH, ERI, ESP, ETH, FIN, FJI, FLK, FSM, FRO, FRA, GAB, GBR, GRD, GEO, GUF, GGY, GHA, GIB, GRL, GMB, GIN, GLP, GNQ, GRC, SGS, GTM, GUM, GNB, GUY, HKG, HMD, HND, HRV, HTI, HUN, IDN, IRL, ISR, IMN, IND, IOT, IRQ, IRN, ISL, ITA, JEY, JAM, JOR, JPN, KEN, KGZ, KHM, KIR, COM, KNA, PRK, KOR, KWT, CYM, KAZ, LAO, LBN, LCA, LIE, LKA, LBR, LSO, LTU, LUX, LVA, LBY, MAR, MCO, MDA, MNE, MAF, MDG, MHL, MKD, MLI, MMR, MNG, MAC, MNP, MTQ, MRT, MSR, MLT, MUS, MDV, MWI, MEX, MYS, MOZ, NAM, NCL, NER, NFK, NGA, NIC, NLD, NOR, NPL, NRU, NIU, NZL, OMN, PAN, PER, PYF, PNG, PHL, PAK, POL, SPM, PCN, PSE, PRT, PLW, PRY, QAT, REU, ROU, SRB, RUS, RWA, SAU, SLB, SYC, SDN, SWE, SGP, SHN, SVN, SJM, SVK, SLE, SMR, SEN, SOM, SUR, SSD, STP, SLV, SXM, SYR, SWZ, TCA, TCD, ATF, TGO, THA, TJK, TKL, TLS, TKM, TUN, TON, TUR, TTO, TUV, TWN, TZA, UKR, UGA, UMI, USA, URY, UZB, VAT, VCT, VEN, VGB, VIR, VNM, VUT, WLF, WSM, YEM, MYT, ZAF, ZMB, ZWE]
+      building_number: ['S/N', '#', '##', '###', '####', '#####']
+      municipality: [Asunción, Concepción, San Lazaro, San Carlos, Horqueta, San Alfredo, Belen, Sargento Jose Felix Lopez, Paso Barreto, Yby Ya'u, Azote'y, San Salvador, San Pedro del Ycuamandyyu, Antequera, Choré, Capiibary, Gral. Elizardo Aquino, Gral. Resquín, Guayaibí, Itacurubí del Rosario, Liberación, Lima, Nueva Germania, San Estanislao, San Pablo, Santa Rosa del Aguaray, Tacuatí, Unión, 25 de Diciembre, Villa del Rosario, Yataity del Norte, Yrybucuá, Caacupé, San Bernardino, Altos, Atyrá, Tobatí, Itacurubí de la Cordillera, Arroyos y Esteros, Nueva Colombia, Piribebuy, 1ro de Marzo, Caraguatay, Emboscada, Eusebio Ayala, Isla Pucú, Juan de Mena, Valenzuela, Loma Grande, Mbocayaty del Yhaguy, San José Obrero, Santa Elena, Villarica del Espiritu Santo, Yataity, Borja, Coronel Martinez, Jose Mauricio Troche, Doctor Botrell, Ñumi, Paso Yobai, San Salvador, Tebykuary, Félix Pérez Cardozo, Eugenio A. Garay, Independencia, Itapé, José Fassardi, Mbocayaty del Guairá, Natalicio Talavera, Caaguazú, Carayao, Coronel Oviedo, Dr. Cecilio Baez, Dr. J. Eulogio Estigarribia, Dr. Juan Manuel Frutos, Jose Domingo Ocampos, La Pastora, Mcal. Francisco Solano Lopez, Nueva Londres, Raul Arsenio Oviedo, Repatriacion, R.I. 3 Corrales, San Joaquin, San Jose de los Arroyos, Santa Rosa del Mbutuy, Simon Bolivar, 3 de Febrero, Vaqueria, Yhu, Tembiapora, Nueva Toledo, Abai, Buena Vista, Caazapá, Doctor Moises S. Bertoni, Fulgencio Yegros, General Higinio Morínigo, Coronel Maciel, San Juan Nepomuceno, Tavaí, Yuty, 3 de Mayo, Encarnación, Alto Vera, Bella Vista, Cambyreta, Capitan Meza, Capitan Miranda, Carlos A. Lopez, Carmen del Parana, Coronel Bogado, Edelira, Fram, Gral. Artigas, Gral. Delgado, Hohenau, Itapua Poty, Jose Leandro Oviedo, La Paz, Mayor Otaño, Natalio, Nueva Alborada, Obligado, Pirapo, San Cosme y Damian, San Juan del Parana, San Pedro del Parana, San Rafael del Parana, Tomas R. Pereira, Trinidad, Yatytay, Jesús, San Juan Bautista, Ayolas, San Ignacio Guazú, San Miguel, San Patricio, Santa María de Fé, Santa Rosa de Lima, Santiago, Villa Florida, Yabebyry, Acahay, Caapucú, Caballero, Carapeguá, Cerro Leon, Colonia G. Cesar Barrientos, Colonia Santa Isabel, Escobar, La Colmena, Mbuyapey, Paraguari, Pirayu, Quiindy, Quyquyho, San Roque Gonzalez, Sapucai, Tebicuary-Mi, Valle Apúa, Yaguarón, Ybycuí, Ybytymí, Ciudad del Este, Santa Rita, Naranjal, Hernandarias, Dr. Raul Peña, Juan Leon Mallorquin, Domingo Martinez de Irala, Iruña, Itakyry, Juan Emilio O'Leary, Los Cedrales, Mbaracayú, Minga Guazú, Minga Porá, Ñacunday, Presidente Franco, San Alberto, San Cristóbal, Santa Fe del Paraná, Santa Rosa del Monday, Yguazú, Tavapy, Aregua, Capiatá, Fernando de la Mora, Guarambaré, Itá, Itaguá, J. Augusto Saldivar, Lambaré, Limpio, Luque, Mariano Roque Alonso, Nueva Italia, Ñemby, San Antonio, San Lorenzo, Villa Elisa, Villeta, Ypakaraí, Ypané, Pilar, Alberdi, Cerrito, Desmochados, Gral. José E. Díaz, Guazucuá, Humaitá, Isla Umbú, Laureles, Mayor José D. Martínez, Paso de Patria, San Juan Bautista del Ñeembucú, Tacuaras, Villa Franca, Villa Oliva, Villalbin, Bella Vista, Capitán Bado, Pedro Juan Caballero, Zanja Pyta, Karapaí, Salto del Guaira, Corpus Christi, Curuguaty, Gral. Francisco Caballero Ãlvarez, Itanará, Katueté, La Paloma, Nueva Esperanza, Villa Ygatimí, Yasy Cañy, Ypejhú, Yvy Pyta, Yvyrarovana, Villa Hayes, Benjamin Aceval, Gral. Jose Maria Bruguez, Jose Falcon, Nanawa, Puerto Pinasco, Tte. 1ro Manuel Irala Fernandez, Tte. Esteban Martinez, Fuerte Olimpo, Bahía Negra, Capitán Carmelo Peralta, Puerto Casado, Filadelfia, Loma Plata, Mariscal José Félix Estigarribia, Colonias Unidas, María Auxiliadora]
+      street_prefix: [Avenida, Calle, Camino, Carretera, Ruta, Ruta Nacional, Paseo, Plaza, Quinta, Vía]
+      secondary_address: ['Apartamento ##', 'Departamento ###', 'Depto. ###', 'Interior ###', 'Interior ?#', 'Int. #','Piso #', 'Piso ##', '#ª Planta', 'Planta alta', 'Planta baja']
+      postcode: ['#####']
+      state: [Central, Cordillera, San Pedro, Alto Parana, Itapua, Caaguazú, Concepción, Capital, Guaira, Caazapá, Misiones, Paraguarí, Ñeembucú, Amambay, Canindeyú, Alto Paraguay, Presidente Hayes, Boquerón]
+      state_abbr: [CEN, COR, SPE, APR, ITA, CAG, CON, CAP, GUA, CAZ, MIS, PAR, ÑEE, AMA, CAN, APY, PRH, BOQ]
+      time_zone: [África/Argel, África/Cairo, África/Casablanca, África/Harare, África/Johannesburgo, África/Monrovia, África/Nairobi, América/Argentina/Buenos_Aires, América/Asunción, América/Bogotá, América/Caracas, América/Chicago, América/Chihuahua, América/Ciudad_de_México, América/Denver, América/Guatemala, América/Guyana, América/Halifax, América/Indiana/Indianapolis, América/Juneau, América/La_Paz, América/Lima, América/Los_Angeles, América/Mazatlán, América/Monterrey, América/Nueva_York, América/Nuuk, América/Phoenix, América/Regina, América/San_Juan_de_Terranova, América/Santiago, América/São_Paulo, América/Tijuana, Asia/Almatý, Asia/Bagdad, Asia/Bakú, Asia/Bangkok, Asia/Calcuta, Asia/Chongqing, Asia/Colombo, Asia/Daca, Asia/Ekaterimburgo, Asia/Ereván, Asia/Hong_Kong, Asia/Irkutsk, Asia/Jerusalén, Asia/Kabul, Asia/Kamchatka, Asia/Karachi, Asia/Katmandú, Asia/Krasnoyarsk, Asia/Kuala_Lumpur, Asia/Kuwait, Asia/Magadán, Asia/Mascate, Asia/Novosibirsk, Asia/Rangún, Asia/Riad, Asia/Seúl, Asia/Shanghai, Asia/Singapur, Asia/Taipéi, Asia/Taskent, Asia/Teherán, Asia/Tiflis, Asia/Tokio, Asia/Ulán_Bator, Asia/Urumchi, Asia/Vladivostok, Asia/Yakarta, Asia/Yakutsk, Atlantic/Azores, Atlantic/Cabo_Verde, Atlantic/Georgia_Del_Sur, Australia/Adelaida, Australia/Brisbane, Australia/Darwin, Australia/Hobart, Australia/Melbourne, Australia/Perth, Australia/Sydney, Etc/UTC, Europa/Atenas, Europa/Belgrado, Europa/Berlín, Europa/Bratislava, Europa/Bruselas, Europa/Bucarest, Europa/Budapest, Europa/Copenhague, Europa/Dublín, Europa/Estambul, Europa/Estocolmo, Europa/Helsinki, Europa/Kiev, Europa/Lisboa, Europa/Liubliana, Europa/Londres, Europa/Madrid, Europa/Minsk, Europa/Moscú, Europa/Paris, Europa/Praga, Europa/Riga, Europa/Roma, Europa/Sarajevo, Europa/Skopie, Europa/Sofía, Europa/Tallin, Europa/Viena, Europa/Vilna, Europa/Warsaw Europa/Zagreb, Europa/Ámsterdam, Pacífico/Apia, Pacífico/Auckland, Pacífico/Fakaofo, Pacífico/Fiji, Pacífico/Guaján, Pacífico/Honolulú, Pacífico/Islas_Midway, Pacífico/Majuro, Pacífico/Numea, Pacífico/Pago_Pago, Pacífico/Puerto_Moresby, Pacífico/Tongatapu]
+      city:
+        - "#{municipality}"
+      city_with_state:
+        - "#{municipality}, #{state}"
+      street_name:
+        - "#{street_prefix} #{Name.first_name}"
+        - "#{street_prefix} #{Name.first_name} #{Name.last_name}"
+        - "#{street_prefix} #{state}"
+        - "#{street_prefix} #{municipality}"
+        - "#{street_prefix} #{heroes.names}"
+      street_address:
+        - "#{street_name}"
+        - "#{street_name} casi #{secondary_address}"
+        - "#{street_name} #{building_number}"
+        - "#{street_name} #{building_number} #{secondary_address}"
+      default_country: [Paraguay]
+
+    company:
+      suffix: [S.A., S.R.L, S.A.C.I., S.A.E.C.A., E.I.R.L.]
+      prefix: [Grupo, Sociedad, Colegio, Fondo]
+      name:
+        - "#{Name.last_name} #{suffix}"
+        - "#{prefix} #{Name.last_name} #{suffix}"
+        - "#{Name.last_name} y #{Name.last_name} #{suffix}"
+        - "#{Name.last_name} #{Name.last_name} #{suffix}"
+        - "#{Name.last_name}, #{Name.last_name} y #{Name.last_name} Asociados #{suffix}"
+
+      university:
+            suffix: [Americana, Nacional del Este, del Norte, Nacional de Asunción, del Pacífico, Privada del Este, La Paz, de Integración de las Américas]
+            prefix: [Universidad, Instituto, Academia, Colegio]
+            name:
+              - "#{University.prefix} #{Name.last_name} #{University.suffix}"
+              - "#{University.prefix} #{Name.last_name}"
+              - "#{University.prefix} #{Address.state} #{University.suffix}"
+
+    internet:
+      free_email: [gmail.com, yahoo.com, hotmail.com, tigo.com.py, outlook.com]
+      domain_suffix: [com, com.py, py, org.py, gov.py, org]
+
+    name:
+      first_name: [José Luis, Juan, Francisco, José, Antonio, Jesús, Miguel Ángel, Pedro, Alejandro, Manuel, Juan Carlos, Roberto, Jorge, Carlos, Fernando, Ricardo, Miguel, Javier, Martín, Rafael, Raúl, Arturo, Daniel, Eduardo, Enrique, Mario, José Antonio, Sergio, Gerardo, Salvador, Marco Antonio, Alfredo, David, Armando, Alberto, Luis, Óscar, Ramón, Guillermo, Rubén, Jaime, Felipe, Julio César, Andrés, Pablo, Ángel, Gabriel, Héctor, Alfonso, José Guadalupe, Agustín, Ignacio, Víctor, Rogelio, Gustavo, Ernesto, Rodolfo, Luis Alberto, Gilberto, Vicente, Juan Antonio, Tomás, Israel, César, Adrián, Ismael, Santiago, Humberto, Gregorio, Joel, Esteban, José Alfredo, Nicolás, Omar, Moisés, Félix, Lorenzo, Samuel, Carlos Alberto, José Angel, Ramiro, Abel, Jorge Luis, Marcos, Mario Alberto, Rodrigo, Edgar, Isidro, José Alberto, Leonardo, Benjamín, Jorge Alberto, Julio, Raymundo, Víctor Hugo, Saúl, Benito, José Juan, Rigoberto, Hugo,  Guadalupe, María, Margarita, Verónica, María Elena, Josefina, Leticia, Teresa, Patricia, Rosa, Martha, Rosa María, Alicia, Yolanda, Francisca, Silvia, Elizabeth, Gloria, Ana María, Gabriela, Alejandra, María Luisa, María de Lourdes, Adriana, Araceli, Antonia, Lucía, Carmen, Irma, Claudia, Beatriz, Isabel, Laura, Maribel, Graciela, Virginia, Catalina, Esperanza, Angélica, Maricela, Cecilia, Susana, Cristina, Julia, Concepción, Victoria, Ofelia, Rocío, Carolina, Raquel, Petra, Lorena, Reyna, Sandra, Paula, Guillermina, Sara, Elvira, Manuela, Marisol, Mónica, Erika, Celia, Luz María, Irene, Magdalena, Estela, Ángela, Rosario, Esther, Eva, Norma, Aurora, Socorro, Consuelo, Lidia, Bertha, Sofía, Dolores, Elena, Rosalba, Liliana, Andrea, Adela, Mariana, Fabiola, Karina, Martina, Marcela, Miriam, Mercedes, Marina, Amalia, Olivia, Angelina, Sonia, Agustina, Edith, Lilia, Micaela]
+      last_name: [Hernández, García, Martínez, López, González, Rodríguez, Pérez, Sánchez, Ramírez, Cruz, Flores, Gómez, Morales, Vázquez, Reyes, Jímenez, Torres, Díaz, Gutiérrez, Mendoza, Ruiz, Aguilar, Ortiz, Castillo, Moreno, Romero, Álvarez, Chávez, Rivera, Juárez, Ramos, Méndez, Domínguez, Herrera, Medina, Vargas, Castro, Guzmán, Velázquez, Muñoz, Rojas, Contreras, Salazar, Luna, de la Cruz, Ortega, Guerrero, Santiago, Estrada, Bautista, Cortés, Soto, Alvarado, Espinoza, Lara, Ávila, Ríos, Cervantes, Silva, Delgado, Vega, Márquez, Sandoval, Fernández, León, Carrillo, Mejía, Solís, Núñez, Rosas, Valdez, Ibarra, Campos, Santos, Camacho, Peña, Maldonado, Navarro, Rosales, Acosta, Miranda, Trejo, Cabrera, Valencia, Nava, Castañeda, Pacheco, Robles, Molina, Rangel, Fuentes, Huerta, Meza, Aguirre, Cárdenas, Orozco, Padilla, Espinosa, Ayala, Salas, Valenzuela, Zúñiga, Ochoa, Salinas, Mora, Tapia, Serrano, Durán, Olvera, Macías, Zamora, Calderón, Arellano, Suárez, Barrera, Zavala, Villegas, Gallegos, Lozano, Galván, Figueroa, Beltrán, Franco, Villanueva, Sosa, Montes, Andrade, Velasco, Arias, Marín, Corona, Garza, Ponce, Esquivel, Pineda, Alonso, Palacios, Antonio, Vásquez, Trujillo, Cortez, Rocha, Rubio, Bernal, Benítez, Escobar, Villa, Galindo, Cuevas, Bravo, Cano, Osorio, Mata, Carmona, Montoya, de Jesús, Enríquez, Cisneros, Rivas, Parra, Reséndiz, Téllez, Zárate, Salgado, de la Rosa, Vera, Tovar, Arroyo, Córdova, Leyva, Quintero, Becerra, Quiroz, Barajas, Ávalos, Peralta, Román, Esparza, Murillo, Guevara, Olivares, Félix, de León, Castellanos, Villarreal, Villalobos, Lugo, Ángeles, Montiel, Segura, Magaña, Saucedo, Gallardo, Mercado, Navarrete, Reyna, Paredes, Dávila, Leal, Guerra, Saldaña, Guillén, Santana, Uribe, Monroy, Piña, Yáñez, Nieto, Islas, Granados, Escobedo, Zapata, Caballero, del Ángel, Solano, Barron, Zepeda, Acevedo, Arriaga, Barrios, Mondragón, Galicia, Godínez, Ojeda, Duarte, Alfaro, Medrano, Rico, Aguilera, Gil, Ventura, Balderas, Arredondo, Coronado, Escamilla, Nájera, Palma, Amador, Blanco, Ocampo, Garduño, Barragán, Gámez, Francisco, Meléndez, Carbajal, Hurtado, Carrasco, Bonilla, Correa, Sierra, Anaya, Carranza, Romo, Valdés, Armenta, Alcántara, Escalante, Arreola, Quezada, Alarcón, Gaytán, Rentería, Vidal, Báez, de los Santos, Toledo, Colín, May, Carrera, Jaramillo, Santillán, Valle, Varela, Arenas, Rendón, Treviño, Venegas, Soriano, Zaragoza, Morán, Áviles, Aranda, Lira, Quintana, Arteaga, Valadez, Cordero, Sotelo, de la Torre, Muñiz, Hidalgo, Cázares, Covarrubias, Zamudio, Ordoñez, Aparicio, Baltazar, Gálvez, Madrigal,Ibañez,De Romaña,Ormeño]
+      prefix: [Sr., Sra., Srita., Dr., Ing.]
+      suffix: [Jr., Sr., I, II, III, IV, V]
+      title:
+        descriptor: [Supervisor, Asociado, Ejecutivo, Relacciones, Oficial, Gerente, Ingeniero, Especialista, Director, Coordinador, Administrador, Arquitecto, Analista, Diseñador, Planificador, Técnico, Funcionario, Desarrollador, Productor, Consultor, Asistente, Facilitador, Agente, Representante, Estratega]
+        level: [de, para]
+        job: [Soluciones, Programa, Marca, Seguridad, Investigación, Marketing, Normas, Implementación, Integración, Funcionalidad, Respuesta, Paradigma, Tácticas, Identidad, Mercados, Grupo, División, Aplicaciones, Optimización, Operaciones, Infraestructura, Tecnologías de Información, Comunicaciones, Web, Calidad, Seguro, Mobilidad, Cuentas, Datos, Creativo, Configuración, Contabilidad, Interacciones, Factores, Usabilidad, Métricas, Departamento, Región, Supervisión, Planeación]
+      name:
+        - "#{prefix} #{first_name} #{last_name} #{last_name}"
+        - "#{first_name} #{last_name} #{last_name}"
+        - "#{first_name} #{first_name} #{last_name} #{last_name}"
+        - "#{first_name} #{first_name} #{last_name}"
+      name_with_middle:
+        - "#{prefix} #{first_name} #{last_name} #{last_name}"
+        - "#{first_name} #{last_name} #{last_name} #{suffix}"
+        - "#{first_name} #{first_name} #{last_name} #{last_name}"
+
+    phone_number:
+      linea_baja: ["21", "61", "71", "644"]
+      celular: ["71","73", "74", "75", "76", "81", "82", "83", "84", "85", "91", "92", "93", "94", "95"]
+      formats:
+        - "0#{PhoneNumber.linea_baja} ### ###"
+        - "0#{PhoneNumber.linea_baja} #### ###"
+        - "(0#{PhoneNumber.linea_baja}) ### ###"
+        - "(0#{PhoneNumber.linea_baja}) #### ###"
+        - "0#{PhoneNumber.linea_baja}-###-###"
+        - "(0#{PhoneNumber.linea_baja}) ###-###"
+    cell_phone:
+      formats:
+        - "09#{PhoneNumber.celular} ### ###"
+        - "(09#{PhoneNumber.celular}) ### ###"
+        - "09#{PhoneNumber.celular}-###-###"
+        - "(09#{PhoneNumber.celular}) ###-###"
+        - "+5959#{PhoneNumber.celular}######"
+        - "(+595) 9#{PhoneNumber.celular})######"
+        - "+595-9#{PhoneNumber.celular}-###-###"
+    subscription:
+      plans: ["Prueba gratuita", "Basico", "Starter", "Essential", "Estudiante", Bronze", "Standard", "Silver", "Gold", "Platinum", "Profesional", "Business", "Diamond", "Premium"]
+      statuses: ["Activo", "Parado", "Bloqueado", "Pendiente"]
+      payment_methods: ["Tarjeta de credito", "Tarjeta de débito", "Paypal", "Efectivo", "Transferencia de dinero", "Bitcoins", "Cheque", "Apple Pay", "Google Pay", "WeChat Pay", "Alipay", "Visa Checkout"]
+      subscription_terms: ["Diaria", "Semanal", "Mensual", "Anual", "Bienal", "Trienal", "Quinquenal", "De por vida"]
+      payment_terms: ["Pago por adelantado", "Mensual", "Anual", "Suscripción completa"]
+
+    heroes:
+      names: ["Dr. José Gaspar Rodríguez de Francia", "Don Carlos Antonio López", "Mcal. Francisco Solano López", "Mcal. José Félix Estigarribia", "Gral. Bernardino Caballero", "Dr. Pedro P. Peña", "Dr. Raúl Peña", "Cnel. Oviedo"]
