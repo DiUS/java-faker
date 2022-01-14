@@ -15,3 +15,7 @@ after_success:
 env:
   global:
     secure: GIdF3itH9owJXPEb/ri984853yRRIDeWbSZW7yMh6XOymGWAi0+3fGssBbHqjS/s3QgiDhnrKfDjF7UhHE1aeYCxgHM5QGOjfHUhOKevhUE4u0h4ysFS4wbh7zYODMzxdFpiKwdnNF+TvMctIReH5IVDu8gUxbNrcSXN6PQgvlM=
+
+cache:
+  directories:
+  - $HOME/.m2
