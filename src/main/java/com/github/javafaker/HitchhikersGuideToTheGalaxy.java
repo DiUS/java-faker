@@ -27,7 +27,7 @@ public class HitchhikersGuideToTheGalaxy {
         return faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.quotes", this, faker);
     }
 
-    public String specie() {
+    public String species() {
         return faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.species", this, faker);
     }
 
