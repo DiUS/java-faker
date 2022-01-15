@@ -1,6 +1,7 @@
 package com.github.javafaker;
 
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Options {
     private final Faker faker;
@@ -16,8 +17,21 @@ public class Options {
      * @param <E>   The type of the elements in the varargs.
      * @return A randomly selected element from the varargs.
      */
-    public <E> E option(E... options) {
+    @SafeVarargs
+    public final <E> E option(E... options) {
         return options[faker.random().nextInt(options.length)];
+    }
+
+    /**
+     * Returns a random sub-array from a varargs.
+     *
+     * @param options The varargs to take random elements from.
+     * @param <E>  The type of the elements in the list.
+     * @return an array with randomly selected elements from the varargs.
+     */
+    @SafeVarargs
+    public final <E> E[] randomSubset(E... options) {
+        return randomSubArray(options);
     }
 
     /**
@@ -43,6 +57,29 @@ public class Options {
     }
 
     /**
+     * Returns a random sub-array from an array.
+     *
+     * @param array The list to take a random element from.
+     * @param <E>  The type of the elements in the list.
+     * @return an array with randomly selected elements from the original array.
+     */
+    public <E> E[] randomSubArray(E[] array) {
+        shuffleArray(array);
+        return Arrays.copyOfRange(array, 0, faker.number().numberBetween(0, array.length+1));
+    }
+
+    private static <E> void shuffleArray(E[] ar) {
+        Random rnd = ThreadLocalRandom.current();
+        for (int i = ar.length - 1; i > 0; i--)
+        {
+            int index = rnd.nextInt(i + 1);
+            E a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
+        }
+    }
+
+    /**
      * Returns a random element from a list.
      *
      * @param list The list to take a random element from.
@@ -51,5 +88,17 @@ public class Options {
      */
     public <E> E nextElement(List<E> list) {
         return list.get(faker.random().nextInt(list.size()));
+    }
+
+    /**
+     * Returns a random sub-list from a list.
+     *
+     * @param <E>  The type of the elements in the list.
+     * @param list The list to take a random element from.
+     * @return A list with randomly selected elements from the original list.
+     */
+    public <E> List<E> randomSubList(List<E> list) {
+        Collections.shuffle(list);
+        return list.subList(0, faker.number().numberBetween(0, list.size()+1));
     }
 }
