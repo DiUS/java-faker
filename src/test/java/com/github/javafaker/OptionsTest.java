@@ -1,16 +1,24 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.Matchers.isOneOf;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class OptionsTest extends AbstractFakerTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(OptionsTest.class);
 
     private String[] options;
 
@@ -59,5 +67,34 @@ public class OptionsTest extends AbstractFakerTest {
 
     public enum Day {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
+
+    @Test
+    @Repeat(times=10)
+    public void testRandomSubset1() {
+        List<Integer> list = new ArrayList<Integer>();
+        Random r = new Random();
+        // Keep the array size to a small size for runtime
+        int listSize = r.nextInt(100);
+        for (int i=0; i < listSize; i++) {
+            // Allow for any positive integer
+            list.add(r.nextInt());
+        }
+
+        List<Integer> subsetList = faker.options().getRandomSubset(list);
+        logger.info("Input list: {}", list);
+        logger.info("Random subset: {}", subsetList);
+
+        // Check that every element of the returned subset list is in fact in the original list
+        for (Integer integer : subsetList) {
+            assertThat(integer, isIn(list));
+        }
+    }
+
+    @Test
+    public void testRandomSubsetEmpty() {
+        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> subsetList = faker.options().getRandomSubset(list);
+        assertEquals(list,subsetList);
     }
 }
