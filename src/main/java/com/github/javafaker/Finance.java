@@ -168,6 +168,7 @@ public class Finance {
         ibanFormats.put("AE", "\\d{3}\\d{16}");
         ibanFormats.put("GB", "[A-Z]{4}\\d{6}\\d{8}");
         ibanFormats.put("VG", "[A-Z]{4}\\d{16}");
+        ibanFormats.put("CZ", "\\d{2}\\d{4}\\d{16}");
         return ibanFormats;
     }
 }
