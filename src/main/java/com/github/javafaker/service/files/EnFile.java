@@ -191,6 +191,7 @@ public class EnFile {
             new EnFile("dog.yml", "creature"),
             new EnFile("league_of_legends.yml", "games"),
             new EnFile("overwatch.yml", "games"),
+            new EnFile("dota.yml", "games"),
             new EnFile("pokemon.yml", "games"),
             new EnFile("witcher.yml", "games"),
             new EnFile("zelda.yml", "games"),
