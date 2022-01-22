@@ -170,6 +170,28 @@ public class Lorem {
         characters = builder.toString().toCharArray();
     }
 
+    /**
+     * Create a sentence with a random number of words but a fixed length (number of characters).
+     * @param maxChars number of characters of sentence
+     * @return a random sentence
+     */
+    public String maxLengthSentence(int maxChars){
+        StringBuilder sentenceStringBuilder = new StringBuilder();
+        if (maxChars>0){
+            sentenceStringBuilder.append(word());
+            while (sentenceStringBuilder.length() < maxChars){
+                sentenceStringBuilder.append(word());
+                sentenceStringBuilder.append(" ");
+            }
+            sentenceStringBuilder = new StringBuilder(sentenceStringBuilder.substring(0, maxChars));
+            if (Character.isWhitespace(sentenceStringBuilder.charAt(sentenceStringBuilder.length() - 1))) {
+                String substring = sentenceStringBuilder.substring(0, sentenceStringBuilder.length() - 1);
+                sentenceStringBuilder = new StringBuilder(substring);
+                sentenceStringBuilder.append(character());
+            }
+        }
+        return sentenceStringBuilder.toString();
+    }
     private static final char[] letters;
     private static final char[] characters;
 
