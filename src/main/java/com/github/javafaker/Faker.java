@@ -107,6 +107,9 @@ public class Faker {
     private final Sip sip;
     private final EnglandFootBall englandfootball;
     private final Mountain mountain;
+    private final CPF cpf;
+    private final CNPJ cnpj;
+
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -223,6 +226,8 @@ public class Faker {
         this.sip = new Sip(this);
         this.englandfootball = new EnglandFootBall(this);
         this.mountain = new Mountain(this);
+        this.cpf = new CPF();
+        this.cnpj = new CNPJ();
     }
 
     /**
@@ -690,6 +695,14 @@ public class Faker {
     public EnglandFootBall englandfootball() { return englandfootball; }
 
     public Mountain mountain() { return mountain; }
+
+    public CPF cpf() {
+        return cpf;
+    }
+
+    public CNPJ cnpj() {
+        return cnpj;
+    }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);
