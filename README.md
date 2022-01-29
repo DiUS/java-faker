@@ -11,7 +11,7 @@ It's useful when you're developing a new project and need some pretty data for s
 
 Usage
 -----
-In pom.xml, add the following xml stanza between `<dependencies> ... </dependencies>`
+Add the following dependency in `<dependencies>` pom.xml section
 
 ```xml
 <dependency>
