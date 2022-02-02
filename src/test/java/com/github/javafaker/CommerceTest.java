@@ -3,6 +3,7 @@ package com.github.javafaker;
 import org.junit.Test;
 
 import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.assertThat;
@@ -36,12 +37,12 @@ public class CommerceTest extends AbstractFakerTest {
     }
 
     @Test
-    public void testPrice() {
+    public void testPrice() throws IllegalAccessException, NoSuchFieldException {
         assertThat(faker.commerce().price(), matchesRegularExpression("\\d{1,3}\\" + decimalSeparator + "\\d{2}"));
     }
 
     @Test
-    public void testPriceMinMax() {
+    public void testPriceMinMax() throws IllegalAccessException, NoSuchFieldException {
         assertThat(faker.commerce().price(100, 1000), matchesRegularExpression("\\d{3,4}\\" + decimalSeparator + "\\d{2}"));
     }
 
@@ -53,5 +54,22 @@ public class CommerceTest extends AbstractFakerTest {
     @Test
     public void testPromotionCodeDigits() {
         assertThat(faker.commerce().promotionCode(3), matchesRegularExpression(PROMOTION_CODE_REGEX + PROMOTION_CODE_REGEX + "\\d{3}"));
+    }
+    @Test
+    public void testPriceNotExist() throws NoSuchFieldException, IllegalAccessException {
+        Faker faker = new Faker(new Locale("PPP"));
+        assertThat(faker.commerce().price(),  matchesRegularExpression("\\d{1,3}\\" + "." + "\\d{2}"));
+    }
+
+    @Test
+    public void testPriceChangedLocal() throws NoSuchFieldException, IllegalAccessException{
+        Faker faker = new Faker(new Locale("da"));
+        assertThat(faker.commerce().price(),  matchesRegularExpression("\\d{1,3}\\" + "," + "\\d{2}"));
+    }
+
+    @Test
+    public void testPriceDefaultLocal() throws NoSuchFieldException, IllegalAccessException{
+        Faker faker = new Faker();
+        assertThat(faker.commerce().price(),  matchesRegularExpression("\\d{1,3}\\" + "." + "\\d{2}"));
     }
 }
