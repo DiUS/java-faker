@@ -62,3 +62,7 @@ pt:
 
     phone_number:
       formats: ["(##) ###-####", "+351 (##) ###-####", "884 ###-###"]
+
+    id_number:
+      valid: "#{IDNumber.valid_pt_nif}"
+      invalid: "#{IDNumber.invalid_pt_nif}"

@@ -1,6 +1,7 @@
 package com.github.javafaker;
 
 import com.github.javafaker.idnumbers.EnIdNumber;
+import com.github.javafaker.idnumbers.PtNifIdNumber;
 import com.github.javafaker.idnumbers.SvSEIdNumber;
 
 public class IdNumber {
@@ -37,5 +38,16 @@ public class IdNumber {
     public String invalidSvSeSsn() {
         SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
         return svSEIdNumber.getInvalidSsn(faker);
+    }
+
+
+    public String validPtNif() {
+        PtNifIdNumber idNumber = new PtNifIdNumber();
+        return idNumber.getValid(faker);
+    }
+
+    public String invalidPtNif() {
+        PtNifIdNumber idNumber = new PtNifIdNumber();
+        return idNumber.getInvalid(faker);
     }
 }
