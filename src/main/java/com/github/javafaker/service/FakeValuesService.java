@@ -11,11 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -30,6 +26,8 @@ public class FakeValuesService {
 
     private final List<FakeValuesInterface> fakeValuesList;
     private final RandomService randomService;
+
+    private final List<Locale> localesChain;
 
     /**
      * <p>
@@ -60,10 +58,10 @@ public class FakeValuesService {
         this.randomService = randomService;
         locale = normalizeLocale(locale);
 
-        final List<Locale> locales = localeChain(locale);
-        final List<FakeValuesInterface> all = new ArrayList(locales.size());
+        localesChain = localeChain(locale);
+        final List<FakeValuesInterface> all = new ArrayList(localesChain.size());
 
-        for (final Locale l : locales) {
+        for (final Locale l : localesChain) {
             boolean isEnglish = l.equals(Locale.ENGLISH);
             if (isEnglish) {
                 FakeValuesGrouping fakeValuesGrouping = new FakeValuesGrouping();
@@ -115,6 +113,10 @@ public class FakeValuesService {
         } else {
             return new Locale(parts[0], parts[1]);
         }
+    }
+
+    public List<Locale> getLocalesChain() {
+        return localesChain;
     }
 
     /**
@@ -189,7 +191,7 @@ public class FakeValuesService {
                 String currentPath = path[p];
                 if (currentValue instanceof Map) {
                     currentValue = ((Map) currentValue).get(currentPath);
-                } else  {
+                } else {
                     currentValue = ((FakeValuesInterface) currentValue).get(currentPath);
                 }
             }
@@ -549,10 +551,10 @@ public class FakeValuesService {
             Class<?> toType = ClassUtils.primitiveToWrapper(accessor.getParameterTypes()[i]);
             try {
                 if (toType.isEnum()) {
-                    Method method = toType.getMethod( "valueOf", String.class );
-                    String enumArg = args.get( i ).substring( args.get( i ).indexOf( "." ) + 1 );
-                    Object coercedArg = method.invoke( null, enumArg );
-                    coerced.add( coercedArg );
+                    Method method = toType.getMethod("valueOf", String.class);
+                    String enumArg = args.get(i).substring(args.get(i).indexOf(".") + 1);
+                    Object coercedArg = method.invoke(null, enumArg);
+                    coerced.add(coercedArg);
                 } else {
                     final Constructor<?> ctor = toType.getConstructor(String.class);
                     final Object coercedArgument = ctor.newInstance(args.get(i));
