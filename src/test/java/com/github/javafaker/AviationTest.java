@@ -22,4 +22,24 @@ public class AviationTest extends AbstractFakerTest {
     public void metar() {
         assertThat(faker.aviation().METAR(), isStringWithContents());
     }
+
+    @Test
+    public void flight_ICAO() {
+        assertThat(faker.aviation().flight("ICAO"), matchesRegularExpression("[A-Z]{3}[0-9]+"));
+    }
+
+    @Test
+    public void flight_IATA() {
+        assertThat(faker.aviation().flight("IATA"), matchesRegularExpression("[A-Z]{2}[0-9]+"));
+    }
+
+    @Test
+    public void flight_default() {
+        assertThat(faker.aviation().flight(), matchesRegularExpression("[A-Z]{2}[0-9]+"));
+    }
+
+    @Test
+    public void airline() {
+        assertThat(faker.aviation().airline(), isStringWithContents());
+    }
 }
