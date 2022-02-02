@@ -36,11 +36,19 @@ public class Lorem {
     }
 
     public String characters(int minimumLength, int maximumLength, boolean includeUppercase) {
-        return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength, includeUppercase);
+        if (minimumLength == maximumLength) {
+            return characters(minimumLength, includeUppercase);
+        } else {
+            return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength, includeUppercase);
+        }
     }
 
     public String characters(int minimumLength, int maximumLength, boolean includeUppercase, boolean includeDigit) {
-        return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength, includeUppercase, includeDigit);
+        if (minimumLength == maximumLength) {
+            return characters(minimumLength, includeUppercase, includeDigit);
+        } else {
+            return characters(faker.random().nextInt(maximumLength - minimumLength) + minimumLength, includeUppercase, includeDigit);
+        }
     }
 
     public String characters(int fixedNumberOfCharacters) {
