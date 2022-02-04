@@ -124,6 +124,8 @@ public class FakerTest extends AbstractFakerTest {
 
     @Test
     public void expression() {
+        assertThat(faker.expression("#{options.option 'a','b','c','d'}"), matchesRegularExpression("(a|b|c|d)"));
+        assertThat(faker.expression("#{options.option '12','345','89','54321'}"), matchesRegularExpression("(12|345|89|54321)"));
         assertThat(faker.expression("#{regexify '(a|b){2,3}'}"), matchesRegularExpression("(a|b){2,3}"));
         assertThat(faker.expression("#{regexify '\\.\\*\\?\\+'}"), matchesRegularExpression("\\.\\*\\?\\+"));
         assertThat(faker.expression("#{bothify '????','true'}"), matchesRegularExpression("[A-Z]{4}"));

@@ -1,5 +1,6 @@
 package com.github.javafaker;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Options {
@@ -17,6 +18,16 @@ public class Options {
      * @return A randomly selected element from the varargs.
      */
     public <E> E option(E... options) {
+        return options[faker.random().nextInt(options.length)];
+    }
+
+    /**
+     * Returns a random String element from an varargs.
+     *
+     * @param options The varargs to take a random element from.
+     * @return A randomly selected element from the varargs.
+     */
+    public String option(String... options) {
         return options[faker.random().nextInt(options.length)];
     }
 
