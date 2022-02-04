@@ -8,6 +8,7 @@ import com.mifmif.common.regex.Generex;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -521,7 +522,7 @@ public class FakeValuesService {
 
         for (Method m : onObject.getClass().getMethods()) {
             if (m.getName().equalsIgnoreCase(name)
-                    && m.getParameterTypes().length == args.size()) {
+                    && (m.getParameterTypes().length == args.size() || m.getParameterTypes().length < args.size() && m.isVarArgs())) {
                 final List<Object> coercedArguments = coerceArguments(m, args);
                 if (coercedArguments != null) {
                     return new MethodAndCoercedArgs(m, coercedArguments);
@@ -545,19 +546,35 @@ public class FakeValuesService {
     private List<Object> coerceArguments(Method accessor, List<String> args) {
         final List<Object> coerced = new ArrayList<Object>();
         for (int i = 0; i < accessor.getParameterTypes().length; i++) {
-
+            final boolean isVarArg = i == accessor.getParameterTypes().length - 1 && accessor.isVarArgs();
             Class<?> toType = ClassUtils.primitiveToWrapper(accessor.getParameterTypes()[i]);
+            toType = isVarArg ? toType.getComponentType() : toType;
             try {
+                final Object coercedArgument;
                 if (toType.isEnum()) {
-                    Method method = toType.getMethod( "valueOf", String.class );
-                    String enumArg = args.get( i ).substring( args.get( i ).indexOf( "." ) + 1 );
-                    Object coercedArg = method.invoke( null, enumArg );
-                    coerced.add( coercedArg );
+                    Method method = toType.getMethod("valueOf", String.class);
+                    if (isVarArg) {
+                        coercedArgument = Array.newInstance(toType, args.size() - i);
+                        for (int j = i; j < args.size(); j++) {
+                            String enumArg = args.get(j).substring(args.get(j).indexOf(".") + 1);
+                            Array.set(coercedArgument, j - i, method.invoke(null, enumArg));
+                        }
+                    } else {
+                        String enumArg = args.get(i).substring(args.get(i).indexOf(".") + 1);
+                        coercedArgument = method.invoke(null, enumArg);
+                    }
                 } else {
                     final Constructor<?> ctor = toType.getConstructor(String.class);
-                    final Object coercedArgument = ctor.newInstance(args.get(i));
-                    coerced.add(coercedArgument);
+                    if (isVarArg) {
+                        coercedArgument = Array.newInstance(toType, args.size() - i);
+                        for (int j = i; j < args.size(); j++) {
+                            Array.set(coercedArgument, j - i, ctor.newInstance(args.get(j)));
+                        }
+                    } else {
+                        coercedArgument = ctor.newInstance(args.get(i));
+                    }
                 }
+                coerced.add(coercedArgument);
             } catch (Exception e) {
                 log.fine("Unable to coerce " + args.get(i) + " to " + toType.getSimpleName() + " via " + toType.getSimpleName() + "(String) constructor.");
                 return null;
