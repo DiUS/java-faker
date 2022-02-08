@@ -1,6 +1,7 @@
 package com.github.javafaker;
 
 import com.github.javafaker.repeating.Repeat;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 import java.util.Locale;
@@ -132,6 +133,10 @@ public class FakerTest extends AbstractFakerTest {
         assertThat(faker.expression("#{Name.first_name} #{Name.first_name} #{Name.last_name}"), matchesRegularExpression("[a-zA-Z']+ [a-zA-Z']+ [a-zA-Z']+"));
         assertThat(faker.expression("#{number.number_between '1','10'}"), matchesRegularExpression("[1-9]"));
         assertThat(faker.expression("#{color.name}"), matchesRegularExpression("[a-z\\s]+"));
+        MatcherAssert.assertThat(faker.expression("#{date.past '15','SECONDS','dd/MM/yyyy hh:mm:ss'}"),
+                matchesRegularExpression("[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}"));
+        MatcherAssert.assertThat(faker.expression("#{date.birthday 'yy DDD hh:mm:ss'}"),
+                matchesRegularExpression("[0-9]{2} [0-9]{3} [0-9]{2}:[0-9]{2}:[0-9]{2}"));
     }
 
     @Test
