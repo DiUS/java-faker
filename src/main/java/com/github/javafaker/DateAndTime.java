@@ -3,6 +3,7 @@
  */
 package com.github.javafaker;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -40,6 +41,22 @@ public class DateAndTime {
     }
 
     /**
+     * Generates and converts to string representation a future date from now.
+     * Note that there is a 1 second slack to avoid generating a past date.
+     *
+     * @param atMost
+     *            at most this amount of time ahead from now exclusive.
+     * @param unit
+     *            the time unit.
+     * @param pattern
+     *            date time pattern to convert to string.
+     * @return a string representation of a future date from now.
+     */
+    public String future(int atMost, TimeUnit unit, String pattern) {
+        return toString(future(atMost, unit), pattern);
+    }
+
+    /**
      * Generates a future date from now, with a minimum time.
      *
      * @param atMost
@@ -48,12 +65,30 @@ public class DateAndTime {
      *            the minimum amount of time in the future from now.
      * @param unit
      *            the time unit.
-     * @return a future date from now.
+     * @return a future date from now, with a minimum time.
      */
     public Date future(int atMost, int minimum, TimeUnit unit) {
         Date now = new Date();
         Date minimumDate = new Date(now.getTime() + unit.toMillis(minimum));
         return future(atMost - minimum, unit, minimumDate);
+    }
+
+    /**
+     * Generates and converts to string representation
+     * of a future date from now, with a minimum time.
+     *
+     * @param atMost
+     *            at most this amount of time ahead from now exclusive.
+     * @param minimum
+     *            the minimum amount of time in the future from now.
+     * @param unit
+     *            the time unit.
+     * @param pattern
+     *            date time pattern to convert to string.
+     * @return a string representation of a future date from now, with a minimum time.
+     */
+    public String future(int atMost, int minimum, TimeUnit unit, String pattern) {
+        return toString(future(atMost, minimum, unit), pattern);
     }
 
     /**
@@ -77,6 +112,24 @@ public class DateAndTime {
     }
 
     /**
+     * Generates and converts to string representation
+     * a future date relative to the {@code referenceDate}.
+     *
+     * @param atMost
+     *            at most this amount of time ahead to the {@code referenceDate} exclusive.
+     * @param unit
+     *            the time unit.
+     * @param referenceDate
+     *            the future date relative to this date.
+     * @param pattern
+     *            date time pattern to convert to string.
+     * @return a string representation of a future date relative to {@code referenceDate}.
+     */
+    public String future(int atMost, TimeUnit unit, Date referenceDate, String pattern) {
+        return toString(future(atMost, unit, referenceDate), pattern);
+    }
+
+    /**
      * Generates a past date from now. Note that there is a 1 second slack added.
      *
      * @param atMost
@@ -89,6 +142,22 @@ public class DateAndTime {
         Date now = new Date();
         Date aBitEarlierThanNow = new Date(now.getTime() - 1000);
         return past(atMost, unit, aBitEarlierThanNow);
+    }
+
+    /**
+     * Generates a string representation of a past date from now.
+     * Note that there is a 1 second slack added.
+     *
+     * @param atMost
+     *            at most this amount of time earlier from now exclusive.
+     * @param unit
+     *            the time unit.
+     * @param pattern
+     *            date time pattern to convert to string.
+     * @return a string representation of a past date from now.
+     */
+    public String past(int atMost, TimeUnit unit, String pattern) {
+        return toString(past(atMost, unit), pattern);
     }
 
     /**
@@ -109,6 +178,23 @@ public class DateAndTime {
     }
 
     /**
+     * Generates and converts to string representation a past date from now, with a minimum time.
+     *
+     * @param atMost
+     *            at most this amount of time earlier from now exclusive.
+     * @param minimum
+     *            the minimum amount of time in the past from now.
+     * @param unit
+     *            the time unit.
+     * @param pattern
+     *            date time pattern to convert to string.
+     * @return a string representation of a past date from now, with a minimum time.
+     */
+    public String past(int atMost, int minimum, TimeUnit unit, String pattern) {
+        return toString(past(atMost, minimum, unit), pattern);
+    }
+
+    /**
      * Generates a past date relative to the {@code referenceDate}.
      *
      * @param atMost
@@ -126,6 +212,23 @@ public class DateAndTime {
         futureMillis -= 1 + faker.random().nextLong(upperBound - 1);
 
         return new Date(futureMillis);
+    }
+
+    /**
+     * Generates a string representation of a past date relative to the {@code referenceDate}.
+     *
+     * @param atMost
+     *            at most this amount of time past to the {@code referenceDate} exclusive.
+     * @param unit
+     *            the time unit.
+     * @param referenceDate
+     *            the past date relative to this date.
+     * @param pattern
+     *            date time pattern to convert to string.
+     * @return a string representation of a past date relative to {@code referenceDate}.
+     */
+    public String past(int atMost, TimeUnit unit, Date referenceDate, String pattern) {
+        return toString(past(atMost, unit, referenceDate), pattern);
     }
 
     /**
@@ -153,12 +256,40 @@ public class DateAndTime {
     }
 
     /**
+     * Generates a string representation of a random date between two dates.
+     *
+     * @param from
+     *            the lower bound inclusive
+     * @param to
+     *            the upper bound exclusive
+     * @param pattern
+     *            date time pattern to convert to string.
+     * @return a string representation of a random date between {@code from} and {@code to}.
+     * @throws IllegalArgumentException
+     *            if the {@code to} date represents an earlier date than {@code from} date.
+     */
+    public String between(Date from, Date to, String pattern) throws IllegalArgumentException {
+        return toString(between(from, to), pattern);
+    }
+
+    /**
      * Generates a random birthday between 65 and 18 years ago from now.
      *
      * @return a random birthday between 65 and 18 years ago from now.
      */
     public Date birthday() {
         return birthday(DEFAULT_MIN_AGE, DEFAULT_MAX_AGE);
+    }
+
+    /**
+     * Generates a string representation of a random birthday between 65 and 18 years ago from now.
+     *
+     * @param pattern
+     *             date time pattern to convert to string.
+     * @return a string representation of a random birthday between 65 and 18 years ago from now.
+     */
+    public String birthday(String pattern) {
+        return toString(birthday(DEFAULT_MIN_AGE, DEFAULT_MAX_AGE), pattern);
     }
 
     /**
@@ -182,4 +313,24 @@ public class DateAndTime {
         return between(from.getTime(), to.getTime());
     }
 
+    /**
+     * Generates and converts to string representation a random birthday between two ages from now.
+     *
+     * @param minAge
+     *            the minimal age
+     * @param maxAge
+     *            the maximal age
+     * @param pattern
+     *            date time pattern to convert to string.
+     * @return a string representation of a random birthday between {@code minAge} and {@code maxAge} years ago from now.
+     * @throws IllegalArgumentException
+     *            if the {@code maxAge} is lower than {@code minAge}.
+     */
+    public String birthday(int minAge, int maxAge, String pattern) {
+        return toString(birthday(minAge, maxAge), pattern);
+    }
+
+    private String toString(Date date, String pattern) {
+        return new SimpleDateFormat(pattern).format(date);
+    }
 }
