@@ -12,7 +12,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -23,12 +25,13 @@ import java.util.regex.Pattern;
 
 public class FakeValuesService {
 
+    private static final Map<Locale, Collection<FakeValuesInterface>> CACHED_FAKE_VALUES = new HashMap<Locale, Collection<FakeValuesInterface>>();
     private static final Pattern EXPRESSION_PATTERN = Pattern.compile("#\\{([a-z0-9A-Z_.]+)\\s?((?:,?'([^']+)')*)\\}");
     private static final Pattern EXPRESSION_ARGUMENTS_PATTERN = Pattern.compile("(?:'(.*?)')");
 
     private final Logger log = Logger.getLogger("faker");
 
-    private final List<FakeValuesInterface> fakeValuesList;
+    private final Collection<FakeValuesInterface> fakeValues;
     private final RandomService randomService;
 
     /**
@@ -52,16 +55,23 @@ public class FakeValuesService {
      * @param locale
      * @param randomService
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public FakeValuesService(Locale locale, RandomService randomService) {
         if (locale == null) {
             throw new IllegalArgumentException("locale is required");
         }
+        Locale normalizeLocale = normalizeLocale(locale);
+        this.fakeValues = getFakeValues(normalizeLocale);
         this.randomService = randomService;
-        locale = normalizeLocale(locale);
+    }
+
+    private Collection<FakeValuesInterface> getFakeValues(Locale locale) {
+        Collection<FakeValuesInterface> cachedValues = CACHED_FAKE_VALUES.get(locale);
+        if (cachedValues != null) {
+            return cachedValues;
+        }
 
         final List<Locale> locales = localeChain(locale);
-        final List<FakeValuesInterface> all = new ArrayList(locales.size());
+        final List<FakeValuesInterface> all = new ArrayList<FakeValuesInterface>(locales.size());
 
         for (final Locale l : locales) {
             boolean isEnglish = l.equals(Locale.ENGLISH);
@@ -75,8 +85,10 @@ public class FakeValuesService {
                 all.add(new FakeValues(l));
             }
         }
-
-        this.fakeValuesList = Collections.unmodifiableList(all);
+        
+        final Collection<FakeValuesInterface> fakeValues = Collections.unmodifiableCollection(all);
+        CACHED_FAKE_VALUES.put(locale, fakeValues);
+        return fakeValues;
     }
 
     /**
@@ -183,7 +195,7 @@ public class FakeValuesService {
         String[] path = key.split("\\.");
 
         Object result = null;
-        for (FakeValuesInterface fakeValuesInterface : fakeValuesList) {
+        for (FakeValuesInterface fakeValuesInterface : fakeValues) {
             Object currentValue = fakeValuesInterface;
             for (int p = 0; currentValue != null && p < path.length; p++) {
                 String currentPath = path[p];
