@@ -3,6 +3,8 @@ package com.github.javafaker;
 import com.github.javafaker.repeating.Repeat;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -144,6 +146,26 @@ public class InternetTest extends AbstractFakerTest {
         assertThat(faker.internet().password(10, 25, false, true, true), matchesRegularExpression("[a-z\\d!@#$%^&*]{10,25}"));
         assertThat(faker.internet().password(10, 25, true, true, false), matchesRegularExpression("[a-zA-Z!@#$%^&*]{10,25}"));
         assertThat(faker.internet().password(10, 25, true, true, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{10,25}"));
+        assertThat(faker.internet().password(32, 32, true, true, true), matchesRegularExpression("[a-zA-Z\\d!@#$%^&*]{32,32}"));
+
+    }
+
+    @Test
+    public void testMe() {
+        for (int i = 0; i < 100; i++) {
+            String password = faker.internet().password(8, 16, true, true, true);
+
+            Pattern specialCharacterPattern = Pattern.compile("[^a-zA-Z0-9]");
+            Matcher specialCharacterMatcher = specialCharacterPattern.matcher(password);
+
+            Pattern digitPattern = Pattern.compile("[0-9]");
+            Matcher digitMatcher = digitPattern.matcher(password);
+
+            boolean isPasswordContainsSpecialCharacter = specialCharacterMatcher.find();
+            boolean isPasswordContainsDigit = digitMatcher.find();
+
+            System.out.println(isPasswordContainsSpecialCharacter + " " + isPasswordContainsDigit + " " + password);
+        }
     }
 
     @Test
