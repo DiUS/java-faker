@@ -1,0 +1,8 @@
+en:
+  faker:
+    battlefield1:
+      classes: ["Assault", "Medic", "Support", "Scout", "Tanker", "Pilot", "Cavalry", "FlamTrooper", "Sentry", "Tank Hunter", "Trench Raider", "Infiltrator"]
+      weapon: []
+      vehicle: []
+      map: ["Amiens" , "Argonne Forest" , "Ballroom Blitz" , "Empire's Edge" , "Fao Fortress" , "Monte Grappa", "St. Quentin Scar", "Sinai Desert", "Suez", "Giant's Shadow","Verdun Heights", "Fort De Vaux", "Soissons" , "Rupture","Nivelle Nights", "Prise de Tahure","Łupków Pass","Albion" , "Galicia", "Brusilov Keep", "Tsaritsyn", "Volga River","Achi Baba","Cape Helles" , "Heligoland Bight" , "Zeebrugge", "Caporetto", "Passchendaele" ,"River Somme" , "London Calling", "Razor's Edge"]
+      faction: ["British Empire", "Kingdom of Italy", "United States", "German Empire", "Austro-Hungarian Empire", "Ottoman Empire", "French Republic", "Russian Empire", "Soviet Union"]

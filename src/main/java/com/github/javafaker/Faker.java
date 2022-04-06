@@ -107,6 +107,7 @@ public class Faker {
     private final Sip sip;
     private final EnglandFootBall englandfootball;
     private final Mountain mountain;
+    private final Battlefield1 battlefield1;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -223,6 +224,7 @@ public class Faker {
         this.sip = new Sip(this);
         this.englandfootball = new EnglandFootBall(this);
         this.mountain = new Mountain(this);
+        this.battlefield1 = new Battlefield1(this);
     }
 
     /**
@@ -690,6 +692,10 @@ public class Faker {
     public EnglandFootBall englandfootball() { return englandfootball; }
 
     public Mountain mountain() { return mountain; }
+
+    public Battlefield1 battlefield1() {
+        return battlefield1;
+    }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);

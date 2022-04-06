@@ -38,6 +38,7 @@ public class EnFile {
             "barcode.yml",
             "bank.yml",
             "basketball.yml",
+            "battlefield1.yml",
             "beer.yml",
             "bojack_horseman.yml",
             "book.yml",
