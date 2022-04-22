@@ -66,6 +66,7 @@ Fakers
 * Back To The Future
 * Aviation
 * Basketball
+* Battlefield1
 * Beer
 * Bojack Horseman
 * Book
