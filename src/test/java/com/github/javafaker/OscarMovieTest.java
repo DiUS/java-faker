@@ -1,31 +1,33 @@
-package com.github.javafaker;
+package net.datafaker;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.core.IsNot.not;
-import static org.junit.Assert.assertThat;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.util.Strings.isNullOrEmpty;
 public class OscarMovieTest extends AbstractFakerTest{
+    //CS304 (manually written) Issue link: https://github.com/DiUS/java-faker/issues/712 https://github.com/DiUS/java-faker/issues/713
     @Test
     public void actor() {
-        assertThat(faker.oscarMovie().actor(), matchesRegularExpression("[A-Za-z,\\-\\.\\(\\) ]+"));
+        assertThat(faker.oscarMovie().actor()).matches("[A-Za-z,\\-.() ]+");
     }
+    //CS304 (manually written) Issue link: https://github.com/DiUS/java-faker/issues/712 https://github.com/DiUS/java-faker/issues/713
     @Test
     public void movieName() {
-        assertThat(faker.oscarMovie().movieName(), not(isEmptyOrNullString()));
+        assertThat(isNullOrEmpty(faker.oscarMovie().movieName())).isFalse();
     }
+    //CS304 (manually written) Issue link: https://github.com/DiUS/java-faker/issues/712 https://github.com/DiUS/java-faker/issues/713
     @Test
     public void quote() {
-        assertThat(faker.oscarMovie().quote(), not(isEmptyOrNullString()));
+        assertThat(isNullOrEmpty(faker.oscarMovie().quote())).isFalse();
     }
+    //CS304 (manually written) Issue link: https://github.com/DiUS/java-faker/issues/712 https://github.com/DiUS/java-faker/issues/713
     @Test
     public void character() {
-        assertThat(faker.oscarMovie().character(), matchesRegularExpression("[A-Za-z,\\-\\.\\(\\) ]+"));
+        assertThat(faker.oscarMovie().actor()).matches("[A-Za-z,\\- ]+");
     }
+    //CS304 (manually written) Issue link: https://github.com/DiUS/java-faker/issues/712 https://github.com/DiUS/java-faker/issues/713
     @Test
     public void releaseDate() {
-        assertThat(faker.oscarMovie().releaseDate(), matchesRegularExpression("[A-Za-z0-9\\\\,\\\\ ]+"));
+        assertThat(faker.oscarMovie().actor()).matches("[A-Za-z,0-9\\-.() ]+");
     }
 }
