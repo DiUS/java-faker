@@ -3,6 +3,7 @@ package com.github.javafaker;
 /**
  * CS304 Issue link: https://github.com/DiUS/java-faker/issues/711
  * A class for generating random value of Battlefield1 contents
+ * @author coolestjj
  */
 
 public class Battlefield1 {
