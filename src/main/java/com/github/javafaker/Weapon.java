@@ -18,11 +18,11 @@ public class Weapon {
      */
     public String getWeapon(){
         String type = faker.resolve("weapon.type");
-        System.out.println(type);
+//        System.out.println(type);
         String types = faker.resolve("weapon.".concat(type));
-        System.out.println(types);
+//        System.out.println(types);
         String res = faker.resolve("weapon.".concat(types));
-        System.out.println(res);
+//        System.out.println(res);
         return res;
     }
 
@@ -31,7 +31,7 @@ public class Weapon {
      */
     public String provenance(){
         String pro = faker.resolve("weapon.provenance");
-        System.out.println(pro);
+//        System.out.println(pro);
         return pro;
     }
 
@@ -40,7 +40,7 @@ public class Weapon {
      */
     public String user() {
         String user = faker.resolve("weapon.user");
-        System.out.println(user);
+//        System.out.println(user);
         return user;
     }
 
@@ -49,7 +49,7 @@ public class Weapon {
      */
     public String function(){
         String func = faker.resolve("weapon.function");
-        System.out.println(func);
+//        System.out.println(func);
         return func;
     }
 
@@ -58,7 +58,7 @@ public class Weapon {
      */
     public String target() {
         String tar = faker.resolve("weapon.target");
-        System.out.println(tar);
+//        System.out.println(tar);
         return tar;
     }
 
@@ -67,7 +67,7 @@ public class Weapon {
      */
     public String type(){
         String type = faker.resolve("weapon.type");
-        System.out.println(type);
+//        System.out.println(type);
         return type;
     }
 
