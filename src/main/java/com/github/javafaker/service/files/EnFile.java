@@ -176,6 +176,7 @@ public class EnFile {
             "vehicle.yml",
             "venture_bros.yml",
             "verbs.yml",
+            "weapon.yml",
             "weather.yml",
             "witcher.yml",
             "kaamelott.yml",
