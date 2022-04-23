@@ -1,0 +1,198 @@
+en:
+  faker:
+    OscarMovie:
+      as:
+        actor: ["Ben Affleck","Alan Arkin","Kyle Chandler","Adrienne Barbeau"]
+      year:
+        years: ["A2013","A2014","A2015","A2016","A2017","A2018","A2019","A2020","A2021","A2022"]
+        choice: ["A1","A2","A3"]
+      A2013:
+        A1:
+          actor: [ "Ben Affleck", "Alan Arkin", "Kyle Chandler"," Adrienne Barbeau" ]
+          movieName: ["Argo"]
+          quote: [ "History starts out as farce and ends up as tragedy","If I'm doing a fake movie, it's gonna be a fake hit.","Brace yourself; it's like talking to those two old fucks from The Muppets.","If we wanted applause, we would have joined the circus"]
+          character: ["Tony Mendez","Jack O'Donnell","John Chambers","Lester Siegel","Cora Lijek","Kathy Stafford"]
+          releaseDate: ["October 12, 2012"]
+        A2:
+          actor: ["Suraj Sharma","Adil Hussain","Irrfan Khan","Rafe Spall","Bo-Chieh Wang"]
+          movieName: ["Life of Pi "]
+          quote: ["I had no idea a living being could sustain so much injury and go on living.","The world isn’t just the way it is. It is how we understand it, no? And in understanding something, we bring something to it, no? Doesn’t that make life a story?","Life on a lifeboat isn’t much of a life. It is like an end game in chess, a game with few pieces. The elements couldn’t be more simple, nor the stakes higher."]
+          character: ["Pi","Pi's father","Pi's mother","the cook","sailor"]
+          releaseDate: ["November 22, 2012"]
+        A3:
+          actor: ["Jessica Chastain","Jason Clarke","Kyle Chandler","Jennifer Ehle","Jeremy Strong"]
+          movieName: ["Zero Dark Thirty"]
+          quote: ["politics are changing, and you don't wanna be the last one holding a dog collar when the oversight committee comes.","Can I be honest with you? I am bad fucking news. I'm not your friend. I'm not gonna help you. I'm gonna break you. Any questions?","I believe I was spared so that i could finish the job."," In the end, everybody breaks. It's biology man."]
+          character: ["Maya","Dan","Joseph Bradley","Amar","Jessica"]
+          releaseDate: ["2012"]
+      A2014:
+        A1:
+          actor: ["Chiwetel Umeadi Ejiofor","Michael Fassbender","Benedict Cumberbatch","Paul Dano","Lupita Nyong'o","Brad Pitt","Sarah Paulson"]
+          movieName: ["12 Years a Slave"]
+          quote: ["Laws change. Social systems crumble. Universal truths are constant. It is a fact - it is a plain fact that what is true and right is true and right for all. White and black alike.","I am Solomon Northup. I am a free man; a resident of Saratoga, New York. The residence also of my wife and children who are equally free. I have papers. You have no right whatsoever to detain me...","I don't want to survive. I want to live."]
+          character: ["Solomon Northup","Edwin Epps","William Ford","John Tibbets","Mrs.Epps","Bath"]
+          releaseDate: ["November 1st, 2013"]
+        A2:
+          actor: ["Matthew McConaughey","Jennifer Garner","Jared Joseph Leto","Kevin Rankin"]
+          movieName: ["Dallas Buyers Club"]
+          quote: [" You know what? You don't deserve my money, you homophobic asshole.","You enjoy your life, little lady. You only got one."," Sometimes, I feel I'm fighting for a life that I just ain't got the time to live. I want it all to mean something.","You rattled my brain"]
+          character: ["Ron Woodroof","Eve Sykes","Reyn","Jeff Norris"]
+          releaseDate: ["November 1, 2013"]
+        A3:
+          actor: ["Leonardo DiCaprio","Jonah Hill","Margot Elise Robbie","Matthew McConaughey","Jake Hoffman","Kyle Chandler"]
+          movieName: ["The Wolf of Wall Street"]
+          quote: ["I Will Not Die Sober!","Sell Me This Pen.","I Want You To Deal With Your Problems By Becoming Rich!"]
+          character: ["Jordan R. Belfort","Donnie Azoff","Naomi","Mark Hanna","Steve Madden","Patrick Dunham"]
+          releaseDate: ["December 25, 2013"]
+      A2015:
+        A1:
+          actor: ["Michael Keaton","Emma Stone","Edward Harrison Norton","Naomi Watts","Zach Galifianakis"]
+          movieName: ["Birdman"]
+          quote: ["That’s what you always do, you confuse love for admiration.","I'm nothing. I'm not even here.","Popularity is the slutty little cousin of prestige."]
+          character: ["Riggen","Sam","Mike","Lesly"]
+          releaseDate: ["October 17, 2014"]
+        A2:
+          actor: ["Bradley Cooper","Sienna Miller","Luke Grimes","Sam Jaeger","Jake McDorman"]
+          movieName: ["American Sniper"]
+          quote: ["Lex Talionis. Eye for an eye","There are 3 types of people in this world. Sheep, wolf and sheepdog.","What haunts me the most are the guys I couldn't save.","I'm willing to meet my creator, and answer for every shot that I took."]
+          character: ["Chris Kyle","Taya Laurences Cale","Marc Lee","Winston","Len Chapko"]
+          releaseDate: ["January 16, 2015"]
+        A3:
+          actor: ["Ralph Fiennes","Tony Revolori","Saoirse Ronan","Tilda Swinton","Adrien Brody","Edward Harrison Norton","Léa Seydoux","Jude Law"]
+          movieName: ["The Grand Budapest Hotel"]
+          quote: ["Rudeness is merely the expression of fear. People fear they won't get what they want. The most dreadful and unattractive person only needs to be loved and they will open up like a flower.","She was dynamite in the sack by the way.","Cease fire! Cease fire! Stop it! Who's shooting who?"]
+          character: ["M. Gustav","Zero Mustafa","Agatha","Dmitry","Henckels"]
+          releaseDate: ["March 7, 2014"]
+      A2016:
+        A1:
+          actor: ["Brie Larson","Jacob Tremblay","William H.Macy","Joan Allen","Sean Bridgers"]
+          movieName: ["Room"]
+          quote: ["Scared is what you're feeling. Brave is what you're doing.","In the world I notice persons are nearly always stressed and have no time...I don't know how persons with jobs do the jobs and all the living as well...I guess the time gets spread very thin like butter all over the world, the roads and houses and playgrounds and stores, so there's only a little smear of time on each place, then everyone has to hurry on to the next bit.","“When I was a little kid I thought like a little kid, but now I'm five I know everything"]
+          character: ["Joy","Jack","Robert","Nancy"]
+          releaseDate: ["January 15, 2016"]
+        A2:
+          actor: ["Tom Hardy","Charlize Theron","Nicholas Hoult","Rosie Huntington-Whiteley","Zoë Isabella Kravitz"]
+          movieName: ["Mad Max 4"]
+          quote: ["I'll pike her in the spine; keep her breathing for you.","If I'm gonna die, I'm gonna die historic on a fury road!","I was a cop searching for a righteous course."]
+          character: ["Max","Commander Felosa","Nax","Immortan Joe","Splendid"]
+          releaseDate: ["May 15, 2015"]
+        A3:
+          actor: ["Matt Damon","Jessica Chastain","Kristen Wiig","Jeff Daniels","Sean Bean","Sebastian Stan","Mackenzie Davis"]
+          movieName: ["The Martian"]
+          quote: ["At some point, everything's gonna go south on you and you're going to say, this is it. This is how I end. Now you can either accept that, or you can get to work. That's all it is. You just begin. You do the math. You solve one problem and you solve the next one, and then the next. And If you solve enough problems, you get to come home.","If the oxygenator breaks down, I'll suffocate. If the water reclaimer breaks down, I'll die of thirst. If the Hab beaches, I'll just kind of implode. If none of those things happen. I'll eventually run out of food and starve to death. So yeah. I'm fucked","I’m gonna have to science the shit out of this..."]
+          character: ["Mark Watney","Melissa Lewis","Anne Montrose","Teddy Sanders","Cliff Martinez"]
+          releaseDate: ["2015"]
+      A2017:
+        A1:
+          actor: ["Casey Affleck","Michelle Williams","Kyle Chandler","Lucas Hedges","Gretchen Mol"]
+          movieName: ["Manchester by the Sea"]
+          quote: ["You can't just die!"," No. No. Nope. You don't understand, there's nothin'... there's nothin' there. There's nothin' there."," I can't beat it. I can't beat it. I'm sorry.","Uncle Lee, are you fundamentally unsound?","You know, I've seen a school of sharks tear a boat to pieces like it was made of cardboard because some kid threw a band-aid in the water.","And if you're gonna freak out every time that you see a frozen chicken, I think we should go to the hospital. I don't know anything about this."]
+          character: ["Lee Chandler","Randy","Jordy Chandler","Patrick"]
+          releaseDate: ["November 18, 2016"]
+        A2:
+          actor: ["Ashton Sanders","André Holland","Mahershala Ali","Janelle Monáe"]
+          movieName: ["Moonlight"]
+          quote: ["Let me tell you something, man. There are black people everywhere. You remember that, okay? No place you can go in the world ain't got no black people, we was the first on this planet.","Miss her like hell now. All I'm gonna say about that.","I wasn't never worth shit. Never did anything I actually wanted to do, was all I could do to do what other folks thought I should do. I wasn't never myself."]
+          character: ["Chiron","Kevin","Juan","Teresa"]
+          releaseDate: ["October 21, 2016"]
+        A3:
+          actor: ["Ryan Gosling","Emma Stone","John Legend","Rosemarie DeWitt","Finn Wittrock"]
+          movieName: ["La La Land"]
+          quote: ["Yeah, I see the decorations. Good luck in the new year","They worship everything and they value nothing.","People love what other people are passionate about."]
+          character: ["Sebastian","Mia","Keith","Laura","Greg"]
+          releaseDate: ["December 16, 2016"]
+      A2018:
+        A1:
+          actor: ["Timothée Chalamet","Armie Hammer","Michael Stuhlbarg","Esther Garrel","Amira Casar"]
+          movieName: ["Call Me by Your Name"]
+          quote: ["We rip out so much of ourselves to be cured of things faster than we should that we go bankrupt by the age of thirty and have less to offer each time we start with someone new. But to feel nothing so as not to feel anything - what a waste!","Have I spoken out of turn? Then I'll say one more thing. It'll clear the air. I may have come close, but I never had what you two have. Something always held me back or stood in the way. How you live your life is your business, just remember, our hearts and our bodies are given to us only once. And before you know it, your heart is worn out, and, as for your body, there comes a point when no one looks at it, much less wants to come near it. Right now, there's sorrow, pain. Don't kill it and with it the joy you've felt.","From the way your dad spoke to me, he made me feel like a part of the family, almost like a son-in-law. You're so lucky! My father would have carted me off to a correctional facility.","When you least expect it, nature has cunning ways of finding our weakest spot."]
+          character: ["Ellio","Oliver","Parman"]
+          releaseDate: ["2017"]
+        A2:
+          actor: ["Gary Oldman","Lily James","Ben Mendelsohn","Kristin Scott Thomas"]
+          movieName: ["Darkest Hour"]
+          quote: ["The truth is incontrovertible. Malice may attack it, ignorance may deride it, but in the end, there it is.","I never worry about action, but only inaction.","Success in not final, failure is not fatal. It is the courage to continue that counts.","Continuous effort - not strength or intelligence - is the key to unlocking our potential.","Now this is not the end. It is not even the beginning of the end. But it is, perhaps, the end of the beginning."]
+          character: ["Winston Churchill","Elizabeth Layton","Clementine Churchill","Neville Chamberlain"]
+          releaseDate: ["September 10, 2017"]
+        A3:
+          actor: ["Saoirse Ronan","Laurie Metcalf","Lucas Hedges","Timothée Chalamet"]
+          movieName: ["Lady Bird"]
+          quote: ["Just because something looks ugly doesn’t mean it’s morally wrong.","We’re afraid that we will never escape our past. We’re afraid of what the future will bring. We’re afraid we won’t be loved, we won’t be liked. And we won’t succeed.","I want you to be the very best version of yourself that you can be.","Because it’s not important to be right. It’s only important to be true."]
+          character: ["Christine McPherson","Marion McPherson","Danny","Kile"]
+          releaseDate: ["2017"]
+      A2019:
+        A1:
+          actor: ["Olivia Colman","Emma Stone","Rachel Weisz","Nicholas Hoult","Joe Alwyn"]
+          movieName: ["The Favourite"]
+          quote: ["You are in favour. But favour is a breeze that shifts direction all the time. Then in an instant you're back sleeping with a bunch of scabrous whores wondering whose finger's in your arse. You cannot have too many friends in court. I need a friend Abigail, one with cute ears and wide eyes. I am often blind-sided by the distorted situation at court.","Oh fine, give it to her. And you can get a bucket and mop for the aftermath.","Yes. If that's what's actually happening here, and not veiled threats under the guise of civility.","A man's dignity is the one thing that holds him back from running amok."]
+          character: ["Annie","Abigail","Masham","Marlborough"]
+          releaseDate: ["30 August 2018"]
+        A2:
+          actor: ["Viggo Mortensen","Mahershala Ali","Linda Cardellini","Don Stark"]
+          movieName: ["Green Book"]
+          quote: ["Being genius is not enough, it takes courage to change people's hearts.","You never win with violence. You only win when you maintain your dignity.","You know, my father used to say, whatever you do, do it 100%. When you work, work. When you laugh, laugh. When you eat, eat like it's your last meal.","The world's full of lonely people afraid to make the first move."]
+          character: ["Tony","Don","Dolores","Jules Podell"]
+          releaseDate: ["September 11, 2018"]
+        A3:
+          actor: ["Lady Gaga","Bradley Cooper","Sam Elliott","Rafi Gavron"]
+          movieName: ["A Star is Born"]
+          quote: ["Music is essentially 12 notes between any octave. Twelve notes and the octave repeats. It’s the same story told over and over. All the artist can offer the world is how they see those 12 notes.","Jack, I feel like we’ve done this before. I didn’t think we’d do it so soon, man. Come on, bro. get up.","Look, talent comes everywhere, but having something to say and a way to say it to have people listen to it, that’s a whole other bag. And unless you get out and you try to do it, you’ll never know. That’s just the truth."]
+          character: ["Ailey","Jackson","Lorenzo","Bobby","Noodles"]
+          releaseDate: ["August 31, 2018"]
+      A2020:
+        A1:
+          actor: ["Joaquin Phoenix","Robert De Niro","Zazie Olivia Beetz","Frances Conroy"]
+          movieName: ["Joker"]
+          quote: ["Is it just me or is it getting crazier out there?","It’s funny. When I was a little boy and told people I was going to be a comedian, everyone laughed at me. Well, no one’s laughing now!","I don’t know why everyone is so rude, I don’t know why you are; I don’t want anything from you.","For my whole life, I didn’t know if I even really existed. But I do, and people are starting to notice."]
+          character: ["Arthur","Murray","Sophie","Penny","Thomas"]
+          releaseDate: ["October 4, 2019"]
+        A2:
+          actor: ["Adam Douglas Driver","Scarlett Johansson","Azhy Robertson","Laura Dern"]
+          movieName: ["Marriage Story"]
+          quote: ["Criminal lawyers see bad people at their best, divorce lawyers see good people at their worst.","Getting divorced with a kid is one of the hardest things to do. It's like a death without a body.","The dead part wasn’t dead, it was just in a coma. And it was better than the sex, the talking. Although the sex was also like the talking. You know, everything is like everything in a relationship. Don’t you find that? "]
+          character: ["Charlie","Nicole","henry","Nola","Cassie"]
+          releaseDate: ["29 August 2019"]
+        A3:
+          actor: ["Song Kanghao","Seon-gyun Lee","Yeo-Jeong Jo","Woo-sik Chui","Park Su Dam"]
+          movieName: ["Parasite"]
+          quote: ["You know what kind of plan never fails? No plan. No plan at all. You know why? Because life cannot be planned. Look around you. Did you think these people made a plan to sleep in the sports hall with you? But here we are now, sleeping together on the floor. So, there's no need for a plan. You can't go wrong with no plans. We don't need to make a plan for anything. It doesn't matter what will happen next. Even if the country gets destroyed or sold out, nobody cares. Got it?","They are rich but still nice.They are nice because they are rich.","Rich people are naive. No resentments. No creases on them.It all gets ironed out. Money is an iron. Those creases all get smoothed out by money.","Perhaps you, if no one else, will be able to read this. You were a Scout, so I'm writing this just in case. Have your injuries healed? I'm sure your mother is plenty healthy. I'm doing fine in here. Though thinking of Ki-jung makes me cry. Even now, what happened that day doesn't seem real. It feels like a dream, and yet it doesn't. That day as I went out the gate, I suddenly knew where I needed to go. A house where such a grisly thing took place would surely not be easy to sell. I've struggled to hold on in this empty house. Still, thanks to the house being empty - what was her name, Moon-gwang? - I was able to give her a proper send off. I hear treeside burials are trendy. So hell, I did my best. Those real estate sharks sure are clever. They duped some people who had just arrived in Korea and managed to sell the house. With the parents working and the kids attending school, the family is usually out. But the damned housekeeper stays here 24 hours a day. Each time I go upstairs, I take my life into my hands. And it turns out Germans eat more than just sausage and beer. What a relief. Passing the time down here, everything starts to go hazy. Today at least, I was able to write you this letter. If I send out the letter this way every night, maybe someday you'll see it. So long.","She may look like a sheep, but inside, she's a fox. Sometimes she acts like she owns the house."]
+          character: ["Zeji Jin","President Park","Mrs Park","Jiyu Jin","Jiting Jin"]
+          releaseDate: ["May 30, 2019"]
+      A2021:
+        A1:
+          actor: ["Steven Yeun","Han Yeri","Yuh-Jung Youn","Will Patton"]
+          movieName: ["Minari"]
+          quote: ["I’m going to live here until the day i die.","In the future, never ever bring this again.","It’s hillbilly so David lost all his manners.","Instead of saving each other, all we did was fight","Even if I fail, I have to finish what I started."]
+          character: ["Jacob Lee","Monica Lee","David","Paul"]
+          releaseDate: ["January 26, 2020"]
+        A2:
+          actor: ["Riz Ahmed","Olivia Cooke","Mathieu Amalric","Tom Kemp"]
+          movieName: ["Sound of Metal"]
+          quote: ["I’m going to read your lips. I might miss some things but I’m going to try.","It is important, if you want to be here, we are looking for a solution to this (points to head) not this (points to ears).","I want you to keep writing continuously without stopping until you feel like you can sit again."]
+          character: ["Ruben Stone","Louise","Joe","Richard"]
+          releaseDate: ["20 November 2020"]
+        A3:
+          actor: ["Frances McDormand","David Strathairn","Derrick Janis","Tay Strathairn"]
+          movieName: ["Nomadland"]
+          quote: ["One of the things I love most about this life is that there's no final goodbye. You know, I've met hundreds of people out here and I don't ever say a final goodbye. I always just say, I'll see you down the road. And I do. And whether it's a month, or a year, or sometimes years, I see them again.","Makenzie-My mom says that you’re homeless. Is that true? Fern-No, I’m not homeless. I’m just houseless. Not the same thing, right?Makenzie-No.Fern-Don’t worry about me. I’m okay.","It's strange that you encourage people to invest their whole life savings, go into debt, just to buy a house they can't afford.","Maybe when I die, my friends will gather around the fire, and toss a rock into the fire in memory of me.","Before I moved into the Squeeze Inn, I was out looking for work, and putting in applications 2008, and it was just tough. And I got to a really, really low point. And I thought about suicide, and I decided I was going to go buy a bottle of booze, turn on the propane stove, and I was going to drink that booze until I passed out.","I can’t imagine what you’re going through, the loss of your husband, and the loss of your whole town, and friends, and village, and that kind of loss is never easy. And I wish I had an easy answer for you. But I think you’ve come to the right place to find an answer. I think that, I think connecting to nature, and to a real true community."]
+          character: ["Fern","Dave","James","Victor"]
+          releaseDate: ["29 January 2021"]
+      A2022:
+        A1:
+          actor: ["Emilia Jones","Troy Kotsur","Marlee Matlin","John Fiore"]
+          movieName: ["Children of Deaf Adults"]
+          quote: ["There are plenty of pretty voices with nothing to say.","Blow my tiny mind.","You know why God made farts smell? So deaf people could enjoy them too."]
+          character: ["Ruby","Frank","Jesse","Tony Salgado","Brady"]
+          releaseDate: ["29 January 2021"]
+        A2:
+          actor: ["Benedict Cumberbatch","Kirsten Dunst","Jesse Plemons","Kodi Smit-McPhee","Thomasin McKenzie"]
+          movieName: ["The Power of the Dog"]
+          quote: ["A man's made by patience and the odds against him.","Deliver my soul from the sword, my darling from the power of the dog.","Because stars are supposed to be unreachable."]
+          character: ["Phil Burbank","Rose","George Burbank","Peter","Laure"]
+          releaseDate: ["September 2, 2021"]
+        A3:
+          actor: ["Timothée Chalamet","Rebecca Ferguson","Zendaya Coleman","Oscar Isaac","Josh James Brolin"]
+          movieName: ["Dune"]
+          quote: ["Fear is the mind-killer. Fear is the little-death that brings total obliteration. I will face my fear. I will permit it to pass over me and through me.","A beginning is the time for taking the most delicate care that the balances are correct. This every sister of the Bene Gesserit knows.","It is by will alone I set my mind in motion.","Deep in the human unconscious is a pervasive need for a logical universe that makes sense. But the real universe is always one step beyond logic."]
+          character: ["Paul Ertridi","Mrs. Jessica","Duke Leto Etridi","Guni Halek","Chang Chen"]
+          releaseDate: ["September 3, 2021"]
