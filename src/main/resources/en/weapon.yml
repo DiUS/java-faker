@@ -43,7 +43,7 @@ en:
       Rockets: ["M270 MLRS", "S-5 rocket", "Hydra 70", "CRV-7"]
       Suicide weapons: ["Suicide bombs", "Car bomb"]
 
-      target: ["Anti-aircraft", "Anti-fortification weapons:Anti-personnel weapons", "Anti-radiation weapons", "Anti-satellite weapons", "Anti-ship weapons", "Anti-submarine weapons", "Anti-tank weapons", "Area denial weapons", "Hunting weapons", "Infantry support weapons"]
+      target: ["Anti-aircraft", "Anti-fortification weapons", "Anti-personnel weapons", "Anti-radiation weapons", "Anti-satellite weapons", "Anti-ship weapons", "Anti-submarine weapons", "Anti-tank weapons", "Area denial weapons", "Hunting weapons", "Infantry support weapons"]
       Anti-aircraft: ["AGM-88", "AIM-9", "Pantsir-S1", "S-75 Dvina"]
       Anti-fortification weapons: ["GBU-28","Satchel charge","T-12 Cloudmaker"]
       Anti-personnel weapons: ["M18 Claymore", "Mk 211", "Barrett M82"]

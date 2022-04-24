@@ -11,7 +11,7 @@ public class WeaponTest extends AbstractFakerTest {
      * CS304 issue link:https://github.com/DiUS/java-faker/issues/715
      */
     @Test
-    public void getWeapon(){
+    public void getWeaponTest(){
         assertThat(faker.weapon().getWeapon(), matchesRegularExpression("[a-zA-Z0-9\\-\\.\\ \\/]+"));
     }
 
@@ -19,7 +19,7 @@ public class WeaponTest extends AbstractFakerTest {
      * CS304 issue link:https://github.com/DiUS/java-faker/issues/715
      */
     @Test
-    public void provenance(){
+    public void provenanceTest(){
         assertThat(faker.weapon().provenance(), matchesRegularExpression("[a-zA-Z0-9\\-\\.\\ \\/]+"));
     }
 
@@ -27,7 +27,7 @@ public class WeaponTest extends AbstractFakerTest {
      * CS304 issue link:https://github.com/DiUS/java-faker/issues/715
      */
     @Test
-    public void user(){
+    public void userTest(){
         assertThat(faker.weapon().user(), matchesRegularExpression("[a-zA-Z0-9\\-\\.\\ \\/]+"));
     }
 
@@ -35,7 +35,7 @@ public class WeaponTest extends AbstractFakerTest {
      * CS304 issue link:https://github.com/DiUS/java-faker/issues/715
      */
     @Test
-    public void function(){
+    public void functionTest(){
         assertThat(faker.weapon().function(), matchesRegularExpression("[a-zA-Z0-9\\-\\.\\ \\/]+"));
     }
 
@@ -43,7 +43,7 @@ public class WeaponTest extends AbstractFakerTest {
      * CS304 issue link:https://github.com/DiUS/java-faker/issues/715
      */
     @Test
-    public void target(){
+    public void targetTest(){
         assertThat(faker.weapon().target(), matchesRegularExpression("[a-zA-Z0-9\\-\\.\\ \\/]+"));
     }
 
@@ -51,7 +51,7 @@ public class WeaponTest extends AbstractFakerTest {
      * CS304 issue link:https://github.com/DiUS/java-faker/issues/715
      */
     @Test
-    public void type(){
+    public void typeTest(){
         assertThat(faker.weapon().type(), matchesRegularExpression("[a-zA-Z0-9\\-\\.\\ \\/]+"));
     }
 
