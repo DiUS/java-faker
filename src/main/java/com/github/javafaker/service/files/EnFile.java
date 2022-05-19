@@ -151,6 +151,7 @@ public class EnFile {
             "sip.yml",
             "slack_emoji.yml",
             "sonic_the_hedgehog.yml",
+            "soulKnight.yml",
             "source.yml",
             "south_park.yml",
             "space.yml",

@@ -108,6 +108,8 @@ public class Faker {
     private final EnglandFootBall englandfootball;
     private final Mountain mountain;
     private final Weapon weapon;
+    private final SoulKnight soulKnight;
+
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -225,6 +227,7 @@ public class Faker {
         this.englandfootball = new EnglandFootBall(this);
         this.mountain = new Mountain(this);
         this.weapon = new Weapon(this);
+        this.soulKnight = new SoulKnight(this);
     }
 
     /**
@@ -695,6 +698,10 @@ public class Faker {
 
     public Weapon weapon(){
         return weapon;
+    }
+
+    public SoulKnight soulKnight() {
+        return soulKnight;
     }
 
     public String resolve(String key) {
