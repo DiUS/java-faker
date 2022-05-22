@@ -108,6 +108,7 @@ public class Faker {
     private final EnglandFootBall englandfootball;
     private final Mountain mountain;
     private final Battlefield1 battlefield1;
+    private final SwiftCode swiftCode;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -225,6 +226,7 @@ public class Faker {
         this.englandfootball = new EnglandFootBall(this);
         this.mountain = new Mountain(this);
         this.battlefield1 = new Battlefield1(this);
+        this.swiftCode = new SwiftCode(this);
     }
 
     /**
@@ -695,6 +697,10 @@ public class Faker {
 
     public Battlefield1 battlefield1() {
         return battlefield1;
+    }
+
+    public SwiftCode swiftCode() {
+        return swiftCode;
     }
 
     public String resolve(String key) {
