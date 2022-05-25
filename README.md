@@ -1,3 +1,9 @@
+## Notice
+
+This library is no longer actively maintained. Consider an alternative [kotlin-faker](https://github.com/serpro69/kotlin-faker) implementation.
+
+---
+
 Java Faker
 ==========
 
