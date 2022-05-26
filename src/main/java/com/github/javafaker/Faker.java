@@ -75,6 +75,7 @@ public class Faker {
     private final RickAndMorty rickAndMorty;
     private final Yoda yoda;
     private final Matz matz;
+    private final Mbti mbti;
     private final Witcher witcher;
     private final DragonBall dragonBall;
     private final FunnyName funnyName;
@@ -181,6 +182,7 @@ public class Faker {
         this.lordOfTheRings = new LordOfTheRings(this);
         this.zelda = new Zelda(this);
         this.harryPotter = new HarryPotter(this);
+        this.mbti = new Mbti(this);
         this.rockBand = new RockBand(this);
         this.esports = new Esports(this);
         this.friends = new Friends(this);
@@ -540,6 +542,8 @@ public class Faker {
     public HarryPotter harryPotter() {
         return harryPotter;
     }
+
+    public Mbti mbti(){return mbti;}
 
     public RockBand rockBand() {
         return rockBand;

@@ -114,6 +114,7 @@ public class EnFile {
             "markdown.yml",
             "marketing.yml",
             "matz.yml",
+            "mbti.yml",
             "measurement.yml",
             "medical.yml",
             "michael_scott.yml",
