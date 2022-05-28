@@ -108,6 +108,7 @@ public class Faker {
     private final Sip sip;
     private final EnglandFootBall englandfootball;
     private final Mountain mountain;
+    private final OscarMovie oscarMovie;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -129,6 +130,13 @@ public class Faker {
         this(new FakeValuesService(locale, randomService), randomService);
     }
 
+    /**
+     * add oscarmovie and mbti
+     * @param fakeValuesService
+     * @param random
+     */
+    //CS304 Issue link: https://github.com/DiUS/java-faker/issues/712
+    //CS304 Isuue link: https://github.com/DiUS/java-faker/issues/726
     public Faker(FakeValuesService fakeValuesService, RandomService random) {
         this.randomService = random;
         this.fakeValuesService = fakeValuesService;
@@ -183,6 +191,7 @@ public class Faker {
         this.zelda = new Zelda(this);
         this.harryPotter = new HarryPotter(this);
         this.mbti = new Mbti(this);
+        this.oscarMovie = new OscarMovie(this);
         this.rockBand = new RockBand(this);
         this.esports = new Esports(this);
         this.friends = new Friends(this);
@@ -543,6 +552,11 @@ public class Faker {
         return harryPotter;
     }
 
+    /**
+     * add mbti object
+     * @return mbti
+     */
+    //CS304 Isuue link: https://github.com/DiUS/java-faker/issues/726
     public Mbti mbti(){return mbti;}
 
     public RockBand rockBand() {
@@ -632,6 +646,13 @@ public class Faker {
     public Medical medical() {
         return medical;
     }
+
+    /**
+     * initialize oscarmovie object
+     * @return oscarmovie object
+     */
+    //CS304 Issue link: https://github.com/DiUS/java-faker/issues/712
+    public OscarMovie oscarMovie() {return oscarMovie;}
 
     public Country country() {
         return country;

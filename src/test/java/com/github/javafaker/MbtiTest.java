@@ -1,3 +1,4 @@
+//CS304(manually written) Issue link: https://github.com/DiUS/java-faker/issues/726
 package com.github.javafaker;
 
 
@@ -9,6 +10,7 @@ import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 
 public class MbtiTest extends AbstractFakerTest{
+    @Test
     public void type() {
         assertThat(faker.mbti().type(), matchesRegularExpression("[A-Za-z,\\-\\.\\(\\) ]+"));
         assertThat(faker.mbti().characteristic(), not(isEmptyOrNullString()));

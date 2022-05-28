@@ -130,6 +130,7 @@ public class EnFile {
             "new_girl.yml",
             "one_piece.yml",
             "overwatch.yml",
+            "oscarmovie.yml",
             "parks_and_rec.yml",
             "phish.yml",
             "phone_number.yml",
