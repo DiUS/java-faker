@@ -37,7 +37,7 @@ public class SwiftCodeTest extends AbstractFakerTest {
      */
     @Test
     @Repeat(times = 100)
-    public void BranchSwiftCodeTest() {
+    public void branchSwiftCodeTest() {
         String swiftcode = faker.swiftCode().branchSwiftcode();
         assertThat(swiftcode, matchesRegularExpression("[0-9A-Z ]+"));
     }
