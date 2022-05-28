@@ -60,6 +60,7 @@ public class EnFile {
             "country.yml",
             "crypto_coin.yml",
             "currency.yml",
+            "darkSoul.yml",
             "dc_comics.yml",
             "demographic.yml",
             "dessert.yml",
