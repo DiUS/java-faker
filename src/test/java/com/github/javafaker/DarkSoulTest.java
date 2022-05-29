@@ -31,7 +31,10 @@ public class DarkSoulTest extends AbstractFakerTest {
      */
     @Test
     public void weapon(){
-        assertThat(faker.darkSoul().weapon(), matchesRegularExpression("[A-Za-z' ]+"));
+        for (int i = 0; i < 1000; i++) {
+            assertThat(faker.darkSoul().weapon(), matchesRegularExpression("[A-Za-z' ()-]+"));
+        }
+
     }
 
     /**
@@ -47,7 +50,10 @@ public class DarkSoulTest extends AbstractFakerTest {
      */
     @Test
     public void shield(){
-        assertThat(faker.darkSoul().shield(), matchesRegularExpression("[A-Za-z' ]+"));
+        for (int i = 0; i < 1000; i++) {
+            assertThat(faker.darkSoul().shield(), matchesRegularExpression("[A-Za-z' -]+"));
+        }
+
     }
 
     /**
@@ -64,7 +70,10 @@ public class DarkSoulTest extends AbstractFakerTest {
      */
     @Test
     public void stats(){
-        assertThat(faker.darkSoul().stats(), matchesRegularExpression("[A-Za-z' ]+"));
+        for (int i = 0; i < 1000; i++) {
+            assertThat(faker.darkSoul().stats(), matchesRegularExpression("[A-Za-z' ]+"));
+        }
+
     }
 
     /**
@@ -81,7 +90,9 @@ public class DarkSoulTest extends AbstractFakerTest {
      */
     @Test
     public void covenants(){
-        assertThat(faker.darkSoul().covenants(), matchesRegularExpression("[A-Za-z' ]+"));
+        for (int i = 0; i < 1000; i++) {
+            assertThat(faker.darkSoul().covenants(), matchesRegularExpression("[A-Za-z' ]+"));
+        }
     }
 
     /**
