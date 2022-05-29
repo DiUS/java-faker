@@ -14,7 +14,8 @@ public class SwiftCode {
   }
 
   /**
-  * The
+  * This function generates a random swift code of a bank's headquarter.
+
   * @return a random swift code of a bank's headquarter as a string value
   */
   public String headquarterSwiftcode() {
@@ -36,7 +37,8 @@ public class SwiftCode {
   }
 
   /**
-   *
+   * This function generates a random swift code of a bank's branch.
+
    * @return a random swift code of a bank's branch as a string value
    */
   public String branchSwiftcode() {
