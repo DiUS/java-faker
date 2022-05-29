@@ -1,7 +1,5 @@
 package com.github.javafaker;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 /**
  * CS304 Issue link: https://github.com/DiUS/java-faker/issues/721
  * A class for generating random swift code
@@ -19,7 +17,6 @@ public class SwiftCode {
   * The
   * @return a random swift code of a bank's headquarter as a string value
   */
-  @SuppressFBWarnings({"DM_NEXTINT_VIA_NEXTDOUBLE", "PREDICTABLE_RANDOM"})
   public String headquarterSwiftcode() {
     String chars1 = "ABCDEFGHIZKLMNOPQRSTUVWXYZ";
     String chars2 = "0123456789ABCDEFGHIZKLMNOPQRSTUVWXYZ";
@@ -42,7 +39,6 @@ public class SwiftCode {
    *
    * @return a random swift code of a bank's branch as a string value
    */
-  @SuppressFBWarnings({"PREDICTABLE_RANDOM", "DM_NEXTINT_VIA_NEXTDOUBLE"})
   public String branchSwiftcode() {
     String chars1 = "ABCDEFGHIZKLMNOPQRSTUVWXYZ";
     String chars2 = "0123456789ABCDEFGHIZKLMNOPQRSTUVWXYZ";
