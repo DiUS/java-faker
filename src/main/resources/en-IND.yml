@@ -16,6 +16,7 @@ en-IND:
       default_country: [India, Indian Republic, Bharat, Hindustan]
       default_time_zone: ["Asia/Kolkata"]
       default_country_code: ["IN"]
+      country: [India]
     internet:
       free_email: [gmail.com, yahoo.co.in, hotmail.com]
       domain_suffix: [in, com, biz, info, name, net, org, co.in]
