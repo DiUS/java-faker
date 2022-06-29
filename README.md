@@ -150,6 +150,7 @@ Faker faker = new Faker(new Locale("YOUR_LOCALE"));
 Supported Locales
 -----
 * bg
+* be
 * ca
 * ca-CAT
 * da-DK
