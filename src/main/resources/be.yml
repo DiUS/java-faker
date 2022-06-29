@@ -1,0 +1,166 @@
+be:
+  faker:
+    address:
+      city_prefix: [Noord,Oost,West,Zuid,Niew,Oud]
+      city_suffix: ['wijk']
+      city:
+        - "#{Name.first_name}#{city_suffix}"
+        - "#{Name.last_name}#{city_suffix}"
+        - "#{city_prefix} #{Name.first_name}#{city_suffix}"
+        - "#{city_prefix} #{Name.last_name}#{city_suffix}"
+      country: [ "Afghanistan", "Akrotiri", "Albanië", "Algerije", "Amerikaanse Maagdeneilanden", "Amerikaans-Samoa", "Andorra", "Angola", "Anguilla",
+               "Antarctica", "Antigua en Barbuda", "Noordelijke IJszee", "Argentinië", "Armenië", "Aruba", "Ashmore- en Cartiereilanden", "Atlantische Oceaan",
+               "Australië", "Azerbeidzjan", "Bahama's", "Bahrein", "Bangladesh", "Barbados", "Belarus", "België", "Belize", "Benin", "Bermuda", "Bhutan",
+               "Bolivië", "Bosnië-Herzegovina", "Botswana", "Bouveteiland", "Brazilië", "Brits Indische Oceaanterritorium", "Britse Maagdeneilanden",
+               "Brunei", "Bulgarije", "Burkina Faso", "Burundi", "Cambodja", "Canada", "Caymaneilanden", "Centraal-Afrikaanse Republiek", "Chili", "China",
+               "Christmaseiland", "Clipperton", "Cocoseilanden", "Colombia", "Comoren (Unie)", "Congo (Democratische Republiek)",
+               "Congo (Volksrepubliek)", "Cook", "Coral Sea Islands", "Costa Rica", "Cuba", "Cyprus", "Denemarken", "Dhekelia", "Djibouti", "Dominica",
+               "Dominicaanse Republiek", "Duitsland", "Ecuador", "Egypte", "El Salvador", "Equatoriaal-Guinea", "Eritrea", "Estland", "Ethiopië",
+               "Europese Unie", "Falkland", "Faeröer", "Fiji", "Filipijnen", "Finland", "Frankrijk", "Frans-Polynesië",
+               "Franse Zuidelijke en Antarctische Gebieden", "Gabon", "Gambia", "Gaza Strip", "Georgië", "Ghana", "Gibraltar", "Grenada", "Griekenland",
+               "Groenland", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinee-Bissau", "Guyana", "Haïti", "Heard en McDonaldeilanden", "Heilige Stoel",
+               "Honduras", "Hongarije", "Hongkong", "Ierland", "IJsland", "India", "Indian Ocean", "Indonesië", "Irak", "Iran", "Isle of Man", "Israël",
+               "Italië", "Ivoorkust", "Jamaica", "Jan Mayen", "Japan", "Jemen", "Jersey", "Jordanië", "Kaapverdië", "Kameroen", "Kazachstan", "Kenia",
+               "Kirgizstan", "Kiribati", "Koeweit", "Kroatië", "Laos", "Lesotho", "Letland", "Libanon", "Liberia", "Libië", "Liechtenstein", "Litouwen",
+               "Luxemburg", "Macao", "Macedonië", "Madagaskar", "Malawi", "Maldiven", "Maleisië", "Mali", "Malta", "Marokko", "Marshalleilanden", "Mauritanië",
+               "Mauritius", "Mayotte", "Mexico", "Micronesia, Federale Staten van", "Moldavië", "Monaco", "Mongolië", "Montenegro", "Montserrat", "Mozambique",
+               "Myanmar", "Namibië", "Nauru", "Navassa", "Nederland", "Nederlandse Antillen", "Nepal", "Ngwane", "Nicaragua", "Nieuw-Caledonië",
+               "Nieuw-Zeeland", "Niger", "Nigeria", "Niue", "Noordelijke Marianen", "Noord-Korea", "Noorwegen", "Norfolk (eiland)", "Oekraïne", "Oezbekistan",
+               "Oman", "Oostenrijk", "Grote Oceaan", "Pakistan", "Palau", "Panama", "Papoea-Nieuw-Guinea", "Paracel Islands", "Paraguay", "Peru", "Pitcairn",
+               "Polen", "Portugal", "Puerto Rico", "Qatar", "Roemenië", "Rusland", "Rwanda", "Saint Helena", "Saint Lucia", "Saint Vincent en de Grenadines",
+               "Saint-Pierre en Miquelon", "Salomon", "Samoa", "San Marino", "São Tomé en Principe", "Saudi-Arabië", "Senegal", "Servië", "Seychellen",
+               "Sierra Leone", "Singapore", "Sint-Kitts en Nevis", "Slovenië", "Slowakije", "Soedan", "Somalië", "South Georgia and the South Sandwich Islands",
+               "Zuidelijke Oceaan", "Spanje", "Spratly Islands", "Sri Lanka", "Suriname", "Svalbard", "Syrië", "Tadzjikistan", "Taiwan", "Tanzania", "Thailand",
+               "Timor Leste", "Togo", "Tokelau", "Tonga", "Trinidad en Tobago", "Tsjaad", "Tsjechië", "Tunesië", "Turkije", "Turkmenistan",
+               "Turks-en Caicoseilanden", "Tuvalu", "Uganda", "Uruguay", "Vanuatu", "Venezuela", "Verenigd Koninkrijk", "Verenigde Arabische Emiraten",
+               "Verenigde Staten van Amerika", "Vietnam", "Wake (eiland)", "Wallis en Futuna", "Wereld", "Westelijke Jordaanoever", "Westelijke Sahara", "Zambia",
+               "Zimbabwe", "Zuid-Afrika", "Zuid-Korea", "Zweden", "Zwitserland" ]
+        building_number: ["#", "##", "###", "###a", "###b", "###c", "### I", "### II", "### III"]
+        street_suffix: ['baan', 'boulevard', 'dreef', 'hof', 'laan', 'pad', 'ring', 'singel', 'steeg', 'straat', 'weg']
+        street_name:
+        - "#{Name.first_name}#{street_suffix}"
+        - "#{Name.last_name}#{street_suffix}"
+        street_address:
+        - "#{street_name} #{building_number}"
+        postcode: [
+        '2970', '3700', '7510', '9420', '8511', '3800', '9300', '9880', '3200', '8700', '8211', '2630', '4557',
+        '4280', '3930', '5590', '5362', '4219', '6280', '9991', '8660', '1790', '9051', '5544', '4317', '5310',
+        '6250', '5070', '3570', '5550', '4432', '1652', '8690', '4540', '6680', '6953', '4770', '6997', '7750',
+        '5300', '1070', '6150', '4821', '4031', '7387', '5537', '6721', '6890', '4430', '5500', '5520', '4520',
+        '4160', '7640', '2000', '2018', '2020', '2030', '2040', '2050', '2060', '2099', '7910', '8570', '9200',
+        '9400', '5170', '7811', '4990', '1390', '8850', '2370', '4601', '6700', '7181', '5060', '6870', '3665',
+        '9404', '9890', '7040', '1730', '8310', '1007', '9960', '6860', '3460', '5330', '9800', '7800', '6791',
+        '3404', '3384', '6717', '7941', '6790', '7972', '4880', '5660', '6880', '7382', '6706', '1367', '5580',
+        '8630', '8580', '4260', '3271', '4340', '4400', '6900', '4630', '4920', '3128', '9310', '2387', '4837',
+        '6464', '6460', '5555', '7730', '5377', '7380', '1470', '5190', '9860', '2490', '6951', '6500', '4671',
+        '5570', '7534', '5370', '6940', '7971', '4983', '4690', '9968', '7830', '6600', '3870', '4651', '7130',
+        '7331', '7870', '7604', '1401', '9520', '8531', '9150', '4052', '6980', '1320', '6594', '7532', '3960',
+        ]
+
+        state: [
+        'Antwerpen', 'Limburg', 'Oost-Vlaanderen', 'Vlaams-Brabant', 'West-Vlaanderen',
+        'Henegouwen', 'Luik', 'Luxemburg', 'Namen', 'Waals-Brabant',
+        ]
+        default_country: [België]
+
+    company:
+      suffix: ['VZW', 'Comm.V', 'VOF', 'BVBA', 'EBVBA', 'ESV', 'NV', 'Comm.VA', 'CVOA', 'CVBA', '& Zonen', '& Zn']
+
+    internet:
+      free_email: ['gmail.com', 'hotmail.com', 'yahoo.com', 'advalvas.be']
+      domain_suffix: ['com', 'com', 'com', 'net', 'org', 'be', 'be', 'be']
+
+    name:
+      first_name: ['Aaron', 'Adam', 'Adrien', 'Alessio', 'Alexander', 'Alexandre', 'Alexis',
+        'Antoine', 'Arne', 'Arthur', 'Axel', 'Ayoub', 'Baptiste', 'Benjamin',
+        'Clément', 'Daan', 'David', 'Diego', 'Dylan', 'Elias', 'Emiel', 'Emile',
+        'Enzo', 'Ethan', 'Ferre', 'Finn', 'Florian', 'Gabriel', 'Gilles', 'Guillaume',
+        'Hamza', 'Hugo', 'Ilias', 'Janne', 'Jarne', 'Jasper', 'Jelle', 'Jonas',
+        'Jules', 'Julien', 'Kato', 'Kobe', 'Lander', 'Lars', 'Leon', 'Liam', 'Linde',
+        'Loïc', 'Louis', 'Lowie', 'Luca', 'Lucas', 'Lukas', 'Martin', 'Mathéo',
+        'Mathias', 'Mathis', 'Mathys', 'Mats', 'Matteo', 'Mauro', 'Maxim', 'Maxime',
+        'Mehdi', 'Milan', 'Mohamed', 'Mohammed', 'Nathan', 'Nicolas', 'Niels',
+        'Noah', 'Noé', 'Nolan', 'Nore', 'Quinten', 'Raphaël', 'Rayan', 'Robbe',
+        'Robin', 'Romain', 'Ruben', 'Rune', 'Sacha', 'Sam', 'Samuel', 'Sander',
+        'Seppe', 'Simon', 'Stan', 'Théo', 'Thomas', 'Tibo', 'Tom', 'Tristan', 'Tuur',
+        'Vic', 'Victor', 'Vince', 'Warre', 'Xander', 'Yanis','Alexia', 'Alice', 'Alicia', 'Alyssa', 'Amber', 'Amélie', 'Amy', 'Anaïs',
+        'Anna', 'Anouk', 'Axelle', 'Aya', 'Bo', 'Camille', 'Célia', 'Charlotte',
+        'Chiara', 'Chloé', 'Clara', 'Clémence', 'Elena', 'Elias', 'Eline', 'Elisa',
+        'Elise', 'Ella', 'Eloïse', 'Emilie', 'Emma', 'Estelle', 'Eva', 'Febe',
+        'Femke', 'Fien', 'Fleur', 'Giulia', 'Hajar', 'Hanne', 'Helena', 'Ines',
+        'Inès', 'Jade', 'Jana', 'Jeanne', 'Julia', 'Julie', 'Juliette', 'Kaat',
+        'Lana', 'Lara', 'Laura', 'Laure', 'Léa', 'Lena', 'Lien', 'Lilou', 'Lily',
+        'Lina', 'Lisa', 'Lise', 'Lola', 'Lore', 'Lotte', 'Louise', 'Luna', 'Maëlle',
+        'Malak', 'Manon', 'Margaux', 'Margot', 'Marie', 'Marion', 'Maya', 'Merel',
+        'Mila', 'Nina', 'Noa', 'Noémie', 'Noor', 'Nora', 'Océane', 'Olivia', 'Pauline',
+        'Rania', 'Robin', 'Romane', 'Roos', 'Salma', 'Sara', 'Sarah', 'Senne',
+        'Siebe', 'Sofia', 'Tess', 'Victoria', 'Wout', 'Yana', 'Yasmine', 'Zoé', 'Zoë']
+      tussenvoegsel: ["de", "den", "te", "ten", "ter", "van", "van 't", "van de", "van den", "van der", "van het", "von", "voor den"]
+      last_name: [ 'Adam', 'Aerts', 'Amrani', 'André', 'Antoine', 'Baert', 'Bah', 'Barry',
+                   'Bastin', 'Bauwens', 'Benali', 'Bernard', 'Bertrand', 'Bodart', 'Bogaert',
+                   'Bogaerts', 'Borremans', 'Bosmans', 'Boulanger', 'Bourgeois', 'Brasseur',
+                   'Carlier', 'Celik', 'Ceulemans', 'Charlier', 'Christiaens', 'Claes',
+                   'Claessens', 'Claeys', 'Collard', 'Collignon', 'Collin', 'Cools', 'Coppens',
+                   'Cornelis', 'Cornet', 'Cuvelier', 'Daems', 'De Backer', 'De Clercq', 'De Cock',
+                   'De Coninck', 'De Coster', 'De Greef', 'De Groote', 'De Meyer', 'De Pauw',
+                   'De Ridder', 'De Smedt', 'De Smet', 'De Vos', 'De Wilde', 'De Winter',
+                   'Declercq', 'Delfosse', 'Delhaye', 'Delvaux', 'Demir', 'Denis', 'Deprez',
+                   'Descamps', 'Desmedt', 'Desmet', 'Dethier', 'Devos', 'Diallo', 'Dierckx',
+                   'Dogan', 'Dubois', 'Dumont', 'Dupont', 'El Amrani', 'Etienne', 'Evrard',
+                   'Fontaine', 'François', 'Geerts', 'Georges', 'Gérard', 'Gielen', 'Gilles',
+                   'Gillet', 'Gilson', 'Goethals', 'Goffin', 'Goossens', 'Grégoire', 'Guillaume',
+                   'Hajji', 'Hardy', 'Hendrickx', 'Henry', 'Herman', 'Hermans', 'Heylen',
+                   'Heymans', 'Hubert', 'Jacob', 'Jacobs', 'Jacques', 'Jacquet', 'Jansen',
+                   'Janssen', 'Janssens', 'Kaya', 'Lacroix', 'Lambert', 'Lambrechts', 'Laurent',
+                   'Lauwers', 'Lebrun', 'Leclercq', 'Lecocq', 'Lecomte', 'Lefebvre', 'Lefèvre',
+                   'Legrand', 'Lejeune', 'Lemaire', 'Lemmens', 'Lenaerts', 'Léonard', 'Leroy',
+                   'Libert', 'Lievens', 'Louis', 'Luyten', 'Maes', 'Mahieu', 'Marchal', 'Maréchal',
+                   'Martens', 'Martin', 'Massart', 'Masson', 'Mathieu', 'Meert', 'Mertens',
+                   'Messaoudi', 'Meunier', 'Michaux', 'Michel', 'Michiels', 'Moens', 'Moreau',
+                   'Nguyen', 'Nicolas', 'Nijs', 'Noël', 'Parmentier', 'Pauwels', 'Peeters',
+                   'Petit', 'Pierre', 'Pieters', 'Piette', 'Piron', 'Pirotte', 'Poncelet',
+                   'Raes', 'Remy', 'Renard', 'Robert', 'Roels', 'Roland', 'Rousseau', 'Sahin',
+                   'Saidi', 'Schmitz', 'Segers', 'Servais', 'Simon', 'Simons', 'Smet', 'Smets',
+                   'Somers', 'Stevens', 'Thijs', 'Thiry', 'Thomas', 'Thys', 'Timmermans',
+                   'Toussaint', 'Tran', 'Urbain', 'Van Acker', 'Van Damme', 'Van de Velde',
+                   'Van den Bossche', 'Van den Broeck', 'Van Dyck', 'Van Hecke', 'Van Hoof',
+                   'Vandamme', 'Vandenberghe', 'Verbeeck', 'Verbeke', 'Verbruggen', 'Vercammen',
+                   'Verhaegen', 'Verhaeghe', 'Verhelst', 'Verheyen', 'Verhoeven', 'Verlinden',
+                   'Vermeersch', 'Vermeiren', 'Vermeulen', 'Verschueren', 'Verstraete', 'Verstraeten',
+                   'Vervoort', 'Wauters', 'Willems', 'Wouters', 'Wuyts', 'Yildirim', 'Yilmaz']
+      prefix: [ Dhr., Mevr. Dr., Bsc, Msc, Prof. ]
+      suffix: [ Jr., Sr., I, II, III, IV, V ]
+      name:
+          - "#{prefix} #{first_name} #{last_name}"
+          - "#{first_name} #{last_name} #{suffix}"
+          - "#{first_name} #{last_name}"
+          - "#{first_name} #{last_name}"
+          - "#{first_name} #{tussenvoegsel} #{last_name}"
+          - "#{first_name} #{tussenvoegsel} #{last_name}"
+      name_with_middle:
+          - "#{prefix} #{first_name} #{last_name} #{last_name}"
+          - "#{first_name} #{last_name} #{last_name} #{suffix}"
+          - "#{first_name} #{last_name} #{last_name}"
+          - "#{first_name} #{last_name} #{last_name}"
+          - "#{first_name} #{last_name} #{last_name}"
+          - "#{first_name} #{last_name} #{last_name}"
+
+    phone_number:
+      formats: ['+32(0)########',
+                '+32(0)### ######',
+                '+32(0)# #######',
+                '0#########',
+                '0### ######',
+                '0### ### ###',
+                '0### ## ## ##',
+                '0## ######',
+                '0## ## ## ##',
+                '0# #######',
+                '0# ### ## ##']
+
+
+    university:
+      prefix: [ Universiteit, Hogeschool ]
+      name:
+          - "#{University.prefix} #{Name.last_name}"
+          - "#{University.prefix} #{Address.city}"
