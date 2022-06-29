@@ -1,13 +1,23 @@
 be:
   faker:
     address:
-      city_prefix: [Noord,Oost,West,Zuid,Niew,Oud]
-      city_suffix: ['wijk']
-      city:
-        - "#{Name.first_name}#{city_suffix}"
-        - "#{Name.last_name}#{city_suffix}"
-        - "#{city_prefix} #{Name.first_name}#{city_suffix}"
-        - "#{city_prefix} #{Name.last_name}#{city_suffix}"
+      city: [
+        'Aalst', 'Aarlen', 'Aarschot', 'Aat', 'Andenne', 'Antoing', 'Antwerpen', 'Bastenaken', 'Beringen',
+        'Beaumont', 'Beauraing', 'Bergen', 'Bilzen', 'Binche', 'Blankenberge', 'Borgloon', 'Borgworm', 'Bouillon',
+        'Bree', 'Brugge', 'Brussel', 'Charleroi', 'Châtelet', 'Chièvres', 'Chimay', 'Chiny', 'Ciney', 'Couvin',
+        'Damme', 'Deinze', 'Dendermonde', 'Diest', 'Diksmuide', 'Dilsen-Stokkem', 'Dinant', 'Doornik', 'Durbuy',
+        'Edingen', 'Eeklo', 'Eupen', 'Fleurus', 'Florenville', "Fontaine-l'Evêque", 'Fosses-la-Ville', 'Geel',
+        'Geldenaken', 'Gembloers', 'Genepiën', 'Genk', 'Gent', 'Geraardsbergen', 'Gistel', "\'s-Gravenbrakel",
+        'Halen', 'Halle', 'Hamont-Achel', 'Hannuit', 'Harelbeke', 'Hasselt', 'Herentals', 'Herk-de-Stad', 'Herstal',
+        'Herve', 'Hoei', 'Hoogstraten', 'Houffalize', 'Ieper', 'Izegem', 'Komen-Waasten', 'Kortrijk', 'La Louvière',
+        'La Roche-en-Ardenne', 'Landen', 'Le Rœulx', 'Lessen', 'Leuze-en-Hainaut', 'Leuven', 'Lier', 'Limburg',
+        'Lo-Reninge', 'Lokeren', 'Lommel', 'Luik', 'Maaseik', 'Malmedy', 'Marche-en-Famenne', 'Mechelen', 'Menen',
+        'Mesen', 'Moeskroen', 'Mortsel', 'Namen', 'Neufchâteau', 'Nieuwpoort', 'Nijvel', 'Ninove', 'Oostende',
+        'Ottignies', 'Oudenaarde', 'Oudenburg', 'Peer', 'Péruwelz', 'Philippeville', 'Poperinge', 'Rochefort',
+        'Roeselare', 'Ronse', 'Saint-Ghislain', 'Saint-Hubert', 'Sankt Vith', 'Scherpenheuvel-Zichem', 'Seraing',
+        'Sint-Niklaas', 'Sint-Truiden', 'Spa', 'Stavelot', 'Thuin', 'Tielt', 'Tienen', 'Tongeren', 'Torhout',
+        'Turnhout', 'Verviers', 'Veurne', 'Vilvoorde', 'Virton', 'Walcourt', 'Waregem', 'Waver', 'Wervik', 'Wezet',
+        'Zinnik', 'Zottegem', 'Zoutleeuw']
       country: [ "Afghanistan", "Akrotiri", "Albanië", "Algerije", "Amerikaanse Maagdeneilanden", "Amerikaans-Samoa", "Andorra", "Angola", "Anguilla",
                "Antarctica", "Antigua en Barbuda", "Noordelijke IJszee", "Argentinië", "Armenië", "Aruba", "Ashmore- en Cartiereilanden", "Atlantische Oceaan",
                "Australië", "Azerbeidzjan", "Bahama's", "Bahrein", "Bangladesh", "Barbados", "Belarus", "België", "Belize", "Benin", "Bermuda", "Bhutan",
