@@ -1,6 +1,5 @@
 First and foremost thanks to anyone who contributes, very much appreciated.
 
-
 ## Guidelines
 - Need to maintain compatibility with Java 1.6 (and Android). Therefore any attempt to migrate to 1.6 JDKs and above will not be merged back in.
 
