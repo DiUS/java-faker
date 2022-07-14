@@ -38,6 +38,25 @@ public class Internet {
         return join(stripAccents(localPart), "@", domain);
     }
 
+    /**
+    * Generates a message-id (msg-id) valid per https://tools.ietf.org/html/rfc2822
+    *
+    * @param domain The domain name to use in the id-right part of the message-id
+    * @return A valid message id with the supplied domain
+    */
+    public String rfcMessageId(String domain) {
+        return join("<", UUID.randomUUID(), "@", domain, ">");
+    }
+
+    /**
+    * Generates a message-id (msg-id) valid per https://tools.ietf.org/html/rfc2822
+    *
+    * @return A valid message id with a faker generated domain
+    */
+    public String rfcMessageId() {
+        return rfcMessageId(domainName());
+    }
+
     public String domainName() {
         return domainWord() + "." + domainSuffix();
     }

@@ -89,6 +89,18 @@ public class InternetTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testRfc2822MessageIdIsValid() {
+        String rfcMessageId = faker.internet().rfcMessageId();
+        assertThat(rfcMessageId, matchesRegularExpression("<.*@.*\\..*>"));
+    }
+
+    @Test
+    public void testRfc2822MessageIdIsValidSuppliedDomain() {
+        String rfcMessageId = faker.internet().rfcMessageId("mydomain.org");
+        assertThat(rfcMessageId, matchesRegularExpression("<.*@.*\\..*>"));
+    }
+
+    @Test
     public void testDomainName() {
         assertThat(faker.internet().domainName(), matchesRegularExpression("[a-z]+\\.\\w{2,4}"));
     }
