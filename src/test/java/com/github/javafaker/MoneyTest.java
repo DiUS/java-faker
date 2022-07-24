@@ -9,12 +9,12 @@ import static org.junit.Assert.assertThat;
 public class MoneyTest extends AbstractFakerTest {
 
     @Test
-    public void testCurrencyCode() {
-        assertThat(faker.money().currencyCode(), not(isEmptyOrNullString()));
+    public void testCurrency() {
+        assertThat(faker.money().currency(), not(isEmptyOrNullString()));
     }
 
     @Test
-    public void testCurrencies() {
-        assertThat(faker.money().currencies(), not(isEmptyOrNullString()));
+    public void testCurrencyCode() {
+        assertThat(faker.money().currencyCode(), not(isEmptyOrNullString()));
     }
 }

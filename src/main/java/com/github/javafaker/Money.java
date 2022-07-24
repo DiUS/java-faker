@@ -8,12 +8,11 @@ public class Money {
         this.faker = faker;
     }
 
-    public String currencyCode() {
-        return faker.fakeValuesService().resolve("money.code", this, faker);
-    }
-
-    public String currencies() {
+    public String currency() {
         return faker.fakeValuesService().resolve("money.currency", this, faker);
     }
 
+    public String currencyCode() {
+        return faker.fakeValuesService().resolve("money.code", this, faker);
+    }
 }
