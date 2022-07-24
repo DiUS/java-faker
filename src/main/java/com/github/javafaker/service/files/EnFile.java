@@ -118,6 +118,7 @@ public class EnFile {
             "medical.yml",
             "michael_scott.yml",
             "military.yml",
+            "money.yml",
             "most_interesting_man_in_the_world.yml",
             "movie.yml",
             "mountain.yml",

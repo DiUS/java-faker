@@ -88,6 +88,7 @@ public class Faker {
     private final Weather weather;
     private final Lebowski lebowski;
     private final Medical medical;
+    private final Money money;
     private final Animal animal;
     private final BackToTheFuture backToTheFuture;
     private final PrincessBride princessBride;
@@ -203,6 +204,7 @@ public class Faker {
         this.weather = new Weather(this);
         this.lebowski = new Lebowski(this);
         this.medical = new Medical(this);
+        this.money = new Money(this);
         this.country = new Country(this);
         this.animal = new Animal(this);
         this.backToTheFuture = new BackToTheFuture(this);
@@ -627,6 +629,10 @@ public class Faker {
 
     public Medical medical() {
         return medical;
+    }
+
+    public Money money() {
+        return money;
     }
 
     public Country country() {

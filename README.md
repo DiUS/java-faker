@@ -111,6 +111,7 @@ Fakers
 * Lorem
 * Matz
 * Music
+* Money
 * Name
 * Nation
 * Number
