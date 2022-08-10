@@ -46,6 +46,7 @@ public class Faker {
     private final Finance finance;
     private final Food food;
     private final GameOfThrones gameOfThrones;
+    private final GarmentSize garmentSize;
     private final Gender gender;
     private final DateAndTime dateAndTime;
     private final Demographic demographic;
@@ -162,6 +163,7 @@ public class Faker {
         this.finance = new Finance(this);
         this.food = new Food(this);
         this.gameOfThrones = new GameOfThrones(this);
+        this.garmentSize = new GarmentSize(this);
         this.gender = new Gender(this);
         this.dateAndTime = new DateAndTime(this);
         this.demographic = new Demographic(this);
@@ -470,6 +472,8 @@ public class Faker {
     public GameOfThrones gameOfThrones() {
         return gameOfThrones;
     }
+
+    public GarmentSize garmentSize() { return garmentSize; }
 
     public Gender gender() {
         return gender;

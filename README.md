@@ -94,6 +94,7 @@ Fakers
 * Friends
 * FunnyName
 * GameOfThrones
+* GarmentSize
 * Gender
 * Hacker
 * HarryPotter
