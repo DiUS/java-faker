@@ -86,6 +86,7 @@ public class EnFile {
             "friends.yml",
             "funny_name.yml",
             "game_of_thrones.yml",
+            "garments_sizes.yml",
             "gender.yml",
             "ghostbusters.yml",
             "grateful_dead.yml",
