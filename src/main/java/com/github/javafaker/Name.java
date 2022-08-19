@@ -129,6 +129,32 @@ public class Name {
 
         return StringUtils.deleteWhitespace(username);
     }
+
+    /**
+     * <p>
+     *     A lowercase local part of an email address composed of the first_name and last_name joined with a '.'. Some
+     *     examples are:
+     *     <ul>
+     *         <li>(template) {@link #firstName()}.{@link #lastName()}</li>
+     *         <li>jim.o'brian</li>
+     *         <li>jason.leigh</li>
+     *         <li>tracy.jordan</li>
+     *     </ul>
+     * </p>
+     * @return a random two part local part of an email address.
+     * @see Name#firstName()
+     * @see Name#lastName()
+     */
+    public String localPart() {
+
+        String username = StringUtils.join(
+            firstName().toLowerCase(),
+            ".",
+            lastName().toLowerCase()
+        );
+
+        return StringUtils.deleteWhitespace(username);
+    }
     
     /**
      * <p>Returns a blood group such as O−, O+, A-, A+, B-, B+, AB-, AB+</p>

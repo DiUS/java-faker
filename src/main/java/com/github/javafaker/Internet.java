@@ -19,7 +19,7 @@ public class Internet {
     }
 
     public String emailAddress() {
-        return emailAddress(faker.name().username());
+        return emailAddress(faker.name().localPart());
     }
 
     public String emailAddress(String localPart) {
