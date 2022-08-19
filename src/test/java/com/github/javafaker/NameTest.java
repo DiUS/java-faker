@@ -74,7 +74,20 @@ public class NameTest  extends AbstractFakerTest{
         doReturn(name).when(faker).name();
         assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
     }
-    
+
+    @Test
+    public void testLocalPart() {
+        assertThat(faker.name().localPart(), matchesRegularExpression("^([\\w']+)\\.([\\w']+)$"));
+    }
+
+    @Test
+    public void testLocalPartWithSpaces() {
+        final Name name = spy(new Name(faker));
+        doReturn("Compound Name").when(name).firstName();
+        doReturn(name).when(faker).name();
+        assertThat(faker.name().localPart(), matchesRegularExpression("^([\\w']+)\\.([\\w']+)$"));
+    }
+
     @Test
     public void testBloodGroup() {
         assertThat(faker.name().bloodGroup(), matchesRegularExpression("(A|B|AB|O)[+-]"));
