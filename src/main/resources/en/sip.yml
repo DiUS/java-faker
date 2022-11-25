@@ -1,0 +1,101 @@
+---
+en:
+  faker:
+    sip:
+      methods: ["INVITE", "ACK", "BYE", "CANCEL", "REGISTER", "OPTIONS", "PRACK", "SUBSCRIBE", "NOTIFY", "PUBLISH", "INFO", "REFER", "MESSAGE", "UPDATE"]
+      content:
+        types: [
+          "application/sdp",
+          "application/resource-lists",
+          "application/pkcs7-mime",
+          "application/pkcs7-signature",
+          "application/x-private",
+          "application/xml",
+          "multipart/mixed",
+          "multipart/alternative",
+          "multipart/related",
+          "text/html"]
+      response:
+        codes:
+          provisional: ["100", "180", "181", "182", "183", "199"]
+          success: ["200", "202"]
+          redirection: ["300", "301", "302", "305", "380"]
+          clientError: [
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "413",
+            "414",
+            "415",
+            "416",
+            "420",
+            "421",
+            "422",
+            "423",
+            "480",
+            "481",
+            "482",
+            "483",
+            "484",
+            "485",
+            "486",
+            "487",
+            "488",
+            "491",
+            "493"]
+          serverError: ["500", "501", "502", "503", "504", "505", "513", "555", "580"]
+          globalError: ["600", "603", "604", "606", "607"]
+        phrases:
+          provisional: ["Trying", "Ringing", "Call Is Being Forwarded", "Queued", "Session Progress", "Early Dialog Terminated"]
+          success: ["OK", "accepted"]
+          redirection: ["Multiple Choices", "Moved Permanently", "Moved Temporarily", "Use Proxy", "Alternative Service"]
+          clientError: [
+            "Bad Request",
+            "Unauthorized",
+            "Payment Required",
+            "Forbidden",
+            "Not Found",
+            "Method Not Allowed",
+            "Not Acceptable",
+            "Proxy Authentication Required",
+            "Request Timeout",
+            "Conflict",
+            "Gone",
+            "Request Entity Too Large",
+            "Request-URI Too Long",
+            "Unsupported Media Type",
+            "Unsupported URI Scheme",
+            "Bad Extension",
+            "Extension Required",
+            "Session Interval Too Small",
+            "Interval Too Brief",
+            "Temporarily Unavailable",
+            "Call/Transaction Does Not Exist",
+            "Loop Detected",
+            "Too Many Hops",
+            "Address Incomplete",
+            "Ambiguous",
+            "Busy Here",
+            "Request Terminated",
+            "Not Acceptable Here",
+            "Request Pending",
+            "Undecipherable"]
+          serverError: [
+            "Server Internal Error",
+            "Not Implemented",
+            "Bad Gateway",
+            "Service Unavailable",
+            "Server Time-out",
+            "Version Not Supported",
+            "Message Too Large",
+            "Push Notification Service Not Supported",
+            "Precondition Failure"]
+          globalError: ["Busy Everywhere", "Decline", "Does Not Exist Anywhere", "Not Acceptable", "Unwanted"]

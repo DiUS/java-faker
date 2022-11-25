@@ -1,12 +1,15 @@
 package com.github.javafaker;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 public class LoremTest extends AbstractFakerTest {
@@ -71,7 +74,7 @@ public class LoremTest extends AbstractFakerTest {
 
     @Test
     public void testCharactersMinimumMaximumLengthIncludeUppercase() {
-        assertThat(faker.lorem().characters(1, 10), matchesRegularExpression("[a-zA-Z\\d]{1,10}"));
+        assertThat(faker.lorem().characters(1, 10, true), matchesRegularExpression("[a-zA-Z\\d]{1,10}"));
     }
 
     @Test
@@ -100,4 +103,8 @@ public class LoremTest extends AbstractFakerTest {
         assertThat(faker.lorem().sentence(10, 0), matchesRegularExpression("(\\w+\\s?){10}\\."));
     }
 
+    @Test
+    public void testWords() {
+        assertThat(faker.lorem().words(), hasSize(greaterThanOrEqualTo(1)));
+    }
 }

@@ -4,14 +4,12 @@
 package com.github.javafaker;
 
 import org.junit.Test;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
-
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /**
  * @author pmiklos
@@ -80,14 +78,25 @@ public class DateAndTimeTest extends AbstractFakerTest {
             assertThat("before lower bound", date.getTime(), greaterThanOrEqualTo(now.getTime()));
         }
     }
-
+    @Test
+    public void testBetweenThenLargerThanNow(){
+        try{
+        Date now = new Date();
+        Date then = new Date(now.getTime() + 1000);
+        Date date =faker.date().between(then,now);
+        fail("Should be exception");}catch (IllegalArgumentException e){
+            assertEquals("Invalid date range, the upper bound date is before the lower bound.", e.getMessage());
+        }
+    }
     @Test
     public void testBirthday() {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        long from = new GregorianCalendar(currentYear - 65, 0, 1).getTime().getTime();
-        long to = new GregorianCalendar(currentYear - 18, 11, 31).getTime().getTime();
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        long from = new GregorianCalendar(currentYear - 65, currentMonth, currentDay).getTime().getTime();
+        long to = new GregorianCalendar(currentYear - 18, currentMonth, currentDay).getTime().getTime();
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 5000; i++) {
             Date birthday = faker.date().birthday();
             assertThat("birthday is after upper bound", birthday.getTime(), lessThan(to));
             assertThat("birthday is before lower bound", birthday.getTime(), greaterThanOrEqualTo(from));
@@ -97,16 +106,18 @@ public class DateAndTimeTest extends AbstractFakerTest {
     @Test
     public void testBirthdayWithAges() {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 5000; i++) {
             int minAge = faker.number().numberBetween(1, 99);
             int maxAge = faker.number().numberBetween(minAge, 100);
 
-            long from = new GregorianCalendar(currentYear - maxAge, 0, 1).getTime().getTime();
-            long to = new GregorianCalendar(currentYear - minAge, 11, 31).getTime().getTime();
+            long from = new GregorianCalendar(currentYear - maxAge, currentMonth, currentDay).getTime().getTime();
+            long to = new GregorianCalendar(currentYear - minAge, currentMonth, currentDay).getTime().getTime();
 
             Date birthday = faker.date().birthday(minAge, maxAge);
-            assertThat("birthday is after upper bound", birthday.getTime(), lessThan(to));
+            assertThat("birthday is after upper bound", birthday.getTime(), lessThanOrEqualTo(to));
             assertThat("birthday is before lower bound", birthday.getTime(), greaterThanOrEqualTo(from));
         }
     }

@@ -17,7 +17,7 @@ In pom.xml, add the following xml stanza between `<dependencies> ... </dependenc
 <dependency>
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
@@ -25,7 +25,7 @@ For gradle users, add the following to your build.gradle file.
 
 ```groovy
 dependencies {
-    implementation 'com.github.javafaker:javafaker:1.0.1'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
 }
 
 ```
@@ -56,39 +56,46 @@ See [CONTRIBUTING.md](https://github.com/DiUS/java-faker/blob/master/CONTRIBUTIN
 
 Fakers
 -----
+* Address
 * Ancient
 * Animal
-* Address
 * App
+* Aqua Teen Hunger Force
 * Artist
 * Avatar
 * Babylon5
 * Back To The Future
 * Aviation
+* Basketball
 * Beer
+* Bojack Horseman
 * Book
 * Bool
 * Business
 * ChuckNorris
 * Cat
 * Code
+* Coin
 * Color
 * Commerce
 * Company
 * Crypto
 * DateAndTime
 * Demographic
+* Disease
 * Dog
 * DragonBall
 * Dune
 * Educator
 * Esports
+* EnglandFootBall
 * File
 * Finance
 * Food
 * Friends
 * FunnyName
 * GameOfThrones
+* Gender
 * Hacker
 * HarryPotter
 * Hipster
@@ -98,6 +105,7 @@ Fakers
 * IdNumber
 * Internet
 * Job
+* Kaamelott
 * LeagueOfLegends
 * Lebowski
 * LordOfTheRings
@@ -110,6 +118,7 @@ Fakers
 * Options
 * Overwatch
 * PhoneNumber
+* Photography
 * Pokemon
 * Princess Bride
 * Relationship Terms
@@ -117,8 +126,10 @@ Fakers
 * Robin
 * RockBand
 * Shakespeare
+* Sip
 * SlackEmoji
 * Space
+* StarCraft
 * StarTrek
 * Stock
 * Superhero
@@ -168,6 +179,7 @@ Supported Locales
 * fi-FI
 * fr
 * he
+* hu
 * in-ID
 * it
 * ja

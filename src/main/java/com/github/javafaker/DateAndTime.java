@@ -144,34 +144,40 @@ public class DateAndTime {
             throw new IllegalArgumentException("Invalid date range, the upper bound date is before the lower bound.");
         }
 
+        if (from.equals(to)) {
+            return from;
+        }
+
         long offsetMillis = faker.random().nextLong(to.getTime() - from.getTime());
         return new Date(from.getTime() + offsetMillis);
     }
 
     /**
-     * Generates a random birthday between 65 and 18 years ago.
+     * Generates a random birthday between 65 and 18 years ago from now.
      *
-     * @return a random birthday between 65 and 18 years ago.
+     * @return a random birthday between 65 and 18 years ago from now.
      */
     public Date birthday() {
         return birthday(DEFAULT_MIN_AGE, DEFAULT_MAX_AGE);
     }
 
     /**
-     * Generates a random birthday between two ages.
+     * Generates a random birthday between two ages from now.
      *
      * @param minAge
      *            the minimal age
      * @param maxAge
      *            the maximal age
-     * @return a random birthday between {@code minAge} and {@code maxAge} years ago.
+     * @return a random birthday between {@code minAge} and {@code maxAge} years ago from now.
      * @throws IllegalArgumentException
      *             if the {@code maxAge} is lower than {@code minAge}.
      */
     public Date birthday(int minAge, int maxAge) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        Calendar from = new GregorianCalendar(currentYear - maxAge, 0, 1);
-        Calendar to = new GregorianCalendar(currentYear - minAge, 11, 31);
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        Calendar from = new GregorianCalendar(currentYear - maxAge, currentMonth, currentDay);
+        Calendar to = new GregorianCalendar(currentYear - minAge, currentMonth, currentDay);
 
         return between(from.getTime(), to.getTime());
     }
