@@ -34,6 +34,7 @@ public class EnFile {
             "aqua_teen_hunger_force.yml",
             "artist.yml",
             "aviation.yml",
+            "babylon5.yml",
             "back_to_the_future.yml",
             "barcode.yml",
             "bank.yml",
