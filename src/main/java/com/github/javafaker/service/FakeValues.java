@@ -2,6 +2,7 @@ package com.github.javafaker.service;
 
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
@@ -74,6 +75,11 @@ public class FakeValues implements FakeValuesInterface {
         Map localeBased = (Map) valuesMap.get(locale.getLanguage());
         if (localeBased == null) {
             localeBased = (Map) valuesMap.get(filename);
+        }
+        try {
+            stream.close();
+        } catch (IOException ex){
+            return null;
         }
         return (Map) localeBased.get("faker");
     }
