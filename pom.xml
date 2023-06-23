@@ -50,12 +50,13 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
         </dependency>
+
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.26</version>
-            <classifier>android</classifier>
+            <version>2.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.github.mifmif</groupId>
             <artifactId>generex</artifactId>
