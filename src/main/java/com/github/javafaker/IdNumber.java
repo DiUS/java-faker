@@ -1,6 +1,7 @@
 package com.github.javafaker;
 
 import com.github.javafaker.idnumbers.EnIdNumber;
+import com.github.javafaker.idnumbers.PtBRIdNumber;
 import com.github.javafaker.idnumbers.SvSEIdNumber;
 
 public class IdNumber {
@@ -22,6 +23,16 @@ public class IdNumber {
         EnIdNumber enIdNumber = new EnIdNumber();
         return enIdNumber.getValidSsn(faker);
     }
+
+    /**
+     * Generates a valid Brazilian CPF (Cadastro de Pessoas Físicas) number using the Faker library.
+     *
+     * @return a String representing a valid Brazilian CPF number
+     */
+    public String validCpf() {
+        return new PtBRIdNumber().getValidCpf(faker);
+    }
+
 
     /**
      * Specified as #{IDNumber.valid_sv_se_ssn} in sv-SE.yml

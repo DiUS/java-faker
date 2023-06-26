@@ -1,7 +1,8 @@
 package com.github.javafaker;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
-
+import com.github.javafaker.idnumbers.PtBRIdNumber;
 import java.util.Locale;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
@@ -16,7 +17,8 @@ public class IdNumberTest extends AbstractFakerTest {
 
     @Test
     public void testInvalid() {
-        assertThat(faker.idNumber().invalid(), matchesRegularExpression("[0-9]\\d{2}-\\d{2}-\\d{4}"));
+        assertThat(faker.idNumber().invalid(),
+                matchesRegularExpression("[0-9]\\d{2}-\\d{2}-\\d{4}"));
     }
 
     @Test
@@ -37,6 +39,16 @@ public class IdNumberTest extends AbstractFakerTest {
         final Faker f = new Faker(new Locale("sv_SE"));
         for (int i = 0; i < 100; i++) {
             assertThat(f.idNumber().invalid(), matchesRegularExpression("\\d{6}[-+]\\d{4}"));
+        }
+    }
+
+    @Test
+    public void testValidCpf() {
+        final Faker f = new Faker(new Locale("pt-BR"));
+        PtBRIdNumber idNumber = new PtBRIdNumber();
+        for (int i = 0; i < 100; i++) {
+            boolean isValid = idNumber.isValid(f.idNumber().valid());
+            assertThat(isValid, Matchers.is(true));
         }
     }
 }

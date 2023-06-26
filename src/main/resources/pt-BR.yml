@@ -1,5 +1,7 @@
 pt-BR:
   faker:
+    id_number:
+      valid: "#{IDNumber.valid_cpf}"
     address:
       city: ["Abadia de Goiás", "Abadia dos Dourados", "Abadiânia", "Abaetetuba", "Abaeté", "Abaiara", "Abaré", "Abatiá", "Abaíra", "Abdon Batista", "Abel Figueiredo",
       "Abelardo Luz", "Abre Campo", "Abreu e Lima", "Abreulândia", "Acaiaca", "Acajutiba", "Acarapé", "Acaraú", "Acari", "Acará", "Acauã", "Aceguá", "Acopiara", "Acorizal",
@@ -698,3 +700,4 @@ pt-BR:
     creature:
       animal:
         name: ["jacaré", "crocodilo", "alpaca", "formiga", "antílope", "macaco", "tatu", "burro", "babuíno", "texugo", "morcego", "urso", "castor", "abelha", "besouro", "búfalo", "borboleta", "camelo", "búfalo-asiático", "caribu", "gato", "gado", "guepardo", "chimpanzé", "chinchila", "cigarra", "amêijoa", "barata", "bacalhau", "coiote", "caranguejo", "grilo", "corvo", "corvo-comum", "cervo", "dinossauro", "cachorro", "golfinho", "toninha", "pato", "águia", "enguia", "elefante", "alce", "furão", "peixe", "mosca", "raposa", "sapo", "rã" , "gerbilo", "girafa", "mosquito", "gnu", "gnu-cauda-preta", "cabra", "peixe-dourado", "ganso", "gorila", "gafanhoto", "porquinho da índia", "hamster", "lebre", "ouriço", "arenque", "hipopótamo", "vespa", "cavalo", "cão de caça", "hiena", "impala", "chacal", "água-viva", "canguru", "wallaby", "coala", "leopardo", "leão", "lagarto", "lhama", "gafanhoto", "piolho", "arara", "pato selvagem", "mamute", "peixe-boi", "marta", "vison", "vairão", "toupeira", "macaco", "alce", "mosquito", "rato", "ratazana", "mula", "rato almiscarado", "lontra", "boi", "ostra", "panda", "porco", "ornitorrinco", "porco-espinho", "cão da pradaria", "pug", "coelho", "guaxinim", "rena", "rinoceronte", "salmão", "sardinha", "escorpião", "foca", "leão-marinho", "serval", "tubarão", "ovelha", "gambá", "caracol", "cobra", "aranha", "esquilo", "cisne", "cupim", "tigre", "truta", "tartaruga", "jabuti", "morsa", "vespa", "doninha", "baleia", "lobo", "vombate", "marmota", "minhoca", "iaque", "vespa", "zebra"]
+  
