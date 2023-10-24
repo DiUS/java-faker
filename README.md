@@ -192,6 +192,7 @@ Supported Locales
 * sk
 * sv
 * sv-SE
+* ta
 * tr
 * uk
 * vi
