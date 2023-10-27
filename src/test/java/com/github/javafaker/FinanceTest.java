@@ -3,8 +3,10 @@ package com.github.javafaker;
 import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
 import org.junit.Test;
 
+import java.util.Set;
+
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class FinanceTest extends AbstractFakerTest {
@@ -34,6 +36,19 @@ public class FinanceTest extends AbstractFakerTest {
 
     @Test
     public void ibanWithCountryCode() {
+        assertThat(faker.finance().iban("DE"), matchesRegularExpression("DE\\d{20}"));
+    }
+
+    @Test
+    public void ibanWithAllCountryCodes() {
+        Set<String> ibanCountryCodes = faker.finance().ibanCountryCodes();
+        for (String countryCode : ibanCountryCodes) {
+            assertThat(
+                    "IBAN for " + countryCode + " must not be null or empty",
+                    faker.finance().iban(countryCode),
+                    not(isEmptyString())
+            );
+        }
         assertThat(faker.finance().iban("DE"), matchesRegularExpression("DE\\d{20}"));
     }
 

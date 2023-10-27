@@ -3,10 +3,7 @@ package com.github.javafaker;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Finance {
     private final Faker faker;
@@ -64,6 +61,11 @@ public class Finance {
         String basicBankAccountNumber = faker.regexify(countryCodeToBasicBankAccountNumberPattern.get(countryCode));
         String checkSum = calculateIbanChecksum(countryCode, basicBankAccountNumber);
         return countryCode + checkSum + basicBankAccountNumber;
+    }
+
+    /** Get the set of country codes supported for IBAN generation */
+    public Set<String> ibanCountryCodes() {
+        return countryCodeToBasicBankAccountNumberPattern.keySet();
     }
 
     private CreditCardType randomCreditCardType() {
