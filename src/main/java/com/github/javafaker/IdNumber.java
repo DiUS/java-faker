@@ -11,7 +11,7 @@ public class IdNumber {
     }
 
     public String valid() {
-        return faker.fakeValuesService().resolve("id_number.valid", this, faker);
+        return faker.numerify(faker.fakeValuesService().resolve("id_number.valid", this, faker));
     }
 
     public String invalid() {
