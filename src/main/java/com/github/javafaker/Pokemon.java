@@ -15,4 +15,8 @@ public class Pokemon {
     public String location() {
         return faker.resolve("games.pokemon.locations");
     }
+
+    public String move() {
+        return faker.resolve("games.pokemon.moves");
+    }
 }
